@@ -57,7 +57,15 @@ def build_part1_notebook():
 6. **Task 4: In-Depth Discussion & Answers**"""))
 
     # Cell: Imports & Setup
-    cells.append(make_cell("code", """# Setup environment, check GPU acceleration, and configure paths
+    cells.append(make_cell("code", """# Install ultralytics for YOLOv8 (silent install for Kaggle)
+import subprocess, sys
+try:
+    import ultralytics
+except ImportError:
+    print("Installing ultralytics for YOLOv8...")
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "-q", "ultralytics"])
+
+# Setup environment, check GPU acceleration, and configure paths
 import os
 import sys
 import glob
