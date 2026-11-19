@@ -647,8 +647,15 @@ else:
     for c in range(8):
         basket_df[f'chart_pca_{c}'] = 0.0
 
+# Fill any remaining NaNs (e.g. from initial 30-day warmup or missing news) with 0.0
+for c in range(8):
+    basket_df[f'chart_pca_{c}'] = basket_df[f'chart_pca_{c}'].fillna(0.0)
+
+for i in range(1, 6):
+    basket_df[f'ret_lag_{i}'] = basket_df[f'ret_lag_{i}'].fillna(0.0)
+
 # Drop incomplete rows
-basket_df = basket_df.dropna(subset=['ret_lag_5', 'next_close']).reset_index(drop=True)
+basket_df = basket_df.dropna(subset=['next_close']).reset_index(drop=True)
 print(f"Final aligned dataset: {len(basket_df)} trading days.")"""))
 
     # Cell: Train & Compare Multimodal Models
@@ -670,9 +677,9 @@ y_test_m = basket_df.loc[test_mask, 'target'].values
 y_rec_m = basket_df.loc[recent_mask, 'target'].values
 
 def fit_eval_model(feature_cols, name):
-    X_tr = basket_df.loc[train_mask, feature_cols].values
-    X_te = basket_df.loc[test_mask, feature_cols].values
-    X_rc = basket_df.loc[recent_mask, feature_cols].values
+    X_tr = np.nan_to_num(basket_df.loc[train_mask, feature_cols].values, nan=0.0)
+    X_te = np.nan_to_num(basket_df.loc[test_mask, feature_cols].values, nan=0.0)
+    X_rc = np.nan_to_num(basket_df.loc[recent_mask, feature_cols].values, nan=0.0)
     
     clf = LogisticRegression(C=0.1, max_iter=1000, random_state=SEED)
     clf.fit(X_tr, y_train_m)
