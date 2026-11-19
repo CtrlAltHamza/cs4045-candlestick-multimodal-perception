@@ -1,0 +1,21 @@
+# Raw Datasets & Archives (> 100MB exceeds GitHub limits)
+Data/
+*.zip
+Data.zip
+yolo_dataset/
+
+# Python & Jupyter Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# Ultralytics & Training Artifacts
+runs/
+*.log
+
+# OS & IDE
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
