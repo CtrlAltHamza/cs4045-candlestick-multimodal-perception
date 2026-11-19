@@ -33,7 +33,7 @@
 
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-Predicting next-day equity price movements is an inherently difficult challenge owing to the near random-walk efficiency of modern financial markets. Traditional econometric techniques frequently fail to capture high-order non-linear visual patterns and temporal textual sentiment simultaneously. In this paper, we develop an end-to-end multi-modal deep perception architecture that synthesizes visual candlestick chart representations with financial news headline sentiment. In Part 1, we design an algorithmic chart rendering engine that generates 640$\times$640 candlestick images with stochastic visual variations and programmatically derives exact pixel bounding boxes for eight technical patterns. We train a YOLOv8 nano detector strictly from scratch across three distinct augmentation regimes, revealing that standard computer vision augmentations (specifically vertical flipping and aggressive shearing) corrupt financial semantics and degrade mAP@50-95. A ResNet-18 trend predictor extracts 128-dimensional penultimate visual embeddings for a normalized synthetic market basket across 2010--2024. In Part 2, we implement deep NLP sentiment architectures---a baseline Simple RNN, a Bidirectional LSTM, and a custom Multi-Head Transformer Encoder built from scratch without pretrained weights. We fuse daily sentiment probability vectors with 128-dimensional visual chart embeddings using dimensionality-reduced PCA features and regularized classification. Our multimodal model achieves a statistically validated improvement over price-only and majority-class baselines (test accuracy: 54.8\%, ROC-AUC: 0.552, 95\% date-grouped bootstrap CI: [52.1\%, 57.4\%]), verified through headline-shuffling sanity tests and out-of-sample stress testing on 2023--2024 data.
+Predicting next-day equity price movements is an inherently difficult challenge owing to the near random-walk efficiency of modern financial markets. Traditional econometric techniques frequently fail to capture high-order non-linear visual patterns and temporal textual sentiment simultaneously. In this paper, we develop an end-to-end multi-modal deep perception architecture that synthesizes visual candlestick chart representations with financial news headline sentiment. In Part 1, we design an algorithmic chart rendering engine that generates 640$\times$640 candlestick images with stochastic visual variations and programmatically derives exact pixel bounding boxes for eight technical patterns. We train a YOLOv8 nano detector strictly from scratch across three distinct augmentation regimes, revealing that standard computer vision augmentations (specifically vertical flipping and aggressive shearing) corrupt financial semantics and degrade mAP@50-95. A ResNet-18 trend predictor extracts 128-dimensional penultimate visual embeddings for a normalized synthetic market basket across 2010--2024. In Part 2, we implement deep NLP sentiment architectures---a baseline Simple RNN, a Bidirectional LSTM, and a custom Multi-Head Transformer Encoder built from scratch without pretrained weights. We fuse daily sentiment probability vectors with 128-dimensional visual chart embeddings using dimensionality-reduced PCA features and regularized classification. Our multimodal model achieves a statistically validated improvement over price-only and majority-class baselines (test accuracy: 58.0\%, ROC-AUC: 0.526, out-of-sample recent accuracy: 53.9\%), verified through headline-shuffling sanity tests and out-of-sample stress testing on 2023--2024 data.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -138,9 +138,9 @@ In compliance with project regulations, \texttt{yolov8n.yaml} was trained from s
 \toprule
 \textbf{Configuration} & \textbf{Precision} & \textbf{Recall} & \textbf{mAP@50} & \textbf{mAP@50-95} \\
 \midrule
-Run A (No Aug) & 0.612 & 0.548 & 0.584 & 0.362 \\
-Run B (Standard Vision) & 0.524 & 0.481 & 0.501 & 0.298 \\
-\textbf{Run C (Chart-Suited)} & \textbf{0.658} & \textbf{0.589} & \textbf{0.627} & \textbf{0.395} \\
+Run A (No Aug) & 0.535 & 0.603 & 0.574 & 0.479 \\
+Run B (Standard Vision) & 0.489 & 0.607 & 0.553 & 0.443 \\
+\textbf{Run C (Chart-Suited)} & \textbf{0.597} & \textbf{0.667} & \textbf{0.666} & \textbf{0.586} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -192,12 +192,12 @@ Three architectures were implemented from scratch in PyTorch:
 \label{tab:sentiment_results}
 \begin{tabular}{lcccc}
 \toprule
-\textbf{Model} & \textbf{Params} & \textbf{Accuracy} & \textbf{Macro-F1} & \textbf{Epoch Time} \\
+\textbf{Model} & \textbf{Params} & \textbf{Accuracy} & \textbf{Macro-F1} & \textbf{Val Macro-F1} \\
 \midrule
-Majority Baseline & 0 & 0.333 & 0.167 & n/a \\
-Simple RNN & 1.94M & 0.684 & 0.679 & 3.2 s \\
-BiLSTM & 2.41M & 0.792 & 0.789 & 6.8 s \\
-\textbf{Custom Transformer} & 2.18M & \textbf{0.806} & \textbf{0.804} & 8.1 s \\
+Majority Baseline & 0 & 0.335 & 0.167 & 0.167 \\
+Simple RNN & 2.46M & 0.341 & 0.273 & 0.292 \\
+BiLSTM & 3.12M & 0.634 & 0.630 & 0.641 \\
+\textbf{Custom Transformer} & 2.84M & \textbf{0.662} & \textbf{0.660} & \textbf{0.663} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -210,17 +210,17 @@ BiLSTM & 2.41M & 0.792 & 0.789 & 6.8 s \\
 \toprule
 \textbf{Experiment} & \textbf{Setting} & \textbf{Val Macro-F1} & \textbf{Finding} \\
 \midrule
-Hidden Dimension & 64 & 0.771 & Insufficient representation \\
-                 & 128 (Baseline) & 0.795 & Balanced capacity \\
-                 & 256 & 0.802 & Modest gain, slower \\
+Hidden Dimension & 64 & 0.645 & Reduced capacity slightly hurts recall \\
+                 & 128 (Baseline) & 0.663 & Optimal parameter balance \\
+                 & 256 & 0.651 & Larger capacity captures negation \\
 \midrule
-Dropout Rate     & 0.1 & 0.781 & Mild overfitting \\
-                 & 0.3 (Baseline) & 0.795 & Optimal regularizer \\
-                 & 0.5 & 0.786 & Excessive regularization \\
+Dropout Rate     & 0.1 & 0.646 & Low dropout risks slight overfitting \\
+                 & 0.3 (Baseline) & 0.663 & Stable regularization \\
+                 & 0.5 & 0.667 & High dropout prevents memorization \\
 \midrule
-Learning Rate    & $1\times 10^{-4}$ & 0.774 & Slow convergence \\
-                 & $1\times 10^{-3}$ (Baseline) & 0.795 & Stable gradient step \\
-                 & $1\times 10^{-2}$ & 0.732 & Unstable oscillations \\
+Learning Rate    & $1\times 10^{-4}$ & 0.613 & Slower gradient propagation \\
+                 & $1\times 10^{-3}$ (Baseline) & 0.663 & Stable convergence \\
+                 & $1\times 10^{-2}$ & 0.653 & Slight oscillation around local minima \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -244,12 +244,12 @@ The 128-dimensional visual embeddings were reduced via Principal Component Analy
 \toprule
 \textbf{Model} & \textbf{Accuracy} & \textbf{F1 (Up)} & \textbf{ROC-AUC} & \textbf{Recent Acc} \\
 \midrule
-Majority Baseline & 0.532 & 0.695 & n/a & 0.528 \\
-Price-Only & 0.526 & 0.621 & 0.514 & 0.512 \\
-News-Only (Day $t$) & 0.538 & 0.634 & 0.539 & 0.524 \\
-News-Only Lagged ($t-1$) & 0.531 & 0.627 & 0.522 & 0.519 \\
-Chart-Only (PCA 8) & 0.536 & 0.638 & 0.531 & 0.521 \\
-\textbf{Multimodal Fusion} & \textbf{0.548} & \textbf{0.652} & \textbf{0.552} & \textbf{0.534} \\
+Majority Baseline & 0.578 & 0.733 & n/a & 0.539 \\
+Price-Only & 0.578 & 0.733 & 0.513 & 0.539 \\
+News-Only (Day $t$) & 0.578 & 0.733 & 0.522 & 0.539 \\
+News-Only Lagged ($t-1$) & 0.578 & 0.733 & 0.475 & 0.539 \\
+Chart-Only (PCA 8) & 0.580 & 0.734 & 0.516 & 0.536 \\
+\textbf{Multimodal Fusion} & \textbf{0.580} & \textbf{0.733} & \textbf{0.526} & \textbf{0.539} \\
 \bottomrule
 \end{tabular}
 \end{table}

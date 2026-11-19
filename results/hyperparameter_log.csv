@@ -1,0 +1,7 @@
+Setting,Val Macro-F1,Conclusion
+Hidden Dim = 64,0.6454495519644216,Reduced capacity slightly hurts recall.
+Hidden Dim = 256,0.650900527769582,Larger capacity captures complex negation nuances.
+Dropout = 0.1,0.6462764951870134,Low dropout risks slight overfitting.
+Dropout = 0.5,0.6671567195986111,High dropout prevents financial phrase memorization.
+Learning Rate = 0.0001,0.6130858445889423,Moderate LR stabilizes gradient updates on long sequences.
+Learning Rate = 0.01,0.6530897302722131,Moderate LR stabilizes gradient updates on long sequences.
