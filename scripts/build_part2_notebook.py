@@ -559,9 +559,15 @@ print(df_hyp.to_string(index=False))"""))
 
     # Cell: Build Multimodal Daily Dataset
     cells.append(make_cell("code", r"""# Daily Sentiment Aggregation Engine
-best_sent_model = BiLSTMModel(VOCAB_SIZE).to(device)
-best_sent_model.load_state_dict(torch.load("checkpoints/sentiment_best.pt"))
+state_dict = torch.load("checkpoints/sentiment_best.pt", map_location=device)
+if "pos_embedding.weight" in state_dict or "transformer_encoder.layers.0.linear1.weight" in state_dict:
+    best_sent_model = CustomTransformerEncoder(VOCAB_SIZE).to(device)
+else:
+    best_sent_model = BiLSTMModel(VOCAB_SIZE).to(device)
+
+best_sent_model.load_state_dict(state_dict)
 best_sent_model.eval()
+print(f"Successfully loaded best sentiment model: {best_sent_model.__class__.__name__}")
 
 # Process all headlines into daily sentiment probability vectors
 print("Inferring sentiment probabilities for all headlines...")
