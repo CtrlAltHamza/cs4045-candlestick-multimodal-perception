@@ -91,30 +91,47 @@ if torch.cuda.is_available():
 else:
     print("Running on CPU. For fast training, run on Kaggle GPU (T4/P100).")
 
-# Kaggle vs Local Data Path Detection
-DATA_DIR = None
-potential_paths = [
-    "/kaggle/input/sp500-stocks-25-years-of-data",
-    "/kaggle/input/dlp-project-data/Data",
-    "/kaggle/input/dlp-project-data",
-    "/kaggle/input/data",
-    "./Data",
-    "../Data",
-    "d:/dlp_project/Data"
-]
+# Kaggle vs Local Data Path Detection (Bulletproof recursive search + auto-unzip)
+import zipfile
 
-for p in potential_paths:
-    if os.path.exists(p) and (os.path.exists(os.path.join(p, "sp500_stocks.csv")) or os.path.exists(os.path.join(p, "Data", "sp500_stocks.csv"))):
-        DATA_DIR = os.path.join(p, "Data") if os.path.exists(os.path.join(p, "Data", "sp500_stocks.csv")) else p
-        break
+DATA_DIR = None
+
+# 1. Search recursively anywhere under /kaggle/input
+if os.path.exists("/kaggle/input"):
+    matches = glob.glob("/kaggle/input/**/sp500_companies.csv", recursive=True)
+    if matches:
+        DATA_DIR = os.path.dirname(matches[0])
+    else:
+        # Check if dataset was uploaded as an unextracted .zip file
+        zip_files = glob.glob("/kaggle/input/**/*.zip", recursive=True)
+        if zip_files:
+            print(f"Found archive {zip_files[0]}. Extracting to /kaggle/working...")
+            with zipfile.ZipFile(zip_files[0], 'r') as z:
+                z.extractall("/kaggle/working")
+            extracted_matches = glob.glob("/kaggle/working/**/sp500_companies.csv", recursive=True)
+            if extracted_matches:
+                DATA_DIR = os.path.dirname(extracted_matches[0])
+
+# 2. Local fallback paths
+if DATA_DIR is None:
+    local_candidates = ["./Data", "../Data", "Data", "d:/dlp_project/Data", "d:/dlp_project"]
+    for p in local_candidates:
+        if os.path.exists(os.path.join(p, "sp500_companies.csv")):
+            DATA_DIR = p
+            break
+
+# 3. General recursive fallback
+if DATA_DIR is None:
+    matches = glob.glob("**/sp500_companies.csv", recursive=True)
+    if matches:
+        DATA_DIR = os.path.dirname(matches[0])
 
 if DATA_DIR is None:
-    # Search recursively for sp500_stocks.csv
-    found = glob.glob("**/sp500_stocks.csv", recursive=True)
-    if found:
-        DATA_DIR = os.path.dirname(found[0])
-    else:
-        DATA_DIR = "./Data"
+    if os.path.exists("/kaggle/input"):
+        print("DEBUG: Directory tree of /kaggle/input:")
+        for r, d, f in os.walk("/kaggle/input"):
+            print(r, f)
+    raise FileNotFoundError("Could not find 'sp500_companies.csv'. Please ensure your dataset is attached to this Kaggle notebook.")
 
 print(f"Dataset root identified at: {DATA_DIR}")
 os.makedirs("results", exist_ok=True)
