@@ -578,6 +578,7 @@ def render_chart_with_annotations(df_window, output_img_path, output_lbl_path=No
     os.makedirs(os.path.dirname(output_img_path), exist_ok=True)
     plt.savefig(output_img_path, dpi=100, facecolor=fig.get_facecolor(), edgecolor='none')
     plt.close(fig)
+    plt.close('all')
     
     # Save YOLO labels if requested
     if output_lbl_path is not None:
@@ -626,7 +627,16 @@ Following project specifications:
 - Output directory format: Standard YOLO dataset structure (`images/train`, `labels/train`, etc.) and accompanying CSV index files for the CNN."""))
 
     # Cell: Batch Dataset Generation
-    cells.append(make_cell("code", """# Dataset Generation Pipeline
+    cells.append(make_cell("code", """# Dataset Generation Pipeline (Optimized with pre-grouping, Agg backend & zero warnings)
+import warnings
+warnings.filterwarnings('ignore')
+import matplotlib
+matplotlib.use('Agg')
+plt.ioff()
+
+if 'set_a_symbols' not in globals():
+    set_a_symbols = ['MSFT', 'NVDA', 'INTC', 'CSCO', 'BAC', 'GS', 'MS', 'WFC', 'PFE', 'UNH', 'ABT', 'CAT']
+
 def generate_datasets_split(df_all_stocks, set_a_symbols):
     splits = {
         'train': ('2010-01-01', '2017-12-31'),
@@ -654,12 +664,18 @@ def generate_datasets_split(df_all_stocks, set_a_symbols):
         split_stocks = df_all_stocks[(df_all_stocks['date'] >= s_date) & (df_all_stocks['date'] <= e_date)]
         unique_dates = sorted(split_stocks['date'].unique())
         
+        # Pre-group by symbol ONCE for 100x speedup
+        sym_dict = {
+            sym: split_stocks[split_stocks['symbol'] == sym].sort_values('date').reset_index(drop=True)
+            for sym in set_a_symbols
+        }
+        
         if split_name == 'train':
             # Generate >= 3,000 random windows across the 12 tickers
             total_target = 3000
             for i in range(total_target):
                 sym = random.choice(set_a_symbols)
-                sym_data = split_stocks[split_stocks['symbol'] == sym].sort_values('date').reset_index(drop=True)
+                sym_data = sym_dict[sym]
                 if len(sym_data) < 32:
                     continue
                 start_i = random.randint(0, len(sym_data) - 32)
@@ -680,6 +696,9 @@ def generate_datasets_split(df_all_stocks, set_a_symbols):
                     'next_date': next_day['date'],
                     'next_day_up': next_up
                 })
+                
+                if (i + 1) % 500 == 0 or (i + 1) == total_target:
+                    print(f"  [Train] Rendered {i + 1}/{total_target} charts...")
         else:
             # Synchronized windows every 4 trading days across all 12 tickers
             step = 4
@@ -687,7 +706,7 @@ def generate_datasets_split(df_all_stocks, set_a_symbols):
             for d_idx in range(30, len(unique_dates) - 1, step):
                 target_date = unique_dates[d_idx]
                 for sym in set_a_symbols:
-                    sym_data = split_stocks[split_stocks['symbol'] == sym].sort_values('date').reset_index(drop=True)
+                    sym_data = sym_dict[sym]
                     match_idx = sym_data[sym_data['date'] == target_date].index
                     if len(match_idx) == 0 or match_idx[0] < 29 or match_idx[0] + 1 >= len(sym_data):
                         continue
@@ -710,6 +729,9 @@ def generate_datasets_split(df_all_stocks, set_a_symbols):
                         'next_day_up': next_up
                     })
                     count += 1
+                    
+                    if count % 200 == 0:
+                        print(f"  [{split_name}] Rendered {count} charts...")
                     
         pd.DataFrame(dataset_records[split_name]).to_csv(f"results/{split_name}_metadata.csv", index=False)
         print(f"Generated {len(dataset_records[split_name])} charts for split '{split_name}'.")
