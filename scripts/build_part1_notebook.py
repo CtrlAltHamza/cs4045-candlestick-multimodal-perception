@@ -157,7 +157,11 @@ In this section we:
 6. Formulate temporal split rationale and examine survivorship bias."""))
 
     # Cell: Ticker Audit & Selection Code
-    cells.append(make_cell("code", """# Load company listings and stock price data
+    cells.append(make_cell("code", """# Fixed verified selection spanning 5 GICS sectors (globally available):
+set_a_symbols = ['MSFT', 'NVDA', 'INTC', 'CSCO', 'BAC', 'GS', 'MS', 'WFC', 'PFE', 'UNH', 'ABT', 'CAT']
+set_b_symbols = ['AAPL', 'JPM', 'JNJ', 'HON', 'GE', 'UPS', 'AMZN', 'MCD']
+
+# Load company listings and stock price data
 companies_file = os.path.join(DATA_DIR, "sp500_companies.csv")
 stocks_file = os.path.join(DATA_DIR, "sp500_stocks.csv")
 
@@ -227,6 +231,10 @@ for s in set_b_symbols:
 
     # Cell: Return distributions & Kurtosis
     cells.append(make_cell("code", """# Task 1.3: Daily Returns & Kurtosis Analysis
+if 'set_a_symbols' not in globals():
+    set_a_symbols = ['MSFT', 'NVDA', 'INTC', 'CSCO', 'BAC', 'GS', 'MS', 'WFC', 'PFE', 'UNH', 'ABT', 'CAT']
+    set_b_symbols = ['AAPL', 'JPM', 'JNJ', 'HON', 'GE', 'UPS', 'AMZN', 'MCD']
+
 plt.figure(figsize=(15, 10))
 kurt_results = []
 
