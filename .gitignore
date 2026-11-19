@@ -3,6 +3,7 @@ Data/
 *.zip
 Data.zip
 yolo_dataset/
+results/basket_charts/
 
 # Python & Jupyter Cache
 __pycache__/
