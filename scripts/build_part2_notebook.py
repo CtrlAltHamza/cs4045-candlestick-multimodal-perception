@@ -24,7 +24,7 @@ def build_part2_notebook():
     cells.append(make_cell("markdown", r"""# Deep Learning for Perception (CS 4045) – Project Part 2
 ## Financial News Sentiment & Multimodal Next-Day Direction Prediction
 **Course Instructor**: Dr. Ahmad Raza Shahid  
-**Author(s)**: Group Submission  
+**Authors**: Hamza Khurram (Roll No: i210735), Raja Abdullah Tahir (Roll No: i210708)  
 
 ---
 ### Notebook Outline

@@ -24,7 +24,7 @@ def build_part1_notebook():
     cells.append(make_cell("markdown", """# Deep Learning for Perception (CS 4045) – Project Part 1
 ## Candlestick Vision: Pattern Detection with YOLOv8 & Next-Day Trend Prediction with CNN
 **Course Instructor**: Dr. Ahmad Raza Shahid  
-**Author(s)**: Group Submission  
+**Authors**: Hamza Khurram (Roll No: i210735), Raja Abdullah Tahir (Roll No: i210708)  
 
 ---
 ### Notebook Outline

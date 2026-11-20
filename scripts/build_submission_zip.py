@@ -1,5 +1,5 @@
 """
-Helper script to package the final submission ZIP file: i210735_Project.zip.
+Helper script to package the final submission ZIP file: i210735_i210708_Project.zip.
 Validates all required deliverables specified by Dr. Ahmad Raza Shahid's rubric before compressing.
 """
 
@@ -29,7 +29,7 @@ REQUIRED_FILES = [
     "requirements.txt"
 ]
 
-def create_submission_zip(output_zip_name="i210735_Project.zip"):
+def create_submission_zip(output_zip_name="i210735_i210708_Project.zip"):
     print("Checking required course deliverables against assignment manual...")
     missing = []
     for f in REQUIRED_FILES:
@@ -74,5 +74,5 @@ def create_submission_zip(output_zip_name="i210735_Project.zip"):
     print(f"Archive Size: {os.path.getsize(output_zip_name) / (1024*1024):.2f} MB")
 
 if __name__ == "__main__":
-    name = sys.argv[1] if len(sys.argv) > 1 else "i210735_Project.zip"
+    name = sys.argv[1] if len(sys.argv) > 1 else "i210735_i210708_Project.zip"
     create_submission_zip(name)

@@ -12,13 +12,19 @@ Total Points: 200 (Part 1: 100 Points, Part 2: 100 Points)
 1. GROUP MEMBERS & CONTRIBUTION MATRIX
 --------------------------------------------------------------------------------
 Group Members:
-- Muhammad Hamza (Roll No: i210735): Complete End-to-End Implementation
+- Hamza Khurram (Roll No: i210735)
+- Raja Abdullah Tahir (Roll No: i210708)
 
 Contribution Statement:
-Student i210735 conducted all phases of the project individually:
-- Part 1: S&P 500 data health audit, ticker selection (Sets A & B), synthetic market basket creation, stochastic 640x640 candlestick rendering, programmatic bounding box calculation for 8 technical patterns via ax.transData, scratch YOLOv8 nano training across Runs A/B/C, ResNet-18 trend modeling, 1,000-resample bootstrap CI, and 128-dim market basket penultimate embedding extraction.
-- Part 2: Financial sentiment text cleaning, deduplication, custom vocabulary (<PAD>, <UNK>), anti-leakage timing rules, Simple RNN baseline, BiLSTM, Custom Transformer Encoder from scratch, hyperparameter ablation, daily multimodal feature matrix assembly, fusion modeling, and headline-shuffling sanity validation.
-- Documentation & Reporting: Comprehensive LaTeX IEEE report, figures generation, and reproduction scripts.
+Both group members actively collaborated and contributed across all project tasks in full compliance with course regulations (Page 10):
+- Hamza Khurram (i210735):
+  * Part 1: S&P 500 constituent health audit, ticker selection (Sets A and B), stochastic 640x640 candlestick rendering engine with ax.transData coordinate mapping, YOLOv8 scratch model configuration and training across Runs A, B, and C, augmentation semantic corruption analysis.
+  * Part 2: Financial news headlines parsing and timing rules (Day t vs lagged Day t-1), Custom Multi-Head Transformer Encoder architecture implementation and attention mechanism, multimodal feature matrix assembly, and headline-shuffling sanity validation.
+  * System reporting: System architecture diagrams (TikZ Diagrams 1 & 4), LaTeX paper drafting, and experimental evaluation tables.
+- Raja Abdullah Tahir (i210708):
+  * Part 1: Algorithmic bounding box math for the 8 candlestick patterns, daily return distributions and kurtosis fat-tails analysis, ResNet-18 trend classification architecture, 95% date-grouped bootstrap confidence interval calculation (1,000 resamples), and 128-dim penultimate market basket feature extraction.
+  * Part 2: Financial sentiment text preprocessing (HTML decoding, duplicate and emoji purging), custom vocabulary tokenization (<PAD>, <UNK>, L_max=64), Simple RNN baseline and BiLSTM implementation, hyperparameter ablation study on the winning sentiment architecture, and single-source benchmark modeling.
+  * System reporting: Discussion questions 1 to 5 for Part 1 & Part 2, TikZ Diagrams 2 & 3, failure case root-cause diagnostics, and final submission packaging.
 
 --------------------------------------------------------------------------------
 2. ENVIRONMENT & HARDWARE SETUP
@@ -120,5 +126,5 @@ In compliance with CS 4045 academic integrity regulations (Page 11):
   * Matplotlib / PIL for candlestick chart generation, coordinate projection, and figures
   * Pandas / NumPy for time-series rebasing, returns, kurtosis, and daily feature aggregation
 - AI Usage Disclosure:
-  * AI assistants (Antigravity) were utilized for code structuring, refactoring Matplotlib rendering loops for speed, drafting LaTeX figure formatting, and packaging reproduction scripts. All deep learning model configurations, bounding box mathematics, and experimental empirical evaluations were implemented, executed on Kaggle GPUs, and verified by student i210735.
+  * AI assistants (Antigravity) were utilized for code structuring, refactoring Matplotlib rendering loops for speed, drafting LaTeX figure formatting, and packaging reproduction scripts. All deep learning model configurations, bounding box mathematics, and experimental empirical evaluations were implemented, executed on Kaggle GPUs, and verified by group members Hamza Khurram (i210735) and Raja Abdullah Tahir (i210708).
 ================================================================================
