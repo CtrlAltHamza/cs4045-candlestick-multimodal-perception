@@ -12,11 +12,13 @@ Total Points: 200 (Part 1: 100 Points, Part 2: 100 Points)
 1. GROUP MEMBERS & CONTRIBUTION MATRIX
 --------------------------------------------------------------------------------
 Group Members:
-- Student 1 (ID: i22-xxxx): Part 1 Lead (EDA, Candlestick Rendering & Labeling, YOLOv8 Experiments, Report Part 1)
-- Student 2 (ID: i22-yyyy): Part 2 Lead (NLP Preprocessing, BiLSTM & Transformer Architectures, Multimodal Fusion, Report Part 2)
+- Muhammad Hamza (Roll No: i210735): Complete End-to-End Implementation
 
 Contribution Statement:
-Both students collaborated jointly on end-to-end pipeline architecture, data validation, Kaggle GPU execution, artifact synchronization, and LaTeX report compilation.
+Student i210735 conducted all phases of the project individually:
+- Part 1: S&P 500 data health audit, ticker selection (Sets A & B), synthetic market basket creation, stochastic 640x640 candlestick rendering, programmatic bounding box calculation for 8 technical patterns via ax.transData, scratch YOLOv8 nano training across Runs A/B/C, ResNet-18 trend modeling, 1,000-resample bootstrap CI, and 128-dim market basket penultimate embedding extraction.
+- Part 2: Financial sentiment text cleaning, deduplication, custom vocabulary (<PAD>, <UNK>), anti-leakage timing rules, Simple RNN baseline, BiLSTM, Custom Transformer Encoder from scratch, hyperparameter ablation, daily multimodal feature matrix assembly, fusion modeling, and headline-shuffling sanity validation.
+- Documentation & Reporting: Comprehensive LaTeX IEEE report, figures generation, and reproduction scripts.
 
 --------------------------------------------------------------------------------
 2. ENVIRONMENT & HARDWARE SETUP
