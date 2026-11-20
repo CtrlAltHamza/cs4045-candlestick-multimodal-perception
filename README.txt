@@ -104,4 +104,21 @@ report/
 ├── report.tex                (Complete LaTeX paper source)
 ├── figures/                  (All architecture diagrams and EDA plots)
 └── report.pdf                (Compiled 6-10 page submission PDF)
+
+--------------------------------------------------------------------------------
+6. ACADEMIC INTEGRITY & DISCLOSURE
+--------------------------------------------------------------------------------
+In compliance with CS 4045 academic integrity regulations (Page 11):
+- Outside Datasets:
+  * Kaggle "S&P 500 Stocks: 25 Years of Data" (sp500_stocks.csv, sp500_companies.csv)
+  * Kaggle "Finance News Sentiments" by antobenedetti (dataset.csv)
+  * Kaggle "S&P 500 with Financial News Headlines 2008 to 2024" by dyutidasmahaptra (sp500_headlines_2008_2024.csv)
+- Libraries & Frameworks:
+  * PyTorch (nn, optim, DataLoader) for BiLSTM, Custom Transformer Encoder, and Trend CNN
+  * Ultralytics YOLOv8 (yolov8n.yaml built strictly from scratch, zero pretrained weights)
+  * Scikit-Learn for Logistic Regression, PCA, evaluation metrics, and bootstrap resampling
+  * Matplotlib / PIL for candlestick chart generation, coordinate projection, and figures
+  * Pandas / NumPy for time-series rebasing, returns, kurtosis, and daily feature aggregation
+- AI Usage Disclosure:
+  * AI assistants (Antigravity) were utilized for code structuring, refactoring Matplotlib rendering loops for speed, drafting LaTeX figure formatting, and packaging reproduction scripts. All deep learning model configurations, bounding box mathematics, and experimental empirical evaluations were implemented, executed on Kaggle GPUs, and verified by student i210735.
 ================================================================================
