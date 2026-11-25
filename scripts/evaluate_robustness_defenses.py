@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import shutil
+import zipfile
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -196,6 +197,15 @@ def main() -> None:
     summary.to_csv(RESULTS / "detection_robustness_improved.csv", index=False)
     print("\nHeld-out robust test result (evaluated once after validation selection):")
     print(summary.to_string(index=False))
+
+    bundle = RESULTS / "robustness_defense_results.zip"
+    with zipfile.ZipFile(bundle, "w", zipfile.ZIP_DEFLATED) as archive:
+        for name in ("robustness_defense_validation.csv", "detection_robustness_improved.csv"):
+            archive.write(RESULTS / name, f"results/{name}")
+    with zipfile.ZipFile(bundle) as archive:
+        if archive.testzip() is not None:
+            raise RuntimeError("Robustness defense result bundle failed CRC validation")
+    print(f"Robustness defense bundle: {bundle}")
 
 
 if __name__ == "__main__":
