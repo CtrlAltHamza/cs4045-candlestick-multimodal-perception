@@ -20,3 +20,7 @@ runs/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Image lists written by the Part 1 evaluation cells
+results/test_*_images.txt
+results/recent_images.txt
