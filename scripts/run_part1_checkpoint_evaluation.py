@@ -45,6 +45,7 @@ def main() -> None:
     namespace["YOLO"] = YOLO
     namespace["df_yolo_comp"] = pd.read_csv(ROOT / "results" / "detection_results.csv")
     namespace["best_run"] = "Run_C_Chart_Aug"
+    namespace["dataset_yaml_path"] = str((ROOT / "yolo_dataset" / "dataset.yaml").resolve())
 
     evaluation_source = "".join(notebook["cells"][18]["source"])
     exec(compile(evaluation_source, f"{NOTEBOOK.name}:cell-18", "exec"), namespace)
