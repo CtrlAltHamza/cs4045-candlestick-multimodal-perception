@@ -45,7 +45,30 @@ def main() -> None:
     namespace["YOLO"] = YOLO
     namespace["df_yolo_comp"] = pd.read_csv(ROOT / "results" / "detection_results.csv")
     namespace["best_run"] = "Run_C_Chart_Aug"
-    namespace["dataset_yaml_path"] = str((ROOT / "yolo_dataset" / "dataset.yaml").resolve())
+    dataset_root = (ROOT / "yolo_dataset").resolve()
+    dataset_yaml = dataset_root / "dataset.yaml"
+    # Normalize the generated YAML path. Older project archives pointed one
+    # directory too high, which only surfaced when Ultralytics resolved the
+    # custom ``recent`` split.
+    dataset_yaml.write_text(
+        f"""path: {dataset_root.as_posix()}
+train: images/train
+val: images/val
+test: images/test
+recent: images/recent
+names:
+  0: Doji
+  1: Hammer
+  2: Shooting Star
+  3: Marubozu
+  4: Bullish Engulfing
+  5: Bearish Engulfing
+  6: Morning Star
+  7: Evening Star
+""",
+        encoding="utf-8",
+    )
+    namespace["dataset_yaml_path"] = str(dataset_yaml)
 
     evaluation_source = "".join(notebook["cells"][18]["source"])
     exec(compile(evaluation_source, f"{NOTEBOOK.name}:cell-18", "exec"), namespace)
