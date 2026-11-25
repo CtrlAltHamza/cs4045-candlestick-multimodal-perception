@@ -119,6 +119,10 @@ checkpoints/
 
 results/
 ├── detection_results.csv     (YOLOv8 Run A/B/C metrics)
+├── detection_per_class.csv   (Run C per-class metrics and test-box counts)
+├── detection_theme_results.csv (Theme-specific and recent-set mAP@50)
+├── detection_robustness.csv  (480px/JPEG stress-test degradation)
+├── detection_efficiency.csv  (Run C inference latency and checkpoint size)
 ├── sentiment_results.csv     (Simple RNN, BiLSTM, Transformer metrics)
 ├── market_results.csv        (Single-source vs. Multimodal fusion test & recent metrics)
 ├── daily_sentiment.csv       (Date-level sentiment probabilities from the saved Transformer)

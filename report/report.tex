@@ -335,6 +335,7 @@ Color Jitter    & HSV     & Mild& Aligns with visual themes if hue intact. \\
 \centering
 \caption{YOLOv8 Test Split Object Detection Performance (From Scratch)}
 \label{tab:yolo_results}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lcccc}
 \toprule
 \textbf{Augmentation Regime} & \textbf{Precision} & \textbf{Recall} & \textbf{mAP@50} & \textbf{mAP@50-95} \\
@@ -344,6 +345,7 @@ Run B: Standard Vision & 0.489 & 0.607 & 0.553 & 0.443 \\
 \textbf{Run C: Domain Chart Aug} & \textbf{0.597} & \textbf{0.667} & \textbf{0.666} & \textbf{0.586} \\
 \bottomrule
 \end{tabular}
+}
 \end{table}
 
 As documented in Table~\ref{tab:yolo_results} and Figure~\ref{fig:yolo_curves}, Run B suffered an acute performance degradation, collapsing mAP@50-95 by 14.3\% relative to Run C. Table~\ref{tab:yolo_class} details the per-class performance for the winning Run~C configuration.
@@ -356,16 +358,16 @@ As documented in Table~\ref{tab:yolo_results} and Figure~\ref{fig:yolo_curves}, 
 \toprule
 \textbf{Candlestick Class} & \textbf{Precision} & \textbf{Recall} & \textbf{mAP@50} & \textbf{Test Boxes} \\
 \midrule
-Doji              & 0.684 & 0.742 & 0.728 & 1,240 \\
-Hammer            & 0.612 & 0.685 & 0.679 & 412 \\
-Shooting Star     & 0.635 & 0.691 & 0.684 & 385 \\
-Marubozu          & 0.721 & 0.784 & 0.765 & 890 \\
-Bullish Engulfing & 0.582 & 0.632 & 0.641 & 210 \\
-Bearish Engulfing & 0.574 & 0.628 & 0.638 & 204 \\
-Morning Star      & 0.485 & 0.521 & 0.542 & 84 \\
-Evening Star      & 0.479 & 0.518 & 0.538 & 79 \\
+Doji              & 0.807 & 0.963 & 0.961 & 4,025 \\
+Hammer            & 0.414 & 0.426 & 0.404 & 296 \\
+Shooting Star     & 0.348 & 0.326 & 0.258 & 230 \\
+Marubozu          & 0.450 & 0.539 & 0.485 & 723 \\
+Bullish Engulfing & 0.663 & 0.805 & 0.793 & 834 \\
+Bearish Engulfing & 0.685 & 0.834 & 0.830 & 1,049 \\
+Morning Star      & 0.661 & 0.803 & 0.806 & 928 \\
+Evening Star      & 0.710 & 0.776 & 0.822 & 1,135 \\
 \midrule
-\textbf{All Classes (Mean)} & \textbf{0.597} & \textbf{0.667} & \textbf{0.666} & \textbf{3,504} \\
+\textbf{All Classes (Mean)} & \textbf{0.592} & \textbf{0.684} & \textbf{0.670} & \textbf{9,220} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -378,9 +380,9 @@ Evening Star      & 0.479 & 0.518 & 0.538 & 79 \\
 \end{figure}
 
 \subsubsection{Theme Invariance and Robustness Stress Testing}
-Evaluating Run~C across individual visual themes revealed high spatial stability: mAP@50 was 0.668 on Light, 0.664 on Dark, and 0.661 on Blue-White. On the recent set (2023--2024), mAP@50 was 0.642. 
+Checkpoint evaluation across individual visual themes revealed high spatial stability: mAP@50 was 0.672 on Light, 0.678 on Dark, and 0.674 on Blue-White. On the recent set (2023--2024), mAP@50 was 0.671, essentially matching the 2019--2020 test result.
 
-To evaluate out-of-distribution resilience, test images were downscaled to $480\times480$ with severe JPEG compression (quality = 35). Run~C exhibited an mAP@50 drop of only 4.2\% (from 0.666 to 0.638). Inference latency averaged 6.1 ms per chart on an NVIDIA P100 GPU (14.2 ms on CPU).
+To evaluate out-of-distribution resilience, test images were downscaled to $480\times480$ with severe JPEG compression (quality = 40). Run~C mAP@50 fell from 0.666 to 0.328, an absolute drop of 0.338. The stress test therefore exposes substantial sensitivity to combined resolution and compression shift despite stable theme generalization. Inference latency averaged 3.94 ms per chart on an NVIDIA Tesla T4, and the checkpoint size was 5.96 MB.
 
 \subsection{Trend ResNet-18 Classifier \& 128-dim Embeddings}
 For next-day binary trend prediction ($next\_day\_up \in \{0, 1\}$), we configured a ResNet-18 model trained strictly on Set A charts (Train: 2010--2017, Val: 2018). Its penultimate linear classifier was re-engineered with a 128-dimensional projection bottleneck ($512 \rightarrow 128 \rightarrow 2$).
@@ -620,7 +622,7 @@ Table~\ref{tab:efficiency} summarizes parameter counts, training times, and per-
 \toprule
 \textbf{Model / Pipeline} & \textbf{Parameters} & \textbf{Train Time} & \textbf{Inference Latency} \\
 \midrule
-YOLOv8n (Run C)         & 3.01M  & 14.8 min  & 6.1 ms / chart \\
+YOLOv8n (Run C)         & 3.01M  & 14.8 min  & 3.94 ms / chart \\
 Trend ResNet-18         & 11.25M & 12.4 min  & 4.8 ms / chart \\
 Simple RNN Baseline     & 2.46M  & 3.2 min   & 0.8 ms / headline \\
 Bidirectional LSTM      & 3.12M  & 5.8 min   & 1.4 ms / headline \\
@@ -646,7 +648,7 @@ Chart-Only Pipeline     & 11.25M & 12.5 min  & 18.5 ms / day \\
   The Trend ResNet-18 achieved 54.2\% test accuracy with a 95\% date-grouped bootstrap interval of $[51.8\%, 56.5\%]$. Because the entire interval sits strictly above 50.0\%, the CNN is statistically superior to pure random guessing. However, the majority baseline during 2019--2020 achieved 53.4\% due to persistent macroeconomic bull market conditions. While the CNN marginally surpassed this baseline in accuracy, its primary value lies in its balanced predictive capacity (ROC-AUC 0.539 vs n/a for constant prediction).
   
   \item \textbf{Cross-theme and recent set performance shifts}:
-  The detector showed remarkable theme invariance, with mAP@50 varying by less than 1.8\% across light (0.668), dark (0.664), and blue-white (0.661) themes. This demonstrates that convolution filters learned high-contrast spatial edge geometry rather than canvas background colors. On the out-of-sample recent set (2023--2024), mAP@50 dipped slightly to 0.642 due to unprecedented post-COVID intraday price ranges.
+  The detector showed theme invariance, with mAP@50 tightly grouped across light (0.672), dark (0.678), and blue-white (0.674) charts. On the out-of-sample recent set (2023--2024), mAP@50 remained 0.671, essentially unchanged from the test period. By contrast, the combined 480-pixel/JPEG stress test reduced mAP@50 to 0.328, showing that compression and resolution shift are much more damaging than theme changes.
   
   \item \textbf{YOLO failure cases and root-cause analysis}:
   Exhaustive qualitative inspection revealed five primary failure modes (documented in Appendix C):

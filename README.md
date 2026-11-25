@@ -154,6 +154,10 @@ python scripts/build_submission_zip.py
 ## Evaluation artifacts
 
 - [`results/detection_results.csv`](results/detection_results.csv): YOLO Runs A/B/C aggregate comparison.
+- [`results/detection_per_class.csv`](results/detection_per_class.csv): checkpoint precision, recall, AP and box counts for all eight classes.
+- [`results/detection_theme_results.csv`](results/detection_theme_results.csv): light, dark, blue-white and recent-set mAP@50.
+- [`results/detection_robustness.csv`](results/detection_robustness.csv): 480-pixel/JPEG stress-test degradation.
+- [`results/detection_efficiency.csv`](results/detection_efficiency.csv): measured Tesla T4 latency and checkpoint size.
 - [`results/trend_results.csv`](results/trend_results.csv): majority, price-logistic and ResNet-18 trend results.
 - [`results/sentiment_results.csv`](results/sentiment_results.csv): majority, RNN, BiLSTM and Transformer results.
 - [`results/hyperparameter_log.csv`](results/hyperparameter_log.csv): six timed Transformer ablations.
@@ -162,9 +166,9 @@ python scripts/build_submission_zip.py
 - [`results/headline_shuffle_results.csv`](results/headline_shuffle_results.csv): 100-repeat timing sanity check.
 - [`results/chart_embeddings.npy`](results/chart_embeddings.npy) and [`results/embedding_index.csv`](results/embedding_index.csv): dated 128-dimensional chart embeddings.
 
-## Current evidence status
+## Evidence status
 
-Part 2 metrics, confidence intervals, predictions, shuffle results and timed Transformer ablations are stored as machine-readable artifacts. For a fully self-contained Part 1 audit, the evaluation-only YOLO cells should additionally export class-wise metrics, theme-wise mAP, recent-set mAP and robustness results from the supplied checkpoint. Original Kaggle logs are also the authoritative source for the training time of YOLO Runs A and B.
+Part 1 now includes machine-readable aggregate, class-wise, theme, recent, robustness and efficiency evidence from the supplied YOLO checkpoint. Part 2 includes metrics, confidence intervals, held-out predictions, shuffle results and timed Transformer ablations. Original Kaggle logs remain the authoritative source for the training time and per-epoch histories of YOLO Runs A and B.
 
 ## Contributions
 
