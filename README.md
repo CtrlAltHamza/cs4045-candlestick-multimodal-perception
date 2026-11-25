@@ -145,6 +145,12 @@ python scripts/run_part1_checkpoint_evaluation.py
 
 This produces `results/part1_checkpoint_evaluation.zip` for convenient transfer from Kaggle.
 
+Select a non-training robustness defense on the corrupted validation split and evaluate the winner once on corrupted test data:
+
+```bash
+python scripts/evaluate_robustness_defenses.py
+```
+
 Build and validate the final submission archive:
 
 ```bash
