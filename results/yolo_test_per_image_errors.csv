@@ -1,0 +1,1429 @@
+image_path,symbol,end_date,theme,gt_boxes,pred_boxes,missed,false_pos,missed_classes,false_pos_classes,errors
+yolo_dataset/images/test/test_MSFT_00000.jpg,MSFT,2019-02-14,dark,5,10,0,5,,Morning Star;Marubozu;Evening Star;Evening Star;Doji,5
+yolo_dataset/images/test/test_NVDA_00001.jpg,NVDA,2019-02-14,dark,4,5,1,2,Evening Star,Doji;Shooting Star,3
+yolo_dataset/images/test/test_INTC_00002.jpg,INTC,2019-02-14,dark,5,8,0,3,,Doji;Doji;Evening Star,3
+yolo_dataset/images/test/test_CSCO_00003.jpg,CSCO,2019-02-14,blue-white,6,8,1,3,Bullish Engulfing,Bullish Engulfing;Shooting Star;Doji,4
+yolo_dataset/images/test/test_BAC_00004.jpg,BAC,2019-02-14,blue-white,4,7,0,3,,Evening Star;Bearish Engulfing;Marubozu,3
+yolo_dataset/images/test/test_GS_00005.jpg,GS,2019-02-14,light,5,7,0,2,,Bearish Engulfing;Bullish Engulfing,2
+yolo_dataset/images/test/test_MS_00006.jpg,MS,2019-02-14,blue-white,10,10,1,1,Evening Star,Doji,2
+yolo_dataset/images/test/test_WFC_00007.jpg,WFC,2019-02-14,light,7,7,3,3,Shooting Star;Bullish Engulfing;Evening Star,Doji;Evening Star;Morning Star,6
+yolo_dataset/images/test/test_PFE_00008.jpg,PFE,2019-02-14,dark,5,9,1,5,Bearish Engulfing,Hammer;Bullish Engulfing;Marubozu;Bearish Engulfing;Marubozu,6
+yolo_dataset/images/test/test_UNH_00009.jpg,UNH,2019-02-14,dark,10,17,0,7,,Bullish Engulfing;Morning Star;Doji;Evening Star;Morning Star;Doji;Doji,7
+yolo_dataset/images/test/test_ABT_00010.jpg,ABT,2019-02-14,light,1,4,0,3,,Bullish Engulfing;Doji;Bullish Engulfing,3
+yolo_dataset/images/test/test_CAT_00011.jpg,CAT,2019-02-14,blue-white,3,7,0,4,,Bullish Engulfing;Bullish Engulfing;Bearish Engulfing;Doji,4
+yolo_dataset/images/test/test_MSFT_00012.jpg,MSFT,2019-02-21,dark,8,12,0,4,,Evening Star;Bullish Engulfing;Doji;Bullish Engulfing,4
+yolo_dataset/images/test/test_NVDA_00013.jpg,NVDA,2019-02-21,light,6,4,2,0,Bearish Engulfing;Evening Star,,2
+yolo_dataset/images/test/test_INTC_00014.jpg,INTC,2019-02-21,light,6,10,1,5,Shooting Star,Shooting Star;Bearish Engulfing;Doji;Doji;Bearish Engulfing,6
+yolo_dataset/images/test/test_CSCO_00015.jpg,CSCO,2019-02-21,dark,6,6,1,1,Bullish Engulfing,Bullish Engulfing,2
+yolo_dataset/images/test/test_BAC_00016.jpg,BAC,2019-02-21,blue-white,2,4,0,2,,Evening Star;Doji,2
+yolo_dataset/images/test/test_GS_00017.jpg,GS,2019-02-21,blue-white,7,10,0,3,,Doji;Marubozu;Doji,3
+yolo_dataset/images/test/test_MS_00018.jpg,MS,2019-02-21,dark,9,11,1,3,Evening Star,Morning Star;Doji;Hammer,4
+yolo_dataset/images/test/test_WFC_00019.jpg,WFC,2019-02-21,blue-white,5,6,1,2,Shooting Star,Morning Star;Morning Star,3
+yolo_dataset/images/test/test_PFE_00020.jpg,PFE,2019-02-21,blue-white,6,10,1,5,Bearish Engulfing,Marubozu;Bearish Engulfing;Bullish Engulfing;Marubozu;Bullish Engulfing,6
+yolo_dataset/images/test/test_UNH_00021.jpg,UNH,2019-02-21,blue-white,8,12,1,5,Bullish Engulfing,Bullish Engulfing;Doji;Doji;Doji;Doji,6
+yolo_dataset/images/test/test_ABT_00022.jpg,ABT,2019-02-21,light,2,6,0,4,,Bullish Engulfing;Doji;Doji;Bullish Engulfing,4
+yolo_dataset/images/test/test_CAT_00023.jpg,CAT,2019-02-21,dark,2,3,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_MSFT_00024.jpg,MSFT,2019-02-27,light,6,7,0,1,,Evening Star,1
+yolo_dataset/images/test/test_NVDA_00025.jpg,NVDA,2019-02-27,light,7,7,1,1,Evening Star,Evening Star,2
+yolo_dataset/images/test/test_INTC_00026.jpg,INTC,2019-02-27,dark,6,10,1,5,Shooting Star,Bearish Engulfing;Doji;Doji;Doji;Bearish Engulfing,6
+yolo_dataset/images/test/test_CSCO_00027.jpg,CSCO,2019-02-27,dark,7,7,2,2,Bullish Engulfing;Bullish Engulfing,Bullish Engulfing;Doji,4
+yolo_dataset/images/test/test_BAC_00028.jpg,BAC,2019-02-27,dark,3,8,0,5,,Evening Star;Bearish Engulfing;Evening Star;Doji;Marubozu,5
+yolo_dataset/images/test/test_GS_00029.jpg,GS,2019-02-27,blue-white,9,11,1,3,Morning Star,Doji;Marubozu;Bearish Engulfing,4
+yolo_dataset/images/test/test_MS_00030.jpg,MS,2019-02-27,light,11,11,1,1,Evening Star,Doji,2
+yolo_dataset/images/test/test_WFC_00031.jpg,WFC,2019-02-27,light,5,7,1,3,Shooting Star,Morning Star;Morning Star;Doji,4
+yolo_dataset/images/test/test_PFE_00032.jpg,PFE,2019-02-27,blue-white,8,11,1,4,Bearish Engulfing,Bearish Engulfing;Hammer;Doji;Doji,5
+yolo_dataset/images/test/test_UNH_00033.jpg,UNH,2019-02-27,light,7,9,1,3,Evening Star,Doji;Doji;Doji,4
+yolo_dataset/images/test/test_ABT_00034.jpg,ABT,2019-02-27,light,2,6,0,4,,Bullish Engulfing;Doji;Doji;Doji,4
+yolo_dataset/images/test/test_CAT_00035.jpg,CAT,2019-02-27,light,3,3,0,0,,,0
+yolo_dataset/images/test/test_MSFT_00036.jpg,MSFT,2019-03-05,light,6,9,0,3,,Marubozu;Evening Star;Bullish Engulfing,3
+yolo_dataset/images/test/test_NVDA_00037.jpg,NVDA,2019-03-05,blue-white,8,7,2,1,Doji;Evening Star,Doji,3
+yolo_dataset/images/test/test_INTC_00038.jpg,INTC,2019-03-05,blue-white,6,8,1,3,Shooting Star,Bearish Engulfing;Doji;Doji,4
+yolo_dataset/images/test/test_CSCO_00039.jpg,CSCO,2019-03-05,light,7,8,1,2,Bullish Engulfing,Bullish Engulfing;Doji,3
+yolo_dataset/images/test/test_BAC_00040.jpg,BAC,2019-03-05,light,4,5,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_GS_00041.jpg,GS,2019-03-05,light,11,15,0,4,,Doji;Evening Star;Marubozu;Shooting Star,4
+yolo_dataset/images/test/test_MS_00042.jpg,MS,2019-03-05,blue-white,12,16,0,4,,Doji;Morning Star;Shooting Star;Shooting Star,4
+yolo_dataset/images/test/test_WFC_00043.jpg,WFC,2019-03-05,dark,4,7,1,4,Shooting Star,Hammer;Evening Star;Morning Star;Morning Star,5
+yolo_dataset/images/test/test_PFE_00044.jpg,PFE,2019-03-05,dark,8,11,1,4,Bearish Engulfing,Doji;Bearish Engulfing;Bullish Engulfing;Bullish Engulfing,5
+yolo_dataset/images/test/test_UNH_00045.jpg,UNH,2019-03-05,light,7,12,1,6,Bullish Engulfing,Doji;Doji;Doji;Doji;Bullish Engulfing;Morning Star,7
+yolo_dataset/images/test/test_ABT_00046.jpg,ABT,2019-03-05,dark,2,4,0,2,,Doji;Bullish Engulfing,2
+yolo_dataset/images/test/test_CAT_00047.jpg,CAT,2019-03-05,light,3,4,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_MSFT_00048.jpg,MSFT,2019-03-11,light,6,9,0,3,,Marubozu;Bullish Engulfing;Doji,3
+yolo_dataset/images/test/test_NVDA_00049.jpg,NVDA,2019-03-11,blue-white,7,10,0,3,,Bearish Engulfing;Evening Star;Evening Star,3
+yolo_dataset/images/test/test_INTC_00050.jpg,INTC,2019-03-11,blue-white,8,7,2,1,Shooting Star;Marubozu,Bearish Engulfing,3
+yolo_dataset/images/test/test_CSCO_00051.jpg,CSCO,2019-03-11,light,5,5,1,1,Bullish Engulfing,Bullish Engulfing,2
+yolo_dataset/images/test/test_BAC_00052.jpg,BAC,2019-03-11,blue-white,4,6,0,2,,Bearish Engulfing;Doji,2
+yolo_dataset/images/test/test_GS_00053.jpg,GS,2019-03-11,blue-white,11,16,0,5,,Evening Star;Shooting Star;Doji;Hammer;Bearish Engulfing,5
+yolo_dataset/images/test/test_MS_00054.jpg,MS,2019-03-11,light,12,16,0,4,,Doji;Morning Star;Shooting Star;Shooting Star,4
+yolo_dataset/images/test/test_WFC_00055.jpg,WFC,2019-03-11,blue-white,6,9,1,4,Shooting Star,Hammer;Morning Star;Shooting Star;Morning Star,5
+yolo_dataset/images/test/test_PFE_00056.jpg,PFE,2019-03-11,dark,7,10,1,4,Bearish Engulfing,Bearish Engulfing;Bearish Engulfing;Marubozu;Bullish Engulfing,5
+yolo_dataset/images/test/test_UNH_00057.jpg,UNH,2019-03-11,blue-white,6,12,0,6,,Doji;Doji;Doji;Bullish Engulfing;Doji;Marubozu,6
+yolo_dataset/images/test/test_ABT_00058.jpg,ABT,2019-03-11,blue-white,2,5,0,3,,Doji;Bullish Engulfing;Doji,3
+yolo_dataset/images/test/test_CAT_00059.jpg,CAT,2019-03-11,light,4,7,0,3,,Bullish Engulfing;Morning Star;Morning Star,3
+yolo_dataset/images/test/test_MSFT_00060.jpg,MSFT,2019-03-15,blue-white,7,9,0,2,,Marubozu;Evening Star,2
+yolo_dataset/images/test/test_NVDA_00061.jpg,NVDA,2019-03-15,light,8,9,1,2,Doji,Marubozu;Morning Star,3
+yolo_dataset/images/test/test_INTC_00062.jpg,INTC,2019-03-15,blue-white,8,9,2,3,Shooting Star;Marubozu,Bearish Engulfing;Doji;Doji,5
+yolo_dataset/images/test/test_CSCO_00063.jpg,CSCO,2019-03-15,blue-white,4,4,1,1,Bullish Engulfing,Bullish Engulfing,2
+yolo_dataset/images/test/test_BAC_00064.jpg,BAC,2019-03-15,light,4,5,1,2,Doji,Doji;Bullish Engulfing,3
+yolo_dataset/images/test/test_GS_00065.jpg,GS,2019-03-15,dark,13,18,0,5,,Shooting Star;Evening Star;Doji;Morning Star;Doji,5
+yolo_dataset/images/test/test_MS_00066.jpg,MS,2019-03-15,light,10,12,0,2,,Morning Star;Doji,2
+yolo_dataset/images/test/test_WFC_00067.jpg,WFC,2019-03-15,blue-white,5,9,2,6,Shooting Star;Morning Star,Hammer;Morning Star;Doji;Evening Star;Morning Star;Doji,8
+yolo_dataset/images/test/test_PFE_00068.jpg,PFE,2019-03-15,light,8,11,1,4,Bearish Engulfing,Bullish Engulfing;Bearish Engulfing;Bearish Engulfing;Hammer,5
+yolo_dataset/images/test/test_UNH_00069.jpg,UNH,2019-03-15,dark,6,9,0,3,,Marubozu;Doji;Bearish Engulfing,3
+yolo_dataset/images/test/test_ABT_00070.jpg,ABT,2019-03-15,light,3,3,0,0,,,0
+yolo_dataset/images/test/test_CAT_00071.jpg,CAT,2019-03-15,light,5,5,1,1,Bearish Engulfing,Morning Star,2
+yolo_dataset/images/test/test_MSFT_00072.jpg,MSFT,2019-03-21,blue-white,7,7,1,1,Doji,Marubozu,2
+yolo_dataset/images/test/test_NVDA_00073.jpg,NVDA,2019-03-21,blue-white,6,8,0,2,,Marubozu;Bearish Engulfing,2
+yolo_dataset/images/test/test_INTC_00074.jpg,INTC,2019-03-21,light,6,9,2,5,Shooting Star;Marubozu,Bearish Engulfing;Doji;Doji;Doji;Bearish Engulfing,7
+yolo_dataset/images/test/test_CSCO_00075.jpg,CSCO,2019-03-21,light,3,4,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_BAC_00076.jpg,BAC,2019-03-21,blue-white,5,8,1,4,Marubozu,Doji;Bullish Engulfing;Doji;Bearish Engulfing,5
+yolo_dataset/images/test/test_GS_00077.jpg,GS,2019-03-21,dark,11,17,0,6,,Marubozu;Evening Star;Shooting Star;Morning Star;Hammer;Morning Star,6
+yolo_dataset/images/test/test_MS_00078.jpg,MS,2019-03-21,blue-white,9,11,0,2,,Morning Star;Bearish Engulfing,2
+yolo_dataset/images/test/test_WFC_00079.jpg,WFC,2019-03-21,blue-white,3,9,1,7,Morning Star,Doji;Evening Star;Marubozu;Doji;Morning Star;Doji;Hammer,8
+yolo_dataset/images/test/test_PFE_00080.jpg,PFE,2019-03-21,dark,8,9,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_UNH_00081.jpg,UNH,2019-03-21,dark,4,9,0,5,,Doji;Marubozu;Evening Star;Bearish Engulfing;Bearish Engulfing,5
+yolo_dataset/images/test/test_ABT_00082.jpg,ABT,2019-03-21,light,5,8,0,3,,Doji;Morning Star;Hammer,3
+yolo_dataset/images/test/test_CAT_00083.jpg,CAT,2019-03-21,blue-white,4,5,1,2,Marubozu,Bullish Engulfing;Bullish Engulfing,3
+yolo_dataset/images/test/test_MSFT_00084.jpg,MSFT,2019-03-27,dark,7,6,2,1,Doji;Marubozu,Evening Star,3
+yolo_dataset/images/test/test_NVDA_00085.jpg,NVDA,2019-03-27,light,5,6,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_INTC_00086.jpg,INTC,2019-03-27,light,5,8,1,4,Shooting Star,Bearish Engulfing;Doji;Doji;Bearish Engulfing,5
+yolo_dataset/images/test/test_CSCO_00087.jpg,CSCO,2019-03-27,blue-white,5,9,0,4,,Morning Star;Morning Star;Bearish Engulfing;Bearish Engulfing,4
+yolo_dataset/images/test/test_BAC_00088.jpg,BAC,2019-03-27,dark,6,8,1,3,Marubozu,Doji;Bullish Engulfing;Hammer,4
+yolo_dataset/images/test/test_GS_00089.jpg,GS,2019-03-27,blue-white,9,16,0,7,,Morning Star;Marubozu;Morning Star;Evening Star;Doji;Doji;Morning Star,7
+yolo_dataset/images/test/test_MS_00090.jpg,MS,2019-03-27,blue-white,9,10,0,1,,Morning Star,1
+yolo_dataset/images/test/test_WFC_00091.jpg,WFC,2019-03-27,light,4,8,1,5,Morning Star,Morning Star;Doji;Hammer;Morning Star;Doji,6
+yolo_dataset/images/test/test_PFE_00092.jpg,PFE,2019-03-27,dark,8,10,0,2,,Bearish Engulfing;Bearish Engulfing,2
+yolo_dataset/images/test/test_UNH_00093.jpg,UNH,2019-03-27,dark,6,10,0,4,,Bearish Engulfing;Marubozu;Doji;Marubozu,4
+yolo_dataset/images/test/test_ABT_00094.jpg,ABT,2019-03-27,blue-white,5,5,0,0,,,0
+yolo_dataset/images/test/test_CAT_00095.jpg,CAT,2019-03-27,light,3,4,1,2,Marubozu,Bullish Engulfing;Bullish Engulfing,3
+yolo_dataset/images/test/test_MSFT_00096.jpg,MSFT,2019-04-02,dark,9,10,3,4,Doji;Marubozu;Doji,Marubozu;Morning Star;Doji;Marubozu,7
+yolo_dataset/images/test/test_NVDA_00097.jpg,NVDA,2019-04-02,dark,5,8,0,3,,Doji;Bearish Engulfing;Marubozu,3
+yolo_dataset/images/test/test_INTC_00098.jpg,INTC,2019-04-02,light,3,5,0,2,,Doji;Bearish Engulfing,2
+yolo_dataset/images/test/test_CSCO_00099.jpg,CSCO,2019-04-02,light,4,5,1,2,Doji,Morning Star;Bearish Engulfing,3
+yolo_dataset/images/test/test_BAC_00100.jpg,BAC,2019-04-02,blue-white,5,10,1,6,Marubozu,Morning Star;Bullish Engulfing;Hammer;Doji;Bearish Engulfing;Doji,7
+yolo_dataset/images/test/test_GS_00101.jpg,GS,2019-04-02,light,7,12,0,5,,Marubozu;Doji;Doji;Morning Star;Evening Star,5
+yolo_dataset/images/test/test_MS_00102.jpg,MS,2019-04-02,blue-white,8,8,0,0,,,0
+yolo_dataset/images/test/test_WFC_00103.jpg,WFC,2019-04-02,blue-white,4,5,1,2,Morning Star,Doji;Morning Star,3
+yolo_dataset/images/test/test_PFE_00104.jpg,PFE,2019-04-02,dark,8,9,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_UNH_00105.jpg,UNH,2019-04-02,light,7,10,0,3,,Doji;Marubozu;Bearish Engulfing,3
+yolo_dataset/images/test/test_ABT_00106.jpg,ABT,2019-04-02,light,7,7,0,0,,,0
+yolo_dataset/images/test/test_CAT_00107.jpg,CAT,2019-04-02,blue-white,5,7,0,2,,Bullish Engulfing;Bullish Engulfing,2
+yolo_dataset/images/test/test_MSFT_00108.jpg,MSFT,2019-04-08,dark,11,15,0,4,,Evening Star;Morning Star;Marubozu;Marubozu,4
+yolo_dataset/images/test/test_NVDA_00109.jpg,NVDA,2019-04-08,light,6,9,0,3,,Marubozu;Marubozu;Doji,3
+yolo_dataset/images/test/test_INTC_00110.jpg,INTC,2019-04-08,dark,2,4,0,2,,Doji;Bearish Engulfing,2
+yolo_dataset/images/test/test_CSCO_00111.jpg,CSCO,2019-04-08,dark,5,7,0,2,,Morning Star;Morning Star,2
+yolo_dataset/images/test/test_BAC_00112.jpg,BAC,2019-04-08,dark,4,5,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_GS_00113.jpg,GS,2019-04-08,blue-white,3,7,0,4,,Marubozu;Doji;Doji;Morning Star,4
+yolo_dataset/images/test/test_MS_00114.jpg,MS,2019-04-08,dark,5,4,1,0,Bullish Engulfing,,1
+yolo_dataset/images/test/test_WFC_00115.jpg,WFC,2019-04-08,blue-white,5,7,1,3,Morning Star,Shooting Star;Morning Star;Hammer,4
+yolo_dataset/images/test/test_PFE_00116.jpg,PFE,2019-04-08,dark,8,9,0,1,,Evening Star,1
+yolo_dataset/images/test/test_UNH_00117.jpg,UNH,2019-04-08,light,9,11,1,3,Hammer,Morning Star;Marubozu;Marubozu,4
+yolo_dataset/images/test/test_ABT_00118.jpg,ABT,2019-04-08,light,6,7,0,1,,Doji,1
+yolo_dataset/images/test/test_CAT_00119.jpg,CAT,2019-04-08,light,3,4,1,2,Marubozu,Bullish Engulfing;Doji,3
+yolo_dataset/images/test/test_MSFT_00120.jpg,MSFT,2019-04-12,blue-white,10,11,2,3,Marubozu;Doji,Evening Star;Morning Star;Marubozu,5
+yolo_dataset/images/test/test_NVDA_00121.jpg,NVDA,2019-04-12,dark,6,12,0,6,,Doji;Bearish Engulfing;Marubozu;Bullish Engulfing;Marubozu;Morning Star,6
+yolo_dataset/images/test/test_INTC_00122.jpg,INTC,2019-04-12,blue-white,3,5,0,2,,Bearish Engulfing;Doji,2
+yolo_dataset/images/test/test_CSCO_00123.jpg,CSCO,2019-04-12,dark,5,5,1,1,Marubozu,Morning Star,2
+yolo_dataset/images/test/test_BAC_00124.jpg,BAC,2019-04-12,light,2,5,1,4,Marubozu,Bullish Engulfing;Doji;Bullish Engulfing;Doji,5
+yolo_dataset/images/test/test_GS_00125.jpg,GS,2019-04-12,light,3,8,0,5,,Marubozu;Doji;Morning Star;Morning Star;Morning Star,5
+yolo_dataset/images/test/test_MS_00126.jpg,MS,2019-04-12,light,5,5,1,1,Doji,Morning Star,2
+yolo_dataset/images/test/test_WFC_00127.jpg,WFC,2019-04-12,light,5,9,0,4,,Morning Star;Doji;Doji;Hammer,4
+yolo_dataset/images/test/test_PFE_00128.jpg,PFE,2019-04-12,light,9,10,0,1,,Evening Star,1
+yolo_dataset/images/test/test_UNH_00129.jpg,UNH,2019-04-12,dark,9,11,2,4,Doji;Hammer,Marubozu;Morning Star;Evening Star;Evening Star,6
+yolo_dataset/images/test/test_ABT_00130.jpg,ABT,2019-04-12,dark,5,7,0,2,,Bearish Engulfing;Doji,2
+yolo_dataset/images/test/test_CAT_00131.jpg,CAT,2019-04-12,light,5,5,1,1,Marubozu,Bullish Engulfing,2
+yolo_dataset/images/test/test_MSFT_00132.jpg,MSFT,2019-04-18,blue-white,11,15,0,4,,Evening Star;Marubozu;Marubozu;Morning Star,4
+yolo_dataset/images/test/test_NVDA_00133.jpg,NVDA,2019-04-18,light,5,7,0,2,,Doji;Marubozu,2
+yolo_dataset/images/test/test_INTC_00134.jpg,INTC,2019-04-18,dark,4,5,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_CSCO_00135.jpg,CSCO,2019-04-18,dark,6,8,0,2,,Bearish Engulfing;Morning Star,2
+yolo_dataset/images/test/test_BAC_00136.jpg,BAC,2019-04-18,blue-white,2,6,0,4,,Doji;Bullish Engulfing;Bearish Engulfing;Marubozu,4
+yolo_dataset/images/test/test_GS_00137.jpg,GS,2019-04-18,blue-white,1,5,0,4,,Doji;Morning Star;Morning Star;Marubozu,4
+yolo_dataset/images/test/test_MS_00138.jpg,MS,2019-04-18,blue-white,2,4,0,2,,Morning Star;Marubozu,2
+yolo_dataset/images/test/test_WFC_00139.jpg,WFC,2019-04-18,dark,3,5,0,2,,Doji;Shooting Star,2
+yolo_dataset/images/test/test_PFE_00140.jpg,PFE,2019-04-18,blue-white,9,11,0,2,,Evening Star;Bearish Engulfing,2
+yolo_dataset/images/test/test_UNH_00141.jpg,UNH,2019-04-18,light,9,10,2,3,Hammer;Bullish Engulfing,Morning Star;Marubozu;Doji,5
+yolo_dataset/images/test/test_ABT_00142.jpg,ABT,2019-04-18,light,5,9,0,4,,Bearish Engulfing;Doji;Hammer;Doji,4
+yolo_dataset/images/test/test_CAT_00143.jpg,CAT,2019-04-18,dark,5,7,0,2,,Bullish Engulfing;Doji,2
+yolo_dataset/images/test/test_MSFT_00144.jpg,MSFT,2019-04-25,light,11,14,0,3,,Evening Star;Morning Star;Hammer,3
+yolo_dataset/images/test/test_NVDA_00145.jpg,NVDA,2019-04-25,blue-white,6,8,0,2,,Bullish Engulfing;Doji,2
+yolo_dataset/images/test/test_INTC_00146.jpg,INTC,2019-04-25,dark,4,5,1,2,Doji,Bullish Engulfing;Bearish Engulfing,3
+yolo_dataset/images/test/test_CSCO_00147.jpg,CSCO,2019-04-25,dark,6,9,1,4,Marubozu,Morning Star;Marubozu;Morning Star;Shooting Star,5
+yolo_dataset/images/test/test_BAC_00148.jpg,BAC,2019-04-25,light,2,4,0,2,,Bullish Engulfing;Doji,2
+yolo_dataset/images/test/test_GS_00149.jpg,GS,2019-04-25,light,2,7,0,5,,Morning Star;Doji;Hammer;Morning Star;Shooting Star,5
+yolo_dataset/images/test/test_MS_00150.jpg,MS,2019-04-25,dark,1,4,0,3,,Morning Star;Doji;Evening Star,3
+yolo_dataset/images/test/test_WFC_00151.jpg,WFC,2019-04-25,light,2,4,0,2,,Shooting Star;Marubozu,2
+yolo_dataset/images/test/test_PFE_00152.jpg,PFE,2019-04-25,light,9,14,0,5,,Bullish Engulfing;Evening Star;Morning Star;Morning Star;Hammer,5
+yolo_dataset/images/test/test_UNH_00153.jpg,UNH,2019-04-25,light,9,9,2,2,Doji;Hammer,Morning Star;Marubozu,4
+yolo_dataset/images/test/test_ABT_00154.jpg,ABT,2019-04-25,light,4,7,0,3,,Bearish Engulfing;Doji;Morning Star,3
+yolo_dataset/images/test/test_CAT_00155.jpg,CAT,2019-04-25,blue-white,5,8,0,3,,Bullish Engulfing;Bullish Engulfing;Doji,3
+yolo_dataset/images/test/test_MSFT_00156.jpg,MSFT,2019-05-01,blue-white,10,14,1,5,Marubozu,Evening Star;Morning Star;Bearish Engulfing;Doji;Doji,6
+yolo_dataset/images/test/test_NVDA_00157.jpg,NVDA,2019-05-01,light,7,6,1,0,Morning Star,,1
+yolo_dataset/images/test/test_INTC_00158.jpg,INTC,2019-05-01,blue-white,5,5,0,0,,,0
+yolo_dataset/images/test/test_CSCO_00159.jpg,CSCO,2019-05-01,light,9,9,1,1,Marubozu,Marubozu,2
+yolo_dataset/images/test/test_BAC_00160.jpg,BAC,2019-05-01,light,2,4,1,3,Marubozu,Doji;Doji;Bullish Engulfing,4
+yolo_dataset/images/test/test_GS_00161.jpg,GS,2019-05-01,dark,1,7,0,6,,Doji;Evening Star;Evening Star;Morning Star;Morning Star;Shooting Star,6
+yolo_dataset/images/test/test_MS_00162.jpg,MS,2019-05-01,dark,1,4,0,3,,Evening Star;Doji;Morning Star,3
+yolo_dataset/images/test/test_WFC_00163.jpg,WFC,2019-05-01,dark,2,8,0,6,,Shooting Star;Doji;Shooting Star;Evening Star;Doji;Doji,6
+yolo_dataset/images/test/test_PFE_00164.jpg,PFE,2019-05-01,light,9,13,0,4,,Bullish Engulfing;Evening Star;Marubozu;Hammer,4
+yolo_dataset/images/test/test_UNH_00165.jpg,UNH,2019-05-01,light,10,11,1,2,Hammer,Marubozu;Morning Star,3
+yolo_dataset/images/test/test_ABT_00166.jpg,ABT,2019-05-01,dark,5,11,0,6,,Bearish Engulfing;Doji;Doji;Hammer;Bullish Engulfing;Morning Star,6
+yolo_dataset/images/test/test_CAT_00167.jpg,CAT,2019-05-01,light,5,6,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_MSFT_00168.jpg,MSFT,2019-05-07,light,8,13,0,5,,Evening Star;Bearish Engulfing;Doji;Marubozu;Morning Star,5
+yolo_dataset/images/test/test_NVDA_00169.jpg,NVDA,2019-05-07,dark,7,9,0,2,,Bullish Engulfing;Morning Star,2
+yolo_dataset/images/test/test_INTC_00170.jpg,INTC,2019-05-07,blue-white,7,8,0,1,,Doji,1
+yolo_dataset/images/test/test_CSCO_00171.jpg,CSCO,2019-05-07,blue-white,7,9,0,2,,Shooting Star;Marubozu,2
+yolo_dataset/images/test/test_BAC_00172.jpg,BAC,2019-05-07,dark,0,4,0,4,,Doji;Doji;Marubozu;Bullish Engulfing,4
+yolo_dataset/images/test/test_GS_00173.jpg,GS,2019-05-07,dark,1,3,0,2,,Doji;Morning Star,2
+yolo_dataset/images/test/test_MS_00174.jpg,MS,2019-05-07,light,3,4,1,2,Morning Star,Morning Star;Doji,3
+yolo_dataset/images/test/test_WFC_00175.jpg,WFC,2019-05-07,light,5,10,0,5,,Shooting Star;Evening Star;Shooting Star;Doji;Bullish Engulfing,5
+yolo_dataset/images/test/test_PFE_00176.jpg,PFE,2019-05-07,dark,7,12,1,6,Bullish Engulfing,Evening Star;Morning Star;Bullish Engulfing;Marubozu;Hammer;Doji,7
+yolo_dataset/images/test/test_UNH_00177.jpg,UNH,2019-05-07,blue-white,9,12,0,3,,Doji;Marubozu;Bearish Engulfing,3
+yolo_dataset/images/test/test_ABT_00178.jpg,ABT,2019-05-07,dark,5,7,0,2,,Bearish Engulfing;Doji,2
+yolo_dataset/images/test/test_CAT_00179.jpg,CAT,2019-05-07,blue-white,5,6,0,1,,Doji,1
+yolo_dataset/images/test/test_MSFT_00180.jpg,MSFT,2019-05-13,blue-white,7,10,0,3,,Bearish Engulfing;Bullish Engulfing;Evening Star,3
+yolo_dataset/images/test/test_NVDA_00181.jpg,NVDA,2019-05-13,blue-white,7,8,1,2,Evening Star,Bullish Engulfing;Morning Star,3
+yolo_dataset/images/test/test_INTC_00182.jpg,INTC,2019-05-13,blue-white,7,8,2,3,Doji;Doji,Doji;Evening Star;Bearish Engulfing,5
+yolo_dataset/images/test/test_CSCO_00183.jpg,CSCO,2019-05-13,dark,6,9,0,3,,Shooting Star;Doji;Marubozu,3
+yolo_dataset/images/test/test_BAC_00184.jpg,BAC,2019-05-13,light,0,1,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_GS_00185.jpg,GS,2019-05-13,light,3,4,2,3,Bullish Engulfing;Evening Star,Shooting Star;Doji;Bearish Engulfing,5
+yolo_dataset/images/test/test_MS_00186.jpg,MS,2019-05-13,light,4,4,1,1,Morning Star,Morning Star,2
+yolo_dataset/images/test/test_WFC_00187.jpg,WFC,2019-05-13,dark,5,8,0,3,,Evening Star;Shooting Star;Doji,3
+yolo_dataset/images/test/test_PFE_00188.jpg,PFE,2019-05-13,blue-white,8,12,0,4,,Morning Star;Bullish Engulfing;Marubozu;Doji,4
+yolo_dataset/images/test/test_UNH_00189.jpg,UNH,2019-05-13,blue-white,8,14,0,6,,Marubozu;Marubozu;Bearish Engulfing;Bullish Engulfing;Marubozu;Morning Star,6
+yolo_dataset/images/test/test_ABT_00190.jpg,ABT,2019-05-13,light,3,7,0,4,,Bearish Engulfing;Doji;Doji;Marubozu,4
+yolo_dataset/images/test/test_CAT_00191.jpg,CAT,2019-05-13,light,6,7,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_MSFT_00192.jpg,MSFT,2019-05-17,blue-white,5,8,0,3,,Bearish Engulfing;Doji;Evening Star,3
+yolo_dataset/images/test/test_NVDA_00193.jpg,NVDA,2019-05-17,dark,8,10,0,2,,Bullish Engulfing;Marubozu,2
+yolo_dataset/images/test/test_INTC_00194.jpg,INTC,2019-05-17,light,10,14,1,5,Doji,Evening Star;Bearish Engulfing;Doji;Doji;Doji,6
+yolo_dataset/images/test/test_CSCO_00195.jpg,CSCO,2019-05-17,dark,6,7,1,2,Doji,Marubozu;Doji,3
+yolo_dataset/images/test/test_BAC_00196.jpg,BAC,2019-05-17,blue-white,0,1,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_GS_00197.jpg,GS,2019-05-17,dark,3,4,2,3,Bullish Engulfing;Evening Star,Doji;Morning Star;Morning Star,5
+yolo_dataset/images/test/test_MS_00198.jpg,MS,2019-05-17,light,4,4,1,1,Morning Star,Doji,2
+yolo_dataset/images/test/test_WFC_00199.jpg,WFC,2019-05-17,light,4,8,0,4,,Evening Star;Shooting Star;Morning Star;Doji,4
+yolo_dataset/images/test/test_PFE_00200.jpg,PFE,2019-05-17,light,5,8,1,4,Bullish Engulfing,Bullish Engulfing;Evening Star;Hammer;Morning Star,5
+yolo_dataset/images/test/test_UNH_00201.jpg,UNH,2019-05-17,light,8,11,1,4,Bearish Engulfing,Marubozu;Bearish Engulfing;Marubozu;Bullish Engulfing,5
+yolo_dataset/images/test/test_ABT_00202.jpg,ABT,2019-05-17,dark,6,10,1,5,Evening Star,Bearish Engulfing;Doji;Doji;Hammer;Morning Star,6
+yolo_dataset/images/test/test_CAT_00203.jpg,CAT,2019-05-17,blue-white,4,5,1,2,Doji,Bullish Engulfing;Doji,3
+yolo_dataset/images/test/test_MSFT_00204.jpg,MSFT,2019-05-23,blue-white,7,10,0,3,,Bearish Engulfing;Evening Star;Doji,3
+yolo_dataset/images/test/test_NVDA_00205.jpg,NVDA,2019-05-23,blue-white,7,6,2,1,Bullish Engulfing;Evening Star,Bullish Engulfing,3
+yolo_dataset/images/test/test_INTC_00206.jpg,INTC,2019-05-23,light,10,12,1,3,Doji,Evening Star;Bearish Engulfing;Doji,4
+yolo_dataset/images/test/test_CSCO_00207.jpg,CSCO,2019-05-23,light,4,6,0,2,,Marubozu;Shooting Star,2
+yolo_dataset/images/test/test_BAC_00208.jpg,BAC,2019-05-23,dark,3,3,0,0,,,0
+yolo_dataset/images/test/test_GS_00209.jpg,GS,2019-05-23,dark,5,2,3,0,Hammer;Bullish Engulfing;Evening Star,,3
+yolo_dataset/images/test/test_MS_00210.jpg,MS,2019-05-23,light,5,5,1,1,Morning Star,Doji,2
+yolo_dataset/images/test/test_WFC_00211.jpg,WFC,2019-05-23,light,6,11,0,5,,Doji;Doji;Evening Star;Morning Star;Doji,5
+yolo_dataset/images/test/test_PFE_00212.jpg,PFE,2019-05-23,dark,4,8,0,4,,Bearish Engulfing;Bullish Engulfing;Shooting Star;Doji,4
+yolo_dataset/images/test/test_UNH_00213.jpg,UNH,2019-05-23,light,8,13,0,5,,Marubozu;Doji;Bearish Engulfing;Marubozu;Marubozu,5
+yolo_dataset/images/test/test_ABT_00214.jpg,ABT,2019-05-23,light,6,9,0,3,,Doji;Doji;Doji,3
+yolo_dataset/images/test/test_CAT_00215.jpg,CAT,2019-05-23,dark,4,7,0,3,,Doji;Marubozu;Bullish Engulfing,3
+yolo_dataset/images/test/test_MSFT_00216.jpg,MSFT,2019-05-30,dark,6,9,0,3,,Bearish Engulfing;Bullish Engulfing;Evening Star,3
+yolo_dataset/images/test/test_NVDA_00217.jpg,NVDA,2019-05-30,dark,8,9,1,2,Bullish Engulfing,Hammer;Morning Star,3
+yolo_dataset/images/test/test_INTC_00218.jpg,INTC,2019-05-30,light,11,12,3,4,Doji;Doji;Bullish Engulfing,Evening Star;Doji;Doji;Bearish Engulfing,7
+yolo_dataset/images/test/test_CSCO_00219.jpg,CSCO,2019-05-30,dark,3,5,0,2,,Doji;Evening Star,2
+yolo_dataset/images/test/test_BAC_00220.jpg,BAC,2019-05-30,dark,3,3,0,0,,,0
+yolo_dataset/images/test/test_GS_00221.jpg,GS,2019-05-30,blue-white,7,5,2,0,Bullish Engulfing;Evening Star,,2
+yolo_dataset/images/test/test_MS_00222.jpg,MS,2019-05-30,dark,4,6,1,3,Morning Star,Doji;Bullish Engulfing;Hammer,4
+yolo_dataset/images/test/test_WFC_00223.jpg,WFC,2019-05-30,dark,6,9,1,4,Bullish Engulfing,Morning Star;Doji;Shooting Star;Evening Star,5
+yolo_dataset/images/test/test_PFE_00224.jpg,PFE,2019-05-30,light,5,7,0,2,,Bullish Engulfing;Marubozu,2
+yolo_dataset/images/test/test_UNH_00225.jpg,UNH,2019-05-30,dark,9,14,1,6,Bearish Engulfing,Marubozu;Marubozu;Marubozu;Bearish Engulfing;Doji;Doji,7
+yolo_dataset/images/test/test_ABT_00226.jpg,ABT,2019-05-30,light,7,10,0,3,,Doji;Marubozu;Marubozu,3
+yolo_dataset/images/test/test_CAT_00227.jpg,CAT,2019-05-30,blue-white,2,3,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_MSFT_00228.jpg,MSFT,2019-06-05,dark,6,11,0,5,,Bearish Engulfing;Bullish Engulfing;Morning Star;Marubozu;Evening Star,5
+yolo_dataset/images/test/test_NVDA_00229.jpg,NVDA,2019-06-05,light,6,7,1,2,Bullish Engulfing,Morning Star;Doji,3
+yolo_dataset/images/test/test_INTC_00230.jpg,INTC,2019-06-05,light,10,12,1,3,Doji,Doji;Doji;Evening Star,4
+yolo_dataset/images/test/test_CSCO_00231.jpg,CSCO,2019-06-05,blue-white,2,8,0,6,,Marubozu;Marubozu;Evening Star;Doji;Morning Star;Evening Star,6
+yolo_dataset/images/test/test_BAC_00232.jpg,BAC,2019-06-05,dark,4,4,0,0,,,0
+yolo_dataset/images/test/test_GS_00233.jpg,GS,2019-06-05,dark,6,6,3,3,Doji;Bullish Engulfing;Evening Star,Marubozu;Morning Star;Marubozu,6
+yolo_dataset/images/test/test_MS_00234.jpg,MS,2019-06-05,dark,7,6,1,0,Morning Star,,1
+yolo_dataset/images/test/test_WFC_00235.jpg,WFC,2019-06-05,blue-white,7,11,0,4,,Evening Star;Bullish Engulfing;Morning Star;Morning Star,4
+yolo_dataset/images/test/test_PFE_00236.jpg,PFE,2019-06-05,dark,3,5,0,2,,Marubozu;Doji,2
+yolo_dataset/images/test/test_UNH_00237.jpg,UNH,2019-06-05,light,11,10,2,1,Doji;Bearish Engulfing,Doji,3
+yolo_dataset/images/test/test_ABT_00238.jpg,ABT,2019-06-05,dark,8,12,0,4,,Bearish Engulfing;Doji;Hammer;Marubozu,4
+yolo_dataset/images/test/test_CAT_00239.jpg,CAT,2019-06-05,light,2,2,0,0,,,0
+yolo_dataset/images/test/test_MSFT_00240.jpg,MSFT,2019-06-11,blue-white,8,10,1,3,Hammer,Evening Star;Marubozu;Morning Star,4
+yolo_dataset/images/test/test_NVDA_00241.jpg,NVDA,2019-06-11,dark,6,3,3,0,Shooting Star;Bullish Engulfing;Evening Star,,3
+yolo_dataset/images/test/test_INTC_00242.jpg,INTC,2019-06-11,blue-white,10,13,0,3,,Evening Star;Doji;Doji,3
+yolo_dataset/images/test/test_CSCO_00243.jpg,CSCO,2019-06-11,light,1,4,0,3,,Doji;Marubozu;Morning Star,3
+yolo_dataset/images/test/test_BAC_00244.jpg,BAC,2019-06-11,light,5,7,0,2,,Shooting Star;Morning Star,2
+yolo_dataset/images/test/test_GS_00245.jpg,GS,2019-06-11,blue-white,8,7,1,0,Bullish Engulfing,,1
+yolo_dataset/images/test/test_MS_00246.jpg,MS,2019-06-11,light,9,10,1,2,Morning Star,Doji;Hammer,3
+yolo_dataset/images/test/test_WFC_00247.jpg,WFC,2019-06-11,light,7,12,1,6,Morning Star,Shooting Star;Evening Star;Bullish Engulfing;Doji;Bearish Engulfing;Bullish Engulfing,7
+yolo_dataset/images/test/test_PFE_00248.jpg,PFE,2019-06-11,blue-white,2,3,0,1,,Doji,1
+yolo_dataset/images/test/test_UNH_00249.jpg,UNH,2019-06-11,light,8,9,2,3,Doji;Bearish Engulfing,Doji;Marubozu;Evening Star,5
+yolo_dataset/images/test/test_ABT_00250.jpg,ABT,2019-06-11,blue-white,6,6,1,1,Evening Star,Evening Star,2
+yolo_dataset/images/test/test_CAT_00251.jpg,CAT,2019-06-11,blue-white,3,4,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_MSFT_00252.jpg,MSFT,2019-06-17,dark,10,11,1,2,Hammer,Evening Star;Morning Star,3
+yolo_dataset/images/test/test_NVDA_00253.jpg,NVDA,2019-06-17,light,8,8,2,2,Shooting Star;Bullish Engulfing,Doji;Morning Star,4
+yolo_dataset/images/test/test_INTC_00254.jpg,INTC,2019-06-17,dark,8,14,0,6,,Evening Star;Doji;Doji;Doji;Doji;Marubozu,6
+yolo_dataset/images/test/test_CSCO_00255.jpg,CSCO,2019-06-17,light,0,2,0,2,,Marubozu;Morning Star,2
+yolo_dataset/images/test/test_BAC_00256.jpg,BAC,2019-06-17,light,8,8,1,1,Doji,Shooting Star,2
+yolo_dataset/images/test/test_GS_00257.jpg,GS,2019-06-17,light,7,9,0,2,,Marubozu;Doji,2
+yolo_dataset/images/test/test_MS_00258.jpg,MS,2019-06-17,dark,8,10,0,2,,Doji;Doji,2
+yolo_dataset/images/test/test_WFC_00259.jpg,WFC,2019-06-17,light,5,7,1,3,Bullish Engulfing,Shooting Star;Bullish Engulfing;Morning Star,4
+yolo_dataset/images/test/test_PFE_00260.jpg,PFE,2019-06-17,light,2,3,0,1,,Doji,1
+yolo_dataset/images/test/test_UNH_00261.jpg,UNH,2019-06-17,light,10,12,1,3,Bearish Engulfing,Doji;Evening Star;Marubozu,4
+yolo_dataset/images/test/test_ABT_00262.jpg,ABT,2019-06-17,light,9,10,1,2,Marubozu,Evening Star;Doji,3
+yolo_dataset/images/test/test_CAT_00263.jpg,CAT,2019-06-17,dark,4,5,0,1,,Doji,1
+yolo_dataset/images/test/test_MSFT_00264.jpg,MSFT,2019-06-21,light,9,9,1,1,Hammer,Evening Star,2
+yolo_dataset/images/test/test_NVDA_00265.jpg,NVDA,2019-06-21,dark,8,6,3,1,Shooting Star;Bullish Engulfing;Evening Star,Morning Star,4
+yolo_dataset/images/test/test_INTC_00266.jpg,INTC,2019-06-21,light,8,10,0,2,,Evening Star;Doji,2
+yolo_dataset/images/test/test_CSCO_00267.jpg,CSCO,2019-06-21,light,3,3,2,2,Bullish Engulfing;Morning Star,Marubozu;Shooting Star,4
+yolo_dataset/images/test/test_BAC_00268.jpg,BAC,2019-06-21,light,8,9,1,2,Marubozu,Shooting Star;Shooting Star,3
+yolo_dataset/images/test/test_GS_00269.jpg,GS,2019-06-21,blue-white,6,10,0,4,,Bearish Engulfing;Marubozu;Doji;Doji,4
+yolo_dataset/images/test/test_MS_00270.jpg,MS,2019-06-21,light,8,12,0,4,,Doji;Morning Star;Bullish Engulfing;Doji,4
+yolo_dataset/images/test/test_WFC_00271.jpg,WFC,2019-06-21,blue-white,6,9,1,4,Marubozu,Shooting Star;Morning Star;Bullish Engulfing;Bearish Engulfing,5
+yolo_dataset/images/test/test_PFE_00272.jpg,PFE,2019-06-21,blue-white,2,3,0,1,,Doji,1
+yolo_dataset/images/test/test_UNH_00273.jpg,UNH,2019-06-21,blue-white,9,12,0,3,,Marubozu;Doji;Evening Star,3
+yolo_dataset/images/test/test_ABT_00274.jpg,ABT,2019-06-21,blue-white,9,12,2,5,Marubozu;Evening Star,Evening Star;Bearish Engulfing;Bearish Engulfing;Bearish Engulfing;Doji,7
+yolo_dataset/images/test/test_CAT_00275.jpg,CAT,2019-06-21,light,4,7,0,3,,Doji;Doji;Bearish Engulfing,3
+yolo_dataset/images/test/test_MSFT_00276.jpg,MSFT,2019-06-27,light,9,9,1,1,Hammer,Evening Star,2
+yolo_dataset/images/test/test_NVDA_00277.jpg,NVDA,2019-06-27,light,5,7,0,2,,Morning Star;Shooting Star,2
+yolo_dataset/images/test/test_INTC_00278.jpg,INTC,2019-06-27,light,5,7,0,2,,Doji;Doji,2
+yolo_dataset/images/test/test_CSCO_00279.jpg,CSCO,2019-06-27,dark,4,8,2,6,Bullish Engulfing;Morning Star,Marubozu;Morning Star;Marubozu;Marubozu;Shooting Star;Bearish Engulfing,8
+yolo_dataset/images/test/test_BAC_00280.jpg,BAC,2019-06-27,dark,10,12,1,3,Evening Star,Shooting Star;Morning Star;Shooting Star,4
+yolo_dataset/images/test/test_GS_00281.jpg,GS,2019-06-27,light,7,11,0,4,,Bearish Engulfing;Doji;Marubozu;Doji,4
+yolo_dataset/images/test/test_MS_00282.jpg,MS,2019-06-27,light,8,8,0,0,,,0
+yolo_dataset/images/test/test_WFC_00283.jpg,WFC,2019-06-27,dark,7,7,2,2,Marubozu;Bearish Engulfing,Shooting Star;Bullish Engulfing,4
+yolo_dataset/images/test/test_PFE_00284.jpg,PFE,2019-06-27,light,3,3,0,0,,,0
+yolo_dataset/images/test/test_UNH_00285.jpg,UNH,2019-06-27,light,8,10,0,2,,Doji;Bearish Engulfing,2
+yolo_dataset/images/test/test_ABT_00286.jpg,ABT,2019-06-27,dark,7,10,2,5,Marubozu;Bearish Engulfing,Doji;Doji;Doji;Evening Star;Bearish Engulfing,7
+yolo_dataset/images/test/test_CAT_00287.jpg,CAT,2019-06-27,blue-white,5,7,0,2,,Doji;Bearish Engulfing,2
+yolo_dataset/images/test/test_MSFT_00288.jpg,MSFT,2019-07-03,light,7,7,1,1,Hammer,Evening Star,2
+yolo_dataset/images/test/test_NVDA_00289.jpg,NVDA,2019-07-03,dark,5,6,0,1,,Morning Star,1
+yolo_dataset/images/test/test_INTC_00290.jpg,INTC,2019-07-03,blue-white,4,4,0,0,,,0
+yolo_dataset/images/test/test_CSCO_00291.jpg,CSCO,2019-07-03,blue-white,4,6,3,5,Doji;Bullish Engulfing;Morning Star,Marubozu;Doji;Morning Star;Evening Star;Shooting Star,8
+yolo_dataset/images/test/test_BAC_00292.jpg,BAC,2019-07-03,light,10,9,2,1,Marubozu;Evening Star,Morning Star,3
+yolo_dataset/images/test/test_GS_00293.jpg,GS,2019-07-03,dark,5,9,0,4,,Bearish Engulfing;Doji;Shooting Star;Hammer,4
+yolo_dataset/images/test/test_MS_00294.jpg,MS,2019-07-03,light,8,12,0,4,,Doji;Doji;Doji;Bullish Engulfing,4
+yolo_dataset/images/test/test_WFC_00295.jpg,WFC,2019-07-03,light,7,10,2,5,Bearish Engulfing;Morning Star,Bullish Engulfing;Shooting Star;Bearish Engulfing;Morning Star;Morning Star,7
+yolo_dataset/images/test/test_PFE_00296.jpg,PFE,2019-07-03,blue-white,5,5,0,0,,,0
+yolo_dataset/images/test/test_UNH_00297.jpg,UNH,2019-07-03,blue-white,9,12,0,3,,Doji;Evening Star;Bearish Engulfing,3
+yolo_dataset/images/test/test_ABT_00298.jpg,ABT,2019-07-03,dark,6,10,1,5,Marubozu,Doji;Bearish Engulfing;Evening Star;Marubozu;Morning Star,6
+yolo_dataset/images/test/test_CAT_00299.jpg,CAT,2019-07-03,dark,6,9,1,4,Shooting Star,Bearish Engulfing;Bearish Engulfing;Bearish Engulfing;Doji,5
+yolo_dataset/images/test/test_MSFT_00300.jpg,MSFT,2019-07-10,blue-white,5,5,0,0,,,0
+yolo_dataset/images/test/test_NVDA_00301.jpg,NVDA,2019-07-10,dark,6,8,0,2,,Bullish Engulfing;Morning Star,2
+yolo_dataset/images/test/test_INTC_00302.jpg,INTC,2019-07-10,blue-white,3,4,0,1,,Doji,1
+yolo_dataset/images/test/test_CSCO_00303.jpg,CSCO,2019-07-10,dark,5,7,2,4,Bullish Engulfing;Morning Star,Marubozu;Marubozu;Doji;Bullish Engulfing,6
+yolo_dataset/images/test/test_BAC_00304.jpg,BAC,2019-07-10,light,9,10,1,2,Doji,Morning Star;Shooting Star,3
+yolo_dataset/images/test/test_GS_00305.jpg,GS,2019-07-10,blue-white,6,8,1,3,Marubozu,Bearish Engulfing;Doji;Marubozu,4
+yolo_dataset/images/test/test_MS_00306.jpg,MS,2019-07-10,dark,8,10,0,2,,Doji;Doji,2
+yolo_dataset/images/test/test_WFC_00307.jpg,WFC,2019-07-10,dark,6,8,2,4,Marubozu;Bearish Engulfing,Bullish Engulfing;Shooting Star;Shooting Star;Morning Star,6
+yolo_dataset/images/test/test_PFE_00308.jpg,PFE,2019-07-10,light,7,8,1,2,Evening Star,Bearish Engulfing;Doji,3
+yolo_dataset/images/test/test_UNH_00309.jpg,UNH,2019-07-10,dark,9,7,2,0,Hammer;Hammer,,2
+yolo_dataset/images/test/test_ABT_00310.jpg,ABT,2019-07-10,light,6,7,2,3,Marubozu;Bearish Engulfing,Doji;Bearish Engulfing;Bearish Engulfing,5
+yolo_dataset/images/test/test_CAT_00311.jpg,CAT,2019-07-10,light,5,7,1,3,Shooting Star,Doji;Bearish Engulfing;Doji,4
+yolo_dataset/images/test/test_MSFT_00312.jpg,MSFT,2019-07-16,blue-white,6,5,2,1,Doji;Doji,Bearish Engulfing,3
+yolo_dataset/images/test/test_NVDA_00313.jpg,NVDA,2019-07-16,blue-white,9,9,2,2,Shooting Star;Shooting Star,Morning Star;Doji,4
+yolo_dataset/images/test/test_INTC_00314.jpg,INTC,2019-07-16,dark,4,5,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_CSCO_00315.jpg,CSCO,2019-07-16,blue-white,8,12,2,6,Bullish Engulfing;Morning Star,Doji;Marubozu;Bearish Engulfing;Evening Star;Doji;Bullish Engulfing,8
+yolo_dataset/images/test/test_BAC_00316.jpg,BAC,2019-07-16,blue-white,11,10,3,2,Marubozu;Evening Star;Evening Star,Shooting Star;Morning Star,5
+yolo_dataset/images/test/test_GS_00317.jpg,GS,2019-07-16,blue-white,6,11,0,5,,Bearish Engulfing;Doji;Bullish Engulfing;Doji;Marubozu,5
+yolo_dataset/images/test/test_MS_00318.jpg,MS,2019-07-16,light,8,10,0,2,,Morning Star;Doji,2
+yolo_dataset/images/test/test_WFC_00319.jpg,WFC,2019-07-16,dark,7,10,2,5,Marubozu;Bearish Engulfing,Shooting Star;Shooting Star;Morning Star;Morning Star;Evening Star,7
+yolo_dataset/images/test/test_PFE_00320.jpg,PFE,2019-07-16,light,6,10,0,4,,Doji;Marubozu;Bearish Engulfing;Doji,4
+yolo_dataset/images/test/test_UNH_00321.jpg,UNH,2019-07-16,light,7,6,1,0,Hammer,,1
+yolo_dataset/images/test/test_ABT_00322.jpg,ABT,2019-07-16,light,5,6,1,2,Marubozu,Doji;Bearish Engulfing,3
+yolo_dataset/images/test/test_CAT_00323.jpg,CAT,2019-07-16,dark,5,9,0,4,,Bearish Engulfing;Morning Star;Bearish Engulfing;Doji,4
+yolo_dataset/images/test/test_MSFT_00324.jpg,MSFT,2019-07-22,light,5,6,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_NVDA_00325.jpg,NVDA,2019-07-22,light,9,11,1,3,Shooting Star,Morning Star;Bullish Engulfing;Shooting Star,4
+yolo_dataset/images/test/test_INTC_00326.jpg,INTC,2019-07-22,dark,5,5,1,1,Evening Star,Morning Star,2
+yolo_dataset/images/test/test_CSCO_00327.jpg,CSCO,2019-07-22,blue-white,9,11,2,4,Bullish Engulfing;Morning Star,Marubozu;Bullish Engulfing;Doji;Evening Star,6
+yolo_dataset/images/test/test_BAC_00328.jpg,BAC,2019-07-22,dark,10,11,1,2,Doji,Marubozu;Morning Star,3
+yolo_dataset/images/test/test_GS_00329.jpg,GS,2019-07-22,dark,5,6,2,3,Marubozu;Bullish Engulfing,Bearish Engulfing;Shooting Star;Doji,5
+yolo_dataset/images/test/test_MS_00330.jpg,MS,2019-07-22,blue-white,5,9,0,4,,Morning Star;Doji;Doji;Evening Star,4
+yolo_dataset/images/test/test_WFC_00331.jpg,WFC,2019-07-22,dark,7,10,3,6,Marubozu;Bearish Engulfing;Morning Star,Morning Star;Shooting Star;Doji;Evening Star;Morning Star;Morning Star,9
+yolo_dataset/images/test/test_PFE_00332.jpg,PFE,2019-07-22,dark,9,12,2,5,Marubozu;Marubozu,Bearish Engulfing;Doji;Bearish Engulfing;Doji;Marubozu,7
+yolo_dataset/images/test/test_UNH_00333.jpg,UNH,2019-07-22,dark,5,4,1,0,Hammer,,1
+yolo_dataset/images/test/test_ABT_00334.jpg,ABT,2019-07-22,dark,8,7,3,2,Marubozu;Marubozu;Morning Star,Bearish Engulfing;Doji,5
+yolo_dataset/images/test/test_CAT_00335.jpg,CAT,2019-07-22,light,7,8,1,2,Shooting Star,Doji;Bearish Engulfing,3
+yolo_dataset/images/test/test_MSFT_00336.jpg,MSFT,2019-07-26,light,4,4,1,1,Marubozu,Bearish Engulfing,2
+yolo_dataset/images/test/test_NVDA_00337.jpg,NVDA,2019-07-26,dark,8,12,1,5,Shooting Star,Bullish Engulfing;Doji;Marubozu;Bearish Engulfing;Evening Star,6
+yolo_dataset/images/test/test_INTC_00338.jpg,INTC,2019-07-26,light,5,6,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_CSCO_00339.jpg,CSCO,2019-07-26,blue-white,7,15,0,8,,Bearish Engulfing;Doji;Marubozu;Shooting Star;Bearish Engulfing;Doji;Bullish Engulfing;Doji,8
+yolo_dataset/images/test/test_BAC_00340.jpg,BAC,2019-07-26,dark,8,9,0,1,,Marubozu,1
+yolo_dataset/images/test/test_GS_00341.jpg,GS,2019-07-26,light,7,10,2,5,Bullish Engulfing;Morning Star,Bearish Engulfing;Doji;Doji;Shooting Star;Bearish Engulfing,7
+yolo_dataset/images/test/test_MS_00342.jpg,MS,2019-07-26,light,4,6,0,2,,Doji;Doji,2
+yolo_dataset/images/test/test_WFC_00343.jpg,WFC,2019-07-26,blue-white,9,10,3,4,Marubozu;Bearish Engulfing;Morning Star,Morning Star;Shooting Star;Morning Star;Doji,7
+yolo_dataset/images/test/test_PFE_00344.jpg,PFE,2019-07-26,blue-white,12,16,1,5,Marubozu,Doji;Bearish Engulfing;Hammer;Bearish Engulfing;Doji,6
+yolo_dataset/images/test/test_UNH_00345.jpg,UNH,2019-07-26,dark,4,3,2,1,Hammer;Hammer,Bullish Engulfing,3
+yolo_dataset/images/test/test_ABT_00346.jpg,ABT,2019-07-26,blue-white,6,6,2,2,Marubozu;Morning Star,Doji;Bearish Engulfing,4
+yolo_dataset/images/test/test_CAT_00347.jpg,CAT,2019-07-26,light,8,10,1,3,Marubozu,Bearish Engulfing;Doji;Bearish Engulfing,4
+yolo_dataset/images/test/test_MSFT_00348.jpg,MSFT,2019-08-01,light,3,3,1,1,Marubozu,Bearish Engulfing,2
+yolo_dataset/images/test/test_NVDA_00349.jpg,NVDA,2019-08-01,blue-white,8,8,1,1,Shooting Star,Bullish Engulfing,2
+yolo_dataset/images/test/test_INTC_00350.jpg,INTC,2019-08-01,blue-white,5,7,1,3,Evening Star,Morning Star;Bearish Engulfing;Hammer,4
+yolo_dataset/images/test/test_CSCO_00351.jpg,CSCO,2019-08-01,light,6,9,1,4,Doji,Doji;Bullish Engulfing;Doji;Evening Star,5
+yolo_dataset/images/test/test_BAC_00352.jpg,BAC,2019-08-01,blue-white,9,9,1,1,Bullish Engulfing,Marubozu,2
+yolo_dataset/images/test/test_GS_00353.jpg,GS,2019-08-01,blue-white,7,4,4,1,Marubozu;Bullish Engulfing;Bullish Engulfing;Morning Star,Shooting Star,5
+yolo_dataset/images/test/test_MS_00354.jpg,MS,2019-08-01,blue-white,7,10,1,4,Evening Star,Doji;Doji;Doji;Bearish Engulfing,5
+yolo_dataset/images/test/test_WFC_00355.jpg,WFC,2019-08-01,light,9,8,4,3,Marubozu;Bearish Engulfing;Morning Star;Evening Star,Doji;Morning Star;Shooting Star,7
+yolo_dataset/images/test/test_PFE_00356.jpg,PFE,2019-08-01,dark,13,16,1,4,Marubozu,Bearish Engulfing;Doji;Bullish Engulfing;Bullish Engulfing,5
+yolo_dataset/images/test/test_UNH_00357.jpg,UNH,2019-08-01,dark,5,5,1,1,Hammer,Bullish Engulfing,2
+yolo_dataset/images/test/test_ABT_00358.jpg,ABT,2019-08-01,dark,5,6,2,3,Marubozu;Morning Star,Evening Star;Doji;Doji,5
+yolo_dataset/images/test/test_CAT_00359.jpg,CAT,2019-08-01,blue-white,8,7,1,0,Shooting Star,,1
+yolo_dataset/images/test/test_MSFT_00360.jpg,MSFT,2019-08-07,blue-white,4,3,1,0,Marubozu,,1
+yolo_dataset/images/test/test_NVDA_00361.jpg,NVDA,2019-08-07,dark,9,7,2,0,Shooting Star;Bullish Engulfing,,2
+yolo_dataset/images/test/test_INTC_00362.jpg,INTC,2019-08-07,blue-white,5,6,0,1,,Evening Star,1
+yolo_dataset/images/test/test_CSCO_00363.jpg,CSCO,2019-08-07,dark,6,9,0,3,,Doji;Bullish Engulfing;Doji,3
+yolo_dataset/images/test/test_BAC_00364.jpg,BAC,2019-08-07,blue-white,10,9,1,0,Bullish Engulfing,,1
+yolo_dataset/images/test/test_GS_00365.jpg,GS,2019-08-07,light,6,4,3,1,Bullish Engulfing;Bullish Engulfing;Morning Star,Bearish Engulfing,4
+yolo_dataset/images/test/test_MS_00366.jpg,MS,2019-08-07,dark,6,7,2,3,Bearish Engulfing;Evening Star,Doji;Doji;Bearish Engulfing,5
+yolo_dataset/images/test/test_WFC_00367.jpg,WFC,2019-08-07,light,4,6,2,4,Marubozu;Evening Star,Morning Star;Doji;Shooting Star;Doji,6
+yolo_dataset/images/test/test_PFE_00368.jpg,PFE,2019-08-07,dark,12,13,3,4,Marubozu;Marubozu;Morning Star,Morning Star;Bearish Engulfing;Bearish Engulfing;Bullish Engulfing,7
+yolo_dataset/images/test/test_UNH_00369.jpg,UNH,2019-08-07,dark,7,8,1,2,Hammer,Marubozu;Bullish Engulfing,3
+yolo_dataset/images/test/test_ABT_00370.jpg,ABT,2019-08-07,blue-white,6,6,1,1,Marubozu,Evening Star,2
+yolo_dataset/images/test/test_CAT_00371.jpg,CAT,2019-08-07,blue-white,7,8,1,2,Marubozu,Doji;Bullish Engulfing,3
+yolo_dataset/images/test/test_MSFT_00372.jpg,MSFT,2019-08-13,light,2,1,1,0,Marubozu,,1
+yolo_dataset/images/test/test_NVDA_00373.jpg,NVDA,2019-08-13,dark,10,12,1,3,Shooting Star,Marubozu;Doji;Hammer,4
+yolo_dataset/images/test/test_INTC_00374.jpg,INTC,2019-08-13,light,6,8,0,2,,Morning Star;Evening Star,2
+yolo_dataset/images/test/test_CSCO_00375.jpg,CSCO,2019-08-13,blue-white,6,8,0,2,,Doji;Marubozu,2
+yolo_dataset/images/test/test_BAC_00376.jpg,BAC,2019-08-13,blue-white,9,8,3,2,Bearish Engulfing;Bullish Engulfing;Morning Star,Doji;Evening Star,5
+yolo_dataset/images/test/test_GS_00377.jpg,GS,2019-08-13,light,8,6,3,1,Marubozu;Bullish Engulfing;Morning Star,Shooting Star,4
+yolo_dataset/images/test/test_MS_00378.jpg,MS,2019-08-13,light,6,6,2,2,Bearish Engulfing;Evening Star,Doji;Bearish Engulfing,4
+yolo_dataset/images/test/test_WFC_00379.jpg,WFC,2019-08-13,blue-white,4,5,2,3,Marubozu;Evening Star,Morning Star;Hammer;Shooting Star,5
+yolo_dataset/images/test/test_PFE_00380.jpg,PFE,2019-08-13,dark,11,12,4,5,Marubozu;Bearish Engulfing;Morning Star;Evening Star,Bearish Engulfing;Bearish Engulfing;Morning Star;Bullish Engulfing;Doji,9
+yolo_dataset/images/test/test_UNH_00381.jpg,UNH,2019-08-13,dark,7,7,1,1,Evening Star,Bullish Engulfing,2
+yolo_dataset/images/test/test_ABT_00382.jpg,ABT,2019-08-13,dark,6,5,2,1,Marubozu;Morning Star,Evening Star,3
+yolo_dataset/images/test/test_CAT_00383.jpg,CAT,2019-08-13,light,6,8,1,3,Marubozu,Doji;Doji;Bullish Engulfing,4
+yolo_dataset/images/test/test_MSFT_00384.jpg,MSFT,2019-08-19,light,2,2,1,1,Marubozu,Bearish Engulfing,2
+yolo_dataset/images/test/test_NVDA_00385.jpg,NVDA,2019-08-19,blue-white,11,13,2,4,Shooting Star;Morning Star,Morning Star;Evening Star;Morning Star;Doji,6
+yolo_dataset/images/test/test_INTC_00386.jpg,INTC,2019-08-19,light,5,8,0,3,,Morning Star;Morning Star;Evening Star,3
+yolo_dataset/images/test/test_CSCO_00387.jpg,CSCO,2019-08-19,light,6,6,0,0,,,0
+yolo_dataset/images/test/test_BAC_00388.jpg,BAC,2019-08-19,light,8,8,1,1,Bullish Engulfing,Doji,2
+yolo_dataset/images/test/test_GS_00389.jpg,GS,2019-08-19,blue-white,9,7,3,1,Marubozu;Bullish Engulfing;Morning Star,Shooting Star,4
+yolo_dataset/images/test/test_MS_00390.jpg,MS,2019-08-19,blue-white,6,7,3,4,Hammer;Bearish Engulfing;Evening Star,Doji;Hammer;Bearish Engulfing;Marubozu,7
+yolo_dataset/images/test/test_WFC_00391.jpg,WFC,2019-08-19,dark,4,7,1,4,Marubozu,Morning Star;Doji;Hammer;Marubozu,5
+yolo_dataset/images/test/test_PFE_00392.jpg,PFE,2019-08-19,blue-white,8,12,2,6,Marubozu;Morning Star,Doji;Bearish Engulfing;Evening Star;Doji;Morning Star;Doji,8
+yolo_dataset/images/test/test_UNH_00393.jpg,UNH,2019-08-19,dark,9,11,1,3,Evening Star,Doji;Bullish Engulfing;Evening Star,4
+yolo_dataset/images/test/test_ABT_00394.jpg,ABT,2019-08-19,light,7,6,2,1,Marubozu;Morning Star,Evening Star,3
+yolo_dataset/images/test/test_CAT_00395.jpg,CAT,2019-08-19,blue-white,8,9,1,2,Marubozu,Doji;Bullish Engulfing,3
+yolo_dataset/images/test/test_MSFT_00396.jpg,MSFT,2019-08-23,blue-white,1,2,1,2,Marubozu,Bearish Engulfing;Doji,3
+yolo_dataset/images/test/test_NVDA_00397.jpg,NVDA,2019-08-23,blue-white,10,10,2,2,Bullish Engulfing;Morning Star,Evening Star;Morning Star,4
+yolo_dataset/images/test/test_INTC_00398.jpg,INTC,2019-08-23,dark,5,6,0,1,,Doji,1
+yolo_dataset/images/test/test_CSCO_00399.jpg,CSCO,2019-08-23,dark,3,3,0,0,,,0
+yolo_dataset/images/test/test_BAC_00400.jpg,BAC,2019-08-23,dark,6,9,0,3,,Marubozu;Evening Star;Doji,3
+yolo_dataset/images/test/test_GS_00401.jpg,GS,2019-08-23,blue-white,7,8,2,3,Bullish Engulfing;Morning Star,Doji;Shooting Star;Shooting Star,5
+yolo_dataset/images/test/test_MS_00402.jpg,MS,2019-08-23,dark,5,4,3,2,Hammer;Bearish Engulfing;Evening Star,Doji;Bearish Engulfing,5
+yolo_dataset/images/test/test_WFC_00403.jpg,WFC,2019-08-23,blue-white,4,4,2,2,Marubozu;Evening Star,Doji;Doji,4
+yolo_dataset/images/test/test_PFE_00404.jpg,PFE,2019-08-23,dark,9,12,3,6,Marubozu;Bearish Engulfing;Morning Star,Bearish Engulfing;Evening Star;Morning Star;Bearish Engulfing;Doji;Morning Star,9
+yolo_dataset/images/test/test_UNH_00405.jpg,UNH,2019-08-23,blue-white,12,14,1,3,Evening Star,Doji;Bullish Engulfing;Hammer,4
+yolo_dataset/images/test/test_ABT_00406.jpg,ABT,2019-08-23,light,8,7,2,1,Marubozu;Marubozu,Evening Star,3
+yolo_dataset/images/test/test_CAT_00407.jpg,CAT,2019-08-23,dark,6,8,1,3,Marubozu,Doji;Bullish Engulfing;Evening Star,4
+yolo_dataset/images/test/test_MSFT_00408.jpg,MSFT,2019-08-29,dark,1,0,1,0,Marubozu,,1
+yolo_dataset/images/test/test_NVDA_00409.jpg,NVDA,2019-08-29,blue-white,10,10,1,1,Bullish Engulfing,Marubozu,2
+yolo_dataset/images/test/test_INTC_00410.jpg,INTC,2019-08-29,light,5,8,1,4,Morning Star,Morning Star;Doji;Evening Star;Doji,5
+yolo_dataset/images/test/test_CSCO_00411.jpg,CSCO,2019-08-29,light,3,4,0,1,,Marubozu,1
+yolo_dataset/images/test/test_BAC_00412.jpg,BAC,2019-08-29,blue-white,5,8,1,4,Bullish Engulfing,Doji;Bullish Engulfing;Morning Star;Bearish Engulfing,5
+yolo_dataset/images/test/test_GS_00413.jpg,GS,2019-08-29,blue-white,7,7,1,1,Bullish Engulfing,Doji,2
+yolo_dataset/images/test/test_MS_00414.jpg,MS,2019-08-29,light,6,5,5,4,Hammer;Bearish Engulfing;Bearish Engulfing;Bullish Engulfing;Evening Star,Bearish Engulfing;Doji;Hammer;Morning Star,9
+yolo_dataset/images/test/test_WFC_00415.jpg,WFC,2019-08-29,dark,4,8,1,5,Doji,Evening Star;Hammer;Marubozu;Doji;Marubozu,6
+yolo_dataset/images/test/test_PFE_00416.jpg,PFE,2019-08-29,dark,6,12,1,7,Marubozu,Doji;Bearish Engulfing;Bearish Engulfing;Bullish Engulfing;Morning Star;Evening Star;Morning Star,8
+yolo_dataset/images/test/test_UNH_00417.jpg,UNH,2019-08-29,blue-white,11,15,1,5,Evening Star,Doji;Bullish Engulfing;Bullish Engulfing;Doji;Hammer,6
+yolo_dataset/images/test/test_ABT_00418.jpg,ABT,2019-08-29,blue-white,6,5,2,1,Marubozu;Marubozu,Evening Star,3
+yolo_dataset/images/test/test_CAT_00419.jpg,CAT,2019-08-29,dark,4,5,1,2,Marubozu,Doji;Bullish Engulfing,3
+yolo_dataset/images/test/test_MSFT_00420.jpg,MSFT,2019-09-05,light,1,2,1,2,Hammer,Shooting Star;Bearish Engulfing,3
+yolo_dataset/images/test/test_NVDA_00421.jpg,NVDA,2019-09-05,light,11,10,2,1,Bullish Engulfing;Morning Star,Morning Star,3
+yolo_dataset/images/test/test_INTC_00422.jpg,INTC,2019-09-05,dark,7,10,1,4,Morning Star,Doji;Morning Star;Doji;Doji,5
+yolo_dataset/images/test/test_CSCO_00423.jpg,CSCO,2019-09-05,dark,3,3,0,0,,,0
+yolo_dataset/images/test/test_BAC_00424.jpg,BAC,2019-09-05,dark,6,11,0,5,,Evening Star;Bearish Engulfing;Doji;Bullish Engulfing;Morning Star,5
+yolo_dataset/images/test/test_GS_00425.jpg,GS,2019-09-05,light,7,9,1,3,Morning Star,Doji;Doji;Bullish Engulfing,4
+yolo_dataset/images/test/test_MS_00426.jpg,MS,2019-09-05,dark,8,6,3,1,Bearish Engulfing;Bearish Engulfing;Evening Star,Marubozu,4
+yolo_dataset/images/test/test_WFC_00427.jpg,WFC,2019-09-05,blue-white,6,11,0,5,,Shooting Star;Evening Star;Marubozu;Bullish Engulfing;Doji,5
+yolo_dataset/images/test/test_PFE_00428.jpg,PFE,2019-09-05,blue-white,2,8,0,6,,Bearish Engulfing;Evening Star;Bearish Engulfing;Marubozu;Doji;Bearish Engulfing,6
+yolo_dataset/images/test/test_UNH_00429.jpg,UNH,2019-09-05,light,10,12,0,2,,Doji;Doji,2
+yolo_dataset/images/test/test_ABT_00430.jpg,ABT,2019-09-05,light,5,5,0,0,,,0
+yolo_dataset/images/test/test_CAT_00431.jpg,CAT,2019-09-05,light,5,9,0,4,,Evening Star;Doji;Bearish Engulfing;Bullish Engulfing,4
+yolo_dataset/images/test/test_MSFT_00432.jpg,MSFT,2019-09-11,light,3,2,2,1,Hammer;Bearish Engulfing,Shooting Star,3
+yolo_dataset/images/test/test_NVDA_00433.jpg,NVDA,2019-09-11,dark,12,11,2,1,Shooting Star;Morning Star,Morning Star,3
+yolo_dataset/images/test/test_INTC_00434.jpg,INTC,2019-09-11,blue-white,5,9,1,5,Morning Star,Doji;Morning Star;Doji;Doji;Doji,6
+yolo_dataset/images/test/test_CSCO_00435.jpg,CSCO,2019-09-11,blue-white,4,7,0,3,,Doji;Marubozu;Marubozu,3
+yolo_dataset/images/test/test_BAC_00436.jpg,BAC,2019-09-11,blue-white,6,8,0,2,,Doji;Bullish Engulfing,2
+yolo_dataset/images/test/test_GS_00437.jpg,GS,2019-09-11,blue-white,8,8,2,2,Bullish Engulfing;Morning Star,Doji;Doji,4
+yolo_dataset/images/test/test_MS_00438.jpg,MS,2019-09-11,dark,5,5,2,2,Hammer;Bearish Engulfing,Bearish Engulfing;Evening Star,4
+yolo_dataset/images/test/test_WFC_00439.jpg,WFC,2019-09-11,blue-white,6,7,1,2,Shooting Star,Bearish Engulfing;Marubozu,3
+yolo_dataset/images/test/test_PFE_00440.jpg,PFE,2019-09-11,blue-white,2,3,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_UNH_00441.jpg,UNH,2019-09-11,dark,10,14,1,5,Evening Star,Doji;Marubozu;Bullish Engulfing;Doji;Doji,6
+yolo_dataset/images/test/test_ABT_00442.jpg,ABT,2019-09-11,light,8,6,3,1,Marubozu;Hammer;Evening Star,Doji,4
+yolo_dataset/images/test/test_CAT_00443.jpg,CAT,2019-09-11,dark,6,8,0,2,,Doji;Bullish Engulfing,2
+yolo_dataset/images/test/test_MSFT_00444.jpg,MSFT,2019-09-17,dark,2,1,2,1,Hammer;Hammer,Morning Star,3
+yolo_dataset/images/test/test_NVDA_00445.jpg,NVDA,2019-09-17,dark,10,12,1,3,Shooting Star,Morning Star;Bearish Engulfing;Doji,4
+yolo_dataset/images/test/test_INTC_00446.jpg,INTC,2019-09-17,dark,6,8,0,2,,Morning Star;Bearish Engulfing,2
+yolo_dataset/images/test/test_CSCO_00447.jpg,CSCO,2019-09-17,light,6,8,0,2,,Marubozu;Doji,2
+yolo_dataset/images/test/test_BAC_00448.jpg,BAC,2019-09-17,light,4,8,0,4,,Evening Star;Bearish Engulfing;Bullish Engulfing;Marubozu,4
+yolo_dataset/images/test/test_GS_00449.jpg,GS,2019-09-17,dark,10,12,0,2,,Doji;Doji,2
+yolo_dataset/images/test/test_MS_00450.jpg,MS,2019-09-17,dark,5,6,1,2,Bearish Engulfing,Bearish Engulfing;Evening Star,3
+yolo_dataset/images/test/test_WFC_00451.jpg,WFC,2019-09-17,dark,6,8,2,4,Doji;Shooting Star,Evening Star;Doji;Morning Star;Bearish Engulfing,6
+yolo_dataset/images/test/test_PFE_00452.jpg,PFE,2019-09-17,blue-white,1,2,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_UNH_00453.jpg,UNH,2019-09-17,blue-white,8,14,0,6,,Evening Star;Doji;Doji;Doji;Evening Star;Evening Star,6
+yolo_dataset/images/test/test_ABT_00454.jpg,ABT,2019-09-17,light,8,10,1,3,Hammer,Marubozu;Doji;Morning Star,4
+yolo_dataset/images/test/test_CAT_00455.jpg,CAT,2019-09-17,dark,9,11,0,2,,Bullish Engulfing;Doji,2
+yolo_dataset/images/test/test_MSFT_00456.jpg,MSFT,2019-09-23,light,3,2,2,1,Hammer;Hammer,Morning Star,3
+yolo_dataset/images/test/test_NVDA_00457.jpg,NVDA,2019-09-23,light,9,11,1,3,Shooting Star,Bearish Engulfing;Doji;Evening Star,4
+yolo_dataset/images/test/test_INTC_00458.jpg,INTC,2019-09-23,light,7,12,1,6,Morning Star,Doji;Doji;Doji;Doji;Evening Star;Bearish Engulfing,7
+yolo_dataset/images/test/test_CSCO_00459.jpg,CSCO,2019-09-23,blue-white,6,6,1,1,Bearish Engulfing,Marubozu,2
+yolo_dataset/images/test/test_BAC_00460.jpg,BAC,2019-09-23,blue-white,3,6,0,3,,Bearish Engulfing;Bullish Engulfing;Morning Star,3
+yolo_dataset/images/test/test_GS_00461.jpg,GS,2019-09-23,blue-white,8,7,2,1,Bullish Engulfing;Morning Star,Doji,3
+yolo_dataset/images/test/test_MS_00462.jpg,MS,2019-09-23,dark,4,3,1,0,Bearish Engulfing,,1
+yolo_dataset/images/test/test_WFC_00463.jpg,WFC,2019-09-23,blue-white,7,12,1,6,Shooting Star,Doji;Bearish Engulfing;Shooting Star;Marubozu;Shooting Star;Marubozu,7
+yolo_dataset/images/test/test_PFE_00464.jpg,PFE,2019-09-23,light,0,3,0,3,,Bearish Engulfing;Bearish Engulfing;Doji,3
+yolo_dataset/images/test/test_UNH_00465.jpg,UNH,2019-09-23,blue-white,7,11,0,4,,Doji;Evening Star;Doji;Bullish Engulfing,4
+yolo_dataset/images/test/test_ABT_00466.jpg,ABT,2019-09-23,light,11,8,3,0,Marubozu;Hammer;Evening Star,,3
+yolo_dataset/images/test/test_CAT_00467.jpg,CAT,2019-09-23,dark,9,9,1,1,Marubozu,Doji,2
+yolo_dataset/images/test/test_MSFT_00468.jpg,MSFT,2019-09-27,light,5,5,1,1,Hammer,Evening Star,2
+yolo_dataset/images/test/test_NVDA_00469.jpg,NVDA,2019-09-27,blue-white,10,9,2,1,Shooting Star;Bullish Engulfing,Hammer,3
+yolo_dataset/images/test/test_INTC_00470.jpg,INTC,2019-09-27,blue-white,7,11,0,4,,Doji;Doji;Bearish Engulfing;Doji,4
+yolo_dataset/images/test/test_CSCO_00471.jpg,CSCO,2019-09-27,dark,6,7,1,2,Bearish Engulfing,Doji;Doji,3
+yolo_dataset/images/test/test_BAC_00472.jpg,BAC,2019-09-27,light,4,5,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_GS_00473.jpg,GS,2019-09-27,light,6,7,2,3,Bullish Engulfing;Morning Star,Doji;Doji;Morning Star,5
+yolo_dataset/images/test/test_MS_00474.jpg,MS,2019-09-27,light,4,4,2,2,Shooting Star;Bearish Engulfing,Evening Star;Bearish Engulfing,4
+yolo_dataset/images/test/test_WFC_00475.jpg,WFC,2019-09-27,blue-white,7,10,1,4,Doji,Bearish Engulfing;Bearish Engulfing;Doji;Morning Star,5
+yolo_dataset/images/test/test_PFE_00476.jpg,PFE,2019-09-27,dark,2,3,1,2,Morning Star,Bearish Engulfing;Bullish Engulfing,3
+yolo_dataset/images/test/test_UNH_00477.jpg,UNH,2019-09-27,dark,6,10,0,4,,Doji;Doji;Doji;Evening Star,4
+yolo_dataset/images/test/test_ABT_00478.jpg,ABT,2019-09-27,light,11,9,3,1,Marubozu;Hammer;Evening Star,Doji,4
+yolo_dataset/images/test/test_CAT_00479.jpg,CAT,2019-09-27,dark,8,9,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_MSFT_00480.jpg,MSFT,2019-10-03,light,5,6,1,2,Hammer,Bearish Engulfing;Morning Star,3
+yolo_dataset/images/test/test_NVDA_00481.jpg,NVDA,2019-10-03,blue-white,10,13,1,4,Shooting Star,Doji;Hammer;Doji;Doji,5
+yolo_dataset/images/test/test_INTC_00482.jpg,INTC,2019-10-03,dark,7,11,0,4,,Doji;Hammer;Bearish Engulfing;Shooting Star,4
+yolo_dataset/images/test/test_CSCO_00483.jpg,CSCO,2019-10-03,light,6,8,0,2,,Morning Star;Doji,2
+yolo_dataset/images/test/test_BAC_00484.jpg,BAC,2019-10-03,light,3,6,0,3,,Bullish Engulfing;Marubozu;Doji,3
+yolo_dataset/images/test/test_GS_00485.jpg,GS,2019-10-03,light,7,7,2,2,Bullish Engulfing;Morning Star,Doji;Morning Star,4
+yolo_dataset/images/test/test_MS_00486.jpg,MS,2019-10-03,dark,3,6,0,3,,Hammer;Bearish Engulfing;Bearish Engulfing,3
+yolo_dataset/images/test/test_WFC_00487.jpg,WFC,2019-10-03,blue-white,7,8,2,3,Shooting Star;Evening Star,Marubozu;Bearish Engulfing;Doji,5
+yolo_dataset/images/test/test_PFE_00488.jpg,PFE,2019-10-03,light,1,3,0,2,,Marubozu;Bearish Engulfing,2
+yolo_dataset/images/test/test_UNH_00489.jpg,UNH,2019-10-03,blue-white,6,14,0,8,,Doji;Evening Star;Doji;Evening Star;Doji;Bullish Engulfing;Marubozu;Evening Star,8
+yolo_dataset/images/test/test_ABT_00490.jpg,ABT,2019-10-03,dark,10,9,2,1,Hammer;Evening Star,Doji,3
+yolo_dataset/images/test/test_CAT_00491.jpg,CAT,2019-10-03,blue-white,9,10,0,1,,Evening Star,1
+yolo_dataset/images/test/test_MSFT_00492.jpg,MSFT,2019-10-09,light,7,9,1,3,Hammer,Marubozu;Bearish Engulfing;Evening Star,4
+yolo_dataset/images/test/test_NVDA_00493.jpg,NVDA,2019-10-09,light,9,10,1,2,Shooting Star,Hammer;Doji,3
+yolo_dataset/images/test/test_INTC_00494.jpg,INTC,2019-10-09,blue-white,7,11,0,4,,Doji;Doji;Doji;Bearish Engulfing,4
+yolo_dataset/images/test/test_CSCO_00495.jpg,CSCO,2019-10-09,dark,7,7,1,1,Marubozu,Bearish Engulfing,2
+yolo_dataset/images/test/test_BAC_00496.jpg,BAC,2019-10-09,blue-white,5,7,0,2,,Marubozu;Evening Star,2
+yolo_dataset/images/test/test_GS_00497.jpg,GS,2019-10-09,blue-white,8,10,0,2,,Doji;Doji,2
+yolo_dataset/images/test/test_MS_00498.jpg,MS,2019-10-09,blue-white,3,5,1,3,Morning Star,Hammer;Doji;Bearish Engulfing,4
+yolo_dataset/images/test/test_WFC_00499.jpg,WFC,2019-10-09,light,8,12,1,5,Shooting Star,Doji;Doji;Morning Star;Doji;Bearish Engulfing,6
+yolo_dataset/images/test/test_PFE_00500.jpg,PFE,2019-10-09,blue-white,3,4,0,1,,Doji,1
+yolo_dataset/images/test/test_UNH_00501.jpg,UNH,2019-10-09,blue-white,5,10,0,5,,Evening Star;Hammer;Doji;Evening Star;Doji,5
+yolo_dataset/images/test/test_ABT_00502.jpg,ABT,2019-10-09,blue-white,10,9,1,0,Hammer,,1
+yolo_dataset/images/test/test_CAT_00503.jpg,CAT,2019-10-09,dark,11,10,1,0,Morning Star,,1
+yolo_dataset/images/test/test_MSFT_00504.jpg,MSFT,2019-10-15,dark,6,9,1,4,Hammer,Bearish Engulfing;Morning Star;Bearish Engulfing;Shooting Star,5
+yolo_dataset/images/test/test_NVDA_00505.jpg,NVDA,2019-10-15,blue-white,10,14,1,5,Bullish Engulfing,Doji;Doji;Doji;Bearish Engulfing;Hammer,6
+yolo_dataset/images/test/test_INTC_00506.jpg,INTC,2019-10-15,light,9,13,0,4,,Doji;Bearish Engulfing;Morning Star;Evening Star,4
+yolo_dataset/images/test/test_CSCO_00507.jpg,CSCO,2019-10-15,light,6,10,1,5,Marubozu,Bearish Engulfing;Hammer;Bullish Engulfing;Doji;Doji,6
+yolo_dataset/images/test/test_BAC_00508.jpg,BAC,2019-10-15,light,5,8,0,3,,Shooting Star;Marubozu;Doji,3
+yolo_dataset/images/test/test_GS_00509.jpg,GS,2019-10-15,blue-white,8,11,0,3,,Bullish Engulfing;Evening Star;Doji,3
+yolo_dataset/images/test/test_MS_00510.jpg,MS,2019-10-15,light,1,3,1,3,Morning Star,Hammer;Shooting Star;Doji,4
+yolo_dataset/images/test/test_WFC_00511.jpg,WFC,2019-10-15,dark,7,7,2,2,Evening Star;Morning Star,Doji;Shooting Star,4
+yolo_dataset/images/test/test_PFE_00512.jpg,PFE,2019-10-15,light,5,7,0,2,,Doji;Bullish Engulfing,2
+yolo_dataset/images/test/test_UNH_00513.jpg,UNH,2019-10-15,light,5,9,0,4,,Evening Star;Doji;Doji;Evening Star,4
+yolo_dataset/images/test/test_ABT_00514.jpg,ABT,2019-10-15,light,11,11,1,1,Hammer,Shooting Star,2
+yolo_dataset/images/test/test_CAT_00515.jpg,CAT,2019-10-15,dark,10,8,2,0,Marubozu;Morning Star,,2
+yolo_dataset/images/test/test_MSFT_00516.jpg,MSFT,2019-10-21,blue-white,6,6,0,0,,,0
+yolo_dataset/images/test/test_NVDA_00517.jpg,NVDA,2019-10-21,dark,7,14,1,8,Bullish Engulfing,Hammer;Evening Star;Doji;Doji;Doji;Shooting Star;Doji;Doji,9
+yolo_dataset/images/test/test_INTC_00518.jpg,INTC,2019-10-21,light,10,13,1,4,Evening Star,Doji;Bullish Engulfing;Bearish Engulfing;Morning Star,5
+yolo_dataset/images/test/test_CSCO_00519.jpg,CSCO,2019-10-21,light,6,10,1,5,Marubozu,Bearish Engulfing;Doji;Doji;Doji;Hammer,6
+yolo_dataset/images/test/test_BAC_00520.jpg,BAC,2019-10-21,blue-white,6,10,1,5,Marubozu,Doji;Hammer;Marubozu;Shooting Star;Evening Star,6
+yolo_dataset/images/test/test_GS_00521.jpg,GS,2019-10-21,blue-white,7,9,1,3,Shooting Star,Bearish Engulfing;Morning Star;Doji,4
+yolo_dataset/images/test/test_MS_00522.jpg,MS,2019-10-21,blue-white,1,4,1,4,Morning Star,Hammer;Doji;Doji;Marubozu,5
+yolo_dataset/images/test/test_WFC_00523.jpg,WFC,2019-10-21,light,5,9,2,6,Evening Star;Morning Star,Bearish Engulfing;Shooting Star;Doji;Marubozu;Doji;Bullish Engulfing,8
+yolo_dataset/images/test/test_PFE_00524.jpg,PFE,2019-10-21,light,8,10,0,2,,Doji;Doji,2
+yolo_dataset/images/test/test_UNH_00525.jpg,UNH,2019-10-21,light,5,6,0,1,,Doji,1
+yolo_dataset/images/test/test_ABT_00526.jpg,ABT,2019-10-21,light,9,9,1,1,Marubozu,Marubozu,2
+yolo_dataset/images/test/test_CAT_00527.jpg,CAT,2019-10-21,blue-white,10,8,2,0,Shooting Star;Morning Star,,2
+yolo_dataset/images/test/test_MSFT_00528.jpg,MSFT,2019-10-25,light,7,7,1,1,Morning Star,Bearish Engulfing,2
+yolo_dataset/images/test/test_NVDA_00529.jpg,NVDA,2019-10-25,light,9,13,0,4,,Doji;Doji;Doji;Evening Star,4
+yolo_dataset/images/test/test_INTC_00530.jpg,INTC,2019-10-25,light,10,11,1,2,Shooting Star,Doji;Morning Star,3
+yolo_dataset/images/test/test_CSCO_00531.jpg,CSCO,2019-10-25,blue-white,5,8,1,4,Marubozu,Doji;Bearish Engulfing;Hammer;Doji,5
+yolo_dataset/images/test/test_BAC_00532.jpg,BAC,2019-10-25,dark,6,9,0,3,,Doji;Marubozu;Evening Star,3
+yolo_dataset/images/test/test_GS_00533.jpg,GS,2019-10-25,light,7,11,0,4,,Shooting Star;Evening Star;Bearish Engulfing;Evening Star,4
+yolo_dataset/images/test/test_MS_00534.jpg,MS,2019-10-25,light,2,4,1,3,Marubozu,Doji;Doji;Hammer,4
+yolo_dataset/images/test/test_WFC_00535.jpg,WFC,2019-10-25,blue-white,4,7,1,4,Morning Star,Doji;Shooting Star;Shooting Star;Marubozu,5
+yolo_dataset/images/test/test_PFE_00536.jpg,PFE,2019-10-25,dark,9,10,1,2,Doji,Morning Star;Doji,3
+yolo_dataset/images/test/test_UNH_00537.jpg,UNH,2019-10-25,dark,4,5,0,1,,Doji,1
+yolo_dataset/images/test/test_ABT_00538.jpg,ABT,2019-10-25,dark,8,9,0,1,,Shooting Star,1
+yolo_dataset/images/test/test_CAT_00539.jpg,CAT,2019-10-25,blue-white,8,6,3,1,Shooting Star;Marubozu;Morning Star,Evening Star,4
+yolo_dataset/images/test/test_MSFT_00540.jpg,MSFT,2019-10-31,light,9,10,0,1,,Evening Star,1
+yolo_dataset/images/test/test_NVDA_00541.jpg,NVDA,2019-10-31,light,9,17,0,8,,Bearish Engulfing;Doji;Doji;Evening Star;Evening Star;Hammer;Doji;Doji,8
+yolo_dataset/images/test/test_INTC_00542.jpg,INTC,2019-10-31,blue-white,13,14,2,3,Shooting Star;Hammer,Doji;Morning Star;Bearish Engulfing,5
+yolo_dataset/images/test/test_CSCO_00543.jpg,CSCO,2019-10-31,light,5,8,1,4,Marubozu,Doji;Hammer;Bearish Engulfing;Marubozu,5
+yolo_dataset/images/test/test_BAC_00544.jpg,BAC,2019-10-31,blue-white,6,10,1,5,Marubozu,Evening Star;Bearish Engulfing;Marubozu;Marubozu;Doji,6
+yolo_dataset/images/test/test_GS_00545.jpg,GS,2019-10-31,light,7,10,1,4,Shooting Star,Doji;Bearish Engulfing;Bearish Engulfing;Bullish Engulfing,5
+yolo_dataset/images/test/test_MS_00546.jpg,MS,2019-10-31,light,3,5,2,4,Marubozu;Morning Star,Bearish Engulfing;Hammer;Doji;Doji,6
+yolo_dataset/images/test/test_WFC_00547.jpg,WFC,2019-10-31,dark,5,11,1,7,Morning Star,Bullish Engulfing;Evening Star;Shooting Star;Doji;Marubozu;Shooting Star;Bearish Engulfing,8
+yolo_dataset/images/test/test_PFE_00548.jpg,PFE,2019-10-31,light,10,13,0,3,,Morning Star;Doji;Doji,3
+yolo_dataset/images/test/test_UNH_00549.jpg,UNH,2019-10-31,blue-white,2,3,0,1,,Doji,1
+yolo_dataset/images/test/test_ABT_00550.jpg,ABT,2019-10-31,dark,6,7,1,2,Morning Star,Doji;Marubozu,3
+yolo_dataset/images/test/test_CAT_00551.jpg,CAT,2019-10-31,light,9,8,2,1,Shooting Star;Morning Star,Bullish Engulfing,3
+yolo_dataset/images/test/test_MSFT_00552.jpg,MSFT,2019-11-06,light,7,8,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_NVDA_00553.jpg,NVDA,2019-11-06,dark,8,13,0,5,,Evening Star;Evening Star;Hammer;Doji;Doji,5
+yolo_dataset/images/test/test_INTC_00554.jpg,INTC,2019-11-06,light,12,11,3,2,Shooting Star;Hammer;Bearish Engulfing,Hammer;Doji,5
+yolo_dataset/images/test/test_CSCO_00555.jpg,CSCO,2019-11-06,dark,6,8,1,3,Marubozu,Doji;Marubozu;Doji,4
+yolo_dataset/images/test/test_BAC_00556.jpg,BAC,2019-11-06,light,8,12,0,4,,Hammer;Marubozu;Evening Star;Doji,4
+yolo_dataset/images/test/test_GS_00557.jpg,GS,2019-11-06,light,9,12,1,4,Shooting Star,Doji;Bearish Engulfing;Bullish Engulfing;Bearish Engulfing,5
+yolo_dataset/images/test/test_MS_00558.jpg,MS,2019-11-06,dark,3,8,1,6,Marubozu,Shooting Star;Doji;Hammer;Doji;Evening Star;Evening Star,7
+yolo_dataset/images/test/test_WFC_00559.jpg,WFC,2019-11-06,blue-white,6,9,1,4,Morning Star,Doji;Bullish Engulfing;Marubozu;Doji,5
+yolo_dataset/images/test/test_PFE_00560.jpg,PFE,2019-11-06,blue-white,12,16,0,4,,Morning Star;Doji;Shooting Star;Bullish Engulfing,4
+yolo_dataset/images/test/test_UNH_00561.jpg,UNH,2019-11-06,dark,2,4,0,2,,Doji;Marubozu,2
+yolo_dataset/images/test/test_ABT_00562.jpg,ABT,2019-11-06,blue-white,7,10,1,4,Morning Star,Morning Star;Marubozu;Shooting Star;Doji,5
+yolo_dataset/images/test/test_CAT_00563.jpg,CAT,2019-11-06,light,10,10,1,1,Morning Star,Shooting Star,2
+yolo_dataset/images/test/test_MSFT_00564.jpg,MSFT,2019-11-12,light,6,6,1,1,Bearish Engulfing,Evening Star,2
+yolo_dataset/images/test/test_NVDA_00565.jpg,NVDA,2019-11-12,dark,10,21,0,11,,Evening Star;Bearish Engulfing;Hammer;Doji;Morning Star;Evening Star;Shooting Star;Doji;Hammer;Doji;Doji,11
+yolo_dataset/images/test/test_INTC_00566.jpg,INTC,2019-11-12,dark,11,8,3,0,Shooting Star;Hammer;Morning Star,,3
+yolo_dataset/images/test/test_CSCO_00567.jpg,CSCO,2019-11-12,light,6,7,1,2,Marubozu,Doji;Marubozu,3
+yolo_dataset/images/test/test_BAC_00568.jpg,BAC,2019-11-12,blue-white,8,9,1,2,Marubozu,Morning Star;Hammer,3
+yolo_dataset/images/test/test_GS_00569.jpg,GS,2019-11-12,dark,11,13,1,3,Shooting Star,Bullish Engulfing;Bearish Engulfing;Evening Star,4
+yolo_dataset/images/test/test_MS_00570.jpg,MS,2019-11-12,light,4,8,1,5,Bullish Engulfing,Doji;Shooting Star;Marubozu;Doji;Doji,6
+yolo_dataset/images/test/test_WFC_00571.jpg,WFC,2019-11-12,blue-white,4,4,1,1,Morning Star,Evening Star,2
+yolo_dataset/images/test/test_PFE_00572.jpg,PFE,2019-11-12,dark,13,17,0,4,,Morning Star;Marubozu;Doji;Doji,4
+yolo_dataset/images/test/test_UNH_00573.jpg,UNH,2019-11-12,light,4,9,0,5,,Morning Star;Doji;Doji;Evening Star;Bearish Engulfing,5
+yolo_dataset/images/test/test_ABT_00574.jpg,ABT,2019-11-12,dark,6,10,1,5,Morning Star,Marubozu;Evening Star;Doji;Marubozu;Doji,6
+yolo_dataset/images/test/test_CAT_00575.jpg,CAT,2019-11-12,dark,8,12,1,5,Shooting Star,Evening Star;Bullish Engulfing;Marubozu;Bearish Engulfing;Marubozu,6
+yolo_dataset/images/test/test_MSFT_00576.jpg,MSFT,2019-11-18,light,4,5,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_NVDA_00577.jpg,NVDA,2019-11-18,dark,8,18,0,10,,Evening Star;Shooting Star;Morning Star;Hammer;Evening Star;Evening Star;Marubozu;Doji;Doji;Morning Star,10
+yolo_dataset/images/test/test_INTC_00578.jpg,INTC,2019-11-18,dark,11,11,2,2,Shooting Star;Bullish Engulfing,Doji;Hammer,4
+yolo_dataset/images/test/test_CSCO_00579.jpg,CSCO,2019-11-18,blue-white,7,10,2,5,Marubozu;Morning Star,Evening Star;Doji;Doji;Marubozu;Hammer,7
+yolo_dataset/images/test/test_BAC_00580.jpg,BAC,2019-11-18,blue-white,6,10,1,5,Marubozu,Bearish Engulfing;Hammer;Doji;Shooting Star;Evening Star,6
+yolo_dataset/images/test/test_GS_00581.jpg,GS,2019-11-18,dark,9,11,1,3,Shooting Star,Doji;Bearish Engulfing;Bearish Engulfing,4
+yolo_dataset/images/test/test_MS_00582.jpg,MS,2019-11-18,blue-white,5,9,2,6,Marubozu;Bullish Engulfing,Doji;Shooting Star;Evening Star;Doji;Doji;Marubozu,8
+yolo_dataset/images/test/test_WFC_00583.jpg,WFC,2019-11-18,blue-white,4,4,0,0,,,0
+yolo_dataset/images/test/test_PFE_00584.jpg,PFE,2019-11-18,blue-white,12,16,0,4,,Morning Star;Doji;Doji;Morning Star,4
+yolo_dataset/images/test/test_UNH_00585.jpg,UNH,2019-11-18,light,3,7,0,4,,Doji;Doji;Marubozu;Morning Star,4
+yolo_dataset/images/test/test_ABT_00586.jpg,ABT,2019-11-18,light,7,12,1,6,Morning Star,Doji;Morning Star;Marubozu;Doji;Marubozu;Doji,7
+yolo_dataset/images/test/test_CAT_00587.jpg,CAT,2019-11-18,light,8,8,0,0,,,0
+yolo_dataset/images/test/test_MSFT_00588.jpg,MSFT,2019-11-22,light,5,7,0,2,,Marubozu;Evening Star,2
+yolo_dataset/images/test/test_NVDA_00589.jpg,NVDA,2019-11-22,blue-white,10,14,1,5,Bullish Engulfing,Hammer;Evening Star;Hammer;Doji;Evening Star,6
+yolo_dataset/images/test/test_INTC_00590.jpg,INTC,2019-11-22,light,10,9,2,1,Shooting Star;Hammer,Hammer,3
+yolo_dataset/images/test/test_CSCO_00591.jpg,CSCO,2019-11-22,light,6,8,0,2,,Evening Star;Hammer,2
+yolo_dataset/images/test/test_BAC_00592.jpg,BAC,2019-11-22,light,7,8,1,2,Marubozu,Doji;Hammer,3
+yolo_dataset/images/test/test_GS_00593.jpg,GS,2019-11-22,dark,10,13,0,3,,Evening Star;Doji;Bearish Engulfing,3
+yolo_dataset/images/test/test_MS_00594.jpg,MS,2019-11-22,dark,8,13,2,7,Shooting Star;Bullish Engulfing,Doji;Evening Star;Evening Star;Shooting Star;Doji;Marubozu;Marubozu,9
+yolo_dataset/images/test/test_WFC_00595.jpg,WFC,2019-11-22,light,4,3,2,1,Evening Star;Morning Star,Doji,3
+yolo_dataset/images/test/test_PFE_00596.jpg,PFE,2019-11-22,dark,11,15,0,4,,Bullish Engulfing;Morning Star;Doji;Bearish Engulfing,4
+yolo_dataset/images/test/test_UNH_00597.jpg,UNH,2019-11-22,blue-white,3,5,0,2,,Doji;Doji,2
+yolo_dataset/images/test/test_ABT_00598.jpg,ABT,2019-11-22,blue-white,7,11,0,4,,Hammer;Marubozu;Doji;Marubozu,4
+yolo_dataset/images/test/test_CAT_00599.jpg,CAT,2019-11-22,dark,7,10,1,4,Marubozu,Bullish Engulfing;Shooting Star;Bearish Engulfing;Bullish Engulfing,5
+yolo_dataset/images/test/test_MSFT_00600.jpg,MSFT,2019-11-29,light,7,6,1,0,Bearish Engulfing,,1
+yolo_dataset/images/test/test_NVDA_00601.jpg,NVDA,2019-11-29,light,11,16,2,7,Bullish Engulfing;Morning Star,Morning Star;Hammer;Doji;Evening Star;Marubozu;Bearish Engulfing;Hammer,9
+yolo_dataset/images/test/test_INTC_00602.jpg,INTC,2019-11-29,dark,10,9,2,1,Hammer;Marubozu,Evening Star,3
+yolo_dataset/images/test/test_CSCO_00603.jpg,CSCO,2019-11-29,light,6,9,0,3,,Evening Star;Doji;Hammer,3
+yolo_dataset/images/test/test_BAC_00604.jpg,BAC,2019-11-29,light,5,8,1,4,Morning Star,Evening Star;Doji;Hammer;Marubozu,5
+yolo_dataset/images/test/test_GS_00605.jpg,GS,2019-11-29,blue-white,10,13,1,4,Evening Star,Evening Star;Doji;Evening Star;Doji,5
+yolo_dataset/images/test/test_MS_00606.jpg,MS,2019-11-29,light,9,12,2,5,Marubozu;Bullish Engulfing,Shooting Star;Evening Star;Doji;Marubozu;Doji,7
+yolo_dataset/images/test/test_WFC_00607.jpg,WFC,2019-11-29,light,4,5,1,2,Morning Star,Doji;Doji,3
+yolo_dataset/images/test/test_PFE_00608.jpg,PFE,2019-11-29,dark,10,12,0,2,,Morning Star;Bullish Engulfing,2
+yolo_dataset/images/test/test_UNH_00609.jpg,UNH,2019-11-29,dark,4,8,0,4,,Morning Star;Evening Star;Doji;Doji,4
+yolo_dataset/images/test/test_ABT_00610.jpg,ABT,2019-11-29,dark,7,7,2,2,Morning Star;Morning Star,Doji;Marubozu,4
+yolo_dataset/images/test/test_CAT_00611.jpg,CAT,2019-11-29,dark,7,8,1,2,Marubozu,Bullish Engulfing;Bullish Engulfing,3
+yolo_dataset/images/test/test_MSFT_00612.jpg,MSFT,2019-12-05,light,6,6,1,1,Hammer,Marubozu,2
+yolo_dataset/images/test/test_NVDA_00613.jpg,NVDA,2019-12-05,light,11,12,2,3,Evening Star;Morning Star,Evening Star;Doji;Hammer,5
+yolo_dataset/images/test/test_INTC_00614.jpg,INTC,2019-12-05,light,10,11,2,3,Hammer;Marubozu,Hammer;Bullish Engulfing;Evening Star,5
+yolo_dataset/images/test/test_CSCO_00615.jpg,CSCO,2019-12-05,dark,6,8,1,3,Marubozu,Hammer;Doji;Hammer,4
+yolo_dataset/images/test/test_BAC_00616.jpg,BAC,2019-12-05,light,7,9,1,3,Morning Star,Doji;Hammer;Evening Star,4
+yolo_dataset/images/test/test_GS_00617.jpg,GS,2019-12-05,dark,10,13,0,3,,Doji;Evening Star;Bearish Engulfing,3
+yolo_dataset/images/test/test_MS_00618.jpg,MS,2019-12-05,dark,9,10,2,3,Hammer;Bullish Engulfing,Marubozu;Evening Star;Doji,5
+yolo_dataset/images/test/test_WFC_00619.jpg,WFC,2019-12-05,dark,4,3,1,0,Morning Star,,1
+yolo_dataset/images/test/test_PFE_00620.jpg,PFE,2019-12-05,light,9,13,0,4,,Bullish Engulfing;Doji;Marubozu;Bearish Engulfing,4
+yolo_dataset/images/test/test_UNH_00621.jpg,UNH,2019-12-05,light,4,8,1,5,Bullish Engulfing,Morning Star;Doji;Doji;Bullish Engulfing;Evening Star,6
+yolo_dataset/images/test/test_ABT_00622.jpg,ABT,2019-12-05,blue-white,7,6,1,0,Hammer,,1
+yolo_dataset/images/test/test_CAT_00623.jpg,CAT,2019-12-05,blue-white,9,7,3,1,Marubozu;Marubozu;Hammer,Bullish Engulfing,4
+yolo_dataset/images/test/test_MSFT_00624.jpg,MSFT,2019-12-11,dark,6,6,1,1,Hammer,Hammer,2
+yolo_dataset/images/test/test_NVDA_00625.jpg,NVDA,2019-12-11,light,10,10,2,2,Evening Star;Morning Star,Marubozu;Hammer,4
+yolo_dataset/images/test/test_INTC_00626.jpg,INTC,2019-12-11,light,10,10,1,1,Marubozu,Evening Star,2
+yolo_dataset/images/test/test_CSCO_00627.jpg,CSCO,2019-12-11,blue-white,8,10,1,3,Marubozu,Hammer;Hammer;Doji,4
+yolo_dataset/images/test/test_BAC_00628.jpg,BAC,2019-12-11,blue-white,10,10,1,1,Morning Star,Evening Star,2
+yolo_dataset/images/test/test_GS_00629.jpg,GS,2019-12-11,light,12,16,0,4,,Doji;Evening Star;Bearish Engulfing;Hammer,4
+yolo_dataset/images/test/test_MS_00630.jpg,MS,2019-12-11,light,12,8,5,1,Shooting Star;Hammer;Bullish Engulfing;Morning Star;Evening Star,Shooting Star,6
+yolo_dataset/images/test/test_WFC_00631.jpg,WFC,2019-12-11,dark,4,4,1,1,Bearish Engulfing,Bullish Engulfing,2
+yolo_dataset/images/test/test_PFE_00632.jpg,PFE,2019-12-11,blue-white,10,13,0,3,,Doji;Marubozu;Bullish Engulfing,3
+yolo_dataset/images/test/test_UNH_00633.jpg,UNH,2019-12-11,dark,5,7,2,4,Marubozu;Bullish Engulfing,Doji;Doji;Morning Star;Marubozu,6
+yolo_dataset/images/test/test_ABT_00634.jpg,ABT,2019-12-11,dark,6,6,1,1,Bearish Engulfing,Marubozu,2
+yolo_dataset/images/test/test_CAT_00635.jpg,CAT,2019-12-11,dark,8,10,2,4,Marubozu;Hammer,Evening Star;Bullish Engulfing;Bullish Engulfing;Morning Star,6
+yolo_dataset/images/test/test_MSFT_00636.jpg,MSFT,2019-12-17,light,6,8,1,3,Hammer,Marubozu;Bullish Engulfing;Hammer,4
+yolo_dataset/images/test/test_NVDA_00637.jpg,NVDA,2019-12-17,blue-white,9,11,1,3,Morning Star,Doji;Hammer;Shooting Star,4
+yolo_dataset/images/test/test_INTC_00638.jpg,INTC,2019-12-17,dark,10,11,1,2,Marubozu,Evening Star;Bearish Engulfing,3
+yolo_dataset/images/test/test_CSCO_00639.jpg,CSCO,2019-12-17,light,8,11,1,4,Marubozu,Evening Star;Doji;Morning Star;Hammer,5
+yolo_dataset/images/test/test_BAC_00640.jpg,BAC,2019-12-17,dark,9,10,1,2,Morning Star,Doji;Doji,3
+yolo_dataset/images/test/test_GS_00641.jpg,GS,2019-12-17,light,10,11,2,3,Marubozu;Evening Star,Evening Star;Hammer;Doji,5
+yolo_dataset/images/test/test_MS_00642.jpg,MS,2019-12-17,blue-white,12,12,2,2,Hammer;Morning Star,Hammer;Bearish Engulfing,4
+yolo_dataset/images/test/test_WFC_00643.jpg,WFC,2019-12-17,dark,5,3,2,0,Shooting Star;Bearish Engulfing,,2
+yolo_dataset/images/test/test_PFE_00644.jpg,PFE,2019-12-17,light,10,11,1,2,Bullish Engulfing,Marubozu;Marubozu,3
+yolo_dataset/images/test/test_UNH_00645.jpg,UNH,2019-12-17,light,5,7,2,4,Marubozu;Bullish Engulfing,Doji;Doji;Hammer;Shooting Star,6
+yolo_dataset/images/test/test_ABT_00646.jpg,ABT,2019-12-17,blue-white,5,6,0,1,,Evening Star,1
+yolo_dataset/images/test/test_CAT_00647.jpg,CAT,2019-12-17,blue-white,7,8,1,2,Hammer,Bullish Engulfing;Bullish Engulfing,3
+yolo_dataset/images/test/test_MSFT_00648.jpg,MSFT,2019-12-23,blue-white,8,7,2,1,Hammer;Evening Star,Doji,3
+yolo_dataset/images/test/test_NVDA_00649.jpg,NVDA,2019-12-23,light,9,9,2,2,Bullish Engulfing;Morning Star,Doji;Marubozu,4
+yolo_dataset/images/test/test_INTC_00650.jpg,INTC,2019-12-23,blue-white,10,12,1,3,Marubozu,Evening Star;Bearish Engulfing;Morning Star,4
+yolo_dataset/images/test/test_CSCO_00651.jpg,CSCO,2019-12-23,light,8,10,2,4,Marubozu;Shooting Star,Hammer;Morning Star;Evening Star;Doji,6
+yolo_dataset/images/test/test_BAC_00652.jpg,BAC,2019-12-23,dark,10,14,1,5,Morning Star,Evening Star;Doji;Evening Star;Morning Star;Doji,6
+yolo_dataset/images/test/test_GS_00653.jpg,GS,2019-12-23,light,8,9,2,3,Marubozu;Evening Star,Hammer;Evening Star;Doji,5
+yolo_dataset/images/test/test_MS_00654.jpg,MS,2019-12-23,blue-white,12,9,5,2,Shooting Star;Marubozu;Hammer;Marubozu;Morning Star,Bearish Engulfing;Bearish Engulfing,7
+yolo_dataset/images/test/test_WFC_00655.jpg,WFC,2019-12-23,dark,6,4,3,1,Shooting Star;Marubozu;Bearish Engulfing,Bearish Engulfing,4
+yolo_dataset/images/test/test_PFE_00656.jpg,PFE,2019-12-23,light,9,11,0,2,,Marubozu;Bullish Engulfing,2
+yolo_dataset/images/test/test_UNH_00657.jpg,UNH,2019-12-23,dark,3,7,2,6,Marubozu;Bullish Engulfing,Doji;Doji;Doji;Hammer;Doji;Evening Star,8
+yolo_dataset/images/test/test_ABT_00658.jpg,ABT,2019-12-23,dark,6,7,0,1,,Hammer,1
+yolo_dataset/images/test/test_CAT_00659.jpg,CAT,2019-12-23,dark,7,7,2,2,Hammer;Doji,Bearish Engulfing;Hammer,4
+yolo_dataset/images/test/test_MSFT_00660.jpg,MSFT,2019-12-30,dark,8,10,1,3,Hammer,Bearish Engulfing;Morning Star;Doji,4
+yolo_dataset/images/test/test_NVDA_00661.jpg,NVDA,2019-12-30,light,5,7,1,3,Morning Star,Doji;Bearish Engulfing;Marubozu,4
+yolo_dataset/images/test/test_INTC_00662.jpg,INTC,2019-12-30,light,9,11,0,2,,Evening Star;Evening Star,2
+yolo_dataset/images/test/test_CSCO_00663.jpg,CSCO,2019-12-30,light,8,10,2,4,Marubozu;Shooting Star,Doji;Evening Star;Hammer;Hammer,6
+yolo_dataset/images/test/test_BAC_00664.jpg,BAC,2019-12-30,light,9,12,2,5,Bearish Engulfing;Morning Star,Evening Star;Doji;Evening Star;Doji;Bearish Engulfing,7
+yolo_dataset/images/test/test_GS_00665.jpg,GS,2019-12-30,blue-white,8,9,1,2,Marubozu,Hammer;Doji,3
+yolo_dataset/images/test/test_MS_00666.jpg,MS,2019-12-30,dark,10,10,3,3,Hammer;Marubozu;Morning Star,Bearish Engulfing;Hammer;Bearish Engulfing,6
+yolo_dataset/images/test/test_WFC_00667.jpg,WFC,2019-12-30,blue-white,7,7,2,2,Shooting Star;Marubozu,Bearish Engulfing;Morning Star,4
+yolo_dataset/images/test/test_PFE_00668.jpg,PFE,2019-12-30,blue-white,6,8,0,2,,Marubozu;Bearish Engulfing,2
+yolo_dataset/images/test/test_UNH_00669.jpg,UNH,2019-12-30,light,5,10,2,7,Marubozu;Bullish Engulfing,Doji;Evening Star;Doji;Hammer;Doji;Doji;Bearish Engulfing,9
+yolo_dataset/images/test/test_ABT_00670.jpg,ABT,2019-12-30,blue-white,5,8,0,3,,Doji;Doji;Doji,3
+yolo_dataset/images/test/test_CAT_00671.jpg,CAT,2019-12-30,light,8,7,3,2,Hammer;Hammer;Morning Star,Bearish Engulfing;Evening Star,5
+yolo_dataset/images/test/test_MSFT_00672.jpg,MSFT,2020-01-06,light,8,9,1,2,Hammer,Bearish Engulfing;Doji,3
+yolo_dataset/images/test/test_NVDA_00673.jpg,NVDA,2020-01-06,dark,4,6,1,3,Doji,Marubozu;Doji;Marubozu,4
+yolo_dataset/images/test/test_INTC_00674.jpg,INTC,2020-01-06,light,9,11,1,3,Marubozu,Evening Star;Marubozu;Bearish Engulfing,4
+yolo_dataset/images/test/test_CSCO_00675.jpg,CSCO,2020-01-06,dark,7,7,2,2,Marubozu;Shooting Star,Doji;Hammer,4
+yolo_dataset/images/test/test_BAC_00676.jpg,BAC,2020-01-06,dark,7,10,1,4,Morning Star,Morning Star;Evening Star;Evening Star;Doji,5
+yolo_dataset/images/test/test_GS_00677.jpg,GS,2020-01-06,light,8,6,2,0,Hammer;Morning Star,,2
+yolo_dataset/images/test/test_MS_00678.jpg,MS,2020-01-06,blue-white,10,9,3,2,Hammer;Morning Star;Evening Star,Bearish Engulfing;Evening Star,5
+yolo_dataset/images/test/test_WFC_00679.jpg,WFC,2020-01-06,blue-white,5,3,3,1,Shooting Star;Marubozu;Bearish Engulfing,Bearish Engulfing,4
+yolo_dataset/images/test/test_PFE_00680.jpg,PFE,2020-01-06,blue-white,6,6,0,0,,,0
+yolo_dataset/images/test/test_UNH_00681.jpg,UNH,2020-01-06,dark,5,11,2,8,Marubozu;Bullish Engulfing,Doji;Doji;Doji;Bearish Engulfing;Marubozu;Bullish Engulfing;Doji;Hammer,10
+yolo_dataset/images/test/test_ABT_00682.jpg,ABT,2020-01-06,light,4,7,0,3,,Doji;Doji;Doji,3
+yolo_dataset/images/test/test_CAT_00683.jpg,CAT,2020-01-06,light,8,8,3,3,Hammer;Doji;Hammer,Morning Star;Bearish Engulfing;Evening Star,6
+yolo_dataset/images/test/test_MSFT_00684.jpg,MSFT,2020-01-10,light,7,8,1,2,Hammer,Bearish Engulfing;Doji,3
+yolo_dataset/images/test/test_NVDA_00685.jpg,NVDA,2020-01-10,blue-white,3,6,1,4,Doji,Bearish Engulfing;Doji;Doji;Doji,5
+yolo_dataset/images/test/test_INTC_00686.jpg,INTC,2020-01-10,light,8,9,2,3,Shooting Star;Marubozu,Morning Star;Doji;Marubozu,5
+yolo_dataset/images/test/test_CSCO_00687.jpg,CSCO,2020-01-10,light,7,5,3,1,Marubozu;Shooting Star;Morning Star,Doji,4
+yolo_dataset/images/test/test_BAC_00688.jpg,BAC,2020-01-10,dark,8,9,1,2,Morning Star,Evening Star;Morning Star,3
+yolo_dataset/images/test/test_GS_00689.jpg,GS,2020-01-10,blue-white,8,7,1,0,Hammer,,1
+yolo_dataset/images/test/test_MS_00690.jpg,MS,2020-01-10,dark,9,9,4,4,Hammer;Marubozu;Marubozu;Morning Star,Bullish Engulfing;Bearish Engulfing;Doji;Evening Star,8
+yolo_dataset/images/test/test_WFC_00691.jpg,WFC,2020-01-10,light,6,4,3,1,Shooting Star;Marubozu;Bearish Engulfing,Bearish Engulfing,4
+yolo_dataset/images/test/test_PFE_00692.jpg,PFE,2020-01-10,blue-white,6,6,1,1,Evening Star,Bearish Engulfing,2
+yolo_dataset/images/test/test_UNH_00693.jpg,UNH,2020-01-10,light,6,10,2,6,Marubozu;Bullish Engulfing,Doji;Doji;Doji;Bearish Engulfing;Doji;Hammer,8
+yolo_dataset/images/test/test_ABT_00694.jpg,ABT,2020-01-10,blue-white,5,6,1,2,Bearish Engulfing,Doji;Evening Star,3
+yolo_dataset/images/test/test_CAT_00695.jpg,CAT,2020-01-10,light,7,5,4,2,Hammer;Doji;Hammer;Morning Star,Morning Star;Bearish Engulfing,6
+yolo_dataset/images/test/test_MSFT_00696.jpg,MSFT,2020-01-16,light,4,8,1,5,Evening Star,Bearish Engulfing;Morning Star;Morning Star;Morning Star;Hammer,6
+yolo_dataset/images/test/test_NVDA_00697.jpg,NVDA,2020-01-16,blue-white,3,4,0,1,,Marubozu,1
+yolo_dataset/images/test/test_INTC_00698.jpg,INTC,2020-01-16,dark,8,9,2,3,Shooting Star;Marubozu,Marubozu;Doji;Morning Star,5
+yolo_dataset/images/test/test_CSCO_00699.jpg,CSCO,2020-01-16,light,8,8,2,2,Shooting Star;Morning Star,Doji;Doji,4
+yolo_dataset/images/test/test_BAC_00700.jpg,BAC,2020-01-16,light,8,9,0,1,,Evening Star,1
+yolo_dataset/images/test/test_GS_00701.jpg,GS,2020-01-16,dark,9,7,3,1,Marubozu;Hammer;Bullish Engulfing,Doji,4
+yolo_dataset/images/test/test_MS_00702.jpg,MS,2020-01-16,light,7,9,2,4,Marubozu;Marubozu,Doji;Bearish Engulfing;Doji;Bullish Engulfing,6
+yolo_dataset/images/test/test_WFC_00703.jpg,WFC,2020-01-16,dark,6,6,2,2,Shooting Star;Marubozu,Bearish Engulfing;Morning Star,4
+yolo_dataset/images/test/test_PFE_00704.jpg,PFE,2020-01-16,dark,5,5,0,0,,,0
+yolo_dataset/images/test/test_UNH_00705.jpg,UNH,2020-01-16,blue-white,4,9,1,6,Marubozu,Doji;Hammer;Bearish Engulfing;Doji;Doji;Evening Star,7
+yolo_dataset/images/test/test_ABT_00706.jpg,ABT,2020-01-16,dark,5,6,1,2,Bearish Engulfing,Doji;Doji,3
+yolo_dataset/images/test/test_CAT_00707.jpg,CAT,2020-01-16,blue-white,6,7,2,3,Hammer;Hammer,Doji;Morning Star;Bearish Engulfing,5
+yolo_dataset/images/test/test_MSFT_00708.jpg,MSFT,2020-01-23,light,4,11,1,8,Marubozu,Bearish Engulfing;Doji;Doji;Bearish Engulfing;Doji;Doji;Evening Star;Doji,9
+yolo_dataset/images/test/test_NVDA_00709.jpg,NVDA,2020-01-23,blue-white,5,7,0,2,,Marubozu;Bearish Engulfing,2
+yolo_dataset/images/test/test_INTC_00710.jpg,INTC,2020-01-23,light,6,7,2,3,Shooting Star;Shooting Star,Morning Star;Doji;Marubozu,5
+yolo_dataset/images/test/test_CSCO_00711.jpg,CSCO,2020-01-23,dark,5,3,2,0,Shooting Star;Marubozu,,2
+yolo_dataset/images/test/test_BAC_00712.jpg,BAC,2020-01-23,dark,8,8,1,1,Evening Star,Evening Star,2
+yolo_dataset/images/test/test_GS_00713.jpg,GS,2020-01-23,light,6,4,2,0,Hammer;Bullish Engulfing,,2
+yolo_dataset/images/test/test_MS_00714.jpg,MS,2020-01-23,blue-white,8,8,2,2,Marubozu;Bearish Engulfing,Bullish Engulfing;Evening Star,4
+yolo_dataset/images/test/test_WFC_00715.jpg,WFC,2020-01-23,light,5,6,1,2,Shooting Star,Bearish Engulfing;Morning Star,3
+yolo_dataset/images/test/test_PFE_00716.jpg,PFE,2020-01-23,light,5,7,2,4,Bullish Engulfing;Evening Star,Evening Star;Bearish Engulfing;Bearish Engulfing;Shooting Star,6
+yolo_dataset/images/test/test_UNH_00717.jpg,UNH,2020-01-23,blue-white,4,5,1,2,Hammer,Doji;Doji,3
+yolo_dataset/images/test/test_ABT_00718.jpg,ABT,2020-01-23,blue-white,5,10,0,5,,Doji;Doji;Doji;Doji;Bearish Engulfing,5
+yolo_dataset/images/test/test_CAT_00719.jpg,CAT,2020-01-23,blue-white,6,5,1,0,Hammer,,1
+yolo_dataset/images/test/test_MSFT_00720.jpg,MSFT,2020-01-29,light,6,11,0,5,,Bearish Engulfing;Bearish Engulfing;Marubozu;Doji;Doji,5
+yolo_dataset/images/test/test_NVDA_00721.jpg,NVDA,2020-01-29,light,5,6,0,1,,Marubozu,1
+yolo_dataset/images/test/test_INTC_00722.jpg,INTC,2020-01-29,blue-white,7,5,5,3,Shooting Star;Shooting Star;Shooting Star;Marubozu;Bearish Engulfing,Doji;Marubozu;Morning Star,8
+yolo_dataset/images/test/test_CSCO_00723.jpg,CSCO,2020-01-29,blue-white,4,5,1,2,Marubozu,Bearish Engulfing;Doji,3
+yolo_dataset/images/test/test_BAC_00724.jpg,BAC,2020-01-29,dark,8,9,0,1,,Evening Star,1
+yolo_dataset/images/test/test_GS_00725.jpg,GS,2020-01-29,light,5,2,3,0,Hammer;Bullish Engulfing;Morning Star,,3
+yolo_dataset/images/test/test_MS_00726.jpg,MS,2020-01-29,light,8,9,2,3,Marubozu;Bearish Engulfing,Doji;Bullish Engulfing;Evening Star,5
+yolo_dataset/images/test/test_WFC_00727.jpg,WFC,2020-01-29,blue-white,5,4,1,0,Marubozu,,1
+yolo_dataset/images/test/test_PFE_00728.jpg,PFE,2020-01-29,light,5,10,0,5,,Morning Star;Morning Star;Bearish Engulfing;Evening Star;Marubozu,5
+yolo_dataset/images/test/test_UNH_00729.jpg,UNH,2020-01-29,light,4,6,1,3,Hammer,Doji;Bearish Engulfing;Doji,4
+yolo_dataset/images/test/test_ABT_00730.jpg,ABT,2020-01-29,light,5,10,0,5,,Bearish Engulfing;Doji;Doji;Doji;Bullish Engulfing,5
+yolo_dataset/images/test/test_CAT_00731.jpg,CAT,2020-01-29,blue-white,5,5,2,2,Hammer;Hammer,Morning Star;Marubozu,4
+yolo_dataset/images/test/test_MSFT_00732.jpg,MSFT,2020-02-04,light,5,7,1,3,Marubozu,Doji;Doji;Bearish Engulfing,4
+yolo_dataset/images/test/test_NVDA_00733.jpg,NVDA,2020-02-04,light,3,6,0,3,,Morning Star;Doji;Evening Star,3
+yolo_dataset/images/test/test_INTC_00734.jpg,INTC,2020-02-04,light,6,6,4,4,Shooting Star;Shooting Star;Marubozu;Bearish Engulfing,Marubozu;Doji;Morning Star;Bearish Engulfing,8
+yolo_dataset/images/test/test_CSCO_00735.jpg,CSCO,2020-02-04,light,5,8,0,3,,Doji;Bearish Engulfing;Marubozu,3
+yolo_dataset/images/test/test_BAC_00736.jpg,BAC,2020-02-04,light,10,9,2,1,Marubozu;Evening Star,Morning Star,3
+yolo_dataset/images/test/test_GS_00737.jpg,GS,2020-02-04,blue-white,4,6,2,4,Hammer;Morning Star,Morning Star;Shooting Star;Bullish Engulfing;Doji,6
+yolo_dataset/images/test/test_MS_00738.jpg,MS,2020-02-04,blue-white,8,10,1,3,Bearish Engulfing,Bullish Engulfing;Marubozu;Evening Star,4
+yolo_dataset/images/test/test_WFC_00739.jpg,WFC,2020-02-04,dark,4,4,0,0,,,0
+yolo_dataset/images/test/test_PFE_00740.jpg,PFE,2020-02-04,blue-white,7,12,2,7,Doji;Evening Star,Morning Star;Bearish Engulfing;Bearish Engulfing;Morning Star;Marubozu;Evening Star;Morning Star,9
+yolo_dataset/images/test/test_UNH_00741.jpg,UNH,2020-02-04,dark,6,7,1,2,Hammer,Marubozu;Doji,3
+yolo_dataset/images/test/test_ABT_00742.jpg,ABT,2020-02-04,light,5,11,0,6,,Bearish Engulfing;Doji;Marubozu;Doji;Morning Star;Doji,6
+yolo_dataset/images/test/test_CAT_00743.jpg,CAT,2020-02-04,dark,4,2,3,1,Hammer;Hammer;Bearish Engulfing,Morning Star,4
+yolo_dataset/images/test/test_MSFT_00744.jpg,MSFT,2020-02-10,dark,4,6,1,3,Marubozu,Doji;Evening Star;Marubozu,4
+yolo_dataset/images/test/test_NVDA_00745.jpg,NVDA,2020-02-10,dark,4,5,0,1,,Evening Star,1
+yolo_dataset/images/test/test_INTC_00746.jpg,INTC,2020-02-10,blue-white,5,5,3,3,Shooting Star;Marubozu;Bearish Engulfing,Doji;Evening Star;Morning Star,6
+yolo_dataset/images/test/test_CSCO_00747.jpg,CSCO,2020-02-10,dark,6,8,1,3,Marubozu,Bearish Engulfing;Bearish Engulfing;Doji,4
+yolo_dataset/images/test/test_BAC_00748.jpg,BAC,2020-02-10,blue-white,11,9,2,0,Evening Star;Morning Star,,2
+yolo_dataset/images/test/test_GS_00749.jpg,GS,2020-02-10,light,4,8,0,4,,Shooting Star;Morning Star;Bullish Engulfing;Hammer,4
+yolo_dataset/images/test/test_MS_00750.jpg,MS,2020-02-10,dark,7,12,1,6,Bearish Engulfing,Marubozu;Bearish Engulfing;Evening Star;Bullish Engulfing;Marubozu;Doji,7
+yolo_dataset/images/test/test_WFC_00751.jpg,WFC,2020-02-10,dark,3,3,0,0,,,0
+yolo_dataset/images/test/test_PFE_00752.jpg,PFE,2020-02-10,dark,7,8,0,1,,Morning Star,1
+yolo_dataset/images/test/test_UNH_00753.jpg,UNH,2020-02-10,light,5,4,2,1,Hammer;Hammer,Doji,3
+yolo_dataset/images/test/test_ABT_00754.jpg,ABT,2020-02-10,dark,6,7,1,2,Marubozu,Doji;Bearish Engulfing,3
+yolo_dataset/images/test/test_CAT_00755.jpg,CAT,2020-02-10,light,3,1,2,0,Morning Star;Morning Star,,2
+yolo_dataset/images/test/test_MSFT_00756.jpg,MSFT,2020-02-14,light,4,9,1,6,Marubozu,Doji;Doji;Bearish Engulfing;Bearish Engulfing;Doji;Doji,7
+yolo_dataset/images/test/test_NVDA_00757.jpg,NVDA,2020-02-14,light,5,8,0,3,,Doji;Morning Star;Doji,3
+yolo_dataset/images/test/test_INTC_00758.jpg,INTC,2020-02-14,dark,4,5,2,3,Marubozu;Bearish Engulfing,Doji;Marubozu;Evening Star,5
+yolo_dataset/images/test/test_CSCO_00759.jpg,CSCO,2020-02-14,dark,6,8,1,3,Evening Star,Marubozu;Bearish Engulfing;Doji,4
+yolo_dataset/images/test/test_BAC_00760.jpg,BAC,2020-02-14,dark,12,9,4,1,Marubozu;Shooting Star;Evening Star;Evening Star,Doji,5
+yolo_dataset/images/test/test_GS_00761.jpg,GS,2020-02-14,dark,5,6,0,1,,Morning Star,1
+yolo_dataset/images/test/test_MS_00762.jpg,MS,2020-02-14,blue-white,8,13,1,6,Bearish Engulfing,Marubozu;Doji;Bearish Engulfing;Doji;Doji;Marubozu,7
+yolo_dataset/images/test/test_WFC_00763.jpg,WFC,2020-02-14,light,3,4,0,1,,Doji,1
+yolo_dataset/images/test/test_PFE_00764.jpg,PFE,2020-02-14,light,6,7,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_UNH_00765.jpg,UNH,2020-02-14,dark,5,4,2,1,Hammer;Hammer,Marubozu,3
+yolo_dataset/images/test/test_ABT_00766.jpg,ABT,2020-02-14,dark,6,7,1,2,Marubozu,Doji;Bearish Engulfing,3
+yolo_dataset/images/test/test_CAT_00767.jpg,CAT,2020-02-14,dark,3,3,1,1,Morning Star,Marubozu,2
+yolo_dataset/images/test/test_MSFT_00768.jpg,MSFT,2020-02-21,blue-white,3,7,1,5,Marubozu,Hammer;Doji;Morning Star;Bearish Engulfing;Marubozu,6
+yolo_dataset/images/test/test_NVDA_00769.jpg,NVDA,2020-02-21,blue-white,6,9,1,4,Doji,Marubozu;Marubozu;Morning Star;Evening Star,5
+yolo_dataset/images/test/test_INTC_00770.jpg,INTC,2020-02-21,light,4,6,1,3,Bearish Engulfing,Doji;Morning Star;Marubozu,4
+yolo_dataset/images/test/test_CSCO_00771.jpg,CSCO,2020-02-21,blue-white,7,7,2,2,Marubozu;Evening Star,Doji;Bearish Engulfing,4
+yolo_dataset/images/test/test_BAC_00772.jpg,BAC,2020-02-21,light,12,10,3,1,Shooting Star;Evening Star;Morning Star,Doji,4
+yolo_dataset/images/test/test_GS_00773.jpg,GS,2020-02-21,dark,6,5,1,0,Morning Star,,1
+yolo_dataset/images/test/test_MS_00774.jpg,MS,2020-02-21,blue-white,9,11,2,4,Bearish Engulfing;Evening Star,Marubozu;Morning Star;Evening Star;Doji,6
+yolo_dataset/images/test/test_WFC_00775.jpg,WFC,2020-02-21,dark,4,4,0,0,,,0
+yolo_dataset/images/test/test_PFE_00776.jpg,PFE,2020-02-21,light,6,10,0,4,,Marubozu;Doji;Morning Star;Evening Star,4
+yolo_dataset/images/test/test_UNH_00777.jpg,UNH,2020-02-21,light,5,3,2,0,Hammer;Hammer,,2
+yolo_dataset/images/test/test_ABT_00778.jpg,ABT,2020-02-21,dark,4,4,1,1,Marubozu,Bearish Engulfing,2
+yolo_dataset/images/test/test_CAT_00779.jpg,CAT,2020-02-21,light,3,3,1,1,Morning Star,Morning Star,2
+yolo_dataset/images/test/test_MSFT_00780.jpg,MSFT,2020-02-27,dark,4,7,1,4,Marubozu,Doji;Bearish Engulfing;Marubozu;Marubozu,5
+yolo_dataset/images/test/test_NVDA_00781.jpg,NVDA,2020-02-27,dark,6,9,0,3,,Marubozu;Marubozu;Doji,3
+yolo_dataset/images/test/test_INTC_00782.jpg,INTC,2020-02-27,dark,3,3,1,1,Bearish Engulfing,Doji,2
+yolo_dataset/images/test/test_CSCO_00783.jpg,CSCO,2020-02-27,light,6,10,0,4,,Bearish Engulfing;Doji;Marubozu;Hammer,4
+yolo_dataset/images/test/test_BAC_00784.jpg,BAC,2020-02-27,blue-white,9,7,3,1,Marubozu;Shooting Star;Morning Star,Doji,4
+yolo_dataset/images/test/test_GS_00785.jpg,GS,2020-02-27,dark,4,6,0,2,,Evening Star;Morning Star,2
+yolo_dataset/images/test/test_MS_00786.jpg,MS,2020-02-27,blue-white,9,12,2,5,Doji;Bearish Engulfing,Bearish Engulfing;Marubozu;Doji;Marubozu;Morning Star,7
+yolo_dataset/images/test/test_WFC_00787.jpg,WFC,2020-02-27,blue-white,4,4,1,1,Morning Star,Hammer,2
+yolo_dataset/images/test/test_PFE_00788.jpg,PFE,2020-02-27,dark,7,9,0,2,,Marubozu;Morning Star,2
+yolo_dataset/images/test/test_UNH_00789.jpg,UNH,2020-02-27,dark,4,3,2,1,Hammer;Hammer,Bullish Engulfing,3
+yolo_dataset/images/test/test_ABT_00790.jpg,ABT,2020-02-27,light,3,4,1,2,Marubozu,Bearish Engulfing;Doji,3
+yolo_dataset/images/test/test_CAT_00791.jpg,CAT,2020-02-27,dark,4,4,2,2,Morning Star;Evening Star,Morning Star;Doji,4
+yolo_dataset/images/test/test_MSFT_00792.jpg,MSFT,2020-03-04,light,6,9,1,4,Marubozu,Morning Star;Marubozu;Marubozu;Bearish Engulfing,5
+yolo_dataset/images/test/test_NVDA_00793.jpg,NVDA,2020-03-04,dark,7,7,1,1,Evening Star,Marubozu,2
+yolo_dataset/images/test/test_INTC_00794.jpg,INTC,2020-03-04,blue-white,3,6,1,4,Bearish Engulfing,Doji;Marubozu;Morning Star;Evening Star,5
+yolo_dataset/images/test/test_CSCO_00795.jpg,CSCO,2020-03-04,light,6,8,0,2,,Bearish Engulfing;Marubozu,2
+yolo_dataset/images/test/test_BAC_00796.jpg,BAC,2020-03-04,dark,9,8,3,2,Doji;Shooting Star;Evening Star,Evening Star;Hammer,5
+yolo_dataset/images/test/test_GS_00797.jpg,GS,2020-03-04,dark,5,1,4,0,Doji;Morning Star;Evening Star;Morning Star,,4
+yolo_dataset/images/test/test_MS_00798.jpg,MS,2020-03-04,blue-white,7,7,1,1,Doji,Marubozu,2
+yolo_dataset/images/test/test_WFC_00799.jpg,WFC,2020-03-04,dark,5,5,2,2,Bullish Engulfing;Morning Star,Bullish Engulfing;Doji,4
+yolo_dataset/images/test/test_PFE_00800.jpg,PFE,2020-03-04,dark,7,8,1,2,Shooting Star,Marubozu;Morning Star,3
+yolo_dataset/images/test/test_UNH_00801.jpg,UNH,2020-03-04,light,4,6,2,4,Hammer;Bearish Engulfing,Doji;Doji;Evening Star;Evening Star,6
+yolo_dataset/images/test/test_ABT_00802.jpg,ABT,2020-03-04,light,5,6,1,2,Marubozu,Marubozu;Marubozu,3
+yolo_dataset/images/test/test_CAT_00803.jpg,CAT,2020-03-04,dark,4,4,3,3,Doji;Morning Star;Evening Star,Morning Star;Bearish Engulfing;Marubozu,6
+yolo_dataset/images/test/test_MSFT_00804.jpg,MSFT,2020-03-10,blue-white,8,9,1,2,Marubozu,Morning Star;Marubozu,3
+yolo_dataset/images/test/test_NVDA_00805.jpg,NVDA,2020-03-10,dark,7,8,1,2,Evening Star,Marubozu;Marubozu,3
+yolo_dataset/images/test/test_INTC_00806.jpg,INTC,2020-03-10,light,3,6,0,3,,Doji;Morning Star;Evening Star,3
+yolo_dataset/images/test/test_CSCO_00807.jpg,CSCO,2020-03-10,blue-white,5,6,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_BAC_00808.jpg,BAC,2020-03-10,light,8,6,3,1,Shooting Star;Morning Star;Morning Star,Marubozu,4
+yolo_dataset/images/test/test_GS_00809.jpg,GS,2020-03-10,dark,6,5,3,2,Morning Star;Evening Star;Morning Star,Hammer;Doji,5
+yolo_dataset/images/test/test_MS_00810.jpg,MS,2020-03-10,blue-white,7,6,3,2,Doji;Doji;Evening Star,Doji;Doji,5
+yolo_dataset/images/test/test_WFC_00811.jpg,WFC,2020-03-10,blue-white,6,5,3,2,Hammer;Bullish Engulfing;Bullish Engulfing,Bullish Engulfing;Doji,5
+yolo_dataset/images/test/test_PFE_00812.jpg,PFE,2020-03-10,dark,7,9,0,2,,Marubozu;Bearish Engulfing,2
+yolo_dataset/images/test/test_UNH_00813.jpg,UNH,2020-03-10,blue-white,4,4,0,0,,,0
+yolo_dataset/images/test/test_ABT_00814.jpg,ABT,2020-03-10,blue-white,8,9,2,3,Marubozu;Hammer,Marubozu;Marubozu;Bullish Engulfing,5
+yolo_dataset/images/test/test_CAT_00815.jpg,CAT,2020-03-10,blue-white,6,3,4,1,Doji;Marubozu;Hammer;Morning Star,Morning Star,5
+yolo_dataset/images/test/test_MSFT_00816.jpg,MSFT,2020-03-16,light,8,9,2,3,Marubozu;Shooting Star,Morning Star;Marubozu;Morning Star,5
+yolo_dataset/images/test/test_NVDA_00817.jpg,NVDA,2020-03-16,dark,7,10,0,3,,Evening Star;Marubozu;Marubozu,3
+yolo_dataset/images/test/test_INTC_00818.jpg,INTC,2020-03-16,blue-white,3,6,0,3,,Evening Star;Doji;Marubozu,3
+yolo_dataset/images/test/test_CSCO_00819.jpg,CSCO,2020-03-16,dark,4,3,2,1,Evening Star;Evening Star,Doji,3
+yolo_dataset/images/test/test_BAC_00820.jpg,BAC,2020-03-16,light,6,5,3,2,Doji;Shooting Star;Evening Star,Doji;Doji,5
+yolo_dataset/images/test/test_GS_00821.jpg,GS,2020-03-16,light,7,5,4,2,Doji;Shooting Star;Morning Star;Evening Star,Hammer;Doji,6
+yolo_dataset/images/test/test_MS_00822.jpg,MS,2020-03-16,dark,6,6,3,3,Doji;Evening Star;Evening Star,Bearish Engulfing;Doji;Doji,6
+yolo_dataset/images/test/test_WFC_00823.jpg,WFC,2020-03-16,light,6,5,3,2,Hammer;Bullish Engulfing;Evening Star,Morning Star;Bullish Engulfing,5
+yolo_dataset/images/test/test_PFE_00824.jpg,PFE,2020-03-16,blue-white,6,6,1,1,Shooting Star,Bullish Engulfing,2
+yolo_dataset/images/test/test_UNH_00825.jpg,UNH,2020-03-16,light,3,5,0,2,,Hammer;Evening Star,2
+yolo_dataset/images/test/test_ABT_00826.jpg,ABT,2020-03-16,blue-white,8,7,2,1,Marubozu;Hammer,Doji,3
+yolo_dataset/images/test/test_CAT_00827.jpg,CAT,2020-03-16,dark,6,8,1,3,Doji,Hammer;Morning Star;Hammer,4
+yolo_dataset/images/test/test_MSFT_00828.jpg,MSFT,2020-03-20,light,9,11,2,4,Shooting Star;Evening Star,Morning Star;Marubozu;Evening Star;Evening Star,6
+yolo_dataset/images/test/test_NVDA_00829.jpg,NVDA,2020-03-20,light,8,10,0,2,,Marubozu;Marubozu,2
+yolo_dataset/images/test/test_INTC_00830.jpg,INTC,2020-03-20,blue-white,3,4,2,3,Evening Star;Evening Star,Doji;Hammer;Evening Star,5
+yolo_dataset/images/test/test_CSCO_00831.jpg,CSCO,2020-03-20,light,3,6,0,3,,Doji;Hammer;Hammer,3
+yolo_dataset/images/test/test_BAC_00832.jpg,BAC,2020-03-20,light,6,6,2,2,Marubozu;Evening Star,Doji;Doji,4
+yolo_dataset/images/test/test_GS_00833.jpg,GS,2020-03-20,light,9,3,7,1,Doji;Doji;Doji;Shooting Star;Doji;Morning Star;Evening Star,Hammer,8
+yolo_dataset/images/test/test_MS_00834.jpg,MS,2020-03-20,dark,5,3,3,1,Doji;Doji;Evening Star,Doji,4
+yolo_dataset/images/test/test_WFC_00835.jpg,WFC,2020-03-20,dark,7,4,3,0,Hammer;Bullish Engulfing;Evening Star,,3
+yolo_dataset/images/test/test_PFE_00836.jpg,PFE,2020-03-20,blue-white,6,4,2,0,Shooting Star;Bearish Engulfing,,2
+yolo_dataset/images/test/test_UNH_00837.jpg,UNH,2020-03-20,dark,3,4,0,1,,Marubozu,1
+yolo_dataset/images/test/test_ABT_00838.jpg,ABT,2020-03-20,dark,7,8,1,2,Marubozu,Marubozu;Bearish Engulfing,3
+yolo_dataset/images/test/test_CAT_00839.jpg,CAT,2020-03-20,dark,7,9,1,3,Evening Star,Hammer;Morning Star;Hammer,4
+yolo_dataset/images/test/test_MSFT_00840.jpg,MSFT,2020-03-26,blue-white,10,10,2,2,Shooting Star;Evening Star,Marubozu;Morning Star,4
+yolo_dataset/images/test/test_NVDA_00841.jpg,NVDA,2020-03-26,dark,6,7,0,1,,Marubozu,1
+yolo_dataset/images/test/test_INTC_00842.jpg,INTC,2020-03-26,dark,2,6,0,4,,Morning Star;Bullish Engulfing;Marubozu;Doji,4
+yolo_dataset/images/test/test_CSCO_00843.jpg,CSCO,2020-03-26,dark,2,4,0,2,,Marubozu;Doji,2
+yolo_dataset/images/test/test_BAC_00844.jpg,BAC,2020-03-26,dark,5,5,2,2,Marubozu;Bearish Engulfing,Doji;Doji,4
+yolo_dataset/images/test/test_GS_00845.jpg,GS,2020-03-26,blue-white,8,10,1,3,Shooting Star,Bullish Engulfing;Hammer;Doji,4
+yolo_dataset/images/test/test_MS_00846.jpg,MS,2020-03-26,dark,3,3,1,1,Doji,Doji,2
+yolo_dataset/images/test/test_WFC_00847.jpg,WFC,2020-03-26,blue-white,7,7,2,2,Hammer;Bullish Engulfing,Morning Star;Bullish Engulfing,4
+yolo_dataset/images/test/test_PFE_00848.jpg,PFE,2020-03-26,blue-white,7,9,1,3,Shooting Star,Morning Star;Marubozu;Bullish Engulfing,4
+yolo_dataset/images/test/test_UNH_00849.jpg,UNH,2020-03-26,blue-white,2,2,0,0,,,0
+yolo_dataset/images/test/test_ABT_00850.jpg,ABT,2020-03-26,blue-white,7,8,0,1,,Doji,1
+yolo_dataset/images/test/test_CAT_00851.jpg,CAT,2020-03-26,dark,6,7,1,2,Doji,Hammer;Morning Star,3
+yolo_dataset/images/test/test_MSFT_00852.jpg,MSFT,2020-04-01,dark,11,10,2,1,Shooting Star;Evening Star,Morning Star,3
+yolo_dataset/images/test/test_NVDA_00853.jpg,NVDA,2020-04-01,dark,6,9,0,3,,Shooting Star;Evening Star;Morning Star,3
+yolo_dataset/images/test/test_INTC_00854.jpg,INTC,2020-04-01,blue-white,2,6,1,5,Evening Star,Morning Star;Doji;Hammer;Bullish Engulfing;Evening Star,6
+yolo_dataset/images/test/test_CSCO_00855.jpg,CSCO,2020-04-01,light,1,4,0,3,,Doji;Marubozu;Doji,3
+yolo_dataset/images/test/test_BAC_00856.jpg,BAC,2020-04-01,blue-white,6,7,1,2,Bearish Engulfing,Doji;Doji,3
+yolo_dataset/images/test/test_GS_00857.jpg,GS,2020-04-01,light,8,9,3,4,Doji;Shooting Star;Marubozu,Hammer;Doji;Doji;Doji,7
+yolo_dataset/images/test/test_MS_00858.jpg,MS,2020-04-01,dark,3,6,0,3,,Doji;Doji;Doji,3
+yolo_dataset/images/test/test_WFC_00859.jpg,WFC,2020-04-01,dark,8,5,3,0,Hammer;Bearish Engulfing;Bearish Engulfing,,3
+yolo_dataset/images/test/test_PFE_00860.jpg,PFE,2020-04-01,light,8,8,1,1,Shooting Star,Morning Star,2
+yolo_dataset/images/test/test_UNH_00861.jpg,UNH,2020-04-01,blue-white,3,5,0,2,,Doji;Doji,2
+yolo_dataset/images/test/test_ABT_00862.jpg,ABT,2020-04-01,light,7,8,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_CAT_00863.jpg,CAT,2020-04-01,blue-white,5,5,2,2,Evening Star;Morning Star,Hammer;Doji,4
+yolo_dataset/images/test/test_MSFT_00864.jpg,MSFT,2020-04-07,blue-white,11,14,2,5,Shooting Star;Evening Star,Morning Star;Bullish Engulfing;Bullish Engulfing;Morning Star;Doji,7
+yolo_dataset/images/test/test_NVDA_00865.jpg,NVDA,2020-04-07,light,6,7,0,1,,Morning Star,1
+yolo_dataset/images/test/test_INTC_00866.jpg,INTC,2020-04-07,light,3,7,0,4,,Morning Star;Marubozu;Bullish Engulfing;Hammer,4
+yolo_dataset/images/test/test_CSCO_00867.jpg,CSCO,2020-04-07,light,3,6,0,3,,Marubozu;Doji;Bullish Engulfing,3
+yolo_dataset/images/test/test_BAC_00868.jpg,BAC,2020-04-07,light,7,7,2,2,Marubozu;Bearish Engulfing,Doji;Doji,4
+yolo_dataset/images/test/test_GS_00869.jpg,GS,2020-04-07,light,9,12,4,7,Shooting Star;Doji;Marubozu;Morning Star,Doji;Hammer;Doji;Bullish Engulfing;Bearish Engulfing;Bullish Engulfing;Doji,11
+yolo_dataset/images/test/test_MS_00870.jpg,MS,2020-04-07,dark,6,8,1,3,Marubozu,Doji;Doji;Doji,4
+yolo_dataset/images/test/test_WFC_00871.jpg,WFC,2020-04-07,dark,10,8,4,2,Hammer;Marubozu;Bearish Engulfing;Bearish Engulfing,Bullish Engulfing;Marubozu,6
+yolo_dataset/images/test/test_PFE_00872.jpg,PFE,2020-04-07,light,8,9,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_UNH_00873.jpg,UNH,2020-04-07,light,4,5,1,2,Bullish Engulfing,Doji;Doji,3
+yolo_dataset/images/test/test_ABT_00874.jpg,ABT,2020-04-07,light,7,10,0,3,,Bearish Engulfing;Marubozu;Marubozu,3
+yolo_dataset/images/test/test_CAT_00875.jpg,CAT,2020-04-07,blue-white,4,8,0,4,,Hammer;Doji;Hammer;Doji,4
+yolo_dataset/images/test/test_MSFT_00876.jpg,MSFT,2020-04-14,dark,10,11,3,4,Shooting Star;Evening Star;Evening Star,Bullish Engulfing;Morning Star;Morning Star;Doji,7
+yolo_dataset/images/test/test_NVDA_00877.jpg,NVDA,2020-04-14,blue-white,5,6,1,2,Bearish Engulfing,Evening Star;Bullish Engulfing,3
+yolo_dataset/images/test/test_INTC_00878.jpg,INTC,2020-04-14,blue-white,5,7,1,3,Evening Star,Morning Star;Bearish Engulfing;Hammer,4
+yolo_dataset/images/test/test_CSCO_00879.jpg,CSCO,2020-04-14,light,4,7,1,4,Morning Star,Doji;Marubozu;Bullish Engulfing;Bearish Engulfing,5
+yolo_dataset/images/test/test_BAC_00880.jpg,BAC,2020-04-14,dark,7,11,0,4,,Doji;Evening Star;Doji;Bearish Engulfing,4
+yolo_dataset/images/test/test_GS_00881.jpg,GS,2020-04-14,dark,8,11,1,4,Shooting Star,Bullish Engulfing;Doji;Hammer;Bearish Engulfing,5
+yolo_dataset/images/test/test_MS_00882.jpg,MS,2020-04-14,dark,6,9,1,4,Marubozu,Doji;Evening Star;Doji;Bearish Engulfing,5
+yolo_dataset/images/test/test_WFC_00883.jpg,WFC,2020-04-14,dark,10,8,3,1,Marubozu;Marubozu;Bullish Engulfing,Bearish Engulfing,4
+yolo_dataset/images/test/test_PFE_00884.jpg,PFE,2020-04-14,blue-white,6,9,1,4,Doji,Marubozu;Morning Star;Bullish Engulfing;Morning Star,5
+yolo_dataset/images/test/test_UNH_00885.jpg,UNH,2020-04-14,blue-white,5,8,0,3,,Doji;Evening Star;Marubozu,3
+yolo_dataset/images/test/test_ABT_00886.jpg,ABT,2020-04-14,dark,5,5,1,1,Marubozu,Marubozu,2
+yolo_dataset/images/test/test_CAT_00887.jpg,CAT,2020-04-14,light,5,9,0,4,,Hammer;Doji;Doji;Doji,4
+yolo_dataset/images/test/test_MSFT_00888.jpg,MSFT,2020-04-20,blue-white,7,11,2,6,Shooting Star;Evening Star,Bullish Engulfing;Evening Star;Hammer;Doji;Shooting Star;Doji,8
+yolo_dataset/images/test/test_NVDA_00889.jpg,NVDA,2020-04-20,dark,4,4,1,1,Bearish Engulfing,Shooting Star,2
+yolo_dataset/images/test/test_INTC_00890.jpg,INTC,2020-04-20,blue-white,5,5,2,2,Marubozu;Evening Star,Morning Star;Marubozu,4
+yolo_dataset/images/test/test_CSCO_00891.jpg,CSCO,2020-04-20,light,4,6,2,4,Marubozu;Morning Star,Doji;Marubozu;Bearish Engulfing;Morning Star,6
+yolo_dataset/images/test/test_BAC_00892.jpg,BAC,2020-04-20,light,8,12,0,4,,Doji;Bearish Engulfing;Doji;Morning Star,4
+yolo_dataset/images/test/test_GS_00893.jpg,GS,2020-04-20,light,12,17,2,7,Shooting Star;Doji,Bearish Engulfing;Bullish Engulfing;Doji;Doji;Marubozu;Doji;Marubozu,9
+yolo_dataset/images/test/test_MS_00894.jpg,MS,2020-04-20,light,6,11,1,6,Marubozu,Doji;Doji;Doji;Evening Star;Evening Star;Morning Star,7
+yolo_dataset/images/test/test_WFC_00895.jpg,WFC,2020-04-20,light,9,10,0,1,,Hammer,1
+yolo_dataset/images/test/test_PFE_00896.jpg,PFE,2020-04-20,blue-white,7,12,0,5,,Marubozu;Bullish Engulfing;Evening Star;Doji;Morning Star,5
+yolo_dataset/images/test/test_UNH_00897.jpg,UNH,2020-04-20,light,4,4,2,2,Doji;Bullish Engulfing,Doji;Marubozu,4
+yolo_dataset/images/test/test_ABT_00898.jpg,ABT,2020-04-20,light,2,6,1,5,Marubozu,Morning Star;Bullish Engulfing;Bearish Engulfing;Marubozu;Hammer,6
+yolo_dataset/images/test/test_CAT_00899.jpg,CAT,2020-04-20,dark,6,9,1,4,Hammer,Doji;Hammer;Shooting Star;Doji,5
+yolo_dataset/images/test/test_MSFT_00900.jpg,MSFT,2020-04-24,dark,4,6,0,2,,Bullish Engulfing;Shooting Star,2
+yolo_dataset/images/test/test_NVDA_00901.jpg,NVDA,2020-04-24,dark,5,4,2,1,Bearish Engulfing;Bullish Engulfing,Shooting Star,3
+yolo_dataset/images/test/test_INTC_00902.jpg,INTC,2020-04-24,light,5,5,2,2,Marubozu;Marubozu,Morning Star;Bullish Engulfing,4
+yolo_dataset/images/test/test_CSCO_00903.jpg,CSCO,2020-04-24,blue-white,4,8,1,5,Morning Star,Doji;Hammer;Morning Star;Bearish Engulfing;Bearish Engulfing,6
+yolo_dataset/images/test/test_BAC_00904.jpg,BAC,2020-04-24,blue-white,7,8,1,2,Marubozu,Evening Star;Doji,3
+yolo_dataset/images/test/test_GS_00905.jpg,GS,2020-04-24,blue-white,13,16,2,5,Doji;Shooting Star,Bullish Engulfing;Doji;Doji;Doji;Morning Star,7
+yolo_dataset/images/test/test_MS_00906.jpg,MS,2020-04-24,dark,8,8,2,2,Marubozu;Marubozu,Doji;Morning Star,4
+yolo_dataset/images/test/test_WFC_00907.jpg,WFC,2020-04-24,light,10,10,2,2,Marubozu;Morning Star,Evening Star;Morning Star,4
+yolo_dataset/images/test/test_PFE_00908.jpg,PFE,2020-04-24,dark,6,9,1,4,Doji,Doji;Marubozu;Evening Star;Marubozu,5
+yolo_dataset/images/test/test_UNH_00909.jpg,UNH,2020-04-24,light,3,7,0,4,,Doji;Bullish Engulfing;Marubozu;Doji,4
+yolo_dataset/images/test/test_ABT_00910.jpg,ABT,2020-04-24,dark,2,2,2,2,Marubozu;Hammer,Marubozu;Bearish Engulfing,4
+yolo_dataset/images/test/test_CAT_00911.jpg,CAT,2020-04-24,blue-white,6,10,0,4,,Doji;Doji;Bearish Engulfing;Doji,4
+yolo_dataset/images/test/test_MSFT_00912.jpg,MSFT,2020-04-30,dark,4,6,0,2,,Bullish Engulfing;Marubozu,2
+yolo_dataset/images/test/test_NVDA_00913.jpg,NVDA,2020-04-30,dark,5,5,2,2,Bullish Engulfing;Evening Star,Marubozu;Shooting Star,4
+yolo_dataset/images/test/test_INTC_00914.jpg,INTC,2020-04-30,dark,5,2,3,0,Marubozu;Doji;Marubozu,,3
+yolo_dataset/images/test/test_CSCO_00915.jpg,CSCO,2020-04-30,dark,5,8,1,4,Morning Star,Bearish Engulfing;Marubozu;Hammer;Hammer,5
+yolo_dataset/images/test/test_BAC_00916.jpg,BAC,2020-04-30,blue-white,7,9,0,2,,Bearish Engulfing;Evening Star,2
+yolo_dataset/images/test/test_GS_00917.jpg,GS,2020-04-30,light,13,13,2,2,Marubozu;Shooting Star,Doji;Bearish Engulfing,4
+yolo_dataset/images/test/test_MS_00918.jpg,MS,2020-04-30,dark,9,7,3,1,Marubozu;Doji;Doji,Bearish Engulfing,4
+yolo_dataset/images/test/test_WFC_00919.jpg,WFC,2020-04-30,dark,9,11,1,3,Marubozu,Doji;Evening Star;Evening Star,4
+yolo_dataset/images/test/test_PFE_00920.jpg,PFE,2020-04-30,dark,5,7,0,2,,Marubozu;Morning Star,2
+yolo_dataset/images/test/test_UNH_00921.jpg,UNH,2020-04-30,blue-white,6,8,2,4,Bullish Engulfing;Bullish Engulfing,Doji;Doji;Doji;Marubozu,6
+yolo_dataset/images/test/test_ABT_00922.jpg,ABT,2020-04-30,light,3,1,2,0,Marubozu;Hammer,,2
+yolo_dataset/images/test/test_CAT_00923.jpg,CAT,2020-04-30,dark,5,6,1,2,Hammer,Doji;Doji,3
+yolo_dataset/images/test/test_MSFT_00924.jpg,MSFT,2020-05-06,blue-white,4,5,1,2,Evening Star,Bullish Engulfing;Shooting Star,3
+yolo_dataset/images/test/test_NVDA_00925.jpg,NVDA,2020-05-06,dark,6,6,2,2,Bearish Engulfing;Bullish Engulfing,Marubozu;Shooting Star,4
+yolo_dataset/images/test/test_INTC_00926.jpg,INTC,2020-05-06,light,6,8,0,2,,Doji;Marubozu,2
+yolo_dataset/images/test/test_CSCO_00927.jpg,CSCO,2020-05-06,dark,5,5,2,2,Morning Star;Morning Star,Bearish Engulfing;Morning Star,4
+yolo_dataset/images/test/test_BAC_00928.jpg,BAC,2020-05-06,dark,7,9,1,3,Marubozu,Bearish Engulfing;Evening Star;Doji,4
+yolo_dataset/images/test/test_GS_00929.jpg,GS,2020-05-06,dark,11,14,0,3,,Doji;Bearish Engulfing;Hammer,3
+yolo_dataset/images/test/test_MS_00930.jpg,MS,2020-05-06,blue-white,11,11,2,2,Marubozu;Marubozu,Bearish Engulfing;Doji,4
+yolo_dataset/images/test/test_WFC_00931.jpg,WFC,2020-05-06,blue-white,9,9,2,2,Doji;Morning Star,Doji;Doji,4
+yolo_dataset/images/test/test_PFE_00932.jpg,PFE,2020-05-06,dark,4,7,0,3,,Marubozu;Marubozu;Doji,3
+yolo_dataset/images/test/test_UNH_00933.jpg,UNH,2020-05-06,light,7,9,1,3,Bullish Engulfing,Doji;Morning Star;Marubozu,4
+yolo_dataset/images/test/test_ABT_00934.jpg,ABT,2020-05-06,light,5,5,1,1,Hammer,Marubozu,2
+yolo_dataset/images/test/test_CAT_00935.jpg,CAT,2020-05-06,blue-white,5,7,1,3,Hammer,Doji;Morning Star;Doji,4
+yolo_dataset/images/test/test_MSFT_00936.jpg,MSFT,2020-05-12,blue-white,5,6,0,1,,Marubozu,1
+yolo_dataset/images/test/test_NVDA_00937.jpg,NVDA,2020-05-12,blue-white,6,6,2,2,Bearish Engulfing;Bullish Engulfing,Shooting Star;Morning Star,4
+yolo_dataset/images/test/test_INTC_00938.jpg,INTC,2020-05-12,dark,8,9,1,2,Marubozu,Bearish Engulfing;Evening Star,3
+yolo_dataset/images/test/test_CSCO_00939.jpg,CSCO,2020-05-12,light,4,4,1,1,Morning Star,Bearish Engulfing,2
+yolo_dataset/images/test/test_BAC_00940.jpg,BAC,2020-05-12,dark,8,9,2,3,Marubozu;Marubozu,Bearish Engulfing;Doji;Evening Star,5
+yolo_dataset/images/test/test_GS_00941.jpg,GS,2020-05-12,light,12,15,0,3,,Hammer;Bearish Engulfing;Doji,3
+yolo_dataset/images/test/test_MS_00942.jpg,MS,2020-05-12,dark,11,13,1,3,Marubozu,Doji;Marubozu;Bearish Engulfing,4
+yolo_dataset/images/test/test_WFC_00943.jpg,WFC,2020-05-12,dark,6,6,2,2,Marubozu;Doji,Doji;Evening Star,4
+yolo_dataset/images/test/test_PFE_00944.jpg,PFE,2020-05-12,blue-white,5,9,0,4,,Marubozu;Doji;Marubozu;Marubozu,4
+yolo_dataset/images/test/test_UNH_00945.jpg,UNH,2020-05-12,light,6,8,0,2,,Doji;Doji,2
+yolo_dataset/images/test/test_ABT_00946.jpg,ABT,2020-05-12,light,5,8,0,3,,Marubozu;Marubozu;Doji,3
+yolo_dataset/images/test/test_CAT_00947.jpg,CAT,2020-05-12,dark,6,8,1,3,Hammer,Doji;Evening Star;Marubozu,4
+yolo_dataset/images/test/test_MSFT_00948.jpg,MSFT,2020-05-18,blue-white,4,4,1,1,Evening Star,Marubozu,2
+yolo_dataset/images/test/test_NVDA_00949.jpg,NVDA,2020-05-18,dark,7,9,1,3,Bullish Engulfing,Marubozu;Shooting Star;Morning Star,4
+yolo_dataset/images/test/test_INTC_00950.jpg,INTC,2020-05-18,dark,8,9,2,3,Marubozu;Marubozu,Shooting Star;Doji;Bullish Engulfing,5
+yolo_dataset/images/test/test_CSCO_00951.jpg,CSCO,2020-05-18,blue-white,4,3,2,1,Marubozu;Morning Star,Bearish Engulfing,3
+yolo_dataset/images/test/test_BAC_00952.jpg,BAC,2020-05-18,dark,9,10,1,2,Marubozu,Doji;Evening Star,3
+yolo_dataset/images/test/test_GS_00953.jpg,GS,2020-05-18,dark,11,14,1,4,Shooting Star,Marubozu;Hammer;Doji;Bearish Engulfing,5
+yolo_dataset/images/test/test_MS_00954.jpg,MS,2020-05-18,dark,9,11,0,2,,Evening Star;Doji,2
+yolo_dataset/images/test/test_WFC_00955.jpg,WFC,2020-05-18,dark,6,6,1,1,Morning Star,Doji,2
+yolo_dataset/images/test/test_PFE_00956.jpg,PFE,2020-05-18,light,6,7,1,2,Doji,Marubozu;Marubozu,3
+yolo_dataset/images/test/test_UNH_00957.jpg,UNH,2020-05-18,light,8,10,2,4,Shooting Star;Bullish Engulfing,Morning Star;Doji;Doji;Bullish Engulfing,6
+yolo_dataset/images/test/test_ABT_00958.jpg,ABT,2020-05-18,light,5,6,0,1,,Marubozu,1
+yolo_dataset/images/test/test_CAT_00959.jpg,CAT,2020-05-18,dark,6,11,1,6,Hammer,Marubozu;Doji;Doji;Morning Star;Evening Star;Hammer,7
+yolo_dataset/images/test/test_MSFT_00960.jpg,MSFT,2020-05-22,dark,4,5,1,2,Evening Star,Marubozu;Marubozu,3
+yolo_dataset/images/test/test_NVDA_00961.jpg,NVDA,2020-05-22,dark,9,11,1,3,Bullish Engulfing,Shooting Star;Morning Star;Marubozu,4
+yolo_dataset/images/test/test_INTC_00962.jpg,INTC,2020-05-22,blue-white,8,9,1,2,Marubozu,Doji;Evening Star,3
+yolo_dataset/images/test/test_CSCO_00963.jpg,CSCO,2020-05-22,blue-white,3,5,0,2,,Morning Star;Hammer,2
+yolo_dataset/images/test/test_BAC_00964.jpg,BAC,2020-05-22,dark,10,12,1,3,Marubozu,Evening Star;Bearish Engulfing;Doji,4
+yolo_dataset/images/test/test_GS_00965.jpg,GS,2020-05-22,light,13,16,1,4,Shooting Star,Evening Star;Hammer;Doji;Doji,5
+yolo_dataset/images/test/test_MS_00966.jpg,MS,2020-05-22,blue-white,8,10,0,2,,Evening Star;Doji,2
+yolo_dataset/images/test/test_WFC_00967.jpg,WFC,2020-05-22,blue-white,7,9,1,3,Doji,Evening Star;Doji;Marubozu,4
+yolo_dataset/images/test/test_PFE_00968.jpg,PFE,2020-05-22,blue-white,6,7,0,1,,Shooting Star,1
+yolo_dataset/images/test/test_UNH_00969.jpg,UNH,2020-05-22,light,7,11,0,4,,Doji;Doji;Bullish Engulfing;Doji,4
+yolo_dataset/images/test/test_ABT_00970.jpg,ABT,2020-05-22,blue-white,6,10,1,5,Hammer,Marubozu;Bearish Engulfing;Bullish Engulfing;Bearish Engulfing;Hammer,6
+yolo_dataset/images/test/test_CAT_00971.jpg,CAT,2020-05-22,dark,6,10,1,5,Hammer,Marubozu;Evening Star;Hammer;Doji;Bearish Engulfing,6
+yolo_dataset/images/test/test_MSFT_00972.jpg,MSFT,2020-05-29,blue-white,5,8,1,4,Evening Star,Bearish Engulfing;Marubozu;Doji;Marubozu,5
+yolo_dataset/images/test/test_NVDA_00973.jpg,NVDA,2020-05-29,dark,12,14,1,3,Bullish Engulfing,Marubozu;Shooting Star;Marubozu,4
+yolo_dataset/images/test/test_INTC_00974.jpg,INTC,2020-05-29,light,7,9,1,3,Marubozu,Bearish Engulfing;Doji;Morning Star,4
+yolo_dataset/images/test/test_CSCO_00975.jpg,CSCO,2020-05-29,blue-white,3,4,0,1,,Morning Star,1
+yolo_dataset/images/test/test_BAC_00976.jpg,BAC,2020-05-29,dark,10,11,1,2,Marubozu,Bearish Engulfing;Shooting Star,3
+yolo_dataset/images/test/test_GS_00977.jpg,GS,2020-05-29,dark,12,16,1,5,Morning Star,Evening Star;Marubozu;Doji;Hammer;Doji,6
+yolo_dataset/images/test/test_MS_00978.jpg,MS,2020-05-29,light,10,13,0,3,,Marubozu;Evening Star;Doji,3
+yolo_dataset/images/test/test_WFC_00979.jpg,WFC,2020-05-29,dark,7,10,1,4,Doji,Evening Star;Doji;Doji;Doji,5
+yolo_dataset/images/test/test_PFE_00980.jpg,PFE,2020-05-29,blue-white,8,9,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_UNH_00981.jpg,UNH,2020-05-29,blue-white,8,9,0,1,,Doji,1
+yolo_dataset/images/test/test_ABT_00982.jpg,ABT,2020-05-29,blue-white,8,10,1,3,Hammer,Bearish Engulfing;Doji;Hammer,4
+yolo_dataset/images/test/test_CAT_00983.jpg,CAT,2020-05-29,light,3,6,0,3,,Marubozu;Hammer;Doji,3
+yolo_dataset/images/test/test_MSFT_00984.jpg,MSFT,2020-06-04,blue-white,6,7,1,2,Evening Star,Marubozu;Doji,3
+yolo_dataset/images/test/test_NVDA_00985.jpg,NVDA,2020-06-04,blue-white,10,15,0,5,,Marubozu;Doji;Marubozu;Bearish Engulfing;Morning Star,5
+yolo_dataset/images/test/test_INTC_00986.jpg,INTC,2020-06-04,blue-white,7,9,1,3,Marubozu,Doji;Hammer;Morning Star,4
+yolo_dataset/images/test/test_CSCO_00987.jpg,CSCO,2020-06-04,dark,4,4,0,0,,,0
+yolo_dataset/images/test/test_BAC_00988.jpg,BAC,2020-06-04,dark,7,10,1,4,Marubozu,Doji;Bearish Engulfing;Marubozu;Doji,5
+yolo_dataset/images/test/test_GS_00989.jpg,GS,2020-06-04,light,10,11,1,2,Morning Star,Hammer;Marubozu,3
+yolo_dataset/images/test/test_MS_00990.jpg,MS,2020-06-04,dark,9,12,0,3,,Marubozu;Doji;Evening Star,3
+yolo_dataset/images/test/test_WFC_00991.jpg,WFC,2020-06-04,dark,5,7,0,2,,Doji;Doji,2
+yolo_dataset/images/test/test_PFE_00992.jpg,PFE,2020-06-04,light,10,10,2,2,Marubozu;Evening Star,Bullish Engulfing;Morning Star,4
+yolo_dataset/images/test/test_UNH_00993.jpg,UNH,2020-06-04,blue-white,9,10,1,2,Shooting Star,Doji;Evening Star,3
+yolo_dataset/images/test/test_ABT_00994.jpg,ABT,2020-06-04,dark,10,12,1,3,Evening Star,Bearish Engulfing;Doji;Bearish Engulfing,4
+yolo_dataset/images/test/test_CAT_00995.jpg,CAT,2020-06-04,light,2,6,0,4,,Hammer;Marubozu;Doji;Marubozu,4
+yolo_dataset/images/test/test_MSFT_00996.jpg,MSFT,2020-06-10,dark,6,11,1,6,Hammer,Doji;Bearish Engulfing;Marubozu;Bullish Engulfing;Hammer;Marubozu,7
+yolo_dataset/images/test/test_NVDA_00997.jpg,NVDA,2020-06-10,dark,10,13,1,4,Morning Star,Marubozu;Marubozu;Doji;Marubozu,5
+yolo_dataset/images/test/test_INTC_00998.jpg,INTC,2020-06-10,light,7,9,0,2,,Hammer;Bearish Engulfing,2
+yolo_dataset/images/test/test_CSCO_00999.jpg,CSCO,2020-06-10,dark,6,6,0,0,,,0
+yolo_dataset/images/test/test_BAC_01000.jpg,BAC,2020-06-10,light,8,10,3,5,Marubozu;Marubozu;Morning Star,Bearish Engulfing;Marubozu;Doji;Marubozu;Doji,8
+yolo_dataset/images/test/test_GS_01001.jpg,GS,2020-06-10,light,9,15,1,7,Morning Star,Doji;Marubozu;Bullish Engulfing;Doji;Marubozu;Hammer;Marubozu,8
+yolo_dataset/images/test/test_MS_01002.jpg,MS,2020-06-10,blue-white,8,10,0,2,,Marubozu;Bullish Engulfing,2
+yolo_dataset/images/test/test_WFC_01003.jpg,WFC,2020-06-10,blue-white,7,9,2,4,Doji;Evening Star,Marubozu;Doji;Marubozu;Doji,6
+yolo_dataset/images/test/test_PFE_01004.jpg,PFE,2020-06-10,dark,11,12,2,3,Doji;Evening Star,Marubozu;Bullish Engulfing;Marubozu,5
+yolo_dataset/images/test/test_UNH_01005.jpg,UNH,2020-06-10,light,7,10,1,4,Shooting Star,Doji;Marubozu;Bullish Engulfing;Evening Star,5
+yolo_dataset/images/test/test_ABT_01006.jpg,ABT,2020-06-10,dark,11,10,1,0,Evening Star,,1
+yolo_dataset/images/test/test_CAT_01007.jpg,CAT,2020-06-10,blue-white,1,6,0,5,,Marubozu;Bearish Engulfing;Evening Star;Doji;Marubozu,5
+yolo_dataset/images/test/test_MSFT_01008.jpg,MSFT,2020-06-16,blue-white,5,7,1,3,Hammer,Bearish Engulfing;Hammer;Marubozu,4
+yolo_dataset/images/test/test_NVDA_01009.jpg,NVDA,2020-06-16,light,10,16,0,6,,Marubozu;Doji;Bearish Engulfing;Doji;Bullish Engulfing;Morning Star,6
+yolo_dataset/images/test/test_INTC_01010.jpg,INTC,2020-06-16,dark,7,11,0,4,,Bullish Engulfing;Bearish Engulfing;Morning Star;Evening Star,4
+yolo_dataset/images/test/test_CSCO_01011.jpg,CSCO,2020-06-16,blue-white,8,6,3,1,Bearish Engulfing;Morning Star;Morning Star,Morning Star,4
+yolo_dataset/images/test/test_BAC_01012.jpg,BAC,2020-06-16,blue-white,12,10,6,4,Marubozu;Marubozu;Hammer;Marubozu;Morning Star;Evening Star,Marubozu;Marubozu;Bearish Engulfing;Marubozu,10
+yolo_dataset/images/test/test_GS_01013.jpg,GS,2020-06-16,light,10,12,2,4,Doji;Morning Star,Doji;Marubozu;Bullish Engulfing;Marubozu,6
+yolo_dataset/images/test/test_MS_01014.jpg,MS,2020-06-16,dark,7,11,0,4,,Marubozu;Morning Star;Doji;Doji,4
+yolo_dataset/images/test/test_WFC_01015.jpg,WFC,2020-06-16,dark,10,14,0,4,,Doji;Doji;Marubozu;Marubozu,4
+yolo_dataset/images/test/test_PFE_01016.jpg,PFE,2020-06-16,light,13,10,4,1,Doji;Marubozu;Hammer;Evening Star,Bullish Engulfing,5
+yolo_dataset/images/test/test_UNH_01017.jpg,UNH,2020-06-16,blue-white,6,9,0,3,,Marubozu;Doji;Bullish Engulfing,3
+yolo_dataset/images/test/test_ABT_01018.jpg,ABT,2020-06-16,light,11,11,2,2,Marubozu;Evening Star,Marubozu;Bearish Engulfing,4
+yolo_dataset/images/test/test_CAT_01019.jpg,CAT,2020-06-16,dark,1,7,0,6,,Marubozu;Hammer;Marubozu;Marubozu;Doji;Bearish Engulfing,6
+yolo_dataset/images/test/test_MSFT_01020.jpg,MSFT,2020-06-22,light,3,9,0,6,,Hammer;Doji;Marubozu;Bullish Engulfing;Bearish Engulfing;Marubozu,6
+yolo_dataset/images/test/test_NVDA_01021.jpg,NVDA,2020-06-22,blue-white,11,12,2,3,Marubozu;Hammer,Bearish Engulfing;Bullish Engulfing;Doji,5
+yolo_dataset/images/test/test_INTC_01022.jpg,INTC,2020-06-22,blue-white,4,4,0,0,,,0
+yolo_dataset/images/test/test_CSCO_01023.jpg,CSCO,2020-06-22,blue-white,11,10,2,1,Marubozu;Morning Star,Morning Star,3
+yolo_dataset/images/test/test_BAC_01024.jpg,BAC,2020-06-22,dark,10,10,4,4,Marubozu;Hammer;Marubozu;Evening Star,Marubozu;Hammer;Bearish Engulfing;Marubozu,8
+yolo_dataset/images/test/test_GS_01025.jpg,GS,2020-06-22,blue-white,9,11,1,3,Morning Star,Marubozu;Bullish Engulfing;Doji,4
+yolo_dataset/images/test/test_MS_01026.jpg,MS,2020-06-22,dark,7,11,0,4,,Morning Star;Marubozu;Marubozu;Bullish Engulfing,4
+yolo_dataset/images/test/test_WFC_01027.jpg,WFC,2020-06-22,light,10,14,1,5,Doji,Doji;Marubozu;Doji;Marubozu;Doji,6
+yolo_dataset/images/test/test_PFE_01028.jpg,PFE,2020-06-22,blue-white,13,11,3,1,Marubozu;Hammer;Evening Star,Bullish Engulfing,4
+yolo_dataset/images/test/test_UNH_01029.jpg,UNH,2020-06-22,light,6,9,1,4,Shooting Star,Doji;Doji;Marubozu;Evening Star,5
+yolo_dataset/images/test/test_ABT_01030.jpg,ABT,2020-06-22,light,12,11,3,2,Marubozu;Bearish Engulfing;Evening Star,Evening Star;Morning Star,5
+yolo_dataset/images/test/test_CAT_01031.jpg,CAT,2020-06-22,light,1,7,0,6,,Bearish Engulfing;Bearish Engulfing;Marubozu;Evening Star;Marubozu;Marubozu,6
+yolo_dataset/images/test/test_MSFT_01032.jpg,MSFT,2020-06-26,blue-white,5,9,1,5,Evening Star,Bullish Engulfing;Hammer;Bearish Engulfing;Marubozu;Doji,6
+yolo_dataset/images/test/test_NVDA_01033.jpg,NVDA,2020-06-26,dark,11,11,1,1,Doji,Bullish Engulfing,2
+yolo_dataset/images/test/test_INTC_01034.jpg,INTC,2020-06-26,dark,3,4,0,1,,Hammer,1
+yolo_dataset/images/test/test_CSCO_01035.jpg,CSCO,2020-06-26,blue-white,11,8,3,0,Marubozu;Bearish Engulfing;Morning Star,,3
+yolo_dataset/images/test/test_BAC_01036.jpg,BAC,2020-06-26,light,9,14,2,7,Doji;Evening Star,Doji;Bearish Engulfing;Marubozu;Hammer;Marubozu;Evening Star;Morning Star,9
+yolo_dataset/images/test/test_GS_01037.jpg,GS,2020-06-26,blue-white,11,10,1,0,Morning Star,,1
+yolo_dataset/images/test/test_MS_01038.jpg,MS,2020-06-26,light,7,9,1,3,Bearish Engulfing,Bullish Engulfing;Doji;Morning Star,4
+yolo_dataset/images/test/test_WFC_01039.jpg,WFC,2020-06-26,light,11,15,2,6,Doji;Marubozu,Doji;Doji;Doji;Marubozu;Doji;Marubozu,8
+yolo_dataset/images/test/test_PFE_01040.jpg,PFE,2020-06-26,light,12,8,5,1,Marubozu;Hammer;Hammer;Bullish Engulfing;Evening Star,Doji,6
+yolo_dataset/images/test/test_UNH_01041.jpg,UNH,2020-06-26,light,4,9,0,5,,Evening Star;Doji;Morning Star;Shooting Star;Evening Star,5
+yolo_dataset/images/test/test_ABT_01042.jpg,ABT,2020-06-26,blue-white,12,15,3,6,Marubozu;Bearish Engulfing;Evening Star,Evening Star;Doji;Evening Star;Marubozu;Marubozu;Morning Star,9
+yolo_dataset/images/test/test_CAT_01043.jpg,CAT,2020-06-26,light,0,1,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_MSFT_01044.jpg,MSFT,2020-07-02,blue-white,5,7,1,3,Hammer,Hammer;Bullish Engulfing;Marubozu,4
+yolo_dataset/images/test/test_NVDA_01045.jpg,NVDA,2020-07-02,light,11,13,2,4,Hammer;Hammer,Marubozu;Doji;Bearish Engulfing;Bullish Engulfing,6
+yolo_dataset/images/test/test_INTC_01046.jpg,INTC,2020-07-02,blue-white,3,6,0,3,,Hammer;Bullish Engulfing;Bearish Engulfing,3
+yolo_dataset/images/test/test_CSCO_01047.jpg,CSCO,2020-07-02,light,10,9,2,1,Marubozu;Morning Star,Doji,3
+yolo_dataset/images/test/test_BAC_01048.jpg,BAC,2020-07-02,blue-white,11,10,2,1,Hammer;Marubozu,Marubozu,3
+yolo_dataset/images/test/test_GS_01049.jpg,GS,2020-07-02,light,9,9,1,1,Bearish Engulfing,Bullish Engulfing,2
+yolo_dataset/images/test/test_MS_01050.jpg,MS,2020-07-02,light,6,10,1,5,Bearish Engulfing,Bullish Engulfing;Bullish Engulfing;Marubozu;Doji;Morning Star,6
+yolo_dataset/images/test/test_WFC_01051.jpg,WFC,2020-07-02,dark,9,11,1,3,Marubozu,Doji;Doji;Doji,4
+yolo_dataset/images/test/test_PFE_01052.jpg,PFE,2020-07-02,blue-white,12,9,4,1,Marubozu;Hammer;Hammer;Evening Star,Morning Star,5
+yolo_dataset/images/test/test_UNH_01053.jpg,UNH,2020-07-02,dark,5,6,0,1,,Evening Star,1
+yolo_dataset/images/test/test_ABT_01054.jpg,ABT,2020-07-02,light,10,11,2,3,Bearish Engulfing;Evening Star,Morning Star;Evening Star;Bearish Engulfing,5
+yolo_dataset/images/test/test_CAT_01055.jpg,CAT,2020-07-02,dark,0,3,0,3,,Marubozu;Marubozu;Marubozu,3
+yolo_dataset/images/test/test_MSFT_01056.jpg,MSFT,2020-07-09,blue-white,3,8,0,5,,Bullish Engulfing;Bearish Engulfing;Marubozu;Hammer;Shooting Star,5
+yolo_dataset/images/test/test_NVDA_01057.jpg,NVDA,2020-07-09,dark,8,9,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_INTC_01058.jpg,INTC,2020-07-09,blue-white,3,5,0,2,,Hammer;Bearish Engulfing,2
+yolo_dataset/images/test/test_CSCO_01059.jpg,CSCO,2020-07-09,dark,10,10,1,1,Marubozu,Doji,2
+yolo_dataset/images/test/test_BAC_01060.jpg,BAC,2020-07-09,blue-white,10,9,3,2,Hammer;Marubozu;Marubozu,Morning Star;Marubozu,5
+yolo_dataset/images/test/test_GS_01061.jpg,GS,2020-07-09,dark,7,8,0,1,,Marubozu,1
+yolo_dataset/images/test/test_MS_01062.jpg,MS,2020-07-09,light,6,10,0,4,,Bullish Engulfing;Bullish Engulfing;Marubozu;Morning Star,4
+yolo_dataset/images/test/test_WFC_01063.jpg,WFC,2020-07-09,dark,8,13,0,5,,Doji;Marubozu;Doji;Doji;Bullish Engulfing,5
+yolo_dataset/images/test/test_PFE_01064.jpg,PFE,2020-07-09,blue-white,11,9,3,1,Marubozu;Hammer;Hammer,Doji,4
+yolo_dataset/images/test/test_UNH_01065.jpg,UNH,2020-07-09,blue-white,6,6,0,0,,,0
+yolo_dataset/images/test/test_ABT_01066.jpg,ABT,2020-07-09,light,11,12,3,4,Marubozu;Bearish Engulfing;Evening Star,Bullish Engulfing;Evening Star;Evening Star;Morning Star,7
+yolo_dataset/images/test/test_CAT_01067.jpg,CAT,2020-07-09,blue-white,0,1,0,1,,Marubozu,1
+yolo_dataset/images/test/test_MSFT_01068.jpg,MSFT,2020-07-15,dark,5,6,0,1,,Marubozu,1
+yolo_dataset/images/test/test_NVDA_01069.jpg,NVDA,2020-07-15,dark,7,7,1,1,Hammer,Marubozu,2
+yolo_dataset/images/test/test_INTC_01070.jpg,INTC,2020-07-15,blue-white,3,5,0,2,,Hammer;Bullish Engulfing,2
+yolo_dataset/images/test/test_CSCO_01071.jpg,CSCO,2020-07-15,dark,10,11,3,4,Marubozu;Bearish Engulfing;Morning Star,Morning Star;Doji;Doji;Doji,7
+yolo_dataset/images/test/test_BAC_01072.jpg,BAC,2020-07-15,light,12,12,2,2,Marubozu;Marubozu,Hammer;Marubozu,4
+yolo_dataset/images/test/test_GS_01073.jpg,GS,2020-07-15,blue-white,6,9,0,3,,Hammer;Bearish Engulfing;Marubozu,3
+yolo_dataset/images/test/test_MS_01074.jpg,MS,2020-07-15,blue-white,6,12,1,7,Marubozu,Bullish Engulfing;Bullish Engulfing;Morning Star;Hammer;Marubozu;Marubozu;Bullish Engulfing,8
+yolo_dataset/images/test/test_WFC_01075.jpg,WFC,2020-07-15,light,8,10,2,4,Marubozu;Marubozu,Marubozu;Doji;Doji;Doji,6
+yolo_dataset/images/test/test_PFE_01076.jpg,PFE,2020-07-15,dark,9,10,1,2,Hammer,Hammer;Morning Star,3
+yolo_dataset/images/test/test_UNH_01077.jpg,UNH,2020-07-15,blue-white,4,5,0,1,,Doji,1
+yolo_dataset/images/test/test_ABT_01078.jpg,ABT,2020-07-15,light,8,11,1,4,Bearish Engulfing,Morning Star;Evening Star;Doji;Doji,5
+yolo_dataset/images/test/test_CAT_01079.jpg,CAT,2020-07-15,light,0,1,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_MSFT_01080.jpg,MSFT,2020-07-21,light,4,6,0,2,,Bearish Engulfing;Marubozu,2
+yolo_dataset/images/test/test_NVDA_01081.jpg,NVDA,2020-07-21,light,7,7,0,0,,,0
+yolo_dataset/images/test/test_INTC_01082.jpg,INTC,2020-07-21,blue-white,3,4,0,1,,Marubozu,1
+yolo_dataset/images/test/test_CSCO_01083.jpg,CSCO,2020-07-21,light,9,11,3,5,Marubozu;Bearish Engulfing;Morning Star,Doji;Morning Star;Doji;Doji;Bearish Engulfing,8
+yolo_dataset/images/test/test_BAC_01084.jpg,BAC,2020-07-21,dark,11,8,4,1,Hammer;Marubozu;Marubozu;Morning Star,Marubozu,5
+yolo_dataset/images/test/test_GS_01085.jpg,GS,2020-07-21,blue-white,9,11,1,3,Shooting Star,Marubozu;Doji;Marubozu,4
+yolo_dataset/images/test/test_MS_01086.jpg,MS,2020-07-21,blue-white,4,8,1,5,Bearish Engulfing,Bullish Engulfing;Bullish Engulfing;Bullish Engulfing;Morning Star;Marubozu,6
+yolo_dataset/images/test/test_WFC_01087.jpg,WFC,2020-07-21,blue-white,7,8,2,3,Marubozu;Marubozu,Doji;Doji;Marubozu,5
+yolo_dataset/images/test/test_PFE_01088.jpg,PFE,2020-07-21,dark,9,11,1,3,Hammer,Morning Star;Hammer;Marubozu,4
+yolo_dataset/images/test/test_UNH_01089.jpg,UNH,2020-07-21,light,4,6,0,2,,Marubozu;Doji,2
+yolo_dataset/images/test/test_ABT_01090.jpg,ABT,2020-07-21,blue-white,7,11,1,5,Bearish Engulfing,Morning Star;Evening Star;Doji;Evening Star;Bullish Engulfing,6
+yolo_dataset/images/test/test_CAT_01091.jpg,CAT,2020-07-21,light,2,3,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_MSFT_01092.jpg,MSFT,2020-07-27,dark,4,6,0,2,,Marubozu;Bearish Engulfing,2
+yolo_dataset/images/test/test_NVDA_01093.jpg,NVDA,2020-07-27,light,7,8,1,2,Hammer,Marubozu;Marubozu,3
+yolo_dataset/images/test/test_INTC_01094.jpg,INTC,2020-07-27,blue-white,2,2,0,0,,,0
+yolo_dataset/images/test/test_CSCO_01095.jpg,CSCO,2020-07-27,dark,6,11,0,5,,Morning Star;Doji;Doji;Doji;Doji,5
+yolo_dataset/images/test/test_BAC_01096.jpg,BAC,2020-07-27,dark,10,9,2,1,Marubozu;Marubozu,Doji,3
+yolo_dataset/images/test/test_GS_01097.jpg,GS,2020-07-27,blue-white,9,10,1,2,Shooting Star,Bearish Engulfing;Marubozu,3
+yolo_dataset/images/test/test_MS_01098.jpg,MS,2020-07-27,light,4,10,0,6,,Bullish Engulfing;Bullish Engulfing;Marubozu;Evening Star;Doji;Bullish Engulfing,6
+yolo_dataset/images/test/test_WFC_01099.jpg,WFC,2020-07-27,light,3,3,1,1,Marubozu,Doji,2
+yolo_dataset/images/test/test_PFE_01100.jpg,PFE,2020-07-27,light,7,8,0,1,,Evening Star,1
+yolo_dataset/images/test/test_UNH_01101.jpg,UNH,2020-07-27,light,7,8,0,1,,Hammer,1
+yolo_dataset/images/test/test_ABT_01102.jpg,ABT,2020-07-27,dark,4,10,0,6,,Morning Star;Evening Star;Doji;Evening Star;Marubozu;Bullish Engulfing,6
+yolo_dataset/images/test/test_CAT_01103.jpg,CAT,2020-07-27,dark,2,4,0,2,,Bullish Engulfing;Marubozu,2
+yolo_dataset/images/test/test_MSFT_01104.jpg,MSFT,2020-07-31,blue-white,4,6,0,2,,Doji;Bearish Engulfing,2
+yolo_dataset/images/test/test_NVDA_01105.jpg,NVDA,2020-07-31,dark,7,10,0,3,,Doji;Marubozu;Marubozu,3
+yolo_dataset/images/test/test_INTC_01106.jpg,INTC,2020-07-31,light,2,5,0,3,,Marubozu;Doji;Marubozu,3
+yolo_dataset/images/test/test_CSCO_01107.jpg,CSCO,2020-07-31,blue-white,5,11,0,6,,Morning Star;Doji;Doji;Bearish Engulfing;Doji;Doji,6
+yolo_dataset/images/test/test_BAC_01108.jpg,BAC,2020-07-31,blue-white,10,10,2,2,Marubozu;Marubozu,Doji;Evening Star,4
+yolo_dataset/images/test/test_GS_01109.jpg,GS,2020-07-31,dark,10,11,1,2,Shooting Star,Bullish Engulfing;Marubozu,3
+yolo_dataset/images/test/test_MS_01110.jpg,MS,2020-07-31,blue-white,4,7,0,3,,Bullish Engulfing;Bullish Engulfing;Marubozu,3
+yolo_dataset/images/test/test_WFC_01111.jpg,WFC,2020-07-31,dark,3,4,1,2,Marubozu,Doji;Bearish Engulfing,3
+yolo_dataset/images/test/test_PFE_01112.jpg,PFE,2020-07-31,dark,5,4,1,0,Hammer,,1
+yolo_dataset/images/test/test_UNH_01113.jpg,UNH,2020-07-31,dark,7,6,1,0,Bullish Engulfing,,1
+yolo_dataset/images/test/test_ABT_01114.jpg,ABT,2020-07-31,dark,4,7,0,3,,Morning Star;Evening Star;Doji,3
+yolo_dataset/images/test/test_CAT_01115.jpg,CAT,2020-07-31,dark,3,4,0,1,,Marubozu,1
+yolo_dataset/images/test/test_MSFT_01116.jpg,MSFT,2020-08-06,dark,3,6,0,3,,Bullish Engulfing;Doji;Bearish Engulfing,3
+yolo_dataset/images/test/test_NVDA_01117.jpg,NVDA,2020-08-06,dark,6,6,1,1,Marubozu,Marubozu,2
+yolo_dataset/images/test/test_INTC_01118.jpg,INTC,2020-08-06,light,4,6,0,2,,Bearish Engulfing;Hammer,2
+yolo_dataset/images/test/test_CSCO_01119.jpg,CSCO,2020-08-06,light,5,8,1,4,Hammer,Doji;Doji;Doji;Morning Star,5
+yolo_dataset/images/test/test_BAC_01120.jpg,BAC,2020-08-06,blue-white,11,10,1,0,Marubozu,,1
+yolo_dataset/images/test/test_GS_01121.jpg,GS,2020-08-06,dark,9,15,0,6,,Marubozu;Marubozu;Marubozu;Doji;Bullish Engulfing;Bearish Engulfing,6
+yolo_dataset/images/test/test_MS_01122.jpg,MS,2020-08-06,dark,7,8,1,2,Marubozu,Morning Star;Evening Star,3
+yolo_dataset/images/test/test_WFC_01123.jpg,WFC,2020-08-06,blue-white,5,4,2,1,Marubozu;Marubozu,Morning Star,3
+yolo_dataset/images/test/test_PFE_01124.jpg,PFE,2020-08-06,dark,6,8,0,2,,Doji;Hammer,2
+yolo_dataset/images/test/test_UNH_01125.jpg,UNH,2020-08-06,light,7,10,0,3,,Doji;Bearish Engulfing;Evening Star,3
+yolo_dataset/images/test/test_ABT_01126.jpg,ABT,2020-08-06,blue-white,5,7,0,2,,Morning Star;Bullish Engulfing,2
+yolo_dataset/images/test/test_CAT_01127.jpg,CAT,2020-08-06,dark,6,7,0,1,,Marubozu,1
+yolo_dataset/images/test/test_MSFT_01128.jpg,MSFT,2020-08-12,light,3,8,0,5,,Doji;Bullish Engulfing;Bearish Engulfing;Morning Star;Evening Star,5
+yolo_dataset/images/test/test_NVDA_01129.jpg,NVDA,2020-08-12,light,5,4,1,0,Marubozu,,1
+yolo_dataset/images/test/test_INTC_01130.jpg,INTC,2020-08-12,dark,5,5,1,1,Bearish Engulfing,Marubozu,2
+yolo_dataset/images/test/test_CSCO_01131.jpg,CSCO,2020-08-12,blue-white,6,7,2,3,Hammer;Marubozu,Doji;Doji;Doji,5
+yolo_dataset/images/test/test_BAC_01132.jpg,BAC,2020-08-12,blue-white,8,9,1,2,Marubozu,Doji;Evening Star,3
+yolo_dataset/images/test/test_GS_01133.jpg,GS,2020-08-12,light,9,10,1,2,Shooting Star,Doji;Doji,3
+yolo_dataset/images/test/test_MS_01134.jpg,MS,2020-08-12,blue-white,7,12,1,6,Marubozu,Doji;Bearish Engulfing;Marubozu;Evening Star;Doji;Marubozu,7
+yolo_dataset/images/test/test_WFC_01135.jpg,WFC,2020-08-12,dark,6,8,1,3,Marubozu,Doji;Evening Star;Doji,4
+yolo_dataset/images/test/test_PFE_01136.jpg,PFE,2020-08-12,blue-white,6,5,1,0,Marubozu,,1
+yolo_dataset/images/test/test_UNH_01137.jpg,UNH,2020-08-12,light,7,8,0,1,,Doji,1
+yolo_dataset/images/test/test_ABT_01138.jpg,ABT,2020-08-12,blue-white,4,11,0,7,,Morning Star;Evening Star;Bullish Engulfing;Bullish Engulfing;Doji;Morning Star;Bullish Engulfing,7
+yolo_dataset/images/test/test_CAT_01139.jpg,CAT,2020-08-12,light,7,8,0,1,,Marubozu,1
+yolo_dataset/images/test/test_MSFT_01140.jpg,MSFT,2020-08-18,light,4,6,1,3,Bearish Engulfing,Doji;Bullish Engulfing;Morning Star,4
+yolo_dataset/images/test/test_NVDA_01141.jpg,NVDA,2020-08-18,light,4,4,1,1,Marubozu,Doji,2
+yolo_dataset/images/test/test_INTC_01142.jpg,INTC,2020-08-18,light,5,6,1,2,Bearish Engulfing,Doji;Marubozu,3
+yolo_dataset/images/test/test_CSCO_01143.jpg,CSCO,2020-08-18,blue-white,7,9,2,4,Marubozu;Bearish Engulfing,Doji;Doji;Doji;Doji,6
+yolo_dataset/images/test/test_BAC_01144.jpg,BAC,2020-08-18,light,7,8,0,1,,Doji,1
+yolo_dataset/images/test/test_GS_01145.jpg,GS,2020-08-18,blue-white,8,11,1,4,Bullish Engulfing,Doji;Bullish Engulfing;Doji;Marubozu,5
+yolo_dataset/images/test/test_MS_01146.jpg,MS,2020-08-18,light,6,9,1,4,Marubozu,Doji;Bullish Engulfing;Doji;Evening Star,5
+yolo_dataset/images/test/test_WFC_01147.jpg,WFC,2020-08-18,blue-white,6,7,1,2,Marubozu,Doji;Morning Star,3
+yolo_dataset/images/test/test_PFE_01148.jpg,PFE,2020-08-18,light,4,6,0,2,,Doji;Morning Star,2
+yolo_dataset/images/test/test_UNH_01149.jpg,UNH,2020-08-18,light,7,8,0,1,,Doji,1
+yolo_dataset/images/test/test_ABT_01150.jpg,ABT,2020-08-18,blue-white,2,8,0,6,,Morning Star;Bullish Engulfing;Doji;Evening Star;Doji;Evening Star,6
+yolo_dataset/images/test/test_CAT_01151.jpg,CAT,2020-08-18,dark,7,7,0,0,,,0
+yolo_dataset/images/test/test_MSFT_01152.jpg,MSFT,2020-08-24,dark,3,8,0,5,,Bullish Engulfing;Doji;Morning Star;Shooting Star;Morning Star,5
+yolo_dataset/images/test/test_NVDA_01153.jpg,NVDA,2020-08-24,blue-white,4,3,2,1,Marubozu;Bearish Engulfing,Doji,3
+yolo_dataset/images/test/test_INTC_01154.jpg,INTC,2020-08-24,light,5,3,2,0,Bearish Engulfing;Bearish Engulfing,,2
+yolo_dataset/images/test/test_CSCO_01155.jpg,CSCO,2020-08-24,blue-white,5,7,1,3,Marubozu,Morning Star;Doji;Doji,4
+yolo_dataset/images/test/test_BAC_01156.jpg,BAC,2020-08-24,dark,7,10,0,3,,Evening Star;Bullish Engulfing;Doji,3
+yolo_dataset/images/test/test_GS_01157.jpg,GS,2020-08-24,light,6,7,1,2,Bearish Engulfing,Doji;Doji,3
+yolo_dataset/images/test/test_MS_01158.jpg,MS,2020-08-24,dark,5,10,0,5,,Doji;Doji;Shooting Star;Evening Star;Doji,5
+yolo_dataset/images/test/test_WFC_01159.jpg,WFC,2020-08-24,light,7,12,0,5,,Doji;Doji;Doji;Morning Star;Evening Star,5
+yolo_dataset/images/test/test_PFE_01160.jpg,PFE,2020-08-24,light,5,6,1,2,Doji,Doji;Morning Star,3
+yolo_dataset/images/test/test_UNH_01161.jpg,UNH,2020-08-24,dark,7,9,0,2,,Doji;Morning Star,2
+yolo_dataset/images/test/test_ABT_01162.jpg,ABT,2020-08-24,light,3,7,0,4,,Bullish Engulfing;Evening Star;Doji;Bullish Engulfing,4
+yolo_dataset/images/test/test_CAT_01163.jpg,CAT,2020-08-24,dark,7,7,1,1,Bearish Engulfing,Bullish Engulfing,2
+yolo_dataset/images/test/test_MSFT_01164.jpg,MSFT,2020-08-28,light,4,7,0,3,,Bullish Engulfing;Doji;Shooting Star,3
+yolo_dataset/images/test/test_NVDA_01165.jpg,NVDA,2020-08-28,dark,4,7,0,3,,Marubozu;Doji;Doji,3
+yolo_dataset/images/test/test_INTC_01166.jpg,INTC,2020-08-28,light,4,4,2,2,Bearish Engulfing;Bearish Engulfing,Doji;Hammer,4
+yolo_dataset/images/test/test_CSCO_01167.jpg,CSCO,2020-08-28,light,8,6,4,2,Marubozu;Bearish Engulfing;Bullish Engulfing;Evening Star,Bullish Engulfing;Marubozu,6
+yolo_dataset/images/test/test_BAC_01168.jpg,BAC,2020-08-28,blue-white,9,10,2,3,Marubozu;Bullish Engulfing,Doji;Bullish Engulfing;Marubozu,5
+yolo_dataset/images/test/test_GS_01169.jpg,GS,2020-08-28,light,5,8,0,3,,Doji;Morning Star;Morning Star,3
+yolo_dataset/images/test/test_MS_01170.jpg,MS,2020-08-28,dark,5,9,0,4,,Doji;Doji;Shooting Star;Doji,4
+yolo_dataset/images/test/test_WFC_01171.jpg,WFC,2020-08-28,dark,8,12,1,5,Evening Star,Morning Star;Doji;Bullish Engulfing;Doji;Evening Star,6
+yolo_dataset/images/test/test_PFE_01172.jpg,PFE,2020-08-28,dark,5,9,1,5,Evening Star,Evening Star;Doji;Hammer;Morning Star;Bearish Engulfing,6
+yolo_dataset/images/test/test_UNH_01173.jpg,UNH,2020-08-28,light,9,9,1,1,Hammer,Evening Star,2
+yolo_dataset/images/test/test_ABT_01174.jpg,ABT,2020-08-28,light,6,8,2,4,Bearish Engulfing;Bearish Engulfing,Doji;Evening Star;Bullish Engulfing;Shooting Star,6
+yolo_dataset/images/test/test_CAT_01175.jpg,CAT,2020-08-28,dark,5,4,1,0,Marubozu,,1
+yolo_dataset/images/test/test_MSFT_01176.jpg,MSFT,2020-09-03,blue-white,4,7,1,4,Evening Star,Bullish Engulfing;Doji;Hammer;Shooting Star,5
+yolo_dataset/images/test/test_NVDA_01177.jpg,NVDA,2020-09-03,blue-white,4,3,3,2,Marubozu;Doji;Evening Star,Doji;Marubozu,5
+yolo_dataset/images/test/test_INTC_01178.jpg,INTC,2020-09-03,dark,6,7,2,3,Bearish Engulfing;Bearish Engulfing,Bearish Engulfing;Marubozu;Doji,5
+yolo_dataset/images/test/test_CSCO_01179.jpg,CSCO,2020-09-03,light,8,7,4,3,Marubozu;Bearish Engulfing;Bullish Engulfing;Evening Star,Bullish Engulfing;Marubozu;Doji,7
+yolo_dataset/images/test/test_BAC_01180.jpg,BAC,2020-09-03,blue-white,8,10,0,2,,Doji;Bullish Engulfing,2
+yolo_dataset/images/test/test_GS_01181.jpg,GS,2020-09-03,blue-white,3,6,0,3,,Bullish Engulfing;Doji;Shooting Star,3
+yolo_dataset/images/test/test_MS_01182.jpg,MS,2020-09-03,dark,5,9,0,4,,Shooting Star;Doji;Doji;Morning Star,4
+yolo_dataset/images/test/test_WFC_01183.jpg,WFC,2020-09-03,light,10,16,1,7,Evening Star,Morning Star;Doji;Marubozu;Doji;Morning Star;Doji;Marubozu,8
+yolo_dataset/images/test/test_PFE_01184.jpg,PFE,2020-09-03,light,6,9,1,4,Evening Star,Bullish Engulfing;Evening Star;Bearish Engulfing;Doji,5
+yolo_dataset/images/test/test_UNH_01185.jpg,UNH,2020-09-03,dark,7,9,1,3,Hammer,Shooting Star;Bearish Engulfing;Doji,4
+yolo_dataset/images/test/test_ABT_01186.jpg,ABT,2020-09-03,light,6,8,3,5,Bearish Engulfing;Bearish Engulfing;Bullish Engulfing,Doji;Bullish Engulfing;Bullish Engulfing;Evening Star;Bearish Engulfing,8
+yolo_dataset/images/test/test_CAT_01187.jpg,CAT,2020-09-03,light,6,6,0,0,,,0
+yolo_dataset/images/test/test_MSFT_01188.jpg,MSFT,2020-09-10,dark,5,8,0,3,,Bullish Engulfing;Shooting Star;Doji,3
+yolo_dataset/images/test/test_NVDA_01189.jpg,NVDA,2020-09-10,blue-white,4,6,1,3,Doji,Marubozu;Evening Star;Doji,4
+yolo_dataset/images/test/test_INTC_01190.jpg,INTC,2020-09-10,light,7,11,0,4,,Bearish Engulfing;Doji;Marubozu;Morning Star,4
+yolo_dataset/images/test/test_CSCO_01191.jpg,CSCO,2020-09-10,light,9,7,4,2,Marubozu;Bearish Engulfing;Bullish Engulfing;Evening Star,Bullish Engulfing;Doji,6
+yolo_dataset/images/test/test_BAC_01192.jpg,BAC,2020-09-10,light,7,10,0,3,,Doji;Morning Star;Morning Star,3
+yolo_dataset/images/test/test_GS_01193.jpg,GS,2020-09-10,light,3,6,0,3,,Bullish Engulfing;Morning Star;Marubozu,3
+yolo_dataset/images/test/test_MS_01194.jpg,MS,2020-09-10,dark,4,10,0,6,,Doji;Hammer;Evening Star;Morning Star;Bearish Engulfing;Doji,6
+yolo_dataset/images/test/test_WFC_01195.jpg,WFC,2020-09-10,dark,11,17,1,7,Evening Star,Doji;Morning Star;Marubozu;Morning Star;Morning Star;Doji;Doji,8
+yolo_dataset/images/test/test_PFE_01196.jpg,PFE,2020-09-10,blue-white,4,7,0,3,,Doji;Hammer;Bullish Engulfing,3
+yolo_dataset/images/test/test_UNH_01197.jpg,UNH,2020-09-10,light,7,7,1,1,Hammer,Shooting Star,2
+yolo_dataset/images/test/test_ABT_01198.jpg,ABT,2020-09-10,light,7,10,0,3,,Evening Star;Doji;Bullish Engulfing,3
+yolo_dataset/images/test/test_CAT_01199.jpg,CAT,2020-09-10,dark,6,7,0,1,,Doji,1
+yolo_dataset/images/test/test_MSFT_01200.jpg,MSFT,2020-09-16,dark,5,10,1,6,Marubozu,Shooting Star;Evening Star;Morning Star;Marubozu;Marubozu;Doji,7
+yolo_dataset/images/test/test_NVDA_01201.jpg,NVDA,2020-09-16,blue-white,3,7,0,4,,Marubozu;Doji;Doji;Evening Star,4
+yolo_dataset/images/test/test_INTC_01202.jpg,INTC,2020-09-16,dark,6,10,1,5,Doji,Shooting Star;Morning Star;Marubozu;Morning Star;Bearish Engulfing,6
+yolo_dataset/images/test/test_CSCO_01203.jpg,CSCO,2020-09-16,blue-white,10,10,2,2,Marubozu;Bearish Engulfing,Bullish Engulfing;Bearish Engulfing,4
+yolo_dataset/images/test/test_BAC_01204.jpg,BAC,2020-09-16,blue-white,8,6,2,0,Bearish Engulfing;Evening Star,,2
+yolo_dataset/images/test/test_GS_01205.jpg,GS,2020-09-16,dark,3,7,0,4,,Bullish Engulfing;Shooting Star;Marubozu;Morning Star,4
+yolo_dataset/images/test/test_MS_01206.jpg,MS,2020-09-16,light,6,9,0,3,,Doji;Bearish Engulfing;Evening Star,3
+yolo_dataset/images/test/test_WFC_01207.jpg,WFC,2020-09-16,blue-white,11,14,3,6,Bullish Engulfing;Evening Star;Evening Star,Doji;Doji;Morning Star;Doji;Morning Star;Marubozu,9
+yolo_dataset/images/test/test_PFE_01208.jpg,PFE,2020-09-16,dark,4,5,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_UNH_01209.jpg,UNH,2020-09-16,light,5,5,1,1,Hammer,Shooting Star,2
+yolo_dataset/images/test/test_ABT_01210.jpg,ABT,2020-09-16,blue-white,7,10,0,3,,Bullish Engulfing;Doji;Marubozu,3
+yolo_dataset/images/test/test_CAT_01211.jpg,CAT,2020-09-16,blue-white,6,9,0,3,,Doji;Evening Star;Marubozu,3
+yolo_dataset/images/test/test_MSFT_01212.jpg,MSFT,2020-09-22,light,5,8,1,4,Marubozu,Bullish Engulfing;Bearish Engulfing;Doji;Marubozu,5
+yolo_dataset/images/test/test_NVDA_01213.jpg,NVDA,2020-09-22,light,3,8,1,6,Marubozu,Bullish Engulfing;Marubozu;Doji;Doji;Morning Star;Doji,7
+yolo_dataset/images/test/test_INTC_01214.jpg,INTC,2020-09-22,blue-white,6,10,1,5,Doji,Morning Star;Shooting Star;Bearish Engulfing;Morning Star;Doji,6
+yolo_dataset/images/test/test_CSCO_01215.jpg,CSCO,2020-09-22,light,10,8,3,1,Marubozu;Bearish Engulfing;Evening Star,Bullish Engulfing,4
+yolo_dataset/images/test/test_BAC_01216.jpg,BAC,2020-09-22,light,7,6,2,1,Marubozu;Evening Star,Bullish Engulfing,3
+yolo_dataset/images/test/test_GS_01217.jpg,GS,2020-09-22,light,2,4,0,2,,Bullish Engulfing;Morning Star,2
+yolo_dataset/images/test/test_MS_01218.jpg,MS,2020-09-22,dark,6,7,2,3,Marubozu;Bearish Engulfing,Evening Star;Doji;Doji,5
+yolo_dataset/images/test/test_WFC_01219.jpg,WFC,2020-09-22,dark,9,14,1,6,Evening Star,Morning Star;Morning Star;Doji;Marubozu;Marubozu;Doji,7
+yolo_dataset/images/test/test_PFE_01220.jpg,PFE,2020-09-22,light,4,6,1,3,Doji,Bullish Engulfing;Hammer;Doji,4
+yolo_dataset/images/test/test_UNH_01221.jpg,UNH,2020-09-22,light,6,8,1,3,Evening Star,Hammer;Shooting Star;Bearish Engulfing,4
+yolo_dataset/images/test/test_ABT_01222.jpg,ABT,2020-09-22,blue-white,9,8,1,0,Bullish Engulfing,,1
+yolo_dataset/images/test/test_CAT_01223.jpg,CAT,2020-09-22,light,3,3,2,2,Marubozu;Evening Star,Morning Star;Doji,4
+yolo_dataset/images/test/test_MSFT_01224.jpg,MSFT,2020-09-28,light,6,10,0,4,,Shooting Star;Doji;Bullish Engulfing;Marubozu,4
+yolo_dataset/images/test/test_NVDA_01225.jpg,NVDA,2020-09-28,light,5,5,2,2,Marubozu;Evening Star,Evening Star;Doji,4
+yolo_dataset/images/test/test_INTC_01226.jpg,INTC,2020-09-28,blue-white,5,9,0,4,,Morning Star;Bearish Engulfing;Morning Star;Shooting Star,4
+yolo_dataset/images/test/test_CSCO_01227.jpg,CSCO,2020-09-28,dark,9,11,1,3,Bullish Engulfing,Bullish Engulfing;Evening Star;Shooting Star,4
+yolo_dataset/images/test/test_BAC_01228.jpg,BAC,2020-09-28,dark,9,7,3,1,Marubozu;Evening Star;Evening Star,Evening Star,4
+yolo_dataset/images/test/test_GS_01229.jpg,GS,2020-09-28,light,2,5,0,3,,Bullish Engulfing;Morning Star;Doji,3
+yolo_dataset/images/test/test_MS_01230.jpg,MS,2020-09-28,blue-white,7,8,2,3,Marubozu;Bearish Engulfing,Evening Star;Doji;Morning Star,5
+yolo_dataset/images/test/test_WFC_01231.jpg,WFC,2020-09-28,light,8,11,0,3,,Morning Star;Doji;Morning Star,3
+yolo_dataset/images/test/test_PFE_01232.jpg,PFE,2020-09-28,dark,6,9,0,3,,Marubozu;Bullish Engulfing;Hammer,3
+yolo_dataset/images/test/test_UNH_01233.jpg,UNH,2020-09-28,light,7,9,1,3,Evening Star,Hammer;Shooting Star;Bearish Engulfing,4
+yolo_dataset/images/test/test_ABT_01234.jpg,ABT,2020-09-28,dark,10,13,1,4,Bullish Engulfing,Bearish Engulfing;Doji;Marubozu;Marubozu,5
+yolo_dataset/images/test/test_CAT_01235.jpg,CAT,2020-09-28,light,3,3,2,2,Marubozu;Evening Star,Doji;Morning Star,4
+yolo_dataset/images/test/test_MSFT_01236.jpg,MSFT,2020-10-02,blue-white,4,7,1,4,Marubozu,Bullish Engulfing;Bullish Engulfing;Bearish Engulfing;Hammer,5
+yolo_dataset/images/test/test_NVDA_01237.jpg,NVDA,2020-10-02,dark,5,8,0,3,,Bullish Engulfing;Marubozu;Hammer,3
+yolo_dataset/images/test/test_INTC_01238.jpg,INTC,2020-10-02,light,7,10,2,5,Doji;Evening Star,Shooting Star;Bearish Engulfing;Doji;Morning Star;Bearish Engulfing,7
+yolo_dataset/images/test/test_CSCO_01239.jpg,CSCO,2020-10-02,light,8,9,1,2,Bullish Engulfing,Doji;Bearish Engulfing,3
+yolo_dataset/images/test/test_BAC_01240.jpg,BAC,2020-10-02,blue-white,8,8,1,1,Evening Star,Doji,2
+yolo_dataset/images/test/test_GS_01241.jpg,GS,2020-10-02,light,3,6,0,3,,Bullish Engulfing;Bearish Engulfing;Bearish Engulfing,3
+yolo_dataset/images/test/test_MS_01242.jpg,MS,2020-10-02,blue-white,8,12,0,4,,Evening Star;Bearish Engulfing;Bullish Engulfing;Morning Star,4
+yolo_dataset/images/test/test_WFC_01243.jpg,WFC,2020-10-02,light,9,10,1,2,Evening Star,Morning Star;Marubozu,3
+yolo_dataset/images/test/test_PFE_01244.jpg,PFE,2020-10-02,blue-white,5,6,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_UNH_01245.jpg,UNH,2020-10-02,blue-white,10,12,1,3,Evening Star,Shooting Star;Bullish Engulfing;Bearish Engulfing,4
+yolo_dataset/images/test/test_ABT_01246.jpg,ABT,2020-10-02,dark,8,10,0,2,,Marubozu;Bearish Engulfing,2
+yolo_dataset/images/test/test_CAT_01247.jpg,CAT,2020-10-02,dark,5,6,1,2,Bullish Engulfing,Doji;Morning Star,3
+yolo_dataset/images/test/test_MSFT_01248.jpg,MSFT,2020-10-08,light,5,9,0,4,,Marubozu;Marubozu;Doji;Morning Star,4
+yolo_dataset/images/test/test_NVDA_01249.jpg,NVDA,2020-10-08,blue-white,5,9,2,6,Marubozu;Evening Star,Bullish Engulfing;Shooting Star;Evening Star;Doji;Hammer;Shooting Star,8
+yolo_dataset/images/test/test_INTC_01250.jpg,INTC,2020-10-08,blue-white,6,8,1,3,Doji,Morning Star;Hammer;Shooting Star,4
+yolo_dataset/images/test/test_CSCO_01251.jpg,CSCO,2020-10-08,dark,9,11,0,2,,Shooting Star;Doji,2
+yolo_dataset/images/test/test_BAC_01252.jpg,BAC,2020-10-08,light,5,6,2,3,Bearish Engulfing;Evening Star,Doji;Morning Star;Bearish Engulfing,5
+yolo_dataset/images/test/test_GS_01253.jpg,GS,2020-10-08,blue-white,5,6,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_MS_01254.jpg,MS,2020-10-08,light,9,11,1,3,Bearish Engulfing,Bearish Engulfing;Evening Star;Morning Star,4
+yolo_dataset/images/test/test_WFC_01255.jpg,WFC,2020-10-08,dark,8,8,0,0,,,0
+yolo_dataset/images/test/test_PFE_01256.jpg,PFE,2020-10-08,dark,6,7,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_UNH_01257.jpg,UNH,2020-10-08,light,8,12,1,5,Evening Star,Bullish Engulfing;Hammer;Shooting Star;Morning Star;Bearish Engulfing,6
+yolo_dataset/images/test/test_ABT_01258.jpg,ABT,2020-10-08,light,7,10,0,3,,Bearish Engulfing;Bearish Engulfing;Marubozu,3
+yolo_dataset/images/test/test_CAT_01259.jpg,CAT,2020-10-08,blue-white,6,8,1,3,Bullish Engulfing,Doji;Doji;Morning Star,4
+yolo_dataset/images/test/test_MSFT_01260.jpg,MSFT,2020-10-14,blue-white,7,13,0,6,,Bullish Engulfing;Bearish Engulfing;Evening Star;Hammer;Marubozu;Morning Star,6
+yolo_dataset/images/test/test_NVDA_01261.jpg,NVDA,2020-10-14,dark,7,7,3,3,Marubozu;Marubozu;Doji,Bullish Engulfing;Hammer;Doji,6
+yolo_dataset/images/test/test_INTC_01262.jpg,INTC,2020-10-14,light,5,7,0,2,,Shooting Star;Morning Star,2
+yolo_dataset/images/test/test_CSCO_01263.jpg,CSCO,2020-10-14,light,10,11,0,1,,Morning Star,1
+yolo_dataset/images/test/test_BAC_01264.jpg,BAC,2020-10-14,dark,6,6,1,1,Evening Star,Morning Star,2
+yolo_dataset/images/test/test_GS_01265.jpg,GS,2020-10-14,dark,5,5,0,0,,,0
+yolo_dataset/images/test/test_MS_01266.jpg,MS,2020-10-14,blue-white,8,9,1,2,Bearish Engulfing,Evening Star;Doji,3
+yolo_dataset/images/test/test_WFC_01267.jpg,WFC,2020-10-14,dark,6,6,0,0,,,0
+yolo_dataset/images/test/test_PFE_01268.jpg,PFE,2020-10-14,blue-white,4,6,0,2,,Bearish Engulfing;Bearish Engulfing,2
+yolo_dataset/images/test/test_UNH_01269.jpg,UNH,2020-10-14,blue-white,10,11,1,2,Evening Star,Hammer;Bullish Engulfing,3
+yolo_dataset/images/test/test_ABT_01270.jpg,ABT,2020-10-14,blue-white,5,7,0,2,,Bearish Engulfing;Marubozu,2
+yolo_dataset/images/test/test_CAT_01271.jpg,CAT,2020-10-14,dark,6,9,2,5,Marubozu;Bullish Engulfing,Bullish Engulfing;Doji;Morning Star;Doji;Morning Star,7
+yolo_dataset/images/test/test_MSFT_01272.jpg,MSFT,2020-10-20,dark,7,9,0,2,,Doji;Evening Star,2
+yolo_dataset/images/test/test_NVDA_01273.jpg,NVDA,2020-10-20,blue-white,6,5,3,2,Marubozu;Marubozu;Evening Star,Evening Star;Doji,5
+yolo_dataset/images/test/test_INTC_01274.jpg,INTC,2020-10-20,light,9,9,2,2,Shooting Star;Bearish Engulfing,Morning Star;Shooting Star,4
+yolo_dataset/images/test/test_CSCO_01275.jpg,CSCO,2020-10-20,light,9,10,0,1,,Morning Star,1
+yolo_dataset/images/test/test_BAC_01276.jpg,BAC,2020-10-20,light,7,9,1,3,Bullish Engulfing,Doji;Bearish Engulfing;Bearish Engulfing,4
+yolo_dataset/images/test/test_GS_01277.jpg,GS,2020-10-20,light,4,5,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_MS_01278.jpg,MS,2020-10-20,light,9,9,2,2,Doji;Bearish Engulfing,Morning Star;Bullish Engulfing,4
+yolo_dataset/images/test/test_WFC_01279.jpg,WFC,2020-10-20,dark,4,5,0,1,,Morning Star,1
+yolo_dataset/images/test/test_PFE_01280.jpg,PFE,2020-10-20,dark,5,6,1,2,Evening Star,Bearish Engulfing;Morning Star,3
+yolo_dataset/images/test/test_UNH_01281.jpg,UNH,2020-10-20,dark,11,11,3,3,Shooting Star;Bearish Engulfing;Evening Star,Evening Star;Marubozu;Hammer,6
+yolo_dataset/images/test/test_ABT_01282.jpg,ABT,2020-10-20,dark,5,9,0,4,,Bearish Engulfing;Evening Star;Marubozu;Marubozu,4
+yolo_dataset/images/test/test_CAT_01283.jpg,CAT,2020-10-20,dark,5,5,2,2,Marubozu;Bullish Engulfing,Morning Star;Shooting Star,4
+yolo_dataset/images/test/test_MSFT_01284.jpg,MSFT,2020-10-26,light,5,8,0,3,,Doji;Bullish Engulfing;Evening Star,3
+yolo_dataset/images/test/test_NVDA_01285.jpg,NVDA,2020-10-26,dark,6,5,2,1,Marubozu;Evening Star,Hammer,3
+yolo_dataset/images/test/test_INTC_01286.jpg,INTC,2020-10-26,blue-white,7,7,0,0,,,0
+yolo_dataset/images/test/test_CSCO_01287.jpg,CSCO,2020-10-26,dark,7,8,0,1,,Morning Star,1
+yolo_dataset/images/test/test_BAC_01288.jpg,BAC,2020-10-26,dark,8,7,2,1,Bullish Engulfing;Bullish Engulfing,Doji,3
+yolo_dataset/images/test/test_GS_01289.jpg,GS,2020-10-26,dark,4,4,0,0,,,0
+yolo_dataset/images/test/test_MS_01290.jpg,MS,2020-10-26,blue-white,6,7,2,3,Doji;Bearish Engulfing,Bullish Engulfing;Doji;Morning Star,5
+yolo_dataset/images/test/test_WFC_01291.jpg,WFC,2020-10-26,light,4,4,0,0,,,0
+yolo_dataset/images/test/test_PFE_01292.jpg,PFE,2020-10-26,blue-white,6,8,1,3,Evening Star,Bullish Engulfing;Bearish Engulfing;Bullish Engulfing,4
+yolo_dataset/images/test/test_UNH_01293.jpg,UNH,2020-10-26,dark,15,13,2,0,Shooting Star;Bullish Engulfing,,2
+yolo_dataset/images/test/test_ABT_01294.jpg,ABT,2020-10-26,dark,4,7,0,3,,Marubozu;Bearish Engulfing;Marubozu,3
+yolo_dataset/images/test/test_CAT_01295.jpg,CAT,2020-10-26,light,5,5,2,2,Marubozu;Bullish Engulfing,Morning Star;Shooting Star,4
+yolo_dataset/images/test/test_MSFT_01296.jpg,MSFT,2020-10-30,light,5,5,0,0,,,0
+yolo_dataset/images/test/test_NVDA_01297.jpg,NVDA,2020-10-30,light,5,4,1,0,Marubozu,,1
+yolo_dataset/images/test/test_INTC_01298.jpg,INTC,2020-10-30,blue-white,8,7,3,2,Shooting Star;Bearish Engulfing;Bullish Engulfing,Doji;Evening Star,5
+yolo_dataset/images/test/test_CSCO_01299.jpg,CSCO,2020-10-30,blue-white,7,7,0,0,,,0
+yolo_dataset/images/test/test_BAC_01300.jpg,BAC,2020-10-30,blue-white,7,8,2,3,Marubozu;Bullish Engulfing,Bearish Engulfing;Doji;Morning Star,5
+yolo_dataset/images/test/test_GS_01301.jpg,GS,2020-10-30,blue-white,5,6,0,1,,Bullish Engulfing,1
+yolo_dataset/images/test/test_MS_01302.jpg,MS,2020-10-30,light,7,9,0,2,,Bullish Engulfing;Morning Star,2
+yolo_dataset/images/test/test_WFC_01303.jpg,WFC,2020-10-30,blue-white,7,8,0,1,,Morning Star,1
+yolo_dataset/images/test/test_PFE_01304.jpg,PFE,2020-10-30,dark,5,7,1,3,Evening Star,Bullish Engulfing;Bullish Engulfing;Bearish Engulfing,4
+yolo_dataset/images/test/test_UNH_01305.jpg,UNH,2020-10-30,dark,12,12,1,1,Morning Star,Shooting Star,2
+yolo_dataset/images/test/test_ABT_01306.jpg,ABT,2020-10-30,light,4,3,1,0,Evening Star,,1
+yolo_dataset/images/test/test_CAT_01307.jpg,CAT,2020-10-30,dark,6,8,1,3,Bullish Engulfing,Shooting Star;Morning Star;Shooting Star,4
+yolo_dataset/images/test/test_MSFT_01308.jpg,MSFT,2020-11-05,blue-white,4,7,0,3,,Evening Star;Evening Star;Shooting Star,3
+yolo_dataset/images/test/test_NVDA_01309.jpg,NVDA,2020-11-05,dark,6,7,0,1,,Shooting Star,1
+yolo_dataset/images/test/test_INTC_01310.jpg,INTC,2020-11-05,light,7,4,3,0,Shooting Star;Bearish Engulfing;Bullish Engulfing,,3
+yolo_dataset/images/test/test_CSCO_01311.jpg,CSCO,2020-11-05,light,7,9,1,3,Shooting Star,Doji;Bearish Engulfing;Morning Star,4
+yolo_dataset/images/test/test_BAC_01312.jpg,BAC,2020-11-05,dark,5,8,1,4,Bullish Engulfing,Evening Star;Bearish Engulfing;Doji;Bearish Engulfing,5
+yolo_dataset/images/test/test_GS_01313.jpg,GS,2020-11-05,blue-white,5,5,0,0,,,0
+yolo_dataset/images/test/test_MS_01314.jpg,MS,2020-11-05,dark,6,6,1,1,Doji,Marubozu,2
+yolo_dataset/images/test/test_WFC_01315.jpg,WFC,2020-11-05,light,8,8,0,0,,,0
+yolo_dataset/images/test/test_PFE_01316.jpg,PFE,2020-11-05,dark,5,10,1,6,Evening Star,Shooting Star;Bullish Engulfing;Bearish Engulfing;Bullish Engulfing;Evening Star;Morning Star,7
+yolo_dataset/images/test/test_UNH_01317.jpg,UNH,2020-11-05,blue-white,11,7,6,2,Shooting Star;Hammer;Bearish Engulfing;Bullish Engulfing;Morning Star;Evening Star,Doji;Evening Star,8
+yolo_dataset/images/test/test_ABT_01318.jpg,ABT,2020-11-05,light,4,8,0,4,,Shooting Star;Marubozu;Morning Star;Doji,4
+yolo_dataset/images/test/test_CAT_01319.jpg,CAT,2020-11-05,light,5,6,1,2,Bullish Engulfing,Bearish Engulfing;Evening Star,3
+yolo_dataset/images/test/test_MSFT_01320.jpg,MSFT,2020-11-11,blue-white,6,8,0,2,,Morning Star;Evening Star,2
+yolo_dataset/images/test/test_NVDA_01321.jpg,NVDA,2020-11-11,blue-white,5,6,1,2,Marubozu,Bearish Engulfing;Marubozu,3
+yolo_dataset/images/test/test_INTC_01322.jpg,INTC,2020-11-11,blue-white,7,4,3,0,Shooting Star;Bearish Engulfing;Bullish Engulfing,,3
+yolo_dataset/images/test/test_CSCO_01323.jpg,CSCO,2020-11-11,light,7,6,1,0,Shooting Star,,1
+yolo_dataset/images/test/test_BAC_01324.jpg,BAC,2020-11-11,light,6,7,1,2,Bullish Engulfing,Bearish Engulfing;Evening Star,3
+yolo_dataset/images/test/test_GS_01325.jpg,GS,2020-11-11,dark,5,7,0,2,,Doji;Marubozu,2
+yolo_dataset/images/test/test_MS_01326.jpg,MS,2020-11-11,light,6,7,0,1,,Evening Star,1
+yolo_dataset/images/test/test_WFC_01327.jpg,WFC,2020-11-11,light,8,11,0,3,,Marubozu;Doji;Morning Star,3
+yolo_dataset/images/test/test_PFE_01328.jpg,PFE,2020-11-11,light,6,10,0,4,,Shooting Star;Marubozu;Marubozu;Evening Star,4
+yolo_dataset/images/test/test_UNH_01329.jpg,UNH,2020-11-11,dark,10,10,3,3,Shooting Star;Hammer;Bullish Engulfing,Doji;Shooting Star;Evening Star,6
+yolo_dataset/images/test/test_ABT_01330.jpg,ABT,2020-11-11,dark,5,6,2,3,Evening Star;Evening Star,Shooting Star;Doji;Morning Star,5
+yolo_dataset/images/test/test_CAT_01331.jpg,CAT,2020-11-11,dark,5,7,0,2,,Evening Star;Shooting Star,2
+yolo_dataset/images/test/test_MSFT_01332.jpg,MSFT,2020-11-17,dark,8,8,1,1,Marubozu,Evening Star,2
+yolo_dataset/images/test/test_NVDA_01333.jpg,NVDA,2020-11-17,light,6,9,0,3,,Bearish Engulfing;Marubozu;Doji,3
+yolo_dataset/images/test/test_INTC_01334.jpg,INTC,2020-11-17,light,7,5,2,0,Shooting Star;Bullish Engulfing,,2
+yolo_dataset/images/test/test_CSCO_01335.jpg,CSCO,2020-11-17,light,7,6,1,0,Shooting Star,,1
+yolo_dataset/images/test/test_BAC_01336.jpg,BAC,2020-11-17,blue-white,5,7,2,4,Bullish Engulfing;Bearish Engulfing,Evening Star;Bearish Engulfing;Doji;Marubozu,6
+yolo_dataset/images/test/test_GS_01337.jpg,GS,2020-11-17,dark,5,7,0,2,,Doji;Morning Star,2
+yolo_dataset/images/test/test_MS_01338.jpg,MS,2020-11-17,light,6,6,1,1,Doji,Marubozu,2
+yolo_dataset/images/test/test_WFC_01339.jpg,WFC,2020-11-17,dark,6,10,0,4,,Marubozu;Morning Star;Bearish Engulfing;Marubozu,4
+yolo_dataset/images/test/test_PFE_01340.jpg,PFE,2020-11-17,blue-white,5,8,0,3,,Marubozu;Shooting Star;Hammer,3
+yolo_dataset/images/test/test_UNH_01341.jpg,UNH,2020-11-17,dark,8,9,2,3,Hammer;Bullish Engulfing,Doji;Shooting Star;Evening Star,5
+yolo_dataset/images/test/test_ABT_01342.jpg,ABT,2020-11-17,dark,6,9,0,3,,Shooting Star;Morning Star;Morning Star,3
+yolo_dataset/images/test/test_CAT_01343.jpg,CAT,2020-11-17,dark,5,8,0,3,,Evening Star;Doji;Morning Star,3
+yolo_dataset/images/test/test_MSFT_01344.jpg,MSFT,2020-11-23,blue-white,5,5,0,0,,,0
+yolo_dataset/images/test/test_NVDA_01345.jpg,NVDA,2020-11-23,dark,5,8,0,3,,Bearish Engulfing;Marubozu;Marubozu,3
+yolo_dataset/images/test/test_INTC_01346.jpg,INTC,2020-11-23,light,7,5,3,1,Shooting Star;Bullish Engulfing;Bullish Engulfing,Evening Star,4
+yolo_dataset/images/test/test_CSCO_01347.jpg,CSCO,2020-11-23,light,6,6,1,1,Shooting Star,Bullish Engulfing,2
+yolo_dataset/images/test/test_BAC_01348.jpg,BAC,2020-11-23,light,5,5,2,2,Marubozu;Bullish Engulfing,Marubozu;Doji,4
+yolo_dataset/images/test/test_GS_01349.jpg,GS,2020-11-23,blue-white,5,6,0,1,,Doji,1
+yolo_dataset/images/test/test_MS_01350.jpg,MS,2020-11-23,blue-white,7,12,1,6,Doji,Bullish Engulfing;Doji;Bearish Engulfing;Doji;Marubozu;Marubozu,7
+yolo_dataset/images/test/test_WFC_01351.jpg,WFC,2020-11-23,light,7,9,1,3,Shooting Star,Marubozu;Doji;Bullish Engulfing,4
+yolo_dataset/images/test/test_PFE_01352.jpg,PFE,2020-11-23,dark,6,7,2,3,Doji;Morning Star,Evening Star;Shooting Star;Evening Star,5
+yolo_dataset/images/test/test_UNH_01353.jpg,UNH,2020-11-23,dark,8,8,2,2,Hammer;Evening Star,Doji;Hammer,4
+yolo_dataset/images/test/test_ABT_01354.jpg,ABT,2020-11-23,light,9,9,2,2,Marubozu;Evening Star,Doji;Shooting Star,4
+yolo_dataset/images/test/test_CAT_01355.jpg,CAT,2020-11-23,light,7,11,0,4,,Doji;Shooting Star;Doji;Morning Star,4
+yolo_dataset/images/test/test_MSFT_01356.jpg,MSFT,2020-11-30,blue-white,7,7,1,1,Evening Star,Evening Star,2
+yolo_dataset/images/test/test_NVDA_01357.jpg,NVDA,2020-11-30,blue-white,5,6,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_INTC_01358.jpg,INTC,2020-11-30,dark,6,6,2,2,Shooting Star;Bullish Engulfing,Morning Star;Doji,4
+yolo_dataset/images/test/test_CSCO_01359.jpg,CSCO,2020-11-30,blue-white,6,6,1,1,Shooting Star,Bullish Engulfing,2
+yolo_dataset/images/test/test_BAC_01360.jpg,BAC,2020-11-30,dark,6,10,1,5,Bearish Engulfing,Marubozu;Hammer;Evening Star;Doji;Morning Star,6
+yolo_dataset/images/test/test_GS_01361.jpg,GS,2020-11-30,dark,5,8,0,3,,Doji;Marubozu;Marubozu,3
+yolo_dataset/images/test/test_MS_01362.jpg,MS,2020-11-30,blue-white,6,12,0,6,,Doji;Doji;Bearish Engulfing;Evening Star;Bearish Engulfing;Marubozu,6
+yolo_dataset/images/test/test_WFC_01363.jpg,WFC,2020-11-30,dark,7,13,2,8,Shooting Star;Bearish Engulfing,Doji;Doji;Marubozu;Bullish Engulfing;Marubozu;Bearish Engulfing;Marubozu;Evening Star,10
+yolo_dataset/images/test/test_PFE_01364.jpg,PFE,2020-11-30,dark,6,11,0,5,,Marubozu;Shooting Star;Bullish Engulfing;Marubozu;Hammer,5
+yolo_dataset/images/test/test_UNH_01365.jpg,UNH,2020-11-30,blue-white,7,8,2,3,Hammer;Morning Star,Doji;Doji;Shooting Star,5
+yolo_dataset/images/test/test_ABT_01366.jpg,ABT,2020-11-30,blue-white,9,10,1,2,Marubozu,Shooting Star;Morning Star,3
+yolo_dataset/images/test/test_CAT_01367.jpg,CAT,2020-11-30,light,8,11,1,4,Evening Star,Doji;Morning Star;Evening Star;Doji,5
+yolo_dataset/images/test/test_MSFT_01368.jpg,MSFT,2020-12-04,light,9,11,0,2,,Doji;Doji,2
+yolo_dataset/images/test/test_NVDA_01369.jpg,NVDA,2020-12-04,dark,5,7,0,2,,Bearish Engulfing;Morning Star,2
+yolo_dataset/images/test/test_INTC_01370.jpg,INTC,2020-12-04,light,5,5,3,3,Shooting Star;Bullish Engulfing;Bullish Engulfing,Evening Star;Morning Star;Doji,6
+yolo_dataset/images/test/test_CSCO_01371.jpg,CSCO,2020-12-04,light,5,5,1,1,Shooting Star,Bullish Engulfing,2
+yolo_dataset/images/test/test_BAC_01372.jpg,BAC,2020-12-04,dark,8,9,1,2,Doji,Doji;Doji,3
+yolo_dataset/images/test/test_GS_01373.jpg,GS,2020-12-04,blue-white,7,8,0,1,,Doji,1
+yolo_dataset/images/test/test_MS_01374.jpg,MS,2020-12-04,blue-white,7,8,1,2,Doji,Doji;Bearish Engulfing,3
+yolo_dataset/images/test/test_WFC_01375.jpg,WFC,2020-12-04,blue-white,9,13,1,5,Shooting Star,Marubozu;Evening Star;Bearish Engulfing;Doji;Doji,6
+yolo_dataset/images/test/test_PFE_01376.jpg,PFE,2020-12-04,dark,8,11,0,3,,Evening Star;Shooting Star;Marubozu,3
+yolo_dataset/images/test/test_UNH_01377.jpg,UNH,2020-12-04,dark,4,9,1,6,Hammer,Doji;Doji;Hammer;Morning Star;Shooting Star;Doji,7
+yolo_dataset/images/test/test_ABT_01378.jpg,ABT,2020-12-04,dark,8,8,2,2,Evening Star;Evening Star,Shooting Star;Morning Star,4
+yolo_dataset/images/test/test_CAT_01379.jpg,CAT,2020-12-04,light,8,10,2,4,Evening Star;Evening Star,Doji;Morning Star;Doji;Doji,6
+yolo_dataset/images/test/test_MSFT_01380.jpg,MSFT,2020-12-10,blue-white,11,12,0,1,,Doji,1
+yolo_dataset/images/test/test_NVDA_01381.jpg,NVDA,2020-12-10,dark,7,9,0,2,,Bearish Engulfing;Bearish Engulfing,2
+yolo_dataset/images/test/test_INTC_01382.jpg,INTC,2020-12-10,blue-white,5,4,3,2,Shooting Star;Marubozu;Bullish Engulfing,Bullish Engulfing;Doji,5
+yolo_dataset/images/test/test_CSCO_01383.jpg,CSCO,2020-12-10,blue-white,5,6,1,2,Shooting Star,Bullish Engulfing;Doji,3
+yolo_dataset/images/test/test_BAC_01384.jpg,BAC,2020-12-10,light,10,10,1,1,Bearish Engulfing,Evening Star,2
+yolo_dataset/images/test/test_GS_01385.jpg,GS,2020-12-10,blue-white,8,10,1,3,Doji,Marubozu;Marubozu;Doji,4
+yolo_dataset/images/test/test_MS_01386.jpg,MS,2020-12-10,dark,5,9,0,4,,Bearish Engulfing;Shooting Star;Marubozu;Marubozu,4
+yolo_dataset/images/test/test_WFC_01387.jpg,WFC,2020-12-10,light,9,13,2,6,Shooting Star;Hammer,Evening Star;Bearish Engulfing;Doji;Marubozu;Doji;Doji,8
+yolo_dataset/images/test/test_PFE_01388.jpg,PFE,2020-12-10,light,7,9,1,3,Doji,Marubozu;Shooting Star;Doji,4
+yolo_dataset/images/test/test_UNH_01389.jpg,UNH,2020-12-10,blue-white,4,6,1,3,Bearish Engulfing,Doji;Doji;Doji,4
+yolo_dataset/images/test/test_ABT_01390.jpg,ABT,2020-12-10,blue-white,7,7,0,0,,,0
+yolo_dataset/images/test/test_CAT_01391.jpg,CAT,2020-12-10,dark,7,7,2,2,Evening Star;Evening Star,Doji;Morning Star,4
+yolo_dataset/images/test/test_MSFT_01392.jpg,MSFT,2020-12-16,dark,12,12,1,1,Evening Star,Doji,2
+yolo_dataset/images/test/test_NVDA_01393.jpg,NVDA,2020-12-16,light,7,7,1,1,Hammer,Bearish Engulfing,2
+yolo_dataset/images/test/test_INTC_01394.jpg,INTC,2020-12-16,blue-white,5,8,1,4,Marubozu,Bullish Engulfing;Evening Star;Bullish Engulfing;Doji,5
+yolo_dataset/images/test/test_CSCO_01395.jpg,CSCO,2020-12-16,dark,6,9,0,3,,Bullish Engulfing;Doji;Bullish Engulfing,3
+yolo_dataset/images/test/test_BAC_01396.jpg,BAC,2020-12-16,dark,11,11,3,3,Bearish Engulfing;Bearish Engulfing;Evening Star,Doji;Hammer;Marubozu,6
+yolo_dataset/images/test/test_GS_01397.jpg,GS,2020-12-16,light,8,10,0,2,,Doji;Marubozu,2
+yolo_dataset/images/test/test_MS_01398.jpg,MS,2020-12-16,dark,8,10,0,2,,Bearish Engulfing;Evening Star,2
+yolo_dataset/images/test/test_WFC_01399.jpg,WFC,2020-12-16,light,13,19,2,8,Shooting Star;Hammer,Doji;Doji;Doji;Marubozu;Evening Star;Evening Star;Morning Star;Hammer,10
+yolo_dataset/images/test/test_PFE_01400.jpg,PFE,2020-12-16,dark,6,7,0,1,,Doji,1
+yolo_dataset/images/test/test_UNH_01401.jpg,UNH,2020-12-16,blue-white,5,7,0,2,,Doji;Doji,2
+yolo_dataset/images/test/test_ABT_01402.jpg,ABT,2020-12-16,light,11,10,1,0,Marubozu,,1
+yolo_dataset/images/test/test_CAT_01403.jpg,CAT,2020-12-16,dark,7,12,0,5,,Doji;Evening Star;Doji;Bearish Engulfing;Bullish Engulfing,5
+yolo_dataset/images/test/test_MSFT_01404.jpg,MSFT,2020-12-22,light,10,11,0,1,,Morning Star,1
+yolo_dataset/images/test/test_NVDA_01405.jpg,NVDA,2020-12-22,blue-white,6,6,1,1,Hammer,Bearish Engulfing,2
+yolo_dataset/images/test/test_INTC_01406.jpg,INTC,2020-12-22,blue-white,7,7,3,3,Shooting Star;Marubozu;Bearish Engulfing,Bullish Engulfing;Bullish Engulfing;Doji,6
+yolo_dataset/images/test/test_CSCO_01407.jpg,CSCO,2020-12-22,dark,6,7,2,3,Marubozu;Morning Star,Bullish Engulfing;Doji;Bullish Engulfing,5
+yolo_dataset/images/test/test_BAC_01408.jpg,BAC,2020-12-22,dark,11,15,1,5,Evening Star,Marubozu;Marubozu;Bullish Engulfing;Bearish Engulfing;Hammer,6
+yolo_dataset/images/test/test_GS_01409.jpg,GS,2020-12-22,light,7,11,0,4,,Bearish Engulfing;Morning Star;Doji;Bullish Engulfing,4
+yolo_dataset/images/test/test_MS_01410.jpg,MS,2020-12-22,light,9,12,0,3,,Bearish Engulfing;Shooting Star;Evening Star,3
+yolo_dataset/images/test/test_WFC_01411.jpg,WFC,2020-12-22,light,14,18,2,6,Shooting Star;Hammer,Morning Star;Doji;Evening Star;Morning Star;Evening Star;Doji,8
+yolo_dataset/images/test/test_PFE_01412.jpg,PFE,2020-12-22,dark,5,5,1,1,Doji,Doji,2
+yolo_dataset/images/test/test_UNH_01413.jpg,UNH,2020-12-22,blue-white,7,8,0,1,,Doji,1
+yolo_dataset/images/test/test_ABT_01414.jpg,ABT,2020-12-22,dark,10,10,1,1,Marubozu,Bullish Engulfing,2
+yolo_dataset/images/test/test_CAT_01415.jpg,CAT,2020-12-22,light,7,7,1,1,Evening Star,Doji,2
+yolo_dataset/images/test/test_MSFT_01416.jpg,MSFT,2020-12-29,dark,10,11,0,1,,Doji,1
+yolo_dataset/images/test/test_NVDA_01417.jpg,NVDA,2020-12-29,dark,7,12,1,6,Hammer,Hammer;Doji;Bullish Engulfing;Doji;Hammer;Bearish Engulfing,7
+yolo_dataset/images/test/test_INTC_01418.jpg,INTC,2020-12-29,light,7,7,2,2,Marubozu;Bearish Engulfing,Bullish Engulfing;Doji,4
+yolo_dataset/images/test/test_CSCO_01419.jpg,CSCO,2020-12-29,dark,5,7,1,3,Marubozu,Bullish Engulfing;Doji;Bullish Engulfing,4
+yolo_dataset/images/test/test_BAC_01420.jpg,BAC,2020-12-29,dark,10,11,1,2,Evening Star,Bearish Engulfing;Marubozu,3
+yolo_dataset/images/test/test_GS_01421.jpg,GS,2020-12-29,light,7,10,0,3,,Bearish Engulfing;Bullish Engulfing;Bullish Engulfing,3
+yolo_dataset/images/test/test_MS_01422.jpg,MS,2020-12-29,blue-white,8,8,1,1,Marubozu,Evening Star,2
+yolo_dataset/images/test/test_WFC_01423.jpg,WFC,2020-12-29,light,13,15,3,5,Hammer;Shooting Star;Bearish Engulfing,Doji;Bullish Engulfing;Evening Star;Doji;Morning Star,8
+yolo_dataset/images/test/test_PFE_01424.jpg,PFE,2020-12-29,blue-white,5,7,0,2,,Doji;Marubozu,2
+yolo_dataset/images/test/test_UNH_01425.jpg,UNH,2020-12-29,dark,8,13,0,5,,Doji;Doji;Marubozu;Marubozu;Hammer,5
+yolo_dataset/images/test/test_ABT_01426.jpg,ABT,2020-12-29,blue-white,10,11,0,1,,Bearish Engulfing,1
+yolo_dataset/images/test/test_CAT_01427.jpg,CAT,2020-12-29,light,4,9,2,7,Morning Star;Evening Star,Bearish Engulfing;Evening Star;Doji;Doji;Doji;Bullish Engulfing;Shooting Star,9

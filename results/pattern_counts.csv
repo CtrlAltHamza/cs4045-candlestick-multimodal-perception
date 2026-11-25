@@ -1,0 +1,9 @@
+Pattern,train,val,test,recent,train_share_%
+Doji,9624,2201,4025,4376,48.0
+Hammer,511,99,294,144,2.5
+Shooting Star,494,88,230,197,2.5
+Marubozu,1405,376,723,642,7.0
+Bullish Engulfing,1411,226,834,628,7.0
+Bearish Engulfing,2131,498,1049,1091,10.6
+Morning Star,2212,538,928,1004,11.0
+Evening Star,2273,542,1135,1062,11.3
