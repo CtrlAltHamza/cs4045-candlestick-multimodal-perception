@@ -23,6 +23,8 @@ REQUIRED_FILES = [
     "results/detection_robustness_improved.csv",
     "results/detection_efficiency.csv",
     "results/trend_results.csv",
+    "results/trend_test_predictions.csv",
+    "results/trend_recent_predictions.csv",
     "results/sentiment_results.csv",
     "results/market_results.csv",
     "results/daily_sentiment.csv",

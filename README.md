@@ -179,6 +179,10 @@ python scripts/build_submission_zip.py
 
 Part 1 now includes machine-readable aggregate, class-wise, theme, recent, robustness and efficiency evidence from the supplied YOLO checkpoint. Part 2 includes metrics, confidence intervals, held-out predictions, shuffle results and timed Transformer ablations. Original Kaggle logs remain the authoritative source for the training time and per-epoch histories of YOLO Runs A and B.
 
+Both notebooks were executed top to bottom without errors on an NVIDIA GTX 1650 (Part 1 in about 6 minutes, Part 2 in about 10 minutes), with the datasets in `./Data`. Part 1 reuses `checkpoints/yolo_best.pt` (set `RETRAIN_YOLO=1` to retrain Runs A, B and C from `yolov8n.yaml`); because only the selected Run C weights were kept, the Run A and Run B rows of `detection_results.csv` come from the recorded Kaggle evaluation in `results/detection_results_kaggle_runs.csv`, while Run C and all per-class, theme, recent and robustness numbers are re-measured. Part 2 retrains the RNN, BiLSTM and Transformer and all downstream market models.
+
+The trend CNN results (`results/trend_results.csv`, `trend_test_predictions.csv`, `trend_recent_predictions.csv`, `report/figures/trend_confusion_matrix.png`) are produced by notebook cell "Evaluate CNN, Baselines & 95% Grouped Bootstrap" on the submitted checkpoint `checkpoints/cnn_trend_best.pt` (GTX 1650). The training cell reuses that checkpoint unless `RETRAIN_TREND=1` is set, and the embedding cell verifies the saved `chart_embeddings.npy` against it (mean cosine similarity 0.996 on 20 random dates) unless `REBUILD_EMBEDDINGS=1` is set.
+
 ## Contributions
 
 | Member | Main contributions |
@@ -194,6 +198,7 @@ Both members contributed across Part 1, Part 2, evaluation and reporting. The de
 - The sentiment models use learned embeddings and no pretrained Transformer or language model.
 - PyTorch, Ultralytics, scikit-learn, pandas, NumPy, Matplotlib and PIL were used as disclosed libraries.
 - AI assistants were used for code structuring, refactoring, report formatting and reproducibility tooling. Model design decisions, training runs and empirical evaluation were executed and verified by the group members.
+- Claude (Anthropic, via Claude Code) was used in the final stage to audit the repository against the brief, re-run both notebooks top to bottom, add evaluation cells (trend-CNN evaluation, pattern counts, test-set YOLO galleries), replace report numbers that did not match the executed notebooks, and draft revised report text.
 
 ## Report
 
