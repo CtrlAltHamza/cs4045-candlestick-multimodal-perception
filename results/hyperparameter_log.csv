@@ -1,7 +1,7 @@
-Setting,Val Macro-F1,Conclusion
-Hidden Dim = 64,0.6454495519644216,Reduced capacity slightly hurts recall.
-Hidden Dim = 256,0.650900527769582,Larger capacity captures complex negation nuances.
-Dropout = 0.1,0.6462764951870134,Low dropout risks slight overfitting.
-Dropout = 0.5,0.6671567195986111,High dropout prevents financial phrase memorization.
-Learning Rate = 0.0001,0.6130858445889423,Moderate LR stabilizes gradient updates on long sequences.
-Learning Rate = 0.01,0.6530897302722131,Moderate LR stabilizes gradient updates on long sequences.
+Experiment,Setting,Baseline Setting,Baseline Val Macro-F1,Val Macro-F1,Delta Val Macro-F1,Training Time (s),Epochs Completed,Conclusion
+Hidden dimension,d_model = 64,"Transformer: d_model=128, dropout=0.2, learning_rate=5e-4",0.6634582227389291,0.598060125560088,-0.06539809717884104,31.8817208869998,8,Validation Macro-F1 changed by -0.0654 versus the selected Transformer baseline; compare runtime and score before choosing it.
+Hidden dimension,d_model = 256,"Transformer: d_model=128, dropout=0.2, learning_rate=5e-4",0.6634582227389291,0.6403050008008165,-0.023153221938112534,64.36142059300005,8,Validation Macro-F1 changed by -0.0232 versus the selected Transformer baseline; compare runtime and score before choosing it.
+Dropout,dropout = 0.1,"Transformer: d_model=128, dropout=0.2, learning_rate=5e-4",0.6634582227389291,0.6373378788354024,-0.026120343903526688,31.170669837000105,8,Validation Macro-F1 changed by -0.0261 versus the selected Transformer baseline; compare runtime and score before choosing it.
+Dropout,dropout = 0.5,"Transformer: d_model=128, dropout=0.2, learning_rate=5e-4",0.6634582227389291,0.5576315518083869,-0.10582667093054221,31.62981826400005,8,Validation Macro-F1 changed by -0.1058 versus the selected Transformer baseline; compare runtime and score before choosing it.
+Learning rate,learning_rate = 0.0001,"Transformer: d_model=128, dropout=0.2, learning_rate=5e-4",0.6634582227389291,0.5619970107382505,-0.10146121200067859,31.36206508400005,8,Validation Macro-F1 changed by -0.1015 versus the selected Transformer baseline; compare runtime and score before choosing it.
+Learning rate,learning_rate = 0.01,"Transformer: d_model=128, dropout=0.2, learning_rate=5e-4",0.6634582227389291,0.16705300571781798,-0.49640521702111107,23.28777352499992,6,Validation Macro-F1 changed by -0.4964 versus the selected Transformer baseline; compare runtime and score before choosing it.

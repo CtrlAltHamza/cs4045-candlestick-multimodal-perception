@@ -65,6 +65,7 @@ import sys
 import glob
 import re
 import html
+import time
 import random
 import shutil
 import string
@@ -82,6 +83,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, confusion_matrix, classification_report
 from sklearn.linear_model import LogisticRegression
 from sklearn.decomposition import PCA
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 
 # Seed everything for strict reproducibility
 SEED = 42
@@ -409,6 +412,7 @@ print("Neural architectures (SimpleRNN, BiLSTM, CustomTransformer) compiled.")""
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 def train_neural_sentiment(model, train_loader, val_loader, lr=1e-3, epochs=15, patience=3):
+    training_started = time.perf_counter()
     model = model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=1e-4)
@@ -459,6 +463,8 @@ def train_neural_sentiment(model, train_loader, val_loader, lr=1e-3, epochs=15, 
                 break
                 
     model.load_state_dict({k: v.to(device) for k, v in best_weights.items()})
+    history['training_time_seconds'] = time.perf_counter() - training_started
+    history['epochs_completed'] = len(history['val_f1'])
     return model, best_macro_f1, history
 
 print("Training engine compiled.")"""))
@@ -516,26 +522,62 @@ best_sentiment_model = bilstm_model if bilstm_val_f1 >= trans_val_f1 else trans_
 torch.save(best_sentiment_model.state_dict(), "checkpoints/sentiment_best.pt")"""))
 
     # Cell: Hyperparameter Experiments
-    cells.append(make_cell("code", r"""# Task 3.4: Hyperparameter Experiments on Best Model
+    cells.append(make_cell("code", r"""# Task 3.4: Hyperparameter Experiments on the validation-selected best model.
+# Safe to run after the setup/data/model/training cells: this writes the ablation
+# CSV, but deliberately does not overwrite checkpoints/sentiment_best.pt.
 exp_logs = []
+baseline_setting = 'Transformer: d_model=128, dropout=0.2, learning_rate=5e-4'
+if 'trans_val_f1' in globals():
+    baseline_val_f1 = trans_val_f1
+else:
+    # Evaluation-only rerun: reuse the already-recorded baseline score without
+    # retraining or overwriting the selected Transformer checkpoint.
+    saved_sentiment_results = pd.read_csv('results/sentiment_results.csv')
+    baseline_rows = saved_sentiment_results[
+        saved_sentiment_results['Model'] == 'Custom Transformer'
+    ]
+    if len(baseline_rows) != 1:
+        raise ValueError('Expected one saved Custom Transformer baseline row')
+    baseline_val_f1 = float(baseline_rows.iloc[0]['Val Macro-F1'])
+
+def run_transformer_ablation(experiment, setting, embed_dim=128, dropout=0.2, lr=5e-4):
+    # Reset initialization and sampling for comparable, reproducible runs.
+    random.seed(SEED)
+    np.random.seed(SEED)
+    torch.manual_seed(SEED)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(SEED)
+    model = CustomTransformerEncoder(VOCAB_SIZE, embed_dim=embed_dim, dropout=dropout)
+    _, val_f1, run_history = train_neural_sentiment(
+        model, train_sent_loader, val_sent_loader, lr=lr, epochs=8
+    )
+    delta = val_f1 - baseline_val_f1
+    exp_logs.append({
+        'Experiment': experiment,
+        'Setting': setting,
+        'Baseline Setting': baseline_setting,
+        'Baseline Val Macro-F1': baseline_val_f1,
+        'Val Macro-F1': val_f1,
+        'Delta Val Macro-F1': delta,
+        'Training Time (s)': run_history['training_time_seconds'],
+        'Epochs Completed': run_history['epochs_completed'],
+        'Conclusion': (
+            f'Validation Macro-F1 changed by {delta:+.4f} versus the selected '
+            'Transformer baseline; compare runtime and score before choosing it.'
+        ),
+    })
 
 print("Running Hyperparameter Experiment 1: Hidden Size variation...")
 for h_dim in [64, 256]:
-    exp_m = BiLSTMModel(VOCAB_SIZE, hidden_dim=h_dim)
-    _, val_f1, _ = train_neural_sentiment(exp_m, train_sent_loader, val_sent_loader, epochs=8)
-    exp_logs.append({'Setting': f'Hidden Dim = {h_dim}', 'Val Macro-F1': val_f1, 'Conclusion': 'Larger capacity captures complex negation nuances.' if h_dim==256 else 'Reduced capacity slightly hurts recall.'})
+    run_transformer_ablation('Hidden dimension', f'd_model = {h_dim}', embed_dim=h_dim)
 
 print("Running Hyperparameter Experiment 2: Dropout variation...")
 for drop in [0.1, 0.5]:
-    exp_m = BiLSTMModel(VOCAB_SIZE, dropout=drop)
-    _, val_f1, _ = train_neural_sentiment(exp_m, train_sent_loader, val_sent_loader, epochs=8)
-    exp_logs.append({'Setting': f'Dropout = {drop}', 'Val Macro-F1': val_f1, 'Conclusion': 'High dropout prevents financial phrase memorization.' if drop==0.5 else 'Low dropout risks slight overfitting.'})
+    run_transformer_ablation('Dropout', f'dropout = {drop}', dropout=drop)
 
 print("Running Hyperparameter Experiment 3: Learning Rate variation...")
 for lr_val in [1e-4, 1e-2]:
-    exp_m = BiLSTMModel(VOCAB_SIZE)
-    _, val_f1, _ = train_neural_sentiment(exp_m, train_sent_loader, val_sent_loader, lr=lr_val, epochs=8)
-    exp_logs.append({'Setting': f'Learning Rate = {lr_val}', 'Val Macro-F1': val_f1, 'Conclusion': 'Moderate LR stabilizes gradient updates on long sequences.'})
+    run_transformer_ablation('Learning rate', f'learning_rate = {lr_val}', lr=lr_val)
 
 df_hyp = pd.DataFrame(exp_logs)
 df_hyp.to_csv("results/hyperparameter_log.csv", index=False)
@@ -595,6 +637,7 @@ daily_sentiment = df_head.groupby('Date').agg({
     'Title': 'count'
 }).reset_index().rename(columns={'Title': 'news_count'})
 
+daily_sentiment.to_csv("results/daily_sentiment.csv", index=False)
 print(f"Aggregated daily sentiment for {len(daily_sentiment)} unique dates.")"""))
 
     # Cell: Assemble Full Multimodal Feature Table
@@ -608,8 +651,9 @@ basket_df['ret'] = basket_df['close'].pct_change()
 for lag in range(1, 6):
     basket_df[f'ret_lag_{lag}'] = basket_df['ret'].shift(lag - 1)
 
-# Target: next day close > today close
+# Target: next day close > today close. Split membership later checks both t and t+1.
 basket_df['next_close'] = basket_df['close'].shift(-1)
+basket_df['next_date'] = basket_df['date'].shift(-1)
 basket_df['target'] = (basket_df['next_close'] > basket_df['close']).astype(int)
 
 # 2. Merge News Sentiment
@@ -632,43 +676,49 @@ basket_df['lag_prob_neg'] = basket_df['lag_prob_neg'].fillna(0.0)
 basket_df['lag_prob_neu'] = basket_df['lag_prob_neu'].fillna(1.0)
 basket_df['lag_prob_pos'] = basket_df['lag_prob_pos'].fillna(0.0)
 
-# 3. Merge Chart Embeddings if available, else simulate PCA
+# 3. Merge raw chart embeddings. PCA is fitted on training years only below.
 chart_embed_file = "results/chart_embeddings.npy"
 if os.path.exists(chart_embed_file):
     embeds = np.load(chart_embed_file)
     embed_idx = pd.read_csv("results/embedding_index.csv")
     embed_idx['date'] = pd.to_datetime(embed_idx['date'])
-    pca = PCA(n_components=8, random_state=SEED)
-    pca_embeds = pca.fit_transform(embeds)
-    for c in range(8):
-        embed_idx[f'chart_pca_{c}'] = pca_embeds[:, c]
+    if len(embeds) != len(embed_idx):
+        raise ValueError("Embedding array and date index have different lengths")
+    raw_chart_cols = [f'chart_embed_{c}' for c in range(embeds.shape[1])]
+    embed_idx[raw_chart_cols] = embeds
     basket_df = pd.merge(basket_df, embed_idx, on='date', how='left')
 else:
-    for c in range(8):
-        basket_df[f'chart_pca_{c}'] = 0.0
-
-# Fill any remaining NaNs (e.g. from initial 30-day warmup or missing news) with 0.0
-for c in range(8):
-    basket_df[f'chart_pca_{c}'] = basket_df[f'chart_pca_{c}'].fillna(0.0)
+    raise FileNotFoundError("Run Part 1 first to create chart_embeddings.npy")
 
 for i in range(1, 6):
     basket_df[f'ret_lag_{i}'] = basket_df[f'ret_lag_{i}'].fillna(0.0)
 
 # Drop incomplete rows
-basket_df = basket_df.dropna(subset=['next_close']).reset_index(drop=True)
+basket_df = basket_df.dropna(subset=['next_close', 'next_date']).reset_index(drop=True)
 print(f"Final aligned dataset: {len(basket_df)} trading days.")"""))
 
     # Cell: Train & Compare Multimodal Models
-    cells.append(make_cell("code", r"""# Temporal Split & Model Comparison
-train_mask = (basket_df['date'] >= '2010-01-01') & (basket_df['date'] <= '2017-12-31')
-val_mask = (basket_df['date'] >= '2018-01-01') & (basket_df['date'] <= '2018-12-31')
-test_mask = (basket_df['date'] >= '2019-01-01') & (basket_df['date'] <= '2020-12-31')
-recent_mask = (basket_df['date'] >= '2023-01-01') & (basket_df['date'] <= '2024-03-04')
+    cells.append(make_cell("code", r"""# Leakage-free temporal split and model comparison
+from time import perf_counter
+import joblib
+
+def closed_period_mask(start, end):
+    return basket_df['date'].between(start, end) & basket_df['next_date'].between(start, end)
+
+train_mask = closed_period_mask('2010-01-01', '2017-12-31')
+val_mask = closed_period_mask('2018-01-01', '2018-12-31')
+test_mask = closed_period_mask('2019-01-01', '2020-12-31')
+recent_mask = closed_period_mask('2023-01-01', '2024-03-04')
+
+# Fit PCA strictly on training dates, then freeze it for every held-out period.
+pca = PCA(n_components=8, random_state=SEED)
+pca.fit(basket_df.loc[train_mask, raw_chart_cols].fillna(0.0).values)
+chart_cols = [f'chart_pca_{c}' for c in range(8)]
+basket_df[chart_cols] = pca.transform(basket_df[raw_chart_cols].fillna(0.0).values)
 
 price_cols = [f'ret_lag_{i}' for i in range(1, 6)]
 news_cols = ['prob_neg', 'prob_neu', 'prob_pos', 'has_news', 'news_count']
 lag_news_cols = ['lag_prob_neg', 'lag_prob_neu', 'lag_prob_pos']
-chart_cols = [f'chart_pca_{c}' for c in range(8)]
 fusion_cols = price_cols + news_cols + chart_cols
 
 y_train_m = basket_df.loc[train_mask, 'target'].values
@@ -676,25 +726,69 @@ y_val_m = basket_df.loc[val_mask, 'target'].values
 y_test_m = basket_df.loc[test_mask, 'target'].values
 y_rec_m = basket_df.loc[recent_mask, 'target'].values
 
+def bootstrap_ci(y_true, preds, probs, n_boot=1000):
+    rng = np.random.default_rng(SEED)
+    values = []
+    for _ in range(n_boot):
+        idx = rng.integers(0, len(y_true), len(y_true))
+        if len(np.unique(y_true[idx])) == 2:
+            values.append([
+                accuracy_score(y_true[idx], preds[idx]),
+                f1_score(y_true[idx], preds[idx]),
+                roc_auc_score(y_true[idx], probs[idx])
+            ])
+    return np.percentile(np.asarray(values), [2.5, 97.5], axis=0).T
+
+def paired_accuracy_ci(y_true, left, right, n_boot=1000):
+    rng = np.random.default_rng(SEED)
+    values = []
+    for _ in range(n_boot):
+        idx = rng.integers(0, len(y_true), len(y_true))
+        values.append(accuracy_score(y_true[idx], left[idx]) - accuracy_score(y_true[idx], right[idx]))
+    return np.percentile(values, [2.5, 97.5])
+
 def fit_eval_model(feature_cols, name):
     X_tr = np.nan_to_num(basket_df.loc[train_mask, feature_cols].values, nan=0.0)
+    X_va = np.nan_to_num(basket_df.loc[val_mask, feature_cols].values, nan=0.0)
     X_te = np.nan_to_num(basket_df.loc[test_mask, feature_cols].values, nan=0.0)
     X_rc = np.nan_to_num(basket_df.loc[recent_mask, feature_cols].values, nan=0.0)
-    
-    clf = LogisticRegression(C=0.1, max_iter=1000, random_state=SEED)
+    selected_c, best_val_auc = None, -np.inf
+    for c_value in (0.01, 0.1, 1.0, 10.0):
+        candidate = Pipeline([
+            ('scale', StandardScaler()),
+            ('clf', LogisticRegression(C=c_value, max_iter=2000, random_state=SEED))
+        ])
+        candidate.fit(X_tr, y_train_m)
+        val_auc = roc_auc_score(y_val_m, candidate.predict_proba(X_va)[:, 1])
+        if val_auc > best_val_auc:
+            selected_c, best_val_auc = c_value, val_auc
+    clf = Pipeline([
+        ('scale', StandardScaler()),
+        ('clf', LogisticRegression(C=selected_c, max_iter=2000, random_state=SEED))
+    ])
+    started = perf_counter()
     clf.fit(X_tr, y_train_m)
-    
+    training_seconds = perf_counter() - started
+    started = perf_counter()
     te_preds = clf.predict(X_te)
     te_probs = clf.predict_proba(X_te)[:, 1]
+    inference_ms = (perf_counter() - started) * 1000 / len(X_te)
     rc_preds = clf.predict(X_rc)
-    
-    acc = accuracy_score(y_test_m, te_preds)
-    f1 = f1_score(y_test_m, te_preds)
-    auc = roc_auc_score(y_test_m, te_probs)
-    rec_acc = accuracy_score(y_rec_m, rc_preds)
-    
+    rc_probs = clf.predict_proba(X_rc)[:, 1]
+    ci = bootstrap_ci(y_test_m, te_preds, te_probs)
     return {
-        'Model': name, 'Test Acc': acc, 'Test F1': f1, 'Test ROC-AUC': auc, 'Recent Acc': rec_acc, 'clf': clf
+        'Model': name, 'Validation ROC-AUC': best_val_auc, 'Selected C': selected_c,
+        'Test Acc': accuracy_score(y_test_m, te_preds),
+        'Test Acc 95% CI': f'[{ci[0,0]:.4f}, {ci[0,1]:.4f}]',
+        'Test F1': f1_score(y_test_m, te_preds),
+        'Test F1 95% CI': f'[{ci[1,0]:.4f}, {ci[1,1]:.4f}]',
+        'Test ROC-AUC': roc_auc_score(y_test_m, te_probs),
+        'Test ROC-AUC 95% CI': f'[{ci[2,0]:.4f}, {ci[2,1]:.4f}]',
+        'Recent Acc': accuracy_score(y_rec_m, rc_preds),
+        'Recent F1': f1_score(y_rec_m, rc_preds),
+        'Recent ROC-AUC': roc_auc_score(y_rec_m, rc_probs),
+        'Training Time (s)': training_seconds, 'Inference (ms/day)': inference_ms,
+        'clf': clf, 'test_preds': te_preds, 'test_probs': te_probs
     }
 
 market_models = [
@@ -705,30 +799,48 @@ market_models = [
     fit_eval_model(fusion_cols, 'Multimodal Fusion (Price+News+Chart)')
 ]
 
-# Majority class reference
+# Majority reference and paired comparisons on the same resampled test days.
 maj_dir = int(np.bincount(y_train_m).argmax())
-maj_te_acc = accuracy_score(y_test_m, [maj_dir]*len(y_test_m))
-maj_te_f1 = f1_score(y_test_m, [maj_dir]*len(y_test_m))
+maj_preds = np.full(len(y_test_m), maj_dir)
+maj_te_acc = accuracy_score(y_test_m, maj_preds)
+maj_te_f1 = f1_score(y_test_m, maj_preds)
+price_preds = market_models[0]['test_preds']
+for result in market_models:
+    result['Accuracy Delta vs Price 95% CI'] = str(np.round(
+        paired_accuracy_ci(y_test_m, result['test_preds'], price_preds), 4).tolist())
+    result['Accuracy Delta vs Majority 95% CI'] = str(np.round(
+        paired_accuracy_ci(y_test_m, result['test_preds'], maj_preds), 4).tolist())
 
 df_mkt = pd.DataFrame([{
-    'Model': 'Majority Class Reference', 'Test Acc': maj_te_acc, 'Test F1': maj_te_f1, 'Test ROC-AUC': np.nan, 'Recent Acc': accuracy_score(y_rec_m, [maj_dir]*len(y_rec_m))
-}] + [{k: v for k, v in m.items() if k != 'clf'} for m in market_models])
+    'Model': 'Majority Class Reference', 'Test Acc': maj_te_acc, 'Test F1': maj_te_f1,
+    'Test ROC-AUC': np.nan, 'Recent Acc': accuracy_score(y_rec_m, np.full(len(y_rec_m), maj_dir))
+}] + [{k: v for k, v in m.items() if k not in ('clf', 'test_preds', 'test_probs')} for m in market_models])
 
 df_mkt.to_csv("results/market_results.csv", index=False)
 print("--- Task 4 & 5 Market Prediction Results ---")
-print(df_mkt.to_string(index=False))"""))
+print(df_mkt.to_string(index=False))
+
+fusion_result = next(m for m in market_models if m['Model'].startswith('Multimodal'))
+joblib.dump({
+    'pipeline': fusion_result['clf'], 'pca': pca,
+    'raw_chart_feature_names': raw_chart_cols, 'feature_names': fusion_cols,
+    'training_period': ['2010-01-01', '2017-12-31'],
+    'validation_selected_C': fusion_result['Selected C'], 'seed': SEED
+}, "checkpoints/fusion_best.pt")
+print("Saved complete fusion pipeline with training-only PCA.")"""))
 
     # Cell: Sanity Check
     cells.append(make_cell("code", r"""# Task 4.5 Mandatory Sanity Check: Shuffle Headlines across days
-print("Running Sanity Check: Shuffling headlines across days (10 iterations)...")
+print("Running Sanity Check: Shuffling headlines across days (100 iterations)...")
 shuffled_accs = []
 shuffled_aucs = []
 
 X_te_news = basket_df.loc[test_mask, news_cols].values
 news_clf = [m for m in market_models if m['Model'] == 'News-Only Model (Day t)'][0]['clf']
 
-for _ in range(10):
-    shuffled_idx = np.random.permutation(len(X_te_news))
+shuffle_rng = np.random.default_rng(SEED)
+for _ in range(100):
+    shuffled_idx = shuffle_rng.permutation(len(X_te_news))
     X_shuffled = X_te_news[shuffled_idx]
     s_preds = news_clf.predict(X_shuffled)
     s_probs = news_clf.predict_proba(X_shuffled)[:, 1]
@@ -739,7 +851,11 @@ print(f"Original News Test Acc: {df_mkt.loc[df_mkt['Model']=='News-Only Model (D
 print(f"Shuffled News Test Acc: {np.mean(shuffled_accs):.4f} +/- {np.std(shuffled_accs):.4f}")
 print(f"Original News Test AUC: {df_mkt.loc[df_mkt['Model']=='News-Only Model (Day t)', 'Test ROC-AUC'].values[0]:.4f}")
 print(f"Shuffled News Test AUC: {np.mean(shuffled_aucs):.4f} +/- {np.std(shuffled_aucs):.4f}")
-print("\nConclusion: Shuffling destroys temporal alignment, confirming genuine informational signal in the daily sentiment features.")"""))
+original_auc = df_mkt.loc[df_mkt['Model']=='News-Only Model (Day t)', 'Test ROC-AUC'].values[0]
+if np.mean(shuffled_aucs) < original_auc - 0.01:
+    print("\nConclusion: headline-date alignment contributes measurable out-of-sample signal.")
+else:
+    print("\nConclusion: shuffling does not materially reduce AUC; timing signal is not robust.")"""))
 
     # Cell: Task 6 Discussion Markdown
     cells.append(make_cell("markdown", r"""## 4. Task 6: In-Depth Discussion & Answers
@@ -747,13 +863,13 @@ print("\nConclusion: Shuffling destroys temporal alignment, confirming genuine i
    - The BiLSTM and Transformer substantially outperform the Simple RNN baseline. The BiLSTM excels at capturing sequential financial context (e.g., distinguishing "profit rose, but missed estimates" vs "profit rose 10%"). The Transformer achieves the highest macro-F1 due to self-attention across long sentences, but requires careful regularization and warm-up.
 
 2. **Does news sentiment improve next-day prediction over price-only?**
-   - News sentiment adds non-trivial incremental predictive power (raising test ROC-AUC from ~0.51 to ~0.54). Financial news provides immediate exogenous information regarding earnings and macro announcements before price adjustments settle.
+   - Not conclusively in this experiment. Price-only test ROC-AUC is 0.521 and fusion ROC-AUC is 0.527, while their test accuracies are both 0.583. The paired bootstrap confidence interval for the fusion-minus-price accuracy difference includes zero, so the small observed gain should be described as inconclusive rather than as established predictive improvement.
 
 3. **Does the chart embedding add anything that past returns do not already contain?**
    - Candlestick visual embeddings encode high-order non-linear interactions (wicks, intra-day volatility, support/resistance levels) that 5-day scalar returns omit. However, since the Part 1 CNN was trained on Set A during 2010–2017 (which overlaps chronologically with the market basket), in-sample embedding representations risk carrying forward memorized market regime features. Applying PCA dimensionality reduction is essential to avoid overfitting.
 
 4. **Do results for 2023–March 2024 look different from 2019–2020?**
-   - Out-of-sample performance drops slightly in 2023–2024 due to regime changes: aggressive Federal Reserve interest rate hikes, AI-driven mega-cap market concentration, and shifting sentiment vocabularies in post-pandemic trading.
+   - Yes. Fusion accuracy falls from 0.583 on 2019–2020 to 0.541 on 2023–March 2024, and ROC-AUC falls from 0.527 to 0.501. This is evidence of weaker transfer to the recent period; possible regime or vocabulary shift is a hypothesis, not something proven by these metrics alone.
 
 5. **Where do sentiment models fail (Failure Analysis)?**
    - **Negation & Subtlety**: Phrases like "not unprofitable" or "cut dividend" vs "cut debt".
@@ -784,7 +900,27 @@ print("\nConclusion: Shuffling destroys temporal alignment, confirming genuine i
         "nbformat_minor": 4
     }
 
-    with open("notebooks/part2_nlp_fusion.ipynb", "w", encoding="utf-8") as f:
+    # Preserve saved outputs only for cells whose source is byte-for-byte unchanged.
+    # Changed cells intentionally lose stale outputs and must be rerun.
+    output_path = "notebooks/part2_nlp_fusion.ipynb"
+    try:
+        with open(output_path, "r", encoding="utf-8") as existing_file:
+            existing_notebook = json.load(existing_file)
+        old_cells = {
+            (cell.get("cell_type"), "".join(cell.get("source", []))): cell
+            for cell in existing_notebook.get("cells", [])
+        }
+        for cell in notebook_dict["cells"]:
+            if cell.get("cell_type") != "code":
+                continue
+            old_cell = old_cells.get((cell.get("cell_type"), "".join(cell.get("source", []))))
+            if old_cell is not None:
+                cell["execution_count"] = old_cell.get("execution_count")
+                cell["outputs"] = old_cell.get("outputs", [])
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
+
+    with open(output_path, "w", encoding="utf-8") as f:
         json.dump(notebook_dict, f, indent=1)
     print("Successfully built notebooks/part2_nlp_fusion.ipynb")
 

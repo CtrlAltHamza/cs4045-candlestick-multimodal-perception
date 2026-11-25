@@ -147,7 +147,7 @@ os.makedirs("checkpoints", exist_ok=True)
 os.makedirs("report/figures", exist_ok=True)"""))
 
     # Cell: Section 1 Markdown
-    cells.append(make_cell("markdown", """## 1. Task 1: Data & Exploratory Data Analysis (EDA)
+    cells.append(make_cell("markdown", r"""## 1. Task 1: Data & Exploratory Data Analysis (EDA)
 In this section we:
 1. Load `sp500_stocks.csv` and `sp500_companies.csv`.
 2. Filter tickers from **January 2010 to December 2024**.
@@ -617,7 +617,7 @@ plt.savefig("report/figures/sample_10_charts.png", dpi=300)
 plt.show()"""))
 
     # Cell: Dataset Generation Markdown
-    cells.append(make_cell("markdown", """## 4. Dataset Generation (Train, Val, Test, Recent)
+    cells.append(make_cell("markdown", r"""## 4. Dataset Generation (Train, Val, Test, Recent)
 Following project specifications:
 - **Train (2010–2017)**: $\ge 3,000$ randomly selected 30-day windows across the 12 Set A tickers.
 - **Validation (2018)**: $\ge 500$ synchronized windows across all 12 tickers (window ending every 4 trading days).
@@ -687,14 +687,21 @@ def generate_datasets_split(df_all_stocks, set_a_symbols):
                 lbl_p = f"{lbl_dir}/{img_name.replace('.jpg', '.txt')}"
                 
                 next_up = int(next_day['close'] > window.iloc[-1]['close'])
-                render_chart_with_annotations(window, img_p, lbl_p)
+                style_cfg = {
+                    'theme': random.choice(['light', 'dark', 'blue-white']),
+                    'grid': random.choice([True, False]),
+                    'volume': random.choice([True, False]),
+                    'sma': random.choice([True, False])
+                }
+                render_chart_with_annotations(window, img_p, lbl_p, style_cfg=style_cfg)
                 
                 dataset_records[split_name].append({
                     'image_path': img_p,
                     'symbol': sym,
                     'end_date': window.iloc[-1]['date'],
                     'next_date': next_day['date'],
-                    'next_day_up': next_up
+                    'next_day_up': next_up,
+                    'theme': style_cfg['theme']
                 })
                 
                 if (i + 1) % 500 == 0 or (i + 1) == total_target:
@@ -719,14 +726,21 @@ def generate_datasets_split(df_all_stocks, set_a_symbols):
                     lbl_p = f"{lbl_dir}/{img_name.replace('.jpg', '.txt')}"
                     
                     next_up = int(next_day['close'] > window.iloc[-1]['close'])
-                    render_chart_with_annotations(window, img_p, lbl_p)
+                    style_cfg = {
+                        'theme': random.choice(['light', 'dark', 'blue-white']),
+                        'grid': random.choice([True, False]),
+                        'volume': random.choice([True, False]),
+                        'sma': random.choice([True, False])
+                    }
+                    render_chart_with_annotations(window, img_p, lbl_p, style_cfg=style_cfg)
                     
                     dataset_records[split_name].append({
                         'image_path': img_p,
                         'symbol': sym,
                         'end_date': window.iloc[-1]['date'],
                         'next_date': next_day['date'],
-                        'next_day_up': next_up
+                        'next_day_up': next_up,
+                        'theme': style_cfg['theme']
                     })
                     count += 1
                     
@@ -742,6 +756,7 @@ path: {os.path.abspath(yolo_root)}
 train: images/train
 val: images/val
 test: images/test
+recent: images/recent
 
 names:
   0: Doji
@@ -823,13 +838,16 @@ model_b, res_b = train_yolo_run("Run_B_Standard_Aug", aug_run_b, epochs=20)
 model_c, res_c = train_yolo_run("Run_C_Chart_Aug", aug_run_c, epochs=20)"""))
 
     # Cell: Evaluate YOLO Runs
-    cells.append(make_cell("code", """# Evaluate all 3 runs on the test split
+    cells.append(make_cell("code", """# Select the best run on validation, then evaluate test once
 yolo_eval_summary = []
+run_models = [("Run_A_No_Aug", model_a), ("Run_B_Standard_Aug", model_b), ("Run_C_Chart_Aug", model_c)]
 
-for run_name, model in [("Run_A_No_Aug", model_a), ("Run_B_Standard_Aug", model_b), ("Run_C_Chart_Aug", model_c)]:
+for run_name, model in run_models:
+    val_metrics = model.val(data=dataset_yaml_path, split='val')
     metrics = model.val(data=dataset_yaml_path, split='test')
     yolo_eval_summary.append({
         'Run': run_name,
+        'Validation mAP@50-95': val_metrics.box.map,
         'Precision': metrics.box.mp,
         'Recall': metrics.box.mr,
         'mAP@50': metrics.box.map50,
@@ -841,8 +859,8 @@ df_yolo_comp.to_csv("results/detection_results.csv", index=False)
 print("--- YOLOv8 Test Split Evaluation Summary ---")
 print(df_yolo_comp.to_string(index=False))
 
-# Identify Best Run
-best_run = df_yolo_comp.sort_values('mAP@50-95', ascending=False).iloc[0]['Run']
+# Identify the best run without consulting test performance.
+best_run = df_yolo_comp.sort_values('Validation mAP@50-95', ascending=False).iloc[0]['Run']
 print(f"\\nBest YOLO Run: {best_run}")
 shutil.copy(f"runs/detect/{best_run}/weights/best.pt", "checkpoints/yolo_best.pt")"""))
 
@@ -854,7 +872,9 @@ best_model = YOLO("checkpoints/yolo_best.pt")
 test_imgs = glob.glob("yolo_dataset/images/test/*.jpg")
 
 robust_dir = "yolo_dataset/images/test_robust_480"
+robust_label_dir = "yolo_dataset/labels/test_robust_480"
 os.makedirs(robust_dir, exist_ok=True)
+os.makedirs(robust_label_dir, exist_ok=True)
 
 for p in test_imgs:
     img = cv2.imread(p)
@@ -863,8 +883,66 @@ for p in test_imgs:
     # Save as lower quality JPEG (quality=40)
     out_p = os.path.join(robust_dir, os.path.basename(p))
     cv2.imwrite(out_p, resized, [int(cv2.IMWRITE_JPEG_QUALITY), 40])
+    source_label = p.replace('images', 'labels').replace('.jpg', '.txt')
+    shutil.copy2(source_label, os.path.join(robust_label_dir, os.path.basename(source_label)))
 
-print(f"Created {len(test_imgs)} degraded test images for robustness checking.")"""))
+robust_yaml_path = os.path.abspath("yolo_dataset/robust_dataset.yaml")
+with open(robust_yaml_path, 'w') as stream:
+    stream.write(f'''path: {os.path.abspath('yolo_dataset')}
+train: images/train
+val: images/val
+test: images/test_robust_480
+names: {{0: Doji, 1: Hammer, 2: Shooting Star, 3: Marubozu, 4: Bullish Engulfing, 5: Bearish Engulfing, 6: Morning Star, 7: Evening Star}}
+''')
+
+robust_metrics = best_model.val(data=robust_yaml_path, split='test', imgsz=480)
+best_test_map50 = df_yolo_comp.loc[df_yolo_comp['Run'] == best_run, 'mAP@50'].iloc[0]
+robustness = pd.DataFrame([{
+    'Best Run': best_run, 'Original mAP@50': best_test_map50,
+    'Robust mAP@50': robust_metrics.box.map50,
+    'Absolute Drop': best_test_map50 - robust_metrics.box.map50
+}])
+robustness.to_csv("results/detection_robustness.csv", index=False)
+print(robustness.to_string(index=False))
+
+# Per-class test metrics and test-box counts for the validation-selected run.
+test_metrics = best_model.val(data=dataset_yaml_path, split='test')
+box_counts = np.zeros(8, dtype=int)
+for label_path in glob.glob("yolo_dataset/labels/test/*.txt"):
+    with open(label_path) as stream:
+        for line in stream:
+            if line.strip():
+                box_counts[int(line.split()[0])] += 1
+class_names = ['Doji', 'Hammer', 'Shooting Star', 'Marubozu', 'Bullish Engulfing', 'Bearish Engulfing', 'Morning Star', 'Evening Star']
+per_class = pd.DataFrame({
+    'Class': class_names, 'Test Boxes': box_counts,
+    'Precision': test_metrics.box.p, 'Recall': test_metrics.box.r,
+    'mAP@50': test_metrics.box.ap50, 'mAP@50-95': test_metrics.box.maps
+})
+per_class.to_csv("results/detection_per_class.csv", index=False)
+print(per_class.to_string(index=False))
+
+# Theme and recent-set evaluation using recorded generation metadata.
+theme_rows = []
+test_metadata = pd.read_csv("results/test_metadata.csv")
+for theme in ['light', 'dark', 'blue-white']:
+    image_list = os.path.abspath(f"results/test_{theme}_images.txt")
+    with open(image_list, 'w') as stream:
+        stream.write('\\n'.join(os.path.abspath(p) for p in test_metadata.loc[test_metadata['theme'] == theme, 'image_path']))
+    themed_yaml = os.path.abspath(f"yolo_dataset/{theme}_dataset.yaml")
+    with open(themed_yaml, 'w') as stream:
+        stream.write(f'''path: {os.path.abspath('yolo_dataset')}
+train: images/train
+val: images/val
+test: {image_list}
+names: {{0: Doji, 1: Hammer, 2: Shooting Star, 3: Marubozu, 4: Bullish Engulfing, 5: Bearish Engulfing, 6: Morning Star, 7: Evening Star}}
+''')
+    theme_metrics = best_model.val(data=themed_yaml, split='test')
+    theme_rows.append({'Evaluation': theme, 'mAP@50': theme_metrics.box.map50})
+recent_metrics = best_model.val(data=dataset_yaml_path, split='recent')
+theme_rows.append({'Evaluation': 'recent', 'mAP@50': recent_metrics.box.map50})
+pd.DataFrame(theme_rows).to_csv("results/detection_theme_results.csv", index=False)
+print(pd.DataFrame(theme_rows).to_string(index=False))"""))
 
     # Cell: Task 3 CNN Trend Prediction Markdown
     cells.append(make_cell("markdown", """## 6. Task 3: Next-Day Direction Trend Prediction with CNN
@@ -904,10 +982,12 @@ trend_transforms = transforms.Compose([
 train_dataset = CandlestickTrendDataset("results/train_metadata.csv", transform=trend_transforms)
 val_dataset = CandlestickTrendDataset("results/val_metadata.csv", transform=trend_transforms)
 test_dataset = CandlestickTrendDataset("results/test_metadata.csv", transform=trend_transforms)
+recent_dataset = CandlestickTrendDataset("results/recent_metadata.csv", transform=trend_transforms)
 
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=2)
 val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False)
 test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
+recent_loader = DataLoader(recent_dataset, batch_size=32, shuffle=False)
 
 # Custom ResNet18 with 128-dim penultimate embedding
 class TrendResNet18(nn.Module):
@@ -999,6 +1079,7 @@ with torch.no_grad():
 
 test_df = pd.DataFrame({
     'date': all_dates,
+    'symbol': test_dataset.df['symbol'].values,
     'target': all_targets,
     'pred': all_preds,
     'prob': all_probs
@@ -1009,8 +1090,28 @@ train_meta = pd.read_csv("results/train_metadata.csv")
 majority_class = train_meta['next_day_up'].mode()[0]
 test_df['majority_pred'] = majority_class
 
-# 2. Logistic Regression on 5 past returns
-# (Calculated from price returns of the corresponding tickers)
+# 2. Logistic Regression on the five returns known at each window end date.
+returns = df_stocks[['date', 'symbol', 'close']].sort_values(['symbol', 'date']).copy()
+returns['daily_return'] = returns.groupby('symbol')['close'].pct_change()
+for lag in range(5):
+    returns[f'ret_lag_{lag}'] = returns.groupby('symbol')['daily_return'].shift(lag)
+return_cols = [f'ret_lag_{lag}' for lag in range(5)]
+
+def attach_return_features(metadata):
+    frame = metadata.copy()
+    frame['end_date'] = pd.to_datetime(frame['end_date'])
+    return frame.merge(
+        returns[['date', 'symbol'] + return_cols],
+        left_on=['end_date', 'symbol'], right_on=['date', 'symbol'], how='left'
+    )
+
+train_features = attach_return_features(pd.read_csv("results/train_metadata.csv"))
+test_features = attach_return_features(test_dataset.df)
+logit = LogisticRegression(C=1.0, max_iter=2000, random_state=SEED)
+logit.fit(train_features[return_cols].fillna(0.0), train_features['next_day_up'])
+test_df['logit_prob'] = logit.predict_proba(test_features[return_cols].fillna(0.0))[:, 1]
+test_df['logit_pred'] = (test_df['logit_prob'] >= 0.5).astype(int)
+
 test_acc = accuracy_score(test_df['target'], test_df['pred'])
 test_f1 = f1_score(test_df['target'], test_df['pred'])
 test_auc = roc_auc_score(test_df['target'], test_df['prob'])
@@ -1018,16 +1119,41 @@ test_auc = roc_auc_score(test_df['target'], test_df['prob'])
 # 95% Bootstrap CI grouped by trading date
 unique_test_dates = np.array(test_df['date'].unique())
 n_bootstraps = 1000
-boot_accs = []
+boot_accs, cnn_minus_majority, cnn_minus_logit = [], [], []
 
 for _ in range(n_bootstraps):
     sample_dates = np.random.choice(unique_test_dates, size=len(unique_test_dates), replace=True)
-    sample_sub = test_df[test_df['date'].isin(sample_dates)]
+    sample_sub = pd.concat([test_df[test_df['date'] == date] for date in sample_dates], ignore_index=True)
     boot_accs.append(accuracy_score(sample_sub['target'], sample_sub['pred']))
+    cnn_minus_majority.append(
+        accuracy_score(sample_sub['target'], sample_sub['pred'])
+        - accuracy_score(sample_sub['target'], sample_sub['majority_pred'])
+    )
+    cnn_minus_logit.append(
+        accuracy_score(sample_sub['target'], sample_sub['pred'])
+        - accuracy_score(sample_sub['target'], sample_sub['logit_pred'])
+    )
 
 ci_low, ci_high = np.percentile(boot_accs, [2.5, 97.5])
 print(f"CNN Test Accuracy: {test_acc:.4f} (95% CI: [{ci_low:.4f}, {ci_high:.4f}])")
-print(f"CNN Test F1-Up: {test_f1:.4f} | ROC-AUC: {test_auc:.4f}")"""))
+print(f"CNN Test F1-Up: {test_f1:.4f} | ROC-AUC: {test_auc:.4f}")
+print(f"Distinct test dates: {len(unique_test_dates)}")
+print(f"CNN - majority accuracy 95% CI: {np.percentile(cnn_minus_majority, [2.5, 97.5])}")
+print(f"CNN - logistic accuracy 95% CI: {np.percentile(cnn_minus_logit, [2.5, 97.5])}")
+
+# Recent metrics without retraining.
+recent_targets, recent_preds, recent_probs = [], [], []
+with torch.no_grad():
+    for imgs, labels, _ in recent_loader:
+        logits, _ = trend_model(imgs.to(device))
+        recent_targets.extend(labels.numpy())
+        recent_preds.extend(logits.argmax(1).cpu().numpy())
+        recent_probs.extend(torch.softmax(logits, dim=1)[:, 1].cpu().numpy())
+print(
+    f"Recent CNN: Acc={accuracy_score(recent_targets, recent_preds):.4f}, "
+    f"F1={f1_score(recent_targets, recent_preds):.4f}, "
+    f"ROC-AUC={roc_auc_score(recent_targets, recent_probs):.4f}"
+)"""))
 
     # Cell: Market Basket Embedding Extraction
     cells.append(make_cell("code", """# Extract 128-dimensional Penultimate Embeddings for Market Basket (2010-2024)

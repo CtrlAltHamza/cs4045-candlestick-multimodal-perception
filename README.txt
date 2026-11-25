@@ -35,9 +35,12 @@ A. Kaggle GPU Environment (Recommended for heavy training):
    - Environment: Python 3.10, PyTorch 2.1+, CUDA 12.1+
 
 B. Local Environment:
-   - Python: 3.10+
+   - Python: 3.10+ (the supplied requirements also resolve on Python 3.14)
    - OS: Windows / Linux / macOS
-   - Dependencies: pip install -r requirements.txt
+   - Recommended isolated setup on Windows:
+       py -m venv .venv
+       .venv\Scripts\python -m pip install -r requirements.txt
+   - Dependencies on Linux/macOS: python -m pip install -r requirements.txt
 
 --------------------------------------------------------------------------------
 3. DATASET SETUP & STRUCTURE
@@ -85,9 +88,19 @@ Step 2: Part 2 NLP & Multimodal Fusion (notebooks/part2_nlp_fusion.ipynb)
      4. Headline publication timing rule and zero-headline imputation policy.
      5. Training Simple RNN baseline, BiLSTM, and Custom Transformer Encoder from scratch.
      6. Hyperparameter ablation study (hidden size, dropout, learning rate).
-     7. Multimodal feature assembly (price returns, daily sentiment probabilities, 128-dim PCA chart embeddings).
+     7. Multimodal feature assembly. PCA is fitted on 2010-2017 chart embeddings only and frozen for validation, test, and recent periods.
      8. Multimodal fusion vs. single-source models on 2019-2020 test split and 2023-March 2024 recent split.
-     9. Mandatory sanity check: Shuffling headlines across days to confirm signal degradation.
+     9. Mandatory sanity check: 100 headline-date shuffles, reported without assuming degradation.
+   - Both day t and its target day t+1 must lie inside the same temporal split.
+   - Model regularization is selected on 2018. Test years are evaluated only after selection.
+   - To recompute Part 2 from the saved sentiment checkpoint without retraining it:
+       python scripts/rebuild_part2_evaluation.py
+   - To rerun only the six corrected Transformer ablations (including measured
+     training time) without retraining or overwriting sentiment_best.pt:
+       python scripts/run_sentiment_ablation.py
+     A Kaggle GPU is recommended. This runner intentionally skips the main-model
+     training cell and writes only results/hyperparameter_log.csv plus the
+     existing sentence-length figure.
 
 --------------------------------------------------------------------------------
 5. OUTPUT ARTIFACTS INCLUDED IN SUBMISSION
@@ -102,6 +115,9 @@ results/
 ├── detection_results.csv     (YOLOv8 Run A/B/C metrics)
 ├── sentiment_results.csv     (Simple RNN, BiLSTM, Transformer metrics)
 ├── market_results.csv        (Single-source vs. Multimodal fusion test & recent metrics)
+├── daily_sentiment.csv       (Date-level sentiment probabilities from the saved Transformer)
+├── headline_shuffle_results.csv (100-repeat headline-date sanity check)
+├── market_test_predictions.csv  (Per-day held-out probabilities for reproducible ROC curves)
 ├── hyperparameter_log.csv    (Sentiment ablation log)
 ├── chart_embeddings.npy      (128-dim penultimate market basket embeddings)
 └── embedding_index.csv       (Trading date index aligned with chart_embeddings.npy)

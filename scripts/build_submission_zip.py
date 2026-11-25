@@ -19,6 +19,9 @@ REQUIRED_FILES = [
     "results/trend_results.csv",
     "results/sentiment_results.csv",
     "results/market_results.csv",
+    "results/daily_sentiment.csv",
+    "results/headline_shuffle_results.csv",
+    "results/market_test_predictions.csv",
     "results/hyperparameter_log.csv",
     "results/chart_embeddings.npy",
     "results/embedding_index.csv",
@@ -57,14 +60,26 @@ def create_submission_zip(output_zip_name="i210735_i210708_Project.zip"):
 
     print(f"\nCompressing submission package to {output_zip_name}...")
     with zipfile.ZipFile(output_zip_name, 'w', zipfile.ZIP_DEFLATED) as z:
+        written = set()
         for f in REQUIRED_FILES:
             z.write(f, f)
+            written.add(f.replace('\\', '/'))
             print(f"  Added: {f}")
+
+        # Include supplementary metrics and reproducibility scripts when present.
+        for pattern in ("results/*.csv", "scripts/*.py"):
+            for extra in glob.glob(pattern):
+                archive_name = extra.replace('\\', '/')
+                if archive_name not in written:
+                    z.write(extra, archive_name)
+                    written.add(archive_name)
+                    print(f"  Added: {archive_name}")
             
         # Add report figures
         for fig in glob.glob("report/figures/*.png"):
-            z.write(fig, fig)
-            print(f"  Added: {fig}")
+            archive_name = fig.replace('\\', '/')
+            z.write(fig, archive_name)
+            print(f"  Added: {archive_name}")
             
         if pdf_path and os.path.exists(pdf_path):
             z.write(pdf_path, "report.pdf")

@@ -1,78 +1,112 @@
+"""Rebuild the leakage-free multimodal fusion checkpoint from saved features.
+
+Run Part 2 through daily sentiment aggregation first. PCA and the classifier
+are fitted on 2010-2017 only, and classifier regularization is selected on 2018.
 """
-Fit and save the Multimodal Fusion Model to checkpoints/fusion_best.pt
-"""
-import os
+
+from pathlib import Path
+
+import joblib
 import numpy as np
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
 from sklearn.decomposition import PCA
-import joblib
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import roc_auc_score
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 
 SEED = 42
 
+
+def closed_period_mask(frame, start, end):
+    return frame["date"].between(start, end) & frame["next_date"].between(start, end)
+
+
 def main():
-    basket_df = pd.read_csv("results/market_basket_daily.csv")
-    basket_df['date'] = pd.to_datetime(basket_df['date'])
-    basket_df = basket_df.sort_values('date').reset_index(drop=True)
+    required = [
+        Path("results/market_basket_daily.csv"),
+        Path("results/daily_sentiment.csv"),
+        Path("results/chart_embeddings.npy"),
+        Path("results/embedding_index.csv"),
+    ]
+    missing = [str(path) for path in required if not path.exists()]
+    if missing:
+        raise FileNotFoundError(f"Missing required Part 1/2 outputs: {missing}")
 
-    # 1. Past 5 returns
-    basket_df['ret'] = basket_df['close'].pct_change()
+    basket = pd.read_csv(required[0], parse_dates=["date"]).sort_values("date").reset_index(drop=True)
+    basket["ret"] = basket["close"].pct_change()
     for lag in range(1, 6):
-        basket_df[f'ret_lag_{lag}'] = basket_df['ret'].shift(lag - 1).fillna(0.0)
+        basket[f"ret_lag_{lag}"] = basket["ret"].shift(lag - 1).fillna(0.0)
+    basket["next_close"] = basket["close"].shift(-1)
+    basket["next_date"] = basket["date"].shift(-1)
+    basket["target"] = (basket["next_close"] > basket["close"]).astype(int)
+    basket = basket.dropna(subset=["next_close", "next_date"])
 
-    basket_df['next_close'] = basket_df['close'].shift(-1)
-    basket_df['target'] = (basket_df['next_close'] > basket_df['close']).astype(int)
+    daily_news = pd.read_csv(required[1], parse_dates=["Date"])
+    basket = basket.merge(daily_news, left_on="date", right_on="Date", how="left")
+    basket["has_news"] = basket["news_count"].notna().astype(int)
+    basket[["prob_neg", "prob_pos", "news_count"]] = basket[
+        ["prob_neg", "prob_pos", "news_count"]
+    ].fillna(0.0)
+    basket["prob_neu"] = basket["prob_neu"].fillna(1.0)
 
-    # 2. News features (synthetic or loaded)
-    news_cols = ['prob_neg', 'prob_neu', 'prob_pos', 'has_news', 'news_count']
-    for col in ['prob_neg', 'prob_pos', 'news_count']:
-        basket_df[col] = 0.0
-    basket_df['prob_neu'] = 1.0
-    basket_df['has_news'] = 0
+    embeddings = np.load(required[2])
+    index = pd.read_csv(required[3], parse_dates=["date"])
+    if len(embeddings) != len(index):
+        raise ValueError("Embedding array and date index have different lengths")
+    raw_chart_cols = [f"chart_embed_{i}" for i in range(embeddings.shape[1])]
+    index[raw_chart_cols] = embeddings
+    basket = basket.merge(index, on="date", how="left")
 
-    # 3. Chart PCA Embeddings
-    chart_cols = [f'chart_pca_{c}' for c in range(8)]
-    embed_file = "results/chart_embeddings.npy"
-    if os.path.exists(embed_file):
-        embeds = np.load(embed_file)
-        embed_idx = pd.read_csv("results/embedding_index.csv")
-        embed_idx['date'] = pd.to_datetime(embed_idx['date'])
-        pca = PCA(n_components=8, random_state=SEED)
-        pca_embeds = pca.fit_transform(embeds)
-        for c in range(8):
-            embed_idx[f'chart_pca_{c}'] = pca_embeds[:, c]
-        basket_df = pd.merge(basket_df, embed_idx, on='date', how='left')
-        for c in range(8):
-            basket_df[f'chart_pca_{c}'] = basket_df[f'chart_pca_{c}'].fillna(0.0)
-    else:
-        for c in range(8):
-            basket_df[f'chart_pca_{c}'] = 0.0
+    train_mask = closed_period_mask(basket, "2010-01-01", "2017-12-31")
+    val_mask = closed_period_mask(basket, "2018-01-01", "2018-12-31")
+    pca = PCA(n_components=8, random_state=SEED)
+    pca.fit(basket.loc[train_mask, raw_chart_cols].fillna(0.0).values)
+    chart_cols = [f"chart_pca_{i}" for i in range(8)]
+    basket[chart_cols] = pca.transform(basket[raw_chart_cols].fillna(0.0).values)
 
-    # Temporal split
-    train_mask = (basket_df['date'] >= '2010-01-01') & (basket_df['date'] <= '2017-12-31')
-    feature_cols = [f'ret_lag_{i}' for i in range(1, 6)] + news_cols + chart_cols
+    price_cols = [f"ret_lag_{i}" for i in range(1, 6)]
+    news_cols = ["prob_neg", "prob_neu", "prob_pos", "has_news", "news_count"]
+    feature_cols = price_cols + news_cols + chart_cols
+    X_train = basket.loc[train_mask, feature_cols].values
+    y_train = basket.loc[train_mask, "target"].values
+    X_val = basket.loc[val_mask, feature_cols].values
+    y_val = basket.loc[val_mask, "target"].values
 
-    X_train = np.nan_to_num(basket_df.loc[train_mask, feature_cols].values, nan=0.0)
-    y_train = basket_df.loc[train_mask, 'target'].values
+    best_c, best_auc = None, -np.inf
+    for c_value in (0.01, 0.1, 1.0, 10.0):
+        candidate = Pipeline([
+            ("scale", StandardScaler()),
+            ("clf", LogisticRegression(C=c_value, max_iter=2000, random_state=SEED)),
+        ])
+        candidate.fit(X_train, y_train)
+        auc = roc_auc_score(y_val, candidate.predict_proba(X_val)[:, 1])
+        if auc > best_auc:
+            best_c, best_auc = c_value, auc
 
-    # Fit best regularized fusion model
-    fusion_clf = LogisticRegression(C=0.1, max_iter=1000, random_state=SEED)
-    fusion_clf.fit(X_train, y_train)
-
-    os.makedirs("checkpoints", exist_ok=True)
-    out_path = "checkpoints/fusion_best.pt"
-    # Save model weights / estimator dictionary
-    fusion_state = {
-        'model_type': 'LogisticRegression',
-        'C': 0.1,
-        'coef': fusion_clf.coef_,
-        'intercept': fusion_clf.intercept_,
-        'classes': fusion_clf.classes_,
-        'feature_names': feature_cols,
-        'model_object': fusion_clf
+    pipeline = Pipeline([
+        ("scale", StandardScaler()),
+        ("clf", LogisticRegression(C=best_c, max_iter=2000, random_state=SEED)),
+    ])
+    pipeline.fit(X_train, y_train)
+    state = {
+        "pipeline": pipeline,
+        "pca": pca,
+        "raw_chart_feature_names": raw_chart_cols,
+        "feature_names": feature_cols,
+        "training_period": ["2010-01-01", "2017-12-31"],
+        "validation_selected_C": best_c,
+        "validation_roc_auc": best_auc,
+        "seed": SEED,
     }
-    joblib.dump(fusion_state, out_path)
-    print(f"Saved best multimodal fusion model to {out_path} ({os.path.getsize(out_path)/(1024):.1f} KB)")
+    output = Path("checkpoints/fusion_best.pt")
+    output.parent.mkdir(exist_ok=True)
+    joblib.dump(state, output)
+    restored = joblib.load(output)
+    if not np.allclose(pipeline.predict_proba(X_val), restored["pipeline"].predict_proba(X_val)):
+        raise RuntimeError("Reloaded checkpoint does not reproduce validation predictions")
+    print(f"Saved and verified {output} with C={best_c} and validation ROC-AUC={best_auc:.4f}")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

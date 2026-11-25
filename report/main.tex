@@ -27,7 +27,7 @@ Candlestick Vision and Financial News Sentiment}
 \maketitle
 
 \begin{abstract}
-Forecasting next-day equity price movements is an inherently arduous challenge in computational perception owing to the near random-walk efficiency of modern financial markets. Traditional quantitative approaches rely predominantly on scalar time-series models, largely discarding the non-linear spatial geometry embedded in visual candlestick charts and the temporal semantic subtleties conveyed by exogenous financial headlines. In this paper, we develop an end-to-end multimodal perception architecture that unites computer vision and natural language processing to predict market direction. In Part~1, we design an algorithmic candlestick rendering engine that generates $640\times640$ visual charts with stochastic variations across 20 audited S\&P~500 stocks, automatically computing precise pixel bounding boxes for eight technical patterns via viewport data-coordinate transformation math. We train a YOLOv8-nano detector strictly from scratch across three distinct augmentation regimes, demonstrating that standard vision augmentations (specifically vertical flipping and shear) corrupt financial semantics and degrade mAP@50-95. A ResNet-18 trend classifier extracts 128-dimensional penultimate visual embeddings for a normalized synthetic market basket across 2010--2024. In Part~2, we construct and evaluate three deep NLP architectures without pretrained weights: a Simple RNN baseline, a Bidirectional LSTM, and a custom Multi-Head Transformer Encoder. We aggregate daily headlines into temporal sentiment probability vectors under strict anti-leakage timing constraints. Finally, we fuse the 128-dimensional visual chart embeddings (compressed via PCA to 8 components) with price momentum and daily sentiment vectors. Our multimodal model achieves a statistically validated test accuracy of 58.0\% and ROC-AUC of 0.526, outperforming all single-source baselines. A date-shuffling sanity test collapses performance to random chance (ROC-AUC: 0.501), confirming genuine predictive signal rather than noise memorization.
+Forecasting next-day equity price movements is an inherently arduous challenge in computational perception owing to the near random-walk efficiency of modern financial markets. Traditional quantitative approaches rely predominantly on scalar time-series models, largely discarding the non-linear spatial geometry embedded in visual candlestick charts and the temporal semantic subtleties conveyed by exogenous financial headlines. In this paper, we develop an end-to-end multimodal perception architecture that unites computer vision and natural language processing to predict market direction. In Part~1, we design an algorithmic candlestick rendering engine that generates $640\times640$ visual charts with stochastic variations across 20 audited S\&P~500 stocks, automatically computing precise pixel bounding boxes for eight technical patterns via viewport data-coordinate transformation math. We train a YOLOv8-nano detector strictly from scratch across three distinct augmentation regimes, demonstrating that standard vision augmentations (specifically vertical flipping and shear) corrupt financial semantics and degrade mAP@50-95. A ResNet-18 trend classifier extracts 128-dimensional penultimate visual embeddings for a normalized synthetic market basket across 2010--2024. In Part~2, we construct and evaluate three deep NLP architectures without pretrained weights: a Simple RNN baseline, a Bidirectional LSTM, and a custom Multi-Head Transformer Encoder. We aggregate daily headlines into temporal sentiment probability vectors under strict anti-leakage timing constraints. Finally, we fuse visual embeddings, price momentum, and daily sentiment. With PCA fitted only on 2010--2017 and model settings selected on 2018, fusion reaches 58.3\% test accuracy and 0.527 ROC-AUC. Its paired accuracy-difference interval against price-only includes zero, so the measured multimodal lift is modest and statistically inconclusive.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -327,7 +327,7 @@ Color Jitter    & HSV     & Mild& Aligns with visual themes if hue intact. \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.98\columnwidth]{figures/yolo_loss_curves.png}
-\caption{Training loss trajectories and validation mAP@50 progression across Runs A, B, and C over 20 epochs.}
+\caption{Measured test precision, recall, mAP@50, and mAP@50--95 for the three augmentation runs. Per-epoch histories are produced by the training notebook.}
 \label{fig:yolo_curves}
 \end{figure}
 
@@ -373,7 +373,7 @@ Evening Star      & 0.479 & 0.518 & 0.538 & 79 \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.88\columnwidth]{figures/yolo_confusion_matrix.png}
-\caption{Normalized confusion matrix for YOLOv8 Run C across all eight candlestick classes on the test split.}
+\caption{Checkpoint confusion counts on the ten reproducible labeled chart artifacts, using IoU $\geq0.50$ matching and a background class.}
 \label{fig:yolo_cm}
 \end{figure}
 
@@ -489,7 +489,7 @@ In accordance with course rules prohibiting pretrained BERT or FinBERT models, w
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.98\columnwidth]{figures/sentiment_training_curves.png}
-\caption{Validation cross-entropy loss and Macro-F1 progression across 15 epochs for Simple RNN, BiLSTM, and Custom Transformer.}
+\caption{Measured validation Macro-F1, test accuracy, and test Macro-F1 for the three neural sentiment models.}
 \label{fig:sent_curves}
 \end{figure}
 
@@ -519,27 +519,29 @@ Bidirectional LSTM & 3.12M & 0.634 & 0.630 & 0.641 \\
 As reported in Table~\ref{tab:sentiment_results} and Figure~\ref{fig:sent_curves}, the Custom Transformer outperformed the BiLSTM by 3.0\% Macro-F1. The Simple RNN suffered catastrophic vanishing gradients, achieving an accuracy barely above the majority baseline.
 
 \subsubsection{Hyperparameter Ablation Study}
-We conducted an ablation study on the Custom Transformer, varying hidden dimension, dropout, and learning rate.
+We varied hidden dimension, dropout, and learning rate on the validation-selected Custom Transformer. Each ablation used a fixed maximum budget of eight epochs with identical seeds and early stopping; the baseline score is from the original main-model run (maximum 15 epochs), so this is a controlled sensitivity study rather than an equal-compute ranking. All six runs record measured Kaggle GPU wall-clock time. Every alternative reduced validation Macro-F1, supporting the selected $d_{\mathrm{model}}=128$, dropout $0.2$, and learning rate $5\times10^{-4}$ configuration. In particular, $10^{-2}$ collapsed to near-majority performance and stopped after six epochs.
 
 \begin{table}[htbp]
 \centering
-\caption{Hyperparameter Ablation on Best Sentiment Architecture}
+\caption{Custom Transformer Hyperparameter Sensitivity Results}
 \label{tab:hyperparam}
-\begin{tabular}{lccc}
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{lcccc}
 \toprule
-\textbf{Ablation Parameter} & \textbf{Value} & \textbf{Val Macro-F1} & \textbf{Empirical Observation} \\
+\textbf{Parameter} & \textbf{Value} & \textbf{Val F1} & \textbf{Time (s)} & \textbf{Observation} \\
 \midrule
-Hidden Dimension & 64 & 0.645 & Insufficient capacity for polysemy \\
-($d_{\text{model}}$) & \textbf{128} & \textbf{0.663} & Optimal representation capacity \\
-                 & 256 & 0.651 & Mild parameter overparameterization \\
+Hidden Dimension & 64 & 0.598 & 31.9 & Lower capacity \\
+($d_{\text{model}}$) & \textbf{128} & \textbf{0.663} & -- & Selected baseline \\
+                 & 256 & 0.640 & 64.4 & Higher compute, no gain \\
 \midrule
-Dropout Rate     & 0.1 & 0.646 & Inadequate regularization \\
-                 & \textbf{0.3} & \textbf{0.663} & Robust generalization \\
-                 & 0.5 & 0.667 & High dropout regularizes noisy text \\
+Dropout Rate     & 0.1 & 0.637 & 31.2 & Less regularization \\
+                 & \textbf{0.2} & \textbf{0.663} & -- & Selected baseline \\
+                 & 0.5 & 0.558 & 31.6 & Excess regularization \\
 \midrule
-Learning Rate    & $10^{-4}$ & 0.613 & Sluggish parameter convergence \\
-                 & $\mathbf{10^{-3}}$ & \textbf{0.663} & Optimal AdamW convergence \\
-                 & $10^{-2}$ & 0.653 & Gradient instability near minima \\
+Learning Rate    & $10^{-4}$ & 0.562 & 31.4 & Slow convergence \\
+                 & $\mathbf{5\times10^{-4}}$ & \textbf{0.663} & -- & Selected baseline \\
+                 & $10^{-2}$ & 0.167 & 23.3 & Unstable; stopped at 6 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -570,22 +572,24 @@ To predict the next-day direction of the synthetic Market Basket, daily headline
 \label{fig:diag_fusion}
 \end{figure}
 
-The 128-dimensional chart embeddings were compressed via Principal Component Analysis (PCA) to 8 components (accounting for 74.2\% of visual variance) to prevent overfitting on the $\sim$2,000 training days. We trained an $L_2$-regularized Logistic Regression classifier ($C=0.1$) on early feature concatenation.
+The 128-dimensional chart embeddings were compressed via Principal Component Analysis (PCA) to 8 components, accounting for 61.9\% of variance in the training years. PCA was fitted strictly on 2010--2017 and then frozen. Logistic-regression regularization was selected on 2018; early fusion selected $C=10$.
 
 \begin{table}[htbp]
 \centering
 \caption{Market Basket Next-Day Direction Performance (2019--2020 Test)}
 \label{tab:market_results}
+\scriptsize
+\setlength{\tabcolsep}{2pt}
 \begin{tabular}{lcccc}
 \toprule
-\textbf{Model Pipeline} & \textbf{Accuracy} & \textbf{F1 (Up)} & \textbf{ROC-AUC} & \textbf{Recent Acc} \\
+\textbf{Model} & \textbf{Acc.} & \textbf{F1} & \textbf{AUC} & \textbf{Rec. Acc.} \\
 \midrule
-Majority Baseline & 0.578 & 0.733 & n/a & 0.539 \\
-Price-Only Baseline & 0.578 & 0.733 & 0.513 & 0.539 \\
-News-Only (Day $t$) & 0.578 & 0.733 & 0.522 & 0.539 \\
-News-Only Lagged ($t-1$) & 0.578 & 0.733 & 0.475 & 0.539 \\
-Chart-Only (PCA 8) & 0.580 & 0.734 & 0.516 & 0.536 \\
-\textbf{Multimodal Fusion} & \textbf{0.580} & \textbf{0.733} & \textbf{0.526} & \textbf{0.539} \\
+Majority Baseline & 0.579 & 0.734 & n/a & 0.541 \\
+Price-Only Baseline & 0.583 & 0.734 & 0.521 & 0.541 \\
+News-Only (Day $t$) & 0.579 & 0.734 & 0.516 & 0.541 \\
+News-Only Lagged ($t-1$) & 0.579 & 0.734 & 0.477 & 0.541 \\
+Chart-Only (PCA 8) & 0.579 & 0.734 & 0.513 & 0.538 \\
+\textbf{Multimodal Fusion} & \textbf{0.583} & \textbf{0.729} & \textbf{0.527} & \textbf{0.541} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -593,17 +597,17 @@ Chart-Only (PCA 8) & 0.580 & 0.734 & 0.516 & 0.536 \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.88\columnwidth]{figures/fusion_comparison_roc.png}
-\caption{Receiver Operating Characteristic (ROC) curves on the 2019--2020 test split, verifying multimodal lift over single-source baselines and random chance.}
+\caption{Receiver Operating Characteristic (ROC) curves on the 2019--2020 test split.}
 \label{fig:roc_curves}
 \end{figure}
 
 \subsection{Mandatory Sanity Check: Headline Date Shuffling}
-To verify that the news features carry genuine market information rather than fitting noise, we conducted 10 independent trials of randomly permuting test headline dates across days:
+To test sensitivity to temporal alignment, we conducted 100 independent trials of randomly permuting test headline dates across days:
 \begin{itemize}
-  \item \textbf{Unshuffled News Model}: Accuracy: \textbf{57.8\%}, ROC-AUC: \textbf{0.522}
-  \item \textbf{Date-Shuffled News Model}: Accuracy: \textbf{50.4\%} ($\pm 0.8\%$), ROC-AUC: \textbf{0.501} ($\pm 0.009$)
+  \item \textbf{Unshuffled News Model}: Accuracy: \textbf{57.9\%}, ROC-AUC: \textbf{0.516}
+  \item \textbf{Date-Shuffled News Model}: mean ROC-AUC: \textbf{0.499} ($\pm 0.025$)
 \end{itemize}
-The collapse of the shuffled model to exact random chance (0.501) rigorously proves that temporal alignment is the genuine driver of predictive capability.
+The average shuffled AUC is near chance and below the unshuffled AUC. The variation across shuffles is substantial, so this is evidence of a small timing contribution rather than proof of a strong news signal.
 
 \subsection{Computational Efficiency Benchmarks}
 Table~\ref{tab:efficiency} summarizes parameter counts, training times, and per-sample inference latencies across all components.
@@ -664,13 +668,13 @@ Chart-Only Pipeline     & 11.25M & 12.5 min  & 18.5 ms / day \\
   The Custom Transformer Encoder decisively surpassed the BiLSTM (Macro-F1: 0.660 vs 0.630) and Simple RNN (0.273). The multi-head self-attention mechanism enables direct token-to-token associative routing across the entire 64-token sequence, resolving long-distance financial dependencies (such as ``Despite falling revenues, net income surged'') without suffering from recurrent gradient attenuation.
   
   \item \textbf{Value of news sentiment over past prices}:
-  News sentiment provides an undeniable leading signal. As demonstrated in Table~\ref{tab:market_results}, incorporating sentiment elevated ROC-AUC from 0.513 (price-only) to 0.522 (news-only) and 0.526 (multimodal fusion). Corporate news incorporates exogenous macroeconomic shocks before they fully materialize in backward-looking moving averages.
+  The day-$t$ news-only model reached ROC-AUC 0.516, below the price-only model's 0.521, while fusion reached 0.527. The paired accuracy-difference interval for fusion versus price-only was $[-0.018,0.016]$, which includes zero. These results do not establish a reliable improvement from news sentiment on this split.
   
   \item \textbf{Redundancy and temporal overlap of visual embeddings}:
-  The 128-dimensional embedding captures intraday wick variance, body proportions, and visual support levels absent from simple 5-day scalar returns. However, because the ResNet-18 was trained on Set A stocks during 2010--2017, which overlaps temporally with the Market Basket training window, raw 128-dim embeddings risk memorizing historical regime noise. Compressing embeddings via PCA to 8 components effectively eliminated this collinearity.
+  The 128-dimensional embedding can encode wick variance, body proportions, and visual structure absent from five scalar returns. However, chart-only ROC-AUC was 0.513, below price-only at 0.521. Training-only PCA reduces dimension and prevents test leakage, but it does not establish incremental predictive value by itself.
   
   \item \textbf{Recent data performance divergence (2023--2024)}:
-  On the recent out-of-sample split, test accuracy declined from 58.0\% to 53.9\%. This drift reflects macroeconomic regime transitions: 2019--2020 was characterized by low interest rates and pandemic tech surges, whereas 2023--2024 experienced aggressive Federal Reserve rate hikes, regional banking crises, and high-frequency algorithmic liquidity shocks.
+  Fusion accuracy declined from 58.3\% in 2019--2020 to 54.1\% in 2023--4 March 2024, while recent ROC-AUC was 0.501. This is consistent with temporal distribution shift, although the experiment alone cannot identify a single causal market regime.
   
   \item \textbf{Sentiment failure modes and domain shift}:
   Sentiment models struggled with contextual negation (e.g., ``not unprofitable''), ambiguous polysemy (e.g., ``cutting dividends'' is bearish, but ``cutting debt'' is bullish), and financial numbers (``profit grew 5\%, missing consensus of 8\%''). Furthermore, the sentiment training dataset contains noisy informal tweets, introducing domain discrepancy when applied to institutional S\&P 500 headlines.
@@ -679,7 +683,7 @@ Chart-Only Pipeline     & 11.25M & 12.5 min  & 18.5 ms / day \\
 %=======================================================================
 \section{Conclusion}
 \label{sec:conclusion}
-In this project, we designed, executed, and evaluated an end-to-end multimodal deep perception architecture for financial candlestick detection and next-day direction forecasting. By training YOLOv8, BiLSTM, and a Multi-Head Transformer Encoder strictly from scratch, we demonstrated that: (1) Domain-specific augmentations are vital in financial computer vision, where spatial flips destroy semantic polarity; (2) Multi-head self-attention delivers superior semantic comprehension over recurrent baselines; and (3) Multimodal fusion of price momentum, news sentiment, and visual embeddings delivers a statistically verifiable improvement over single-source baselines, confirmed via rigorous date-shuffling sanity checks.
+In this project, we designed, executed, and evaluated an end-to-end multimodal perception architecture for candlestick detection and next-day direction forecasting. The experiments show that chart-safe augmentation matters and that the custom Transformer is the strongest tested sentiment model. Leakage-free fusion produced the highest test ROC-AUC, but its paired accuracy advantage over price-only was statistically inconclusive. This result is consistent with the difficulty of extracting stable next-day signal from sparse news and overlapping market-chart windows.
 
 %=======================================================================
 \bibliographystyle{IEEEtran}
@@ -711,23 +715,23 @@ Figure~\ref{fig:app_eda} illustrates 10 representative 640$\times$640 training c
 
 \clearpage
 \section{Qualitative YOLOv8 Detection Gallery}
-Figure~\ref{fig:app_detections} presents 10 qualitative object detection predictions generated by YOLOv8 Run C on unseen test charts, depicting detected pattern classes and confidence scores.
+Figure~\ref{fig:app_detections} presents checkpoint predictions on the ten reproducible labeled chart artifacts included with the submission. The quantitative held-out evaluation remains the test-set result in Table~\ref{tab:yolo_results}.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{figures/yolo_test_detections.png}
-\caption{Qualitative test set detections from YOLOv8 Run C across various themes, illustrating high-confidence pattern localization.}
+\caption{Actual YOLOv8 checkpoint detections and measured confidence scores on reproducible rendered charts.}
 \label{fig:app_detections}
 \end{figure}
 
 \clearpage
 \section{Documented YOLO Failure Cases and Root-Cause Diagnostics}
-Figure~\ref{fig:app_failures} details five specific failure cases observed during model evaluation, detailing ground truth annotations, predicted bounding boxes, and architectural root causes.
+Figure~\ref{fig:app_failures} shows the five reproducible charts with the largest number of unmatched or misclassified boxes under IoU $\geq0.50$ matching.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.98\textwidth]{figures/yolo_failure_cases.png}
-\caption{Exhaustive visual failure case analysis and diagnostic root cause identification for candlestick object detection.}
+\caption{Highest-error checkpoint examples among the reproducible chart artifacts.}
 \label{fig:app_failures}
 \end{figure}
 
