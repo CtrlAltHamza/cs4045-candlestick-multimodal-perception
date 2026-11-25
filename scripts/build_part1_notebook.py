@@ -946,7 +946,18 @@ names: {{0: Doji, 1: Hammer, 2: Shooting Star, 3: Marubozu, 4: Bullish Engulfing
 ''')
     theme_metrics = best_model.val(data=themed_yaml, split='test')
     theme_rows.append({'Evaluation': theme, 'mAP@50': theme_metrics.box.map50})
-recent_metrics = best_model.val(data=dataset_yaml_path, split='recent')
+recent_image_list = os.path.abspath("results/recent_images.txt")
+with open(recent_image_list, 'w') as stream:
+    stream.write('\\n'.join(os.path.abspath(p) for p in glob.glob("yolo_dataset/images/recent/*.jpg")))
+recent_yaml = os.path.abspath("yolo_dataset/recent_dataset.yaml")
+with open(recent_yaml, 'w') as stream:
+    stream.write(f'''path: {os.path.abspath('yolo_dataset')}
+train: images/train
+val: images/val
+test: {recent_image_list}
+names: {{0: Doji, 1: Hammer, 2: Shooting Star, 3: Marubozu, 4: Bullish Engulfing, 5: Bearish Engulfing, 6: Morning Star, 7: Evening Star}}
+''')
+recent_metrics = best_model.val(data=recent_yaml, split='test')
 theme_rows.append({'Evaluation': 'recent', 'mAP@50': recent_metrics.box.map50})
 pd.DataFrame(theme_rows).to_csv("results/detection_theme_results.csv", index=False)
 print(pd.DataFrame(theme_rows).to_string(index=False))"""))

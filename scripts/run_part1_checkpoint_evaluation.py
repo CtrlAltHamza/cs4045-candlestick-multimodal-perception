@@ -71,6 +71,23 @@ names:
     namespace["dataset_yaml_path"] = str(dataset_yaml)
 
     evaluation_source = "".join(notebook["cells"][18]["source"])
+    # Compatibility for project archives containing the older notebook cell:
+    # Ultralytics does not consistently resolve arbitrary split names such as
+    # ``recent``. Evaluate an absolute image list through the standard test key.
+    old_recent_call = "recent_metrics = best_model.val(data=dataset_yaml_path, split='recent')"
+    recent_compat = r"""recent_image_list = os.path.abspath("results/recent_images.txt")
+with open(recent_image_list, 'w') as stream:
+    stream.write('\n'.join(os.path.abspath(p) for p in glob.glob("yolo_dataset/images/recent/*.jpg")))
+recent_yaml = os.path.abspath("yolo_dataset/recent_dataset.yaml")
+with open(recent_yaml, 'w') as stream:
+    stream.write(f'''path: {os.path.abspath('yolo_dataset')}
+train: images/train
+val: images/val
+test: {recent_image_list}
+names: {{0: Doji, 1: Hammer, 2: Shooting Star, 3: Marubozu, 4: Bullish Engulfing, 5: Bearish Engulfing, 6: Morning Star, 7: Evening Star}}
+''')
+recent_metrics = best_model.val(data=recent_yaml, split='test')"""
+    evaluation_source = evaluation_source.replace(old_recent_call, recent_compat)
     exec(compile(evaluation_source, f"{NOTEBOOK.name}:cell-18", "exec"), namespace)
 
     bundle_path = ROOT / "results" / "part1_checkpoint_evaluation.zip"
