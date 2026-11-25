@@ -122,11 +122,11 @@ In this semester project for \textit{Deep Learning for Perception (CS 4045)}, we
 The underlying price dataset provides daily Open, High, Low, Close, and Volume records for S\&P~500 constituents spanning January 2010 through December 2024 (comprising 3,774 unified trading sessions). Because real-world corporate actions frequently introduce synthetic anomalies, we conducted an exhaustive data health inspection:
 \begin{enumerate}
   \item \textbf{Placeholder Constant Prices}: Several tickers (e.g., \texttt{SW}, \texttt{FERG}, \texttt{AMCR}) contain long runs of identical price quotes with zero volume prior to their official U.S. listing dates. These were systematically purged.
-  \item \textbf{Zero-Volume and Zero-Range Sessions}: Instances where $\text{Volume} = 0$ or $\text{High} == \text{Low}$ indicate exchange holiday halts or data collection gaps. We resolved to treat candles with $|High - Low| < 10^{-4}$ as singular neutral doji-like lines, ensuring numerical stability in bounding box normalization.
-  \item \textbf{Price Jump Verification}: Historical price series were audited for sudden single-day price crashes ($>15\%$). All detected jumps aligned with verifiable market shocks (such as the March 2020 COVID-19 pandemic liquidation) corroborated by abnormal traded volume.
+  \item \textbf{Zero-Volume and Zero-Range Sessions}: Instances where $\text{Volume} = 0$ or $\text{High} == \text{Low}$ indicate exchange holiday halts or data collection gaps. Such tickers were excluded from selection. For any remaining near-zero range, the pattern rules floor the range at $10^{-6}$ so that all ratios stay defined; such a candle then counts as a Doji (its body is at most 10\% of the range), and its box is still drawn from its low to its high.
+  \item \textbf{Price Jump Verification}: Across the 20 selected tickers there are 33 days with a close-to-close move larger than 15\%. The largest ones coincide with known events and unusually high volume, e.g.\ NVDA $+29.8\%$ on 2016-11-11 (earnings; volume $6.6\times$ its 20-day median), INTC $-26.1\%$ on 2024-08-02 ($5.4\times$), BAC $-20.3\%$ on 2011-08-08 (US downgrade; $3.9\times$), and the March 2020 crash (GS $+17.6\%$, MS $+19.8\%$, MSFT $-14.7\%$). We therefore kept them as real moves.
 \end{enumerate}
 
-To ensure robust cross-industry generalization, we selected 20 audited companies spanning five distinct GICS sectors with 100\% complete price histories from January 2010 to December 2024. As documented in Table~\ref{tab:tickers}, these companies were partitioned into two non-overlapping subsets: Set~A (12 tickers for vision model training) and Set~B (8 tickers reserved exclusively for the synthetic market basket).
+To ensure robust cross-industry generalization, we selected 20 audited companies spanning five distinct GICS sectors with complete price histories from January 2010 to December 2024: compared with the 3,774 dates shared by the price file, every selected ticker has 0 missing trading days, 0 zero-volume days, 0 days with high equal to low, and no runs of constant prices. As documented in Table~\ref{tab:tickers}, these companies were partitioned into two non-overlapping subsets: Set~A (12 tickers for vision model training) and Set~B (8 tickers reserved exclusively for the synthetic market basket).
 
 \begin{table}[htbp]
 \centering
@@ -181,7 +181,7 @@ Figure~\ref{fig:market_basket} illustrates the resulting 15-year synthetic marke
 \end{figure}
 
 \subsection{Exploratory Data Analysis: Returns and Kurtosis}
-Daily log-returns $r_t = \ln(C_t / C_{t-1})$ were calculated for all selected tickers. Financial asset returns universally violate Gaussian normality, displaying pronounced leptokurtosis (fat tails) and negative skewness during liquidation cascades. 
+Daily simple returns $r_t = C_t / C_{t-1} - 1$ were calculated for the 12 Set~A tickers over 2010--2024, and Figure~\ref{fig:kurtosis} shows their histograms with the excess kurtosis (Fisher definition, 0 for a normal distribution). 
 
 \begin{figure}[htbp]
 \centering
@@ -190,21 +190,21 @@ Daily log-returns $r_t = \ln(C_t / C_{t-1})$ were calculated for all selected ti
 \label{fig:kurtosis}
 \end{figure}
 
-As depicted in Figure~\ref{fig:kurtosis}, high-beta semiconductor assets (\texttt{NVDA}) exhibited sample kurtosis exceeding 14.28, driven by violent earnings surprise jumps, whereas healthcare conglomerates (\texttt{JNJ}, \texttt{PFE}) demonstrated subdued kurtosis ($\sim$6.18--6.45). This fat-tailed distribution confirms that large price jumps reflect genuine economic shocks rather than data errors.
+Every ticker has a clearly positive excess kurtosis, from 3.8 (CAT) and 4.7 (PFE) up to 15.7 (CSCO) and 15.8 (INTC); NVDA has 8.1. In plain terms, extreme days (such as the moves listed above) happen far more often than a normal distribution would predict, so the tails matter and a few days dominate the risk.
 
 \subsection{Data Splitting Rationale and Survivorship Bias}
 The complete dataset was partitioned strictly chronologically:
 \begin{itemize}
   \item \textbf{Training Split}: January 2010 through December 2017 ($3,000$ images).
-  \item \textbf{Validation Split}: January 2018 through December 2018 ($540$ images, step size = 4 days).
-  \item \textbf{Test Split}: January 2019 through December 2020 ($540$ images, step size = 4 days).
-  \item \textbf{Recent Out-of-Sample Split}: January 2023 through December 2024 ($540$ images, step size = 4 days).
+  \item \textbf{Validation Split}: January 2018 through December 2018 ($660$ images: 55 window end dates $\times$ 12 tickers, one date every 4 trading days).
+  \item \textbf{Test Split}: January 2019 through December 2020 ($1{,}428$ images: 119 dates $\times$ 12 tickers).
+  \item \textbf{Recent Out-of-Sample Split}: January 2023 through December 2024 ($1{,}416$ images: 118 dates $\times$ 12 tickers).
 \end{itemize}
-The intermediate years 2021 and 2022 were omitted to maintain a clean buffer. 
+The intermediate years 2021 and 2022 were omitted to maintain a clean buffer. A window and its next day always lie inside one period. The share of next\_day\_up $=1$ is 51.5\% over all Set~A days, and 50.8\% / 51.8\% / 51.2\% / 51.3\% in the train / validation / test / recent images; Figure~\ref{fig:app_updays} in the appendix shows it by ticker and year. 
 
 \textit{Why Random Splitting is Prohibited}: In financial time series, price levels and rolling moving averages exhibit severe temporal autocorrelation. Applying a random train-test split (e.g., shuffling) would place overlapping 30-day windows from the same month into both training and testing partitions, causing catastrophic lookahead leakage where models memorize identical market regimes.
 
-\textit{Survivorship Bias Analysis}: The source repository contains only companies actively listed in the S\&P~500 today. Firms that went bankrupt, merged, or were delisted during 2010--2024 (e.g., Lehman Brothers, Enron) are omitted. Consequently, in-sample historical upward drift is artificially elevated ($\sim$53.8\% upward days), creating an optimistic baseline that must be accounted for during econometric interpretation.
+\textit{Survivorship Bias Analysis}: The source repository contains only companies actively listed in the S\&P~500 today. Firms that went bankrupt, were acquired, or were removed from the index during 2010--2024 are missing, and every chosen ticker is, by construction, a company that survived and grew enough to be in the index today. This is survivorship bias: the sample over-represents winners, so up days are slightly over-represented (51.5\% in Set~A) and any strategy or classifier evaluated on it looks better than it would on the stocks an investor could actually have chosen in 2010.
 
 \subsection{Candlestick Chart Rendering \& Bounding Box Math}
 Every image portrays exactly 30 consecutive trading sessions rendered at 640$\times$640 pixels. To prevent deep networks from latching onto superficial canvas artifacts (such as border colors or tick labels), the rendering engine dynamically randomizes canvas parameters per instance:
@@ -249,7 +249,7 @@ We implemented deterministic mathematical formulations for eight canonical candl
   \item \textbf{Evening Star}: 3-candle bearish reversal at a local swing peak.
 \end{enumerate}
 
-Table~\ref{tab:patterns} presents the mathematical threshold criteria alongside the observed frequencies in the 3,000 training images.
+Table~\ref{tab:patterns} presents the threshold criteria alongside the number of pattern boxes in the 3,000 training images, counted from the generated YOLO label files (\texttt{results/pattern\_counts.csv}); 2,995 of the 3,000 images contain at least one box, with 20,061 boxes in total.
 
 \begin{table}[htbp]
 \centering
@@ -259,14 +259,14 @@ Table~\ref{tab:patterns} presents the mathematical threshold criteria alongside 
 \toprule
 \textbf{Pattern Class} & \textbf{Mathematical Inequality} & \textbf{Count} & \textbf{Share} \\
 \midrule
-Doji              & $|C - O| \le 0.10 \times (H - L)$      & 1,420 & 37.8\% \\
-Hammer            & Lower $\ge 2.0\text{B}$, Upper $\le 0.2\text{B}$, Trend$<0$ & 580   & 15.4\% \\
-Shooting Star     & Upper $\ge 2.0\text{B}$, Lower $\le 0.2\text{B}$, Trend$>0$ & 540   & 14.4\% \\
-Marubozu          & $|C - O| \ge 0.85 \times (H - L)$      & 410   & 10.9\% \\
-Bullish Engulfing & Prior bear, curr bull engulfs, Trend$<0$ & 280   & 7.5\% \\
-Bearish Engulfing & Prior bull, curr bear engulfs, Trend$>0$ & 295   & 7.9\% \\
-Morning Star      & 3-candle trough reversal configuration   & 110   & 2.9\% \\
-Evening Star      & 3-candle peak reversal configuration     & 125   & 3.3\% \\
+Doji              & $|C - O| \le 0.10 \times (H - L)$      & 9,624 & 48.0\% \\
+Hammer            & Lower $\ge 2.0\text{B}$, Upper $\le 0.2\text{B}$, Trend$<0$ & 511   & 2.5\% \\
+Shooting Star     & Upper $\ge 2.0\text{B}$, Lower $\le 0.2\text{B}$, Trend$>0$ & 494   & 2.5\% \\
+Marubozu          & $|C - O| \ge 0.85(H - L)$, shadows $\le 0.05(H-L)$ & 1,405 & 7.0\% \\
+Bullish Engulfing & Prior bear, curr bull engulfs, Trend$<0$ & 1,411 & 7.0\% \\
+Bearish Engulfing & Prior bull, curr bear engulfs, Trend$>0$ & 2,131 & 10.6\% \\
+Morning Star      & Bear, small body $\le 0.25$ range, bull closing above mid & 2,212 & 11.0\% \\
+Evening Star      & Bull, small body $\le 0.25$ range, bear closing below mid & 2,273 & 11.3\% \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -274,11 +274,11 @@ Evening Star      & 3-candle peak reversal configuration     & 125   & 3.3\% \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.98\columnwidth]{figures/pattern_distribution.png}
-\caption{Frequency distribution of the eight candlestick pattern classes in training images, highlighting natural structural class imbalance.}
+\caption{Number of pattern boxes per class in the 3,000 training images, counted from the YOLO label files.}
 \label{fig:pattern_dist}
 \end{figure}
 
-As shown in Figure~\ref{fig:pattern_dist}, single-candle patterns (Doji, Marubozu) appear with substantially higher empirical frequency than intricate 3-candle reversal formations (Morning Star, Evening Star), reflecting natural market rarity.
+As shown in Figure~\ref{fig:pattern_dist}, the classes are strongly imbalanced: Doji alone accounts for 48\% of all boxes, because a body of at most 10\% of the range is common in quiet daily trading, while Hammer and Shooting Star are the rarest classes (2.5\% each) because they need a long shadow, an almost absent opposite shadow \emph{and} the right prior trend. Morning and Evening Star are frequent (11\% each) because our rule only requires a small middle body and a close beyond the first candle's midpoint, without the price gap used in stricter textbook definitions. The rare single-candle reversal classes are also the ones with the lowest detection mAP (Table~\ref{tab:yolo_class}).
 
 \subsubsection{Programmatic Bounding Box Math}
 Bounding boxes covering the 1--3 constituent candles from lowest low to highest high were obtained directly from the rendering coordinates using Matplotlib's transformation hierarchy:
@@ -298,9 +298,9 @@ y_{\text{center}}^{\text{YOLO}} &= 1.0 - \frac{y_{\text{min}}^{\text{fig}} + y_{
 \subsection{YOLOv8 Detection Experiments from Scratch}
 In strict compliance with grading regulations, we trained the \texttt{yolov8n.yaml} architecture completely from scratch (zero pretrained weights) for 20 epochs across three distinct data augmentation regimes:
 \begin{itemize}
-  \item \textbf{Run A (No Augmentation)}: All geometric transforms, mosaic, mixup, and color distortions were disabled ($0.0$).
+  \item \textbf{Run A (No Augmentation)}: All geometric transforms, mosaic, mixup, and color distortions were disabled ($0.0$). Ultralytics' built-in Albumentations hook (Blur, MedianBlur, ToGray, CLAHE, each with $p=0.01$) was \emph{not} switched off; because the \texttt{albumentations} package is pre-installed on Kaggle, these light transforms were active in all three runs, including Run~A.
   \item \textbf{Run B (Standard Vision Augmentation)}: Standard natural image transformations: horizontal flip ($p=0.5$), vertical flip ($p=0.2$), mosaic ($1.0$), affine rotation ($\pm 10^\circ$), shear ($\pm 2^\circ$), and HSV color jitter.
-  \item \textbf{Run C (Chart-Suited Domain Augmentation)}: Flipping, rotation, and shear were strictly disabled; gentle brightness/contrast adjustment ($\pm 0.15$), mild isotropic scale ($\pm 0.05$), and small translations ($\pm 0.02$) were permitted.
+  \item \textbf{Run C (Chart-Suited Domain Augmentation)}: Flipping, rotation, and shear were strictly disabled; gentle brightness (HSV value gain $\pm 0.2$) and saturation ($\pm 0.1$) jitter with hue fixed, mild isotropic scale ($\pm 0.05$), and small translations ($\pm 0.02$) were permitted.
 \end{itemize}
 
 Table~\ref{tab:aug_analysis} provides an econometric and semantic breakdown of each augmentation tested in Run~B.
@@ -342,13 +342,13 @@ Color Jitter    & HSV     & Mild& Aligns with visual themes if hue intact. \\
 \midrule
 Run A: No Augmentation & 0.535 & 0.603 & 0.574 & 0.479 \\
 Run B: Standard Vision & 0.489 & 0.607 & 0.553 & 0.443 \\
-\textbf{Run C: Domain Chart Aug} & \textbf{0.597} & \textbf{0.667} & \textbf{0.666} & \textbf{0.586} \\
+\textbf{Run C: Domain Chart Aug} & \textbf{0.595} & \textbf{0.666} & \textbf{0.666} & \textbf{0.586} \\
 \bottomrule
 \end{tabular}
 }
 \end{table}
 
-As documented in Table~\ref{tab:yolo_results} and Figure~\ref{fig:yolo_curves}, Run B suffered an acute performance degradation, collapsing mAP@50-95 by 14.3\% relative to Run C. Table~\ref{tab:yolo_class} details the per-class performance for the winning Run~C configuration.
+As documented in Table~\ref{tab:yolo_results} and Figure~\ref{fig:yolo_curves}, Run B suffered an acute performance degradation, collapsing mAP@50-95 by 14.3\% relative to Run C. Table~\ref{tab:yolo_class} details the per-class performance for the winning Run~C configuration. Only the selected Run~C weights were kept, so the Run~C row was re-measured in the final notebook run (validation mAP@50--95 0.586), while the Run~A and Run~B rows are the recorded Kaggle evaluations (\texttt{detection\_results\_kaggle\_runs.csv}).
 
 \begin{table}[htbp]
 \centering
@@ -358,16 +358,16 @@ As documented in Table~\ref{tab:yolo_results} and Figure~\ref{fig:yolo_curves}, 
 \toprule
 \textbf{Candlestick Class} & \textbf{Precision} & \textbf{Recall} & \textbf{mAP@50} & \textbf{Test Boxes} \\
 \midrule
-Doji              & 0.807 & 0.963 & 0.961 & 4,025 \\
-Hammer            & 0.414 & 0.426 & 0.404 & 296 \\
-Shooting Star     & 0.348 & 0.326 & 0.258 & 230 \\
-Marubozu          & 0.450 & 0.539 & 0.485 & 723 \\
-Bullish Engulfing & 0.663 & 0.805 & 0.793 & 834 \\
-Bearish Engulfing & 0.685 & 0.834 & 0.830 & 1,049 \\
-Morning Star      & 0.661 & 0.803 & 0.806 & 928 \\
-Evening Star      & 0.710 & 0.776 & 0.822 & 1,135 \\
+Doji              & 0.811 & 0.958 & 0.959 & 4,025 \\
+Hammer            & 0.400 & 0.384 & 0.377 & 294 \\
+Shooting Star     & 0.336 & 0.308 & 0.255 & 230 \\
+Marubozu          & 0.450 & 0.521 & 0.486 & 723 \\
+Bullish Engulfing & 0.665 & 0.777 & 0.791 & 834 \\
+Bearish Engulfing & 0.694 & 0.823 & 0.833 & 1,049 \\
+Morning Star      & 0.674 & 0.795 & 0.804 & 928 \\
+Evening Star      & 0.732 & 0.766 & 0.822 & 1,135 \\
 \midrule
-\textbf{All Classes (Mean)} & \textbf{0.592} & \textbf{0.684} & \textbf{0.670} & \textbf{9,220} \\
+\textbf{All Classes (Mean)} & \textbf{0.595} & \textbf{0.666} & \textbf{0.666} & \textbf{9,218} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -375,14 +375,14 @@ Evening Star      & 0.710 & 0.776 & 0.822 & 1,135 \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.88\columnwidth]{figures/yolo_confusion_matrix.png}
-\caption{Checkpoint confusion counts on the ten reproducible labeled chart artifacts, using IoU $\geq0.50$ matching and a background class.}
+\caption{Normalized confusion matrix of YOLOv8n Run~C on the 2019--2020 test split (1,428 images, 9,218 boxes), produced by the Ultralytics test evaluation in the notebook. Columns are true classes; the largest confusion is true Shooting Stars predicted as Doji (0.19).}
 \label{fig:yolo_cm}
 \end{figure}
 
 \subsubsection{Theme Invariance and Robustness Stress Testing}
-Checkpoint evaluation across individual visual themes revealed high spatial stability: mAP@50 was 0.672 on Light, 0.678 on Dark, and 0.674 on Blue-White. On the recent set (2023--2024), mAP@50 was 0.671, essentially matching the 2019--2020 test result.
+Checkpoint evaluation across individual visual themes revealed high spatial stability: mAP@50 was 0.665 on Light, 0.673 on Dark, and 0.669 on Blue-White. On the recent set (2023--2024), mAP@50 was 0.673, essentially matching the 2019--2020 test result.
 
-To evaluate out-of-distribution resilience, test images were downscaled to $480\times480$ with severe JPEG compression (quality = 40). Without mitigation, Run~C mAP@50 fell from 0.666 to 0.328, an absolute drop of 0.338. We then compared four deterministic defenses exclusively on the corrupted 2018 validation split. Lanczos restoration to the model's native 640-pixel scale achieved the highest validation mAP@50 (0.645), narrowly ahead of direct 640-pixel inference (0.639), and was evaluated once on the corrupted test split. It recovered test mAP@50 to 0.650 and mAP@50--95 to 0.563: a 0.322 absolute improvement over the unmitigated stress test, leaving only a 0.016 mAP@50 gap from clean evaluation. The defense requires no retraining and averaged 3.94 ms inference per chart on an NVIDIA Tesla T4; the checkpoint size was 5.96 MB.
+To evaluate out-of-distribution resilience, test images were downscaled to $480\times480$ with severe JPEG compression (quality = 40). Without mitigation, Run~C mAP@50 fell from 0.666 to 0.328, an absolute drop of 0.338 (re-measured in the final notebook run). We then compared four deterministic defenses exclusively on the corrupted 2018 validation split. Lanczos restoration to the model's native 640-pixel scale achieved the highest validation mAP@50 (0.645), narrowly ahead of direct 640-pixel inference (0.639), and was evaluated once on the corrupted test split. It recovered test mAP@50 to 0.650 and mAP@50--95 to 0.563: a 0.322 absolute improvement over the unmitigated stress test, leaving only a 0.016 mAP@50 gap from clean evaluation. The defense requires no retraining and averaged 3.94 ms inference per chart on an NVIDIA Tesla T4 (defense numbers from \texttt{scripts/evaluate\_robustness\_defenses.py} on the original Kaggle rendering). In the final notebook run on an NVIDIA GTX 1650, clean inference took 5.89 ms per chart; the checkpoint size is 5.96 MB.
 
 \subsection{Trend ResNet-18 Classifier \& 128-dim Embeddings}
 For next-day binary trend prediction ($next\_day\_up \in \{0, 1\}$), we configured a ResNet-18 model trained strictly on Set A charts (Train: 2010--2017, Val: 2018). Its penultimate linear classifier was re-engineered with a 128-dimensional projection bottleneck ($512 \rightarrow 128 \rightarrow 2$).
@@ -391,15 +391,19 @@ For next-day binary trend prediction ($next\_day\_up \in \{0, 1\}$), we configur
 \centering
 \caption{Next-Day Direction Trend Prediction on Test Split (2019--2020)}
 \label{tab:trend_results}
-\begin{tabular}{lcccc}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccccccc}
 \toprule
-\textbf{Model Architecture} & \textbf{Test Acc} & \textbf{F1 (Up)} & \textbf{ROC-AUC} & \textbf{Recent Acc} \\
+ & \multicolumn{4}{c}{\textbf{Test 2019--2020}} & \multicolumn{3}{c}{\textbf{Recent 2023--2024}} \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-8}
+\textbf{Model} & \textbf{Acc} & \textbf{95\% CI} & \textbf{F1 (Up)} & \textbf{AUC} & \textbf{Acc} & \textbf{F1 (Up)} & \textbf{AUC} \\
 \midrule
-Majority Class Baseline & 0.534 & 0.696 & n/a   & 0.528 \\
-Logistic Reg. (5-Day)   & 0.521 & 0.598 & 0.518 & 0.512 \\
-\textbf{Trend ResNet-18 (Ours)} & \textbf{0.542} & \textbf{0.641} & \textbf{0.539} & \textbf{0.531} \\
+Majority (``up'')     & 0.512 & [0.452, 0.571] & 0.677 & n/a   & 0.513 & 0.679 & n/a \\
+Logistic Reg. (5-day) & 0.539 & [0.484, 0.592] & 0.681 & 0.567 & 0.504 & 0.662 & 0.430 \\
+Trend ResNet-18       & 0.488 & [0.456, 0.520] & 0.385 & 0.502 & 0.493 & 0.395 & 0.487 \\
 \bottomrule
 \end{tabular}
+}
 \end{table}
 
 \begin{figure}[htbp]
@@ -409,7 +413,9 @@ Logistic Reg. (5-Day)   & 0.521 & 0.598 & 0.518 & 0.512 \\
 \label{fig:trend_cm}
 \end{figure}
 
-A 95\% date-grouped bootstrap confidence interval (1,000 resamples grouping all 12 tickers across identical trading sessions) yielded $[51.8\%, 56.5\%]$ across 45 distinct test dates, confirming a statistically meaningful edge over pure chance ($50.0\%$). ResNet-18 inference latency was 4.82 ms/image (model size: 45.06 MB).
+The majority class is ``up'' (50.8\% of training windows). Confidence intervals use 1,000 bootstrap resamples of whole trading dates, keeping all 12 tickers of a date together; the test split has 1,428 images but only 119 distinct test dates (118 in the recent set), so the effective sample size is far smaller than the image count. The ResNet-18 reaches 48.8\% test accuracy with a 95\% CI of $[45.6\%, 52.0\%]$, which \emph{includes} 50\%: the CNN is not distinguishable from chance. The paired bootstrap differences on the same test dates are $[-11.0, +6.1]$ points versus the majority baseline and $[-12.8, +2.5]$ points versus logistic regression, so the CNN is not better than either baseline. The only baseline comparison that excludes zero is logistic regression versus majority ($[+0.1, +5.7]$ points), and that advantage disappears on the recent set (AUC 0.430). The CNN predicts ``down'' for most charts (F1 for ``up'' only 0.385), i.e.\ it learned no transferable directional signal from 3,000 training images. ResNet-18 inference latency was 4.66 ms/image at batch size 1 on an NVIDIA GTX 1650 (checkpoint 42.97 MiB, 11.24M parameters).
+
+\emph{Reproducibility note.} These numbers were produced by evaluating the submitted checkpoint (\texttt{cnn\_trend\_best.pt}) with the notebook's evaluation cell. The test and recent charts were re-rendered from the same code: windows, tickers, dates and labels are identical to the original split, but the random style draws (theme, grid, volume panel, SMA) differ from the original rendering, which does not change the evaluation target. Per-image predictions are saved in \texttt{trend\_test\_predictions.csv} and \texttt{trend\_recent\_predictions.csv}.
 
 Following convergence, all 3,744 trading days of the synthetic Market Basket were passed through the model to export penultimate representations into \texttt{chart\_embeddings.npy} ($[3744, 128]$) and \texttt{embedding\_index.csv}.
 
@@ -418,12 +424,12 @@ Following convergence, all 3,744 trading days of the synthetic Market Basket wer
 \label{sec:part2}
 
 \subsection{Financial Text Preprocessing and Deduplication}
-The financial sentiment corpus (\texttt{dataset.csv}) contains 32,600 sentences annotated into three classes (negative, neutral, positive). We applied rigorous text sanitization:
+The financial sentiment corpus (\texttt{dataset.csv}) contains 32,583 texts annotated into three classes (10,861 each). We applied the following cleaning (all counts measured on the raw file):
 \begin{enumerate}
-  \item HTML entity unescaping (e.g., mapping \texttt{\&amp;} $\rightarrow$ \texttt{\&}, \texttt{\&lt;} $\rightarrow$ \texttt{<}).
-  \item Purging of HTML tags (\texttt{<br>}) and regex removal of non-ASCII emojis.
-  \item Deduplication: 412 verbatim duplicates were identified. Cases where identical text strings carried conflicting sentiment labels across sources were purged in their entirety to eliminate ground-truth ambiguity.
-  \item Tokenization and Vocabulary: A vocabulary of 14,820 words was compiled using a minimum frequency cutoff of 2, reserving index 0 for \texttt{<PAD>} and index 1 for \texttt{<UNK>}, with sequence length capped at $L_{\text{max}} = 64$.
+  \item HTML entity unescaping (e.g., \texttt{\&amp;} $\rightarrow$ \texttt{\&}); 567 texts contained entities.
+  \item HTML tag removal (no texts with tags were found in this version of the file), URL removal, and an ASCII filter that removes emojis (53 texts) and non-Latin characters. 31 texts contain non-Latin script (likely non-English); we kept them, the filter strips the foreign characters, and texts left with $\le 3$ characters (21) were dropped. Text is lowercased and reduced to letters, digits and basic punctuation.
+  \item Deduplication after cleaning: 24 texts appeared with conflicting labels and all their copies were removed; a further 180 duplicate rows were dropped, leaving 32,334 texts (positive 10,815, negative 10,788, neutral 10,731), so the classes remain balanced and no class weights were used.
+  \item Tokenization and vocabulary: words with a minimum count of 2 give a vocabulary of 18,981 entries including index 0 \texttt{<PAD>} and index 1 \texttt{<UNK>}; sequences are padded or truncated to $L_{\text{max}} = 64$ tokens (median length 13, 95th percentile 37, maximum 68, so truncation affects fewer than 0.01\% of texts).
 \end{enumerate}
 
 Table~\ref{tab:nlp_prep} documents the corpus sanitization audit and the top frequent words identified in each sentiment class.
@@ -436,22 +442,23 @@ Table~\ref{tab:nlp_prep} documents the corpus sanitization audit and the top fre
 \toprule
 \textbf{Sanitization Stage} & \textbf{Audit Count / Policy Description} \\
 \midrule
-Raw Corpus Samples       & 32,600 sentences (Balanced: 10,861 each) \\
-HTML Entity Decoding     & 1,420 instances unescaped (\texttt{\&amp;}, \texttt{\&lt;}) \\
-HTML Tag Stripping       & 215 \texttt{<br>} tags purged \\
-Conflicting Duplicates   & 412 rows with conflicting labels purged \\
-Sanitized Corpus Size    & 32,188 clean instances \\
-Vocabulary Size          & 14,820 tokens (min\_freq = 2, $L_{\text{max}} = 64$) \\
+Raw corpus               & 32,583 texts (balanced: 10,861 each) \\
+HTML entities            & 567 texts unescaped (\texttt{\&amp;}, \texttt{\&quot;}, \ldots) \\
+HTML tags / emojis       & 0 texts with tags; 53 with emojis (removed) \\
+Non-English / empty      & 31 non-Latin texts kept; 21 empty texts dropped \\
+Duplicates               & 24 conflicting texts (all copies) + 180 repeats \\
+Clean corpus             & 32,334 texts; split 25,867 / 3,233 / 3,234 \\
+Vocabulary               & 18,981 tokens (min count 2, $L_{\text{max}} = 64$) \\
 \midrule
-\textbf{Top Negative Tokens} & loss, fell, drop, down, cut, deficit, weak, risk \\
-\textbf{Top Neutral Tokens}  & company, shares, said, market, announced, corp \\
-\textbf{Top Positive Tokens} & profit, rose, gain, surge, higher, beat, record \\
+\textbf{Top negative words} & first, down, china, aap, year, short, company \\
+\textbf{Top neutral words}  & stock, company, marketscreener, results, market \\
+\textbf{Top positive words} & stock, aap, eur, user, year, company, market \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \subsection{Strict Anti-Leakage Timing Rule}
-The financial headline corpus (\texttt{sp500\_headlines\_2008\_2024.csv}) contains 19,000 headlines timestamped by trading date. Because timestamps omit intraday minutes, we formulated two transparent operational rules:
+The financial headline corpus (\texttt{sp500\_headlines\_2008\_2024.csv}) contains 19,127 headlines (2 January 2008 to 4 March 2024) dated by trading day. 977 rows (5.1\%) repeat a cleaned headline already present on the same date; we drop these repeats, because one story published twice should not count twice in the daily average or headline count. On the 3,565 basket trading days up to 4 March 2024, 254 days (7.1\%) have no headline (12.3\% if the days after the end of the news file are counted). On days with news there are 5.4 headlines on average (median 4, 90th percentile 12, maximum 55). Coverage changes strongly over time (Figure~\ref{fig:app_headlines}): 47.6\% of 2010 trading days have no headline and the mean is 0.8 headlines per day, compared with 1.6\% and 4.8 per day in the 2019--2020 test period and 19.0 per day in the recent period, so the headline count behaves differently in each period. Days without headlines receive the neutral vector with \texttt{has\_news}$=0$ (Section~\ref{sec:part2}). Sentence lengths of the sentiment corpus are shown in Figure~\ref{fig:app_lengths}. Because timestamps omit intraday minutes, we formulated two transparent operational rules:
 \begin{itemize}
   \item \textbf{Day $t$ Rule (Standard Timing)}: Headlines published on day $t$ predict day $t+1$ close direction under the explicit operational assumption that news was released before or during market hours on day $t$.
   \item \textbf{Day $t-1$ Rule (Lagged Timing)}: Headlines published up to day $t-1$ predict day $t+1$ direction, providing an unassailable zero-leakage lower bound.
@@ -499,16 +506,18 @@ In accordance with course rules prohibiting pretrained BERT or FinBERT models, w
 \centering
 \caption{Financial Sentiment Model Evaluation on Test Split}
 \label{tab:sentiment_results}
-\begin{tabular}{lcccc}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccccc}
 \toprule
-\textbf{Model Architecture} & \textbf{Parameters} & \textbf{Accuracy} & \textbf{Macro-F1} & \textbf{Val Macro-F1} \\
+\textbf{Model} & \textbf{Params} & \textbf{Test Acc} & \textbf{Test Macro-F1} & \textbf{Val Macro-F1} & \textbf{Train (s)} \\
 \midrule
-Majority Class Baseline & 0 & 0.335 & 0.167 & 0.167 \\
-Simple RNN Baseline & 2.46M & 0.341 & 0.273 & 0.292 \\
-Bidirectional LSTM & 3.12M & 0.634 & 0.630 & 0.641 \\
-\textbf{Custom Transformer} & \textbf{2.84M} & \textbf{0.662} & \textbf{0.660} & \textbf{0.663} \\
+Majority Class Baseline & 0 & 0.335 & 0.167 & 0.167 & 0 \\
+Simple RNN Baseline & 2.46M & 0.336 & 0.177 & 0.183 & 19.9 (9 ep.) \\
+Bidirectional LSTM & 3.12M & 0.633 & 0.631 & 0.637 & 46.0 (6 ep.) \\
+\textbf{Custom Transformer} & \textbf{2.84M} & \textbf{0.646} & \textbf{0.642} & \textbf{0.651} & \textbf{97.2 (15 ep.)} \\
 \bottomrule
 \end{tabular}
+}
 \end{table}
 
 \begin{figure}[htbp]
@@ -518,10 +527,10 @@ Bidirectional LSTM & 3.12M & 0.634 & 0.630 & 0.641 \\
 \label{fig:sent_cm}
 \end{figure}
 
-As reported in Table~\ref{tab:sentiment_results} and Figure~\ref{fig:sent_curves}, the Custom Transformer outperformed the BiLSTM by 3.0\% Macro-F1. The Simple RNN suffered catastrophic vanishing gradients, achieving an accuracy barely above the majority baseline.
+As reported in Table~\ref{tab:sentiment_results} and Figure~\ref{fig:sent_curves}, the Custom Transformer is the validation-selected model (validation macro-F1 0.651 vs 0.637 for the BiLSTM) and also leads on test (0.642 vs 0.631), a small margin. The Simple RNN failed to learn: its validation macro-F1 of 0.183 is barely above the majority baseline (0.167), i.e.\ it predicts almost one class. Plain $\tanh$ recurrence over 64 padded steps suffers from vanishing gradients, and early stopping ended it after 9 epochs. Training times are wall-clock on an NVIDIA GTX 1650 in the final notebook run.
 
 \subsubsection{Hyperparameter Ablation Study}
-We varied hidden dimension, dropout, and learning rate on the validation-selected Custom Transformer. Each ablation used a fixed maximum budget of eight epochs with identical seeds and early stopping; the baseline score is from the original main-model run (maximum 15 epochs), so this is a controlled sensitivity study rather than an equal-compute ranking. All six runs record measured Kaggle GPU wall-clock time. Every alternative reduced validation Macro-F1, supporting the selected $d_{\mathrm{model}}=128$, dropout $0.2$, and learning rate $5\times10^{-4}$ configuration. In particular, $10^{-2}$ collapsed to near-majority performance and stopped after six epochs.
+We varied hidden dimension, dropout, and learning rate on the validation-selected Custom Transformer. Each ablation used a fixed maximum budget of eight epochs with identical seeds and early stopping; the baseline score is from the original main-model run (maximum 15 epochs), so this is a controlled sensitivity study rather than an equal-compute ranking. All six runs record measured wall-clock time on an NVIDIA GTX 1650. Every alternative reduced validation Macro-F1, supporting the selected $d_{\mathrm{model}}=128$, dropout $0.2$, and learning rate $5\times10^{-4}$ configuration. In particular, $10^{-2}$ collapsed to near-majority performance and stopped after six epochs.
 
 \begin{table}[htbp]
 \centering
@@ -533,17 +542,17 @@ We varied hidden dimension, dropout, and learning rate on the validation-selecte
 \toprule
 \textbf{Parameter} & \textbf{Value} & \textbf{Val F1} & \textbf{Time (s)} & \textbf{Observation} \\
 \midrule
-Hidden Dimension & 64 & 0.598 & 31.9 & Lower capacity \\
-($d_{\text{model}}$) & \textbf{128} & \textbf{0.663} & -- & Selected baseline \\
-                 & 256 & 0.640 & 64.4 & Higher compute, no gain \\
+Hidden Dimension & 64 & 0.603 & 39.3 & Lower capacity \\
+($d_{\text{model}}$) & \textbf{128} & \textbf{0.651} & 97.2 & Selected baseline \\
+                 & 256 & 0.641 & 120.3 & Higher compute, no gain \\
 \midrule
-Dropout Rate     & 0.1 & 0.637 & 31.2 & Less regularization \\
-                 & \textbf{0.2} & \textbf{0.663} & -- & Selected baseline \\
-                 & 0.5 & 0.558 & 31.6 & Excess regularization \\
+Dropout Rate     & 0.1 & 0.632 & 54.6 & Less regularization \\
+                 & \textbf{0.2} & \textbf{0.651} & 97.2 & Selected baseline \\
+                 & 0.5 & 0.570 & 55.1 & Excess regularization \\
 \midrule
-Learning Rate    & $10^{-4}$ & 0.562 & 31.4 & Slow convergence \\
-                 & $\mathbf{5\times10^{-4}}$ & \textbf{0.663} & -- & Selected baseline \\
-                 & $10^{-2}$ & 0.167 & 23.3 & Unstable; stopped at 6 \\
+Learning Rate    & $10^{-4}$ & 0.558 & 55.6 & Slow convergence \\
+                 & $\mathbf{5\times10^{-4}}$ & \textbf{0.651} & 97.2 & Selected baseline \\
+                 & $10^{-2}$ & 0.167 & 40.1 & Unstable; stopped at 6 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -574,7 +583,7 @@ To predict the next-day direction of the synthetic Market Basket, daily headline
 \label{fig:diag_fusion}
 \end{figure}
 
-The 128-dimensional chart embeddings were compressed via Principal Component Analysis (PCA) to 8 components, accounting for 61.9\% of variance in the training years. PCA was fitted strictly on 2010--2017 and then frozen. Logistic-regression regularization was selected on 2018; early fusion selected $C=10$.
+The 128-dimensional chart embeddings were compressed via Principal Component Analysis (PCA) to 8 components, accounting for 61.9\% of variance in the training years. PCA was fitted strictly on 2010--2017 and then frozen. Logistic-regression regularization was selected on 2018 validation ROC-AUC; early fusion selected $C=0.1$.
 
 \begin{table}[htbp]
 \centering
@@ -588,31 +597,34 @@ The 128-dimensional chart embeddings were compressed via Principal Component Ana
 \midrule
 Majority Baseline & 0.579 & 0.734 & n/a & 0.541 \\
 Price-Only Baseline & 0.583 & 0.734 & 0.521 & 0.541 \\
-News-Only (Day $t$) & 0.579 & 0.734 & 0.516 & 0.541 \\
-News-Only Lagged ($t-1$) & 0.579 & 0.734 & 0.477 & 0.541 \\
+News-Only (Day $t$) & 0.579 & 0.734 & 0.522 & 0.541 \\
+News-Only Lagged ($t-1$) & 0.579 & 0.734 & 0.516 & 0.541 \\
 Chart-Only (PCA 8) & 0.579 & 0.734 & 0.513 & 0.538 \\
-\textbf{Multimodal Fusion} & \textbf{0.583} & \textbf{0.729} & \textbf{0.527} & \textbf{0.541} \\
+\textbf{Multimodal Fusion} & \textbf{0.579} & \textbf{0.725} & \textbf{0.534} & \textbf{0.541} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
+Note that with the regularization selected on 2018, the news-only, lagged-news and chart-only classifiers predict ``up'' on every test day, and price-only and fusion on almost every day, which is why their accuracy equals (or nearly equals) the majority reference; only the ranking metric (ROC-AUC) separates them. Their accuracy therefore cannot move in the shuffle test of Section~\ref{sec:shuffle}, and the comparison rests on ROC-AUC.
+
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.88\columnwidth]{figures/fusion_comparison_roc.png}
-\caption{Receiver Operating Characteristic (ROC) curves on the 2019--2020 test split.}
+\caption{ROC curves on the 2019--2020 test split, drawn from \texttt{market\_test\_predictions.csv} produced by \texttt{scripts/rebuild\_part2\_evaluation.py} with the final sentiment checkpoint. That script aggregates daily sentiment slightly differently from the notebook, so its AUCs differ from Table~\ref{tab:market_results} by at most 0.006; the table values come from the notebook.}
 \label{fig:roc_curves}
 \end{figure}
 
 \subsection{Mandatory Sanity Check: Headline Date Shuffling}
+\label{sec:shuffle}
 To test sensitivity to temporal alignment, we conducted 100 independent trials of randomly permuting test headline dates across days:
 \begin{itemize}
-  \item \textbf{Unshuffled News Model}: Accuracy: \textbf{57.9\%}, ROC-AUC: \textbf{0.516}
-  \item \textbf{Date-Shuffled News Model}: mean ROC-AUC: \textbf{0.499} ($\pm 0.025$)
+  \item \textbf{Unshuffled News Model}: Accuracy: \textbf{57.9\%}, ROC-AUC: \textbf{0.522}
+  \item \textbf{Date-Shuffled News Model}: mean accuracy \textbf{57.9\%} ($\pm 0.0$), mean ROC-AUC \textbf{0.499} ($\pm 0.025$)
 \end{itemize}
-The average shuffled AUC is near chance and below the unshuffled AUC. The variation across shuffles is substantial, so this is evidence of a small timing contribution rather than proof of a strong news signal.
+Accuracy cannot change because the model predicts ``up'' every day. The average shuffled AUC is near chance and 0.023 below the unshuffled AUC, which is within one standard deviation of the shuffles. The variation across shuffles is substantial, so this is evidence of a small timing contribution rather than proof of a strong news signal.
 
 \subsection{Computational Efficiency Benchmarks}
-Table~\ref{tab:efficiency} summarizes parameter counts, training times, and per-sample inference latencies across all components.
+Table~\ref{tab:efficiency} summarizes parameter counts, training times, and per-sample inference latencies. Sentiment training times and all Task~4 classifier times were measured in the final notebook run (GTX 1650); the YOLO and ResNet-18 training times are from the original Kaggle T4 runs. ``n/m'' marks per-headline latencies that were not measured in the final run, and the Task~4 inference times cover only the logistic-regression step.
 
 \begin{table}[htbp]
 \centering
@@ -622,15 +634,15 @@ Table~\ref{tab:efficiency} summarizes parameter counts, training times, and per-
 \toprule
 \textbf{Model / Pipeline} & \textbf{Parameters} & \textbf{Train Time} & \textbf{Inference Latency} \\
 \midrule
-YOLOv8n (Run C)         & 3.01M  & 14.8 min  & 3.94 ms / chart \\
-Trend ResNet-18         & 11.25M & 12.4 min  & 4.8 ms / chart \\
-Simple RNN Baseline     & 2.46M  & 3.2 min   & 0.8 ms / headline \\
-Bidirectional LSTM      & 3.12M  & 5.8 min   & 1.4 ms / headline \\
-Custom Transformer      & 2.84M  & 6.4 min   & 1.1 ms / headline \\
-Price-Only Logistic     & 6      & 0.05 sec  & 0.02 ms / day \\
-News-Only Pipeline      & 2.84M  & 6.5 min   & 4.2 ms / day \\
-Chart-Only Pipeline     & 11.25M & 12.5 min  & 18.5 ms / day \\
-\textbf{Multimodal Fusion} & \textbf{14.09M} & \textbf{19.2 min} & \textbf{22.8 ms / day} \\
+YOLOv8n (Run C)         & 3.01M  & 14.8 min  & 5.89 ms / chart \\
+Trend ResNet-18         & 11.24M & 12.4 min  & 4.7 ms / chart \\
+Simple RNN Baseline     & 2.46M  & 19.9 s    & n/m \\
+Bidirectional LSTM      & 3.12M  & 46.0 s    & n/m \\
+Custom Transformer      & 2.84M  & 97.2 s    & n/m \\
+Price-Only Logistic     & 6      & 2.5 ms    & 0.0015 ms / day \\
+News-Only Pipeline      & 2.84M  & 97.2 s + 2.8 ms & 0.0015 ms / day + sentiment \\
+Chart-Only Pipeline     & 11.24M & CNN + 3.4 ms & 0.0018 ms / day + render + 4.7 ms CNN \\
+\textbf{Multimodal Fusion} & \textbf{14.09M} & \textbf{models + 3.3 ms} & \textbf{0.0015 ms / day + both} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -645,19 +657,19 @@ Chart-Only Pipeline     & 11.25M & 12.5 min  & 18.5 ms / day \\
   Vertical flipping ($p=0.2$) severely damaged chart meaning. In financial technical analysis, vertical inversion reverses price action polarity: a Bullish Hammer (signifying buyer absorption at support) becomes an Inverted Hanging Man / Shooting Star (signifying liquidation at resistance). Furthermore, upward trends are inverted into downward trends, injecting contradictory gradient updates into the detector and degrading mAP@50-95 from 0.586 (Run C) to 0.443 (Run B). Similarly, affine shearing introduces non-orthogonal angles into vertical candlestick wicks that never occur on regulated exchanges.
   
   \item \textbf{Is the CNN better than chance and better than the majority baseline?}
-  The Trend ResNet-18 achieved 54.2\% test accuracy with a 95\% date-grouped bootstrap interval of $[51.8\%, 56.5\%]$. Because the entire interval sits strictly above 50.0\%, the CNN is statistically superior to pure random guessing. However, the majority baseline during 2019--2020 achieved 53.4\% due to persistent macroeconomic bull market conditions. While the CNN marginally surpassed this baseline in accuracy, its primary value lies in its balanced predictive capacity (ROC-AUC 0.539 vs n/a for constant prediction).
+  No. The Trend ResNet-18 reached 48.8\% test accuracy with a 95\% date-grouped bootstrap interval of $[45.6\%, 52.0\%]$, which contains 50\%, and its ROC-AUC of 0.502 is at chance level. It is also not better than the majority-class baseline (51.2\%; paired difference $[-11.0, +6.1]$ points). Because the 1,428 test images come from only 119 trading dates and neighbouring 30-day windows overlap heavily, the effective test size is closer to 119 than to 1,428, which is why the intervals are several points wide. A chart CNN at chance level is consistent with the near-random-walk nature of daily returns; the simple logistic regression on five returns did slightly better on the test period (53.9\%) but not on the recent set.
   
   \item \textbf{Cross-theme and recent set performance shifts}:
-  The detector showed theme invariance, with mAP@50 tightly grouped across light (0.672), dark (0.678), and blue-white (0.674) charts. On the out-of-sample recent set (2023--2024), mAP@50 remained 0.671, essentially unchanged from the test period. The combined 480-pixel/JPEG stress test initially reduced mAP@50 to 0.328, showing that compression and resolution shift are much more damaging than theme changes. A defense selected only on corrupted validation data---Lanczos restoration to 640 pixels---recovered held-out robust test mAP@50 to 0.650 without retraining.
+  The detector showed theme invariance, with mAP@50 tightly grouped across light (0.665), dark (0.673), and blue-white (0.669) charts. On the out-of-sample recent set (2023--2024), mAP@50 remained 0.673, essentially unchanged from the test period. The combined 480-pixel/JPEG stress test initially reduced mAP@50 to 0.328, showing that compression and resolution shift are much more damaging than theme changes. A defense selected only on corrupted validation data---Lanczos restoration to 640 pixels---recovered held-out robust test mAP@50 to 0.650 without retraining.
   
   \item \textbf{YOLO failure cases and root-cause analysis}:
-  Exhaustive qualitative inspection revealed five primary failure modes (documented in Appendix C):
+  We matched every prediction (confidence $\ge 0.25$) to the labels of all 1,428 test charts (same class, IoU $\ge 0.5$; \texttt{yolo\_test\_per\_image\_errors.csv}). Only 49 charts are error-free; there are 1,385 missed boxes (most often Marubozu 329, Evening Star 191, Morning Star 167, Hammer 159) and 3,774 false boxes (most often Doji 1,165 and Marubozu 534). Appendix~C shows the five charts with the most errors, which illustrate the main causes:
   \begin{itemize}
-    \item \textit{Borderline Wick Thresholds}: Ambiguity between small Hammers and Dojis when lower wicks hover near the 2.0$\times$ boundary.
-    \item \textit{Intraday Volatility Scale Distortion}: Exceptional single-day outlier candles compress the remaining 29 candles into narrow bands, obscuring small Doji wicks.
-    \item \textit{Multi-Candle Alignment Errors}: Truncated Morning/Evening Star boxes where the initial constituent candle wick was omitted.
-    \item \textit{Candle Overlap in Consolidation}: Tight lateral consolidation causes adjacent candle pixels to merge, triggering false engulfing detections.
-    \item \textit{Moving Average Stroke Interference}: The 10-day SMA stroke intersecting thin candle bodies corrupted feature maps.
+    \item \textit{Thresholds below pixel resolution} (UNH 2020-01-06, BAC 2020-06-16): a Doji needs a body $\le 10\%$ of the range and a Marubozu shadows $\le 5\%$; at 640 pixels a body of 9\% and one of 12\% differ by one or two pixels, so the detector reports Dojis and Marubozus on near-miss candles and misses true ones.
+    \item \textit{Extreme volatility compresses the scale} (GS 2020-04-07, during the March--April 2020 crash): a few very long candles stretch the price axis, so the remaining candles become thin slivers and their shadows and bodies are hard to read.
+    \item \textit{Dense, overlapping patterns} (NVDA 2019-11-12, 11 false boxes, none missed): in a steady trend many candles are close to several rules at once, and overlapping 1--3-candle boxes produce duplicate or wrong-class detections.
+    \item \textit{Trend-dependent labels} (WFC 2020-11-30): Hammer, Shooting Star and the Engulfing patterns depend on the sign of a 3--5 day close change, which is barely visible when the trend is flat, so identical-looking candles can carry different labels.
+    \item \textit{Low confidence threshold}: the galleries use a confidence threshold of $0.25$, which favours recall over precision; a higher threshold would trade fewer false boxes for more misses.
   \end{itemize}
   
   \item \textbf{Mobile and edge deployment feasibility}:
@@ -667,25 +679,27 @@ Chart-Only Pipeline     & 11.25M & 12.5 min  & 18.5 ms / day \\
 \subsection{Answers to Mandatory Part 2 Questions}
 \begin{enumerate}
   \item \textbf{Best neural sentiment architecture}:
-  The Custom Transformer Encoder decisively surpassed the BiLSTM (Macro-F1: 0.660 vs 0.630) and Simple RNN (0.273). The multi-head self-attention mechanism enables direct token-to-token associative routing across the entire 64-token sequence, resolving long-distance financial dependencies (such as ``Despite falling revenues, net income surged'') without suffering from recurrent gradient attenuation.
+  The Custom Transformer Encoder was best on validation (macro-F1 0.651) and on test (0.642), narrowly ahead of the BiLSTM (0.637 / 0.631), while the Simple RNN collapsed to near-majority predictions (test macro-F1 0.177). The multi-head self-attention mechanism enables direct token-to-token associative routing across the entire 64-token sequence, resolving long-distance financial dependencies (such as ``Despite falling revenues, net income surged'') without suffering from recurrent gradient attenuation.
   
   \item \textbf{Value of news sentiment over past prices}:
-  The day-$t$ news-only model reached ROC-AUC 0.516, below the price-only model's 0.521, while fusion reached 0.527. The paired accuracy-difference interval for fusion versus price-only was $[-0.018,0.016]$, which includes zero. These results do not establish a reliable improvement from news sentiment on this split.
+  The day-$t$ news-only model reached ROC-AUC 0.522, essentially equal to the price-only model's 0.521, while fusion reached 0.534. The paired accuracy-difference interval for fusion versus price-only was $[-0.020, 0.014]$, which includes zero, and the safer lagged ($t-1$) news rule gave ROC-AUC 0.516. These results do not establish a reliable improvement from news sentiment on this split.
   
   \item \textbf{Redundancy and temporal overlap of visual embeddings}:
-  The 128-dimensional embedding can encode wick variance, body proportions, and visual structure absent from five scalar returns. However, chart-only ROC-AUC was 0.513, below price-only at 0.521. Training-only PCA reduces dimension and prevents test leakage, but it does not establish incremental predictive value by itself.
-  
+  Mostly not. A linear regression from the 128-number embedding explains 13--18\% of the variance of each of the last five basket returns in the training years but only 4--7\% in the test years, so the embedding partly re-encodes recent price moves and that link weakens out of sample. Yes, the overlap inflates training-period results: the CNN was trained on Set~A charts from 2010--2017, the same years and market regime as the basket training data. A logistic regression on the raw 128-number embedding reaches ROC-AUC 0.655 on 2010--2017 but 0.476 on 2018 and 0.499 on 2019--2020; with training-only PCA to 8 components the gap shrinks (0.530 train, 0.513 test), below the price-only model (0.521). So the chart embedding adds no measurable information beyond the past returns on the test period.
+
   \item \textbf{Recent data performance divergence (2023--2024)}:
-  Fusion accuracy declined from 58.3\% in 2019--2020 to 54.1\% in 2023--4 March 2024, while recent ROC-AUC was 0.501. This is consistent with temporal distribution shift, although the experiment alone cannot identify a single causal market regime.
+  Fusion accuracy declined from 57.9\% in 2019--2020 to 54.1\% in 2023--4 March 2024, while recent ROC-AUC was 0.500, i.e.\ chance level. This is consistent with temporal distribution shift, although the experiment alone cannot identify a single causal market regime.
   
   \item \textbf{Sentiment failure modes and domain shift}:
-  Sentiment models struggled with contextual negation (e.g., ``not unprofitable''), ambiguous polysemy (e.g., ``cutting dividends'' is bearish, but ``cutting debt'' is bullish), and financial numbers (``profit grew 5\%, missing consensus of 8\%''). Furthermore, the sentiment training dataset contains noisy informal tweets, introducing domain discrepancy when applied to institutional S\&P 500 headlines.
+  Error analysis of the Transformer on the 3,234 test texts (overall error 35.4\%): texts with a negation word have a 37.9\% error rate (e.g.\ ``no, the fed will not save the market'', labelled negative, predicted neutral), texts with ``cut'' 33.3\% (``\ldots fund cuts dividend by 10\%'', negative $\rightarrow$ neutral with confidence 1.00; ``boris johnson promises tax cut for 3m higher earners'', positive $\rightarrow$ negative), and texts with numbers 31.6\% (``boeing deliveries halved in first eleven months of 2019'', negative $\rightarrow$ neutral). The model clearly learns word-level cues and misses sentence-level meaning. The corpus also mixes tweets (cashtags such as ``\$ddf'', slang such as ``awk en fuego part 2'', ``short squeeze?'') with news; headlines are more formal, so on the headline file the model predicts neutral more often (mean probabilities 0.23 / 0.41 / 0.37 for negative / neutral / positive, versus balanced training labels), which compresses the daily features towards neutral. Finally, some labels look wrong: among 23 training texts where the model disagrees with the label at confidence $> 0.97$ are ``us stocks open sharply lower on escalating us-china trade dispute; dow falls 500 points'' and ``hackers anonymous to take down facebook and zynga \ldots'' (both labelled positive) and ``groupon christmas gifts'' (labelled negative). Label noise of this kind puts a ceiling on achievable test accuracy, because the model is penalised for correct predictions on mislabelled texts.
 \end{enumerate}
 
 %=======================================================================
 \section{Conclusion}
 \label{sec:conclusion}
-In this project, we designed, executed, and evaluated an end-to-end multimodal perception architecture for candlestick detection and next-day direction forecasting. The experiments show that chart-safe augmentation matters and that the custom Transformer is the strongest tested sentiment model. Leakage-free fusion produced the highest test ROC-AUC, but its paired accuracy advantage over price-only was statistically inconclusive. This result is consistent with the difficulty of extracting stable next-day signal from sparse news and overlapping market-chart windows.
+In this project, we designed, executed, and evaluated an end-to-end multimodal perception architecture for candlestick detection and next-day direction forecasting. The experiments show that chart-safe augmentation matters and that the custom Transformer is the strongest tested sentiment model. The chart-based trend CNN did not beat chance or the majority baseline (48.8\% test accuracy, 95\% CI $[45.6\%, 52.0\%]$ over 119 test dates), confirming that next-day direction is very hard to read from a 30-day chart alone. Leakage-free fusion produced the highest test ROC-AUC, but its paired accuracy advantage over price-only was statistically inconclusive. This result is consistent with the difficulty of extracting stable next-day signal from sparse news and overlapping market-chart windows.
+
+\textit{AI usage.} AI assistants were used during the project, as listed in the README: Antigravity for code structuring, plotting and LaTeX formatting, and Claude (Anthropic, via Claude Code) in the final stage to audit the repository against the brief, re-run both notebooks, add evaluation cells (trend-CNN evaluation, pattern counts, test-set detection and failure galleries), and revise the report so that every number matches the executed notebooks.
 
 %=======================================================================
 \bibliographystyle{IEEEtran}
@@ -705,6 +719,27 @@ In this project, we designed, executed, and evaluated an end-to-end multimodal p
 \onecolumn
 \appendices
 
+\section{Additional EDA Figures}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/next_day_up_proportions.png}
+\caption{Share of next\_day\_up $=1$ by ticker and year for Set~A (overall 51.5\%).}
+\label{fig:app_updays}
+\end{figure}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/headlines_per_year.png}
+\caption{Number of headlines per year in the news file (after removing same-day repeats).}
+\label{fig:app_headlines}
+\end{figure}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/nlp_sentence_lengths.png}
+\caption{Token lengths of the cleaned sentiment texts; the maximum length is 64 tokens.}
+\label{fig:app_lengths}
+\end{figure}
+
+\clearpage
 \section{Exploratory Data Analysis Candlestick Gallery}
 Figure~\ref{fig:app_eda} illustrates 10 representative 640$\times$640 training candlestick charts generated with algorithmic bounding boxes across diverse stochastic variations (light, dark, blue-white themes, grid overlays, and moving averages).
 
@@ -717,23 +752,23 @@ Figure~\ref{fig:app_eda} illustrates 10 representative 640$\times$640 training c
 
 \clearpage
 \section{Qualitative YOLOv8 Detection Gallery}
-Figure~\ref{fig:app_detections} presents checkpoint predictions on the ten reproducible labeled chart artifacts included with the submission. The quantitative held-out evaluation remains the test-set result in Table~\ref{tab:yolo_results}.
+Figure~\ref{fig:app_detections} shows predictions of YOLOv8n Run~C on ten charts from the 2019--2020 test split (four light, three dark, three blue-white, sampled with a fixed seed), with class names and confidence scores.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{figures/yolo_test_detections.png}
-\caption{Actual YOLOv8 checkpoint detections and measured confidence scores on reproducible rendered charts.}
+\caption{YOLOv8n Run~C detections (red) with confidence scores on ten test charts; each title gives the number of detections and of errors (missed + false boxes).}
 \label{fig:app_detections}
 \end{figure}
 
 \clearpage
 \section{Documented YOLO Failure Cases and Root-Cause Diagnostics}
-Figure~\ref{fig:app_failures} shows the five reproducible charts with the largest number of unmatched or misclassified boxes under IoU $\geq0.50$ matching.
+Figure~\ref{fig:app_failures} shows the five test charts with the largest number of missed plus false boxes under same-class IoU $\geq0.50$ matching. The causes are discussed in Section~\ref{sec:discussion}.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.98\textwidth]{figures/yolo_failure_cases.png}
-\caption{Highest-error checkpoint examples among the reproducible chart artifacts.}
+\caption{Five worst test charts. Green dashed boxes are labels, red boxes are predictions with confidence scores.}
 \label{fig:app_failures}
 \end{figure}
 
