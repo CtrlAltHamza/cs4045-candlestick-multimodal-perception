@@ -101,6 +101,12 @@ Step 2: Part 2 NLP & Multimodal Fusion (notebooks/part2_nlp_fusion.ipynb)
      A Kaggle GPU is recommended. This runner intentionally skips the main-model
      training cell and writes only results/hyperparameter_log.csv plus the
      existing sentence-length figure.
+   - To regenerate chart splits and export the Part 1 per-class, theme, recent,
+     robustness, and inference evidence without retraining or overwriting
+     yolo_best.pt:
+       python scripts/run_part1_checkpoint_evaluation.py
+     The downloadable outputs are bundled as
+     results/part1_checkpoint_evaluation.zip.
 
 --------------------------------------------------------------------------------
 5. OUTPUT ARTIFACTS INCLUDED IN SUBMISSION

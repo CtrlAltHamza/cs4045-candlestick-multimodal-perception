@@ -5,6 +5,7 @@ configured to run seamlessly on Kaggle GPU or local machine.
 """
 
 import json
+import subprocess
 
 def make_cell(cell_type, source, execution_count=None, outputs=None):
     cell = {
@@ -922,6 +923,12 @@ per_class = pd.DataFrame({
 per_class.to_csv("results/detection_per_class.csv", index=False)
 print(per_class.to_string(index=False))
 
+pd.DataFrame([{
+    'Best Run': best_run,
+    'Inference (ms/image)': test_metrics.speed.get('inference', np.nan),
+    'Checkpoint Size (MB)': os.path.getsize('checkpoints/yolo_best.pt') / (1024 ** 2)
+}]).to_csv("results/detection_efficiency.csv", index=False)
+
 # Theme and recent-set evaluation using recorded generation metadata.
 theme_rows = []
 test_metadata = pd.read_csv("results/test_metadata.csv")
@@ -1236,6 +1243,40 @@ print(f"Saved {chart_embeddings_arr.shape} embeddings to results/chart_embedding
         "nbformat": 4,
         "nbformat_minor": 4
     }
+
+    # Preserve outputs only when a cell's source is unchanged. Prefer the
+    # richest available prior notebook (working copy or Git HEAD), so running
+    # this builder cannot accidentally erase valid saved evidence.
+    prior_notebooks = []
+    try:
+        with open("notebooks/part1_vision.ipynb", "r", encoding="utf-8") as existing_file:
+            prior_notebooks.append(json.load(existing_file))
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
+    try:
+        committed = subprocess.check_output(
+            ["git", "show", "HEAD:notebooks/part1_vision.ipynb"],
+            text=True,
+            encoding="utf-8",
+        )
+        prior_notebooks.append(json.loads(committed))
+    except (subprocess.SubprocessError, json.JSONDecodeError, FileNotFoundError):
+        pass
+
+    old_cells = {}
+    for prior in prior_notebooks:
+        for prior_cell in prior.get("cells", []):
+            key = (prior_cell.get("cell_type"), "".join(prior_cell.get("source", [])))
+            previous = old_cells.get(key, {})
+            if len(prior_cell.get("outputs", [])) > len(previous.get("outputs", [])):
+                old_cells[key] = prior_cell
+    for cell in notebook_dict["cells"]:
+        if cell.get("cell_type") != "code":
+            continue
+        old_cell = old_cells.get((cell.get("cell_type"), "".join(cell.get("source", []))))
+        if old_cell is not None:
+            cell["execution_count"] = old_cell.get("execution_count")
+            cell["outputs"] = old_cell.get("outputs", [])
 
     with open("notebooks/part1_vision.ipynb", "w", encoding="utf-8") as f:
         json.dump(notebook_dict, f, indent=1)

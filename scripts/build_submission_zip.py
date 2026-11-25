@@ -28,6 +28,7 @@ REQUIRED_FILES = [
     "results/market_basket_daily.csv",
     "results/selected_tickers.json",
     "report/report.tex",
+    "README.md",
     "README.txt",
     "requirements.txt"
 ]
