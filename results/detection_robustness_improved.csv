@@ -1,0 +1,2 @@
+Selection Split,Selected Defense,Original Test mAP@50,Unmitigated Robust Test mAP@50,Mitigated Robust Test mAP@50,Absolute Improvement,Remaining Drop vs Original,Mitigated mAP@50-95,Inference (ms/image)
+2018 validation only,lanczos_restore_640,0.6656552972999326,0.3280042514832398,0.649520554858964,0.3215163033757242,0.016134742440968575,0.5630152464484204,3.943372724089037

@@ -19,6 +19,8 @@ REQUIRED_FILES = [
     "results/detection_per_class.csv",
     "results/detection_theme_results.csv",
     "results/detection_robustness.csv",
+    "results/robustness_defense_validation.csv",
+    "results/detection_robustness_improved.csv",
     "results/detection_efficiency.csv",
     "results/trend_results.csv",
     "results/sentiment_results.csv",

@@ -19,6 +19,7 @@ An end-to-end perception project combining candlestick-chart vision and financia
 | Chart trend prediction | ResNet-18 | **54.2% accuracy**, **0.539 ROC-AUC** |
 | Financial sentiment | Custom Transformer | **66.2% accuracy**, **0.660 Macro-F1** |
 | Next-day fusion | Price + news + chart | **58.3% accuracy**, **0.527 ROC-AUC** |
+| Robust detection defense | Validation-selected Lanczos restoration | **0.650 mAP@50**, up from **0.328** |
 
 Fusion matched price-only accuracy and improved ROC-AUC from 0.521 to 0.527. Its paired accuracy-difference confidence interval includes zero, so the project treats the incremental lift as statistically inconclusive rather than claiming a reliable market edge.
 
@@ -163,6 +164,8 @@ python scripts/build_submission_zip.py
 - [`results/detection_per_class.csv`](results/detection_per_class.csv): checkpoint precision, recall, AP and box counts for all eight classes.
 - [`results/detection_theme_results.csv`](results/detection_theme_results.csv): light, dark, blue-white and recent-set mAP@50.
 - [`results/detection_robustness.csv`](results/detection_robustness.csv): 480-pixel/JPEG stress-test degradation.
+- [`results/robustness_defense_validation.csv`](results/robustness_defense_validation.csv): validation-only comparison of four deterministic defenses.
+- [`results/detection_robustness_improved.csv`](results/detection_robustness_improved.csv): held-out result for the validation-selected defense.
 - [`results/detection_efficiency.csv`](results/detection_efficiency.csv): measured Tesla T4 latency and checkpoint size.
 - [`results/trend_results.csv`](results/trend_results.csv): majority, price-logistic and ResNet-18 trend results.
 - [`results/sentiment_results.csv`](results/sentiment_results.csv): majority, RNN, BiLSTM and Transformer results.
