@@ -1,2 +1,2 @@
-Original News ROC-AUC,Shuffled ROC-AUC Mean,Shuffled ROC-AUC SD,Iterations
-0.5161055828379426,0.4990955350219694,0.025040971615365074,100
+Original News ROC-AUC,Shuffled ROC-AUC Mean,Shuffled ROC-AUC SD,Shuffled Acc Mean,Iterations,Source
+0.5218,0.4994,0.0247,0.5794,100,notebook part2_nlp_fusion.ipynb (Task 4.5 cell output)
