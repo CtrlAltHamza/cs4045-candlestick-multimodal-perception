@@ -303,6 +303,8 @@ In strict compliance with grading regulations, we trained the \texttt{yolov8n.ya
   \item \textbf{Run C (Chart-Suited Domain Augmentation)}: Flipping, rotation, and shear were strictly disabled; gentle brightness (HSV value gain $\pm 0.2$) and saturation ($\pm 0.1$) jitter with hue fixed, mild isotropic scale ($\pm 0.05$), and small translations ($\pm 0.02$) were permitted.
 \end{itemize}
 
+\textit{Training settings (identical for all runs, read from the training arguments stored in the checkpoint).} Model \texttt{yolov8n.yaml} built from scratch; 20 epochs; batch 16; image size 640; optimizer AdamW with initial learning rate $8.33\times10^{-4}$, final factor 0.01, momentum 0.937, weight decay $5\times10^{-4}$ and 3 warm-up epochs; seed 42 with deterministic mode; AMP disabled; Ultralytics 8.4.215 on a Kaggle GPU (the GPU model is not recorded in the checkpoint). Run~C took 22.9 min (68.8 s per epoch); its best validation mAP@50--95 (0.586) was reached at epoch 19. Runs~A and~B were trained in the same session with the same settings, but only the validation-selected Run~C checkpoint was kept, so their per-epoch histories and training times are not available.
+
 Table~\ref{tab:aug_analysis} provides an econometric and semantic breakdown of each augmentation tested in Run~B.
 
 \begin{table}[htbp]
@@ -327,7 +329,7 @@ Color Jitter    & HSV     & Mild& Aligns with visual themes if hue intact. \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.98\columnwidth]{figures/yolo_loss_curves.png}
-\caption{Measured test precision, recall, mAP@50, and mAP@50--95 for the three augmentation runs. Per-epoch histories are produced by the training notebook.}
+\caption{Per-epoch training and validation (2018) losses and validation mAP of YOLOv8n Run~C, read from the training history stored in \texttt{yolo\_best.pt} (\texttt{yolo\_run\_c\_training\_history.csv}). Box and DFL losses fall together; for the classification loss a small train--validation gap opens after about epoch 6, but the validation loss still decreases slowly and validation mAP keeps rising, so 20 epochs do not over-fit. Loss curves of Runs~A and~B could not be shown because their checkpoints were not kept.}
 \label{fig:yolo_curves}
 \end{figure}
 
@@ -382,7 +384,7 @@ Evening Star      & 0.732 & 0.766 & 0.822 & 1,135 \\
 \subsubsection{Theme Invariance and Robustness Stress Testing}
 Checkpoint evaluation across individual visual themes revealed high spatial stability: mAP@50 was 0.665 on Light, 0.673 on Dark, and 0.669 on Blue-White. On the recent set (2023--2024), mAP@50 was 0.673, essentially matching the 2019--2020 test result.
 
-To evaluate out-of-distribution resilience, test images were downscaled to $480\times480$ with severe JPEG compression (quality = 40). Without mitigation, Run~C mAP@50 fell from 0.666 to 0.328, an absolute drop of 0.338 (re-measured in the final notebook run). We then compared four deterministic defenses exclusively on the corrupted 2018 validation split. Lanczos restoration to the model's native 640-pixel scale achieved the highest validation mAP@50 (0.645), narrowly ahead of direct 640-pixel inference (0.639), and was evaluated once on the corrupted test split. It recovered test mAP@50 to 0.650 and mAP@50--95 to 0.563: a 0.322 absolute improvement over the unmitigated stress test, leaving only a 0.016 mAP@50 gap from clean evaluation. The defense requires no retraining and averaged 3.94 ms inference per chart on an NVIDIA Tesla T4 (defense numbers from \texttt{scripts/evaluate\_robustness\_defenses.py} on the original Kaggle rendering). In the final notebook run on an NVIDIA GTX 1650, clean inference took 5.89 ms per chart; the checkpoint size is 5.96 MB.
+To evaluate out-of-distribution resilience, test images were downscaled to $480\times480$ with severe JPEG compression (quality = 40). Without mitigation, Run~C mAP@50 fell from 0.666 to 0.328, an absolute drop of 0.338 (re-measured in the final notebook run). We then compared four deterministic defenses exclusively on the corrupted 2018 validation split. Lanczos restoration to the model's native 640-pixel scale achieved the highest validation mAP@50 (0.645), narrowly ahead of direct 640-pixel inference (0.639), and was evaluated once on the corrupted test split. It recovered test mAP@50 to 0.650 and mAP@50--95 to 0.563: a 0.322 absolute improvement over the unmitigated stress test, leaving only a 0.016 mAP@50 gap from clean evaluation. The defense requires no retraining and averaged 3.94 ms inference per chart on an NVIDIA Tesla T4 (defense numbers from \texttt{scripts/evaluate\_robustness\_defenses.py} on the original Kaggle rendering). In the final notebook run on an NVIDIA GTX 1650, clean inference took 5.91 ms per chart; the checkpoint size is 5.96 MB.
 
 \subsection{Trend ResNet-18 Classifier \& 128-dim Embeddings}
 For next-day binary trend prediction ($next\_day\_up \in \{0, 1\}$), we configured a ResNet-18 model trained strictly on Set A charts (Train: 2010--2017, Val: 2018). Its penultimate linear classifier was re-engineered with a 128-dimensional projection bottleneck ($512 \rightarrow 128 \rightarrow 2$).
@@ -413,7 +415,7 @@ Trend ResNet-18       & 0.488 & [0.456, 0.520] & 0.385 & 0.502 & 0.493 & 0.395 &
 \label{fig:trend_cm}
 \end{figure}
 
-The majority class is ``up'' (50.8\% of training windows). Confidence intervals use 1,000 bootstrap resamples of whole trading dates, keeping all 12 tickers of a date together; the test split has 1,428 images but only 119 distinct test dates (118 in the recent set), so the effective sample size is far smaller than the image count. The ResNet-18 reaches 48.8\% test accuracy with a 95\% CI of $[45.6\%, 52.0\%]$, which \emph{includes} 50\%: the CNN is not distinguishable from chance. The paired bootstrap differences on the same test dates are $[-11.0, +6.1]$ points versus the majority baseline and $[-12.8, +2.5]$ points versus logistic regression, so the CNN is not better than either baseline. The only baseline comparison that excludes zero is logistic regression versus majority ($[+0.1, +5.7]$ points), and that advantage disappears on the recent set (AUC 0.430). The CNN predicts ``down'' for most charts (F1 for ``up'' only 0.385), i.e.\ it learned no transferable directional signal from 3,000 training images. ResNet-18 inference latency was 4.66 ms/image at batch size 1 on an NVIDIA GTX 1650 (checkpoint 42.97 MiB, 11.24M parameters).
+The majority class is ``up'' (50.8\% of training windows). Confidence intervals use 1,000 bootstrap resamples of whole trading dates, keeping all 12 tickers of a date together; the test split has 1,428 images but only 119 distinct test dates (118 in the recent set), so the effective sample size is far smaller than the image count. The ResNet-18 reaches 48.8\% test accuracy with a 95\% CI of $[45.6\%, 52.0\%]$, which \emph{includes} 50\%: the CNN is not distinguishable from chance. The paired bootstrap differences on the same test dates are $[-11.0, +6.1]$ points versus the majority baseline and $[-12.8, +2.5]$ points versus logistic regression, so the CNN is not better than either baseline. The only baseline comparison that excludes zero is logistic regression versus majority ($[+0.1, +5.7]$ points), and that advantage disappears on the recent set (AUC 0.430). The CNN predicts ``down'' for most charts (F1 for ``up'' only 0.385), i.e.\ it learned no transferable directional signal from 3,000 training images. ResNet-18 inference latency was 8.64 ms/image at batch size 1 on an NVIDIA GTX 1650 (checkpoint 42.97 MiB, 11.24M parameters).
 
 \emph{Reproducibility note.} These numbers were produced by evaluating the submitted checkpoint (\texttt{cnn\_trend\_best.pt}) with the notebook's evaluation cell. The test and recent charts were re-rendered from the same code: windows, tickers, dates and labels are identical to the original split, but the random style draws (theme, grid, volume panel, SMA) differ from the original rendering, which does not change the evaluation target. Per-image predictions are saved in \texttt{trend\_test\_predictions.csv} and \texttt{trend\_recent\_predictions.csv}.
 
@@ -624,7 +626,7 @@ To test sensitivity to temporal alignment, we conducted 100 independent trials o
 Accuracy cannot change because the model predicts ``up'' every day. The average shuffled AUC is near chance and 0.023 below the unshuffled AUC, which is within one standard deviation of the shuffles. The variation across shuffles is substantial, so this is evidence of a small timing contribution rather than proof of a strong news signal.
 
 \subsection{Computational Efficiency Benchmarks}
-Table~\ref{tab:efficiency} summarizes parameter counts, training times, and per-sample inference latencies. Sentiment training times and all Task~4 classifier times were measured in the final notebook run (GTX 1650); the YOLO and ResNet-18 training times are from the original Kaggle T4 runs. ``n/m'' marks per-headline latencies that were not measured in the final run, and the Task~4 inference times cover only the logistic-regression step.
+Table~\ref{tab:efficiency} summarizes parameter counts, training times, and per-sample inference latencies. Sentiment training times and all Task~4 classifier times were measured in the final notebook run (GTX 1650); the YOLO training time is read from the Run~C checkpoint (Kaggle GPU), and the ResNet-18 training time was not recorded (``n/r''). ``n/m'' marks per-headline latencies that were not measured in the final run, and the Task~4 inference times cover only the logistic-regression step.
 
 \begin{table}[htbp]
 \centering
@@ -634,14 +636,14 @@ Table~\ref{tab:efficiency} summarizes parameter counts, training times, and per-
 \toprule
 \textbf{Model / Pipeline} & \textbf{Parameters} & \textbf{Train Time} & \textbf{Inference Latency} \\
 \midrule
-YOLOv8n (Run C)         & 3.01M  & 14.8 min  & 5.89 ms / chart \\
-Trend ResNet-18         & 11.24M & 12.4 min  & 4.7 ms / chart \\
+YOLOv8n (Run C)         & 3.01M  & 22.9 min  & 5.91 ms / chart \\
+Trend ResNet-18         & 11.24M & n/r       & 8.6 ms / chart \\
 Simple RNN Baseline     & 2.46M  & 19.9 s    & n/m \\
 Bidirectional LSTM      & 3.12M  & 46.0 s    & n/m \\
 Custom Transformer      & 2.84M  & 97.2 s    & n/m \\
 Price-Only Logistic     & 6      & 2.5 ms    & 0.0015 ms / day \\
 News-Only Pipeline      & 2.84M  & 97.2 s + 2.8 ms & 0.0015 ms / day + sentiment \\
-Chart-Only Pipeline     & 11.24M & CNN + 3.4 ms & 0.0018 ms / day + render + 4.7 ms CNN \\
+Chart-Only Pipeline     & 11.24M & CNN + 3.4 ms & 0.0018 ms / day + render + 8.6 ms CNN \\
 \textbf{Multimodal Fusion} & \textbf{14.09M} & \textbf{models + 3.3 ms} & \textbf{0.0015 ms / day + both} \\
 \bottomrule
 \end{tabular}
