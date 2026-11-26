@@ -1,4 +1,4 @@
 Model,Test Accuracy,Test F1 (Up),Test ROC-AUC,Test Acc 95% CI (date bootstrap),Test Acc minus Majority 95% CI,Test Acc minus Logistic 95% CI,Recent Accuracy,Recent F1 (Up),Recent ROC-AUC,Recent Acc 95% CI (date bootstrap),Distinct Test Dates,Test Images,Parameters,Model Size (MB),Inference (ms/image)
 Majority Class Baseline,0.5119,0.6772,n/a,"[0.4517, 0.5714]",n/a,"[-0.0574, -0.0014]",0.5134,0.6785,n/a,"[0.4675, 0.5600]",119,1428,0,0.0,n/a
 Logistic Regression (5-Day Returns),0.5385,0.6809,0.5671,"[0.4839, 0.5917]","[0.0014, 0.0574]",n/a,0.5042,0.6618,0.4296,"[0.4576, 0.5473]",119,1428,6,n/a,n/a
-Trend ResNet-18 (Ours),0.4881,0.3852,0.5024,"[0.4559, 0.5203]","[-0.1100, 0.0610]","[-0.1275, 0.0252]",0.4929,0.3946,0.4866,"[0.4612, 0.5254]",119,1428,11242690,42.97,4.66
+Trend ResNet-18 (Ours),0.4881,0.3852,0.5024,"[0.4559, 0.5203]","[-0.1100, 0.0610]","[-0.1275, 0.0252]",0.4929,0.3946,0.4866,"[0.4612, 0.5254]",119,1428,11242690,42.97,8.64
