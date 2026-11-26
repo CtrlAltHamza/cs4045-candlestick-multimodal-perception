@@ -721,6 +721,79 @@ In this project, we designed, executed, and evaluated an end-to-end multimodal p
 \onecolumn
 \appendices
 
+\section{Model Architecture Diagrams}
+Figure~\ref{fig:app_arch} summarises the vision and text models exactly as implemented in the notebooks (layer sizes from \texttt{yolov8n.yaml}, the \texttt{TrendResNet18} class, and the \texttt{SimpleRNNModel}, \texttt{BiLSTMModel} and \texttt{CustomTransformerEncoder} classes; the Transformer is detailed in System Diagram~3).
+
+\begin{figure}[htbp]
+\centering
+\tikzset{M/.style={draw,rectangle,rounded corners,fill=blue!8,text width=2.35cm,text centered,minimum height=1.05cm,font=\footnotesize},
+         H/.style={draw,rectangle,rounded corners,fill=green!12,text width=2.35cm,text centered,minimum height=1.05cm,font=\footnotesize},
+         T/.style={font=\small\bfseries,anchor=east,text width=2.6cm,align=right}}
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[>=latex', node distance=0.35cm]
+  \node[T] (ty) {(a) YOLOv8n\\(3.01M params)};
+  \node[M,right=0.3cm of ty] (y1) {Chart image\\$640\times640\times3$};
+  \node[M,right=of y1] (y2) {Backbone\\Conv + C2f blocks\\(CSPDarknet)};
+  \node[M,right=of y2] (y3) {SPPF\\multi-scale pooling};
+  \node[M,right=of y3] (y4) {Neck (PAN-FPN)\\fuses strides 8, 16, 32};
+  \node[M,right=of y4] (y5) {Decoupled anchor-free head};
+  \node[H,right=of y5] (y6) {Boxes + 8 pattern classes + confidence};
+  \foreach \a/\b in {y1/y2,y2/y3,y3/y4,y4/y5,y5/y6} \draw[->,thick] (\a) -- (\b);
+\end{tikzpicture}}
+
+\medskip
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[>=latex', node distance=0.35cm]
+  \node[T] (tr) {(b) Trend ResNet-18\\(11.24M params)};
+  \node[M,right=0.3cm of tr] (r1) {Chart resized to $224\times224$, ImageNet norm.};
+  \node[M,right=of r1] (r2) {Conv $7\times7$ stem + max-pool};
+  \node[M,right=of r2] (r3) {4 residual stages\\64, 128, 256, 512 ch.\\(ImageNet init.)};
+  \node[M,right=of r3] (r4) {Global average pool\\$\rightarrow$ 512};
+  \node[M,right=of r4] (r5) {Linear 512$\rightarrow$128, BN, ReLU, Dropout 0.3};
+  \node[H,right=of r5] (r6) {Linear 128$\rightarrow$2\\P(next close up)};
+  \node[H,below=0.35cm of r5,fill=yellow!20] (r7) {128-d embedding\\(Part 2 input)};
+  \foreach \a/\b in {r1/r2,r2/r3,r3/r4,r4/r5,r5/r6} \draw[->,thick] (\a) -- (\b);
+  \draw[->,thick,dashed] (r5) -- (r7);
+\end{tikzpicture}}
+
+\medskip
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[>=latex', node distance=0.35cm]
+  \node[T] (tn) {(c) Simple RNN\\(2.46M params)};
+  \node[M,right=0.3cm of tn] (n1) {Token ids\\(max 64, vocab 18,981)};
+  \node[M,right=of n1] (n2) {Learned embedding\\128-d};
+  \node[M,right=of n2] (n3) {Simple RNN, tanh\\hidden 128};
+  \node[M,right=of n3] (n4) {Last hidden state\\128};
+  \node[H,right=of n4] (n5) {Linear 128$\rightarrow$3\\neg / neu / pos};
+  \foreach \a/\b in {n1/n2,n2/n3,n3/n4,n4/n5} \draw[->,thick] (\a) -- (\b);
+\end{tikzpicture}}
+
+\medskip
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[>=latex', node distance=0.35cm]
+  \node[T] (tl) {(d) BiLSTM\\(3.12M params)};
+  \node[M,right=0.3cm of tl] (l1) {Token ids\\(max 64, vocab 18,981)};
+  \node[M,right=of l1] (l2) {Learned embedding\\128-d};
+  \node[M,right=of l2] (l3) {2-layer BiLSTM\\128 per direction, dropout 0.3};
+  \node[M,right=of l3] (l4) {Concat final fwd + bwd states (256)};
+  \node[M,right=of l4] (l5) {Dropout, Linear 256$\rightarrow$128, ReLU};
+  \node[H,right=of l5] (l6) {Linear 128$\rightarrow$3\\neg / neu / pos};
+  \foreach \a/\b in {l1/l2,l2/l3,l3/l4,l4/l5,l5/l6} \draw[->,thick] (\a) -- (\b);
+\end{tikzpicture}}
+\caption{Architectures of (a) the YOLOv8n pattern detector, (b) the ResNet-18 next-day trend CNN and its 128-d embedding used in Part~2, and (c, d) the recurrent sentiment models. The Transformer encoder is shown in System Diagram~3.}
+\label{fig:app_arch}
+\end{figure}
+
+\clearpage
+\section{Accuracy Comparison}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/accuracy_comparison.png}
+\caption{Accuracy comparison of the sentiment models (left; test accuracy and macro-F1, chance $=1/3$) and the next-day market-basket models (right; test accuracy and ROC-AUC for 2019--2020). Drawn by the last cell of the Part~2 notebook from \texttt{sentiment\_results.csv} and \texttt{market\_results.csv}.}
+\label{fig:app_accuracy}
+\end{figure}
+
+\clearpage
 \section{Additional EDA Figures}
 \begin{figure}[htbp]
 \centering
