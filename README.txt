@@ -108,6 +108,37 @@ Step 2: Part 2 NLP & Multimodal Fusion (notebooks/part2_nlp_fusion.ipynb)
      The downloadable outputs are bundled as
      results/part1_checkpoint_evaluation.zip.
 
+Step 3: How the submitted numbers were produced (final run) and how to reproduce them
+   - Hardware/software of the final run: NVIDIA GeForce GTX 1650 (4 GB), Python 3.12,
+     PyTorch 2.14.1 + CUDA 12.6, Ultralytics 8.4.218. Part 1 ran top to bottom in about
+     11 minutes and Part 2 in about 10 minutes. YOLO Run C itself was trained on a Kaggle GPU.
+   - Put the four data files in ./Data at the repository root and start Jupyter from the
+     repository root (all paths in the notebooks are relative to it).
+   - Part 1 switches (environment variables, all off by default):
+       RETRAIN_YOLO=1        train Runs A, B and C from yolov8n.yaml (hours on a small GPU).
+                             Default: evaluate checkpoints/yolo_best.pt (Run C, the run selected
+                             on validation). Only the Run C weights were kept, so the Run A and
+                             Run B rows of detection_results.csv come from the recorded Kaggle
+                             evaluation in results/detection_results_kaggle_runs.csv.
+       RETRAIN_TREND=1       retrain the ResNet-18 trend CNN. Default: evaluate
+                             checkpoints/cnn_trend_best.pt.
+       REBUILD_EMBEDDINGS=1  re-extract results/chart_embeddings.npy. Default: keep the saved
+                             embeddings (used by Part 2) and verify 20 random dates against the
+                             checkpoint (mean cosine similarity about 0.996).
+     Example (Windows PowerShell):  $env:RETRAIN_TREND="1"; jupyter lab
+   - Chart generation is seeded (SEED = 42). The windows, tickers, dates and labels of every
+     split are fixed; the random style of each chart depends on the order of random draws.
+   - The YOLO Run C training settings, training time (22.9 min, 20 epochs) and per-epoch loss
+     history are read from the checkpoint and saved to results/yolo_run_c_training_history.csv.
+   - Part 2 retrains the RNN, BiLSTM and Transformer when run, so small run-to-run differences
+     from GPU non-determinism are expected. All numbers in the report are the outputs of the
+     executed notebooks. scripts/rebuild_part2_evaluation.py aggregates daily sentiment slightly
+     differently (ROC-AUC within 0.006) and is only used to draw report/figures/fusion_comparison_roc.png.
+   - Inference times (ms per image) vary by a few ms between runs and machines.
+   - Report: python scripts/create_overleaf_zip.py, then upload overleaf_upload.zip to Overleaf
+     (New project -> Existing project (.zip)) and recompile main.tex.
+   - Submission archive: python scripts/build_submission_zip.py
+
 --------------------------------------------------------------------------------
 5. OUTPUT ARTIFACTS INCLUDED IN SUBMISSION
 --------------------------------------------------------------------------------
